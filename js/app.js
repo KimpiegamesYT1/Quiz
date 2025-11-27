@@ -62,15 +62,38 @@ async function loadQuiz() {
         const data = await response.json();
         
         currentQuiz = data;
-        questions = data.questions;
         
-        // Setup categories
+        // Reset global state
+        questions = [];
+        categories = {};
+        
+        // Handle both old (flat) and new (nested) structures
+        if (data.questions) {
+            // Old structure: questions are at root
+            questions = data.questions;
+            data.categories.forEach(cat => {
+                categories[cat.id] = cat;
+            });
+        } else {
+            // New structure: questions are inside categories
+            data.categories.forEach(cat => {
+                if (cat.id !== 'all' && cat.questions) {
+                    questions.push(...cat.questions);
+                }
+                categories[cat.id] = cat;
+            });
+            
+            // Ensure 'all' category has all questions
+            if (categories['all']) {
+                categories['all'].questions = questions;
+            }
+        }
+        
+        // Setup categories menu
         const menu = document.querySelector('.category-menu');
         menu.innerHTML = '';
         
-        categories = {};
         data.categories.forEach(cat => {
-            categories[cat.id] = cat;
             const btn = document.createElement('button');
             btn.className = 'category-btn';
             btn.textContent = cat.name;
@@ -89,7 +112,13 @@ async function loadQuiz() {
 
 function startQuiz(category) {
     const cat = categories[category];
-    activeQuestions = questions.slice(cat.start, cat.end);
+    
+    if (cat.questions) {
+        activeQuestions = cat.questions;
+    } else {
+        activeQuestions = questions.slice(cat.start, cat.end);
+    }
+
     currentQuestion = 0;
     score = 0;
     answers = [];
