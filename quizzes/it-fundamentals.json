@@ -76,7 +76,7 @@
             "options": ["OR", "NOR", "AND", "NAND"],
             "correct": 2,
             "explanation": "Dit is een AND gate. Een AND gate geeft alleen een 1 als output wanneer alle inputs 1 zijn.",
-            "image": "https://media.rs-online.com/image/upload/f_auto/q_auto/v1482269874/R2175566-03.jpg"
+            "image": "quizzes/Assets/ANDGate.png"
         },
         {
             "question": "In IEEE 754 single precision floating point, hoeveel bits worden gebruikt voor de exponent?",
