@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen" class="start-screen">
+            <h2 id="quiz-title" style="color: #ffffff; margin-bottom: 20px;">Laden...</h2>
+            <p style="margin: 20px 0; font-size: 1.1em;">Kies een onderwerp om te oefenen:</p>
+            <div class="category-menu">
+                <!-- Categories will be loaded here dynamically -->
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="window.location.href='index.html'">Terug naar overzicht</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="hidden">
+            <div class="question-container">
+                <div class="question-number" id="question-number"></div>
+                <div class="question-content">
+                    <div class="question-left">
+                        <div class="question-text" id="question-text"></div>
+                        <div class="options" id="options"></div>
+                    </div>
+                    <div class="question-image hidden" id="question-image">
+                        <img id="question-img" src="" alt="Vraag afbeelding">
+                    </div>
+                </div>
+                <div class="feedback hidden" id="feedback"></div>
+            </div>
+            <div class="navigation">
+                <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Controleer</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="end-screen hidden">
+            <h2>Quiz Voltooid!</h2>
+            <div class="score" id="score"></div>
+            <p id="score-text"></p>
+            <button class="btn" onclick="restartQuiz()">Terug naar Menu</button>
+            <button class="btn" onclick="window.location.href='index.html'" style="margin-top: 10px; background: transparent; border: 1px solid #00d4ff; color: #00d4ff;">Andere Quiz Kiezen</button>
+        </div>
+    </div>
+
+    <script src="js/app.js?v=20251127"></script>
+</body>
+</html>
