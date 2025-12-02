@@ -1,721 +1,907 @@
 {
-    "title": "IT Fundamentals Examen Quiz",
+    "title": "IT Fundamentals Quiz (Week 1-4)",
     "categories": [
         {
-            "id": "all",
-            "name": "📚 Alle onderwerpen"
-        },
-        {
-            "id": "binary",
-            "name": "1. Binaire Getallen",
+            "id": "week1",
+            "name": "Week 1: Bits & Bytes",
             "questions": [
                 {
-                    "question": "Wat is de decimale waarde van het binaire getal 11010110?",
+                    "question": "Wat is een 'nibble' in computerterminologie?",
                     "options": [
-                        "218",
-                        "214",
-                        "212",
-                        "220"
-                    ],
-                    "correct": 1,
-                    "explanation": "11010110 = 128+64+16+4+2 = 214. Tel de machten van 2 op waar een 1 staat."
-                },
-                {
-                    "question": "Wat is het resultaat van de binaire optelling: 1011 + 1101?",
-                    "options": [
-                        "10110",
-                        "10100",
-                        "11000",
-                        "11010"
-                    ],
-                    "correct": 2,
-                    "explanation": "1011 (11) + 1101 (13) = 24 = 11000. Bij binair optellen: 1+1=10 (carry de 1)."
-                },
-                {
-                    "question": "Hoeveel bits zijn er nodig om het decimale getal 500 in binair te representeren?",
-                    "options": [
-                        "8 bits",
-                        "10 bits",
-                        "7 bits",
-                        "9 bits"
-                    ],
-                    "correct": 3,
-                    "explanation": "2^8=256, 2^9=512. 500 past in 9 bits (max 511). 500 = 111110100."
-                },
-                {
-                    "question": "Wat is de two's complement representatie van -45 in 8 bits?",
-                    "options": [
-                        "10101101",
-                        "11010011",
-                        "11010010",
-                        "10101100"
-                    ],
-                    "correct": 1,
-                    "explanation": "45=00101101, inverteer→11010010, +1→11010011. Two's complement: inverteer alle bits en tel 1 op."
-                },
-                {
-                    "question": "Welke hexadecimale waarde komt overeen met het binaire getal 10101111?",
-                    "options": [
-                        "AB",
-                        "FA",
-                        "AF",
-                        "BF"
-                    ],
-                    "correct": 2,
-                    "explanation": "Splits in nibbles: 1010=A, 1111=F → AF. Elke 4 bits = 1 hex cijfer."
-                },
-                {
-                    "question": "Wat is het resultaat van de bitwise AND operatie: 1100 AND 1010?",
-                    "options": [
-                        "1110",
-                        "1000",
-                        "0110",
-                        "1010"
-                    ],
-                    "correct": 1,
-                    "explanation": "AND geeft 1 alleen als beide bits 1 zijn: 1&1=1, 1&0=0, 0&1=0, 0&0=0 → 1000."
-                },
-                {
-                    "question": "Hoeveel verschillende waarden kan een 6-bit unsigned integer representeren?",
-                    "options": [
-                        "32",
-                        "63",
-                        "128",
-                        "64"
-                    ],
-                    "correct": 3,
-                    "explanation": "2^6 = 64 waarden (0 t/m 63). Aantal bits bepaalt 2^n mogelijke waarden."
-                },
-                {
-                    "question": "Wat is de binaire representatie van het hexadecimale getal 3F?",
-                    "options": [
-                        "00111110",
-                        "01111111",
-                        "00111111",
-                        "00101111"
-                    ],
-                    "correct": 2,
-                    "explanation": "3=0011, F=1111 → 00111111. Elk hex cijfer = 4 bits."
-                },
-                {
-                    "question": "Bij een signed 8-bit integer, wat is het bereik van mogelijke waarden?",
-                    "options": [
-                        "-127 tot 128",
-                        "0 tot 255",
-                        "-128 tot 127",
-                        "-256 tot 255"
-                    ],
-                    "correct": 2,
-                    "explanation": "Signed 8-bit: -2^7 tot 2^7-1 = -128 tot 127. MSB is het tekenbit."
-                },
-                {
-                    "question": "Wat is het resultaat van een left shift operatie: 00001101 << 2?",
-                    "options": [
-                        "00110000",
-                        "00110100",
-                        "01101000",
-                        "00011010"
-                    ],
-                    "correct": 1,
-                    "explanation": "Left shift 2: schuif alle bits 2 naar links, vul rechts met 0. 00001101→00110100."
-                },
-                {
-                    "question": "Welke gate is dit?",
-                    "options": [
-                        "OR",
-                        "NOR",
-                        "AND",
-                        "NAND"
-                    ],
-                    "correct": 2,
-                    "explanation": "Dit is een AND gate. Een AND gate geeft alleen een 1 als output wanneer alle inputs 1 zijn.",
-                    "image": "quizzes/Assets/ANDGate.png"
-                }
-            ]
-        },
-        {
-            "id": "floating",
-            "name": "2. Floating Point & Data",
-            "questions": [
-                {
-                    "question": "In IEEE 754 single precision floating point, hoeveel bits worden gebruikt voor de exponent?",
-                    "options": [
-                        "11 bits",
-                        "23 bits",
-                        "7 bits",
+                        "1 bit",
+                        "2 bits",
+                        "4 bits",
                         "8 bits"
                     ],
-                    "correct": 3,
-                    "explanation": "Single precision: 1 sign + 8 exponent + 23 mantissa = 32 bits totaal."
+                    "correct": 2,
+                    "explanation": "Een nibble is een halve byte, oftewel 4 bits."
                 },
                 {
-                    "question": "Wat is de bias waarde voor IEEE 754 single precision floating point?",
+                    "question": "Welk getalsysteem is Base-16?",
+                    "options": [
+                        "Binair",
+                        "Octaal",
+                        "Decimaal",
+                        "Hexadecimaal"
+                    ],
+                    "correct": 3,
+                    "explanation": "Hexadecimaal gebruikt 16 symbolen (0-9 en A-F) en is dus Base-16."
+                },
+                {
+                    "question": "Wat is de decimale waarde van het binaire getal 1011?",
+                    "options": [
+                        "9",
+                        "10",
+                        "11",
+                        "13"
+                    ],
+                    "correct": 2,
+                    "explanation": "1*8 + 0*4 + 1*2 + 1*1 = 8 + 0 + 2 + 1 = 11."
+                },
+                {
+                    "question": "Hoeveel unieke waarden kan een enkele Byte (8-bits) representeren?",
                     "options": [
                         "128",
-                        "127",
-                        "63",
-                        "1023"
-                    ],
-                    "correct": 1,
-                    "explanation": "Bias = 2^(n-1)-1. Voor 8-bit exponent: 2^7-1 = 127."
-                },
-                {
-                    "question": "Hoeveel bytes zijn er nodig om een UTF-8 gecodeerd emoji karakter op te slaan?",
-                    "options": [
-                        "2 bytes",
-                        "1 byte",
-                        "4 bytes",
-                        "3 bytes"
-                    ],
-                    "correct": 2,
-                    "explanation": "Emoji's vallen buiten BMP en vereisen 4 bytes in UTF-8 (U+1F600 en hoger)."
-                },
-                {
-                    "question": "Wat is het verschil tussen big-endian en little-endian?",
-                    "options": [
-                        "De snelheid van dataverwerking",
-                        "De volgorde waarin bytes worden opgeslagen",
-                        "Het aantal bits per byte",
-                        "De kloksnelheid"
-                    ],
-                    "correct": 1,
-                    "explanation": "Big-endian: MSB eerst. Little-endian: LSB eerst. Bepaalt byte-volgorde in geheugen."
-                },
-                {
-                    "question": "In ASCII, wat is de decimale waarde van het karakter 'A'?",
-                    "options": [
-                        "97",
-                        "65",
-                        "48",
-                        "32"
-                    ],
-                    "correct": 1,
-                    "explanation": "A=65, a=97, 0=48, spatie=32. Hoofdletters beginnen bij 65 in ASCII."
-                }
-            ]
-        },
-        {
-            "id": "architecture",
-            "name": "3. Computer Architectuur",
-            "questions": [
-                {
-                    "question": "Welk onderdeel van de CPU voert rekenkundige en logische operaties uit?",
-                    "options": [
-                        "Control Unit",
-                        "ALU (Arithmetic Logic Unit)",
-                        "Cache",
-                        "Register"
-                    ],
-                    "correct": 1,
-                    "explanation": "ALU = Arithmetic Logic Unit. Voert alle berekeningen en vergelijkingen uit."
-                },
-                {
-                    "question": "Wat is de functie van de Program Counter (PC) in een CPU?",
-                    "options": [
-                        "Telt programma's",
-                        "Berekent snelheid",
-                        "Houdt adres volgende instructie bij",
-                        "Beheert geheugen"
-                    ],
-                    "correct": 2,
-                    "explanation": "PC wijst naar het geheugenadres van de volgende uit te voeren instructie."
-                },
-                {
-                    "question": "Welke geheugenlaag in de hiërarchie is het snelst maar ook het kleinst?",
-                    "options": [
-                        "L1 Cache",
-                        "CPU Registers",
-                        "L2 Cache",
-                        "RAM"
-                    ],
-                    "correct": 1,
-                    "explanation": "Registers zitten in de CPU zelf, snelste toegang maar zeer beperkt aantal."
-                },
-                {
-                    "question": "Wat is het Von Neumann bottleneck?",
-                    "options": [
-                        "Max kloksnelheid",
-                        "Beperking RAM",
-                        "Instructies en data delen dezelfde bus",
-                        "Max cores"
-                    ],
-                    "correct": 2,
-                    "explanation": "Instructies en data gebruiken dezelfde bus → beperkt bandbreedte en snelheid."
-                },
-                {
-                    "question": "Hoeveel adresseerbaar geheugen kan een 32-bit processor maximaal direct adresseren?",
-                    "options": [
-                        "2 GB",
-                        "4 GB",
-                        "8 GB",
-                        "16 GB"
-                    ],
-                    "correct": 1,
-                    "explanation": "2^32 = 4.294.967.296 bytes = 4 GB. Daarom switch naar 64-bit systemen."
-                },
-                {
-                    "question": "Wat is pipelining in CPU architectuur?",
-                    "options": [
-                        "Geheugen comprimeren",
-                        "Meerdere programma's parallel",
-                        "Overlappen van instructie-uitvoering",
-                        "Foutcorrectie"
-                    ],
-                    "correct": 2,
-                    "explanation": "Pipelining: meerdere instructies tegelijk in verschillende fases (fetch, decode, execute)."
-                },
-                {
-                    "question": "Welke bus wordt gebruikt voor datacommunicatie tussen CPU en geheugen?",
-                    "options": [
-                        "Address bus",
-                        "Data bus",
-                        "Control bus",
-                        "System bus"
-                    ],
-                    "correct": 1,
-                    "explanation": "Data bus transporteert de daadwerkelijke data. Address bus stuurt adressen."
-                },
-                {
-                    "question": "Wat is de primaire functie van de Control Unit in een CPU?",
-                    "options": [
-                        "Berekeningen uitvoeren",
-                        "Decoderen instructies en coördineren",
-                        "Data opslaan",
-                        "I/O beheren"
-                    ],
-                    "correct": 1,
-                    "explanation": "Control Unit decodeert instructies en stuurt signalen naar andere CPU-onderdelen."
-                },
-                {
-                    "question": "Wat betekent RISC in processorarchitectuur?",
-                    "options": [
-                        "Random Instruction Set",
-                        "Reduced Instruction Set Computer",
-                        "Rapid Instruction Set",
-                        "Reliable Instruction Set"
-                    ],
-                    "correct": 1,
-                    "explanation": "RISC: eenvoudige instructies, snelle uitvoering. Tegenhanger van CISC."
-                },
-                {
-                    "question": "Hoeveel bytes bevat een memory word op een typisch 64-bit systeem?",
-                    "options": [
-                        "4 bytes",
-                        "8 bytes",
-                        "2 bytes",
-                        "16 bytes"
-                    ],
-                    "correct": 1,
-                    "explanation": "64 bits / 8 = 8 bytes per word. Word size = processorarchitectuur."
-                }
-            ]
-        },
-        {
-            "id": "network",
-            "name": "4. Netwerken",
-            "questions": [
-                {
-                    "question": "Op welke laag van het OSI-model werkt een router?",
-                    "options": [
-                        "Laag 2 (Data Link)",
-                        "Laag 4 (Transport)",
-                        "Laag 3 (Network)",
-                        "Laag 1 (Physical)"
-                    ],
-                    "correct": 2,
-                    "explanation": "Router werkt op laag 3 (Network) met IP-adressen. Switch = laag 2."
-                },
-                {
-                    "question": "Wat is het verschil tussen TCP en UDP?",
-                    "options": [
-                        "UDP is betrouwbaarder",
-                        "TCP is connection-oriented, UDP connectionless",
-                        "Geen verschil",
-                        "TCP alleen voor email"
-                    ],
-                    "correct": 1,
-                    "explanation": "TCP: betrouwbaar met handshake. UDP: snel maar geen garantie op levering."
-                },
-                {
-                    "question": "Hoeveel host-adressen zijn beschikbaar in een /24 subnet?",
-                    "options": [
-                        "256",
-                        "254",
                         "255",
-                        "252"
-                    ],
-                    "correct": 1,
-                    "explanation": "2^8 - 2 = 254. Min 2 voor netwerk- en broadcast-adres."
-                },
-                {
-                    "question": "Welk protocol wordt gebruikt om IP-adressen automatisch toe te wijzen?",
-                    "options": [
-                        "DNS",
-                        "DHCP",
-                        "ARP",
-                        "ICMP"
-                    ],
-                    "correct": 1,
-                    "explanation": "DHCP = Dynamic Host Configuration Protocol. Wijst automatisch IP toe."
-                },
-                {
-                    "question": "Wat is de standaard poort voor HTTPS verkeer?",
-                    "options": [
-                        "80",
-                        "443",
-                        "8080",
-                        "22"
-                    ],
-                    "correct": 1,
-                    "explanation": "HTTPS = 443, HTTP = 80, SSH = 22. Belangrijke poorten om te onthouden!"
-                },
-                {
-                    "question": "Welk protocol vertaalt domeinnamen naar IP-adressen?",
-                    "options": [
-                        "DHCP",
-                        "HTTP",
-                        "DNS",
-                        "FTP"
+                        "256",
+                        "512"
                     ],
                     "correct": 2,
-                    "explanation": "DNS = Domain Name System. Vertaalt bijv. google.com → 142.250.x.x"
+                    "explanation": "2 tot de macht 8 is 256. De waarden lopen van 0 t/m 255."
                 },
                 {
-                    "question": "Wat is het doel van NAT (Network Address Translation)?",
+                    "question": "Wat doet de bitwise operator '<<' (Left Shift) met de waarde van een getal?",
                     "options": [
-                        "Versleuteling",
-                        "Meerdere apparaten één publiek IP delen",
-                        "Routering",
-                        "Bandbreedte"
+                        "Het deelt het getal door 2",
+                        "Het vermenigvuldigt het getal met 2",
+                        "Het draait alle bits om (inverse)",
+                        "Het zet het getal om naar negatief"
                     ],
                     "correct": 1,
-                    "explanation": "NAT vertaalt privé IP's naar één publiek IP. Bespaart IPv4-adressen."
+                    "explanation": "Elke stap naar links in binair is een vermenigvuldiging met 2 (net als een 0 toevoegen in decimaal x10 is)."
                 },
                 {
-                    "question": "Welke klasse IP-adres begint met 192.168.x.x?",
+                    "question": "Wat is het resultaat van de Two's Complement bewerking op 00000101 (decimaal 5) om -5 te krijgen?",
                     "options": [
-                        "Klasse A",
-                        "Klasse B",
-                        "Klasse C (privé)",
-                        "Klasse D"
-                    ],
-                    "correct": 2,
-                    "explanation": "192.168.x.x is privé Klasse C. Ook: 10.x.x.x (A) en 172.16-31.x.x (B)."
-                },
-                {
-                    "question": "Wat is de maximale payload grootte van een standaard Ethernet frame?",
-                    "options": [
-                        "1024 bytes",
-                        "1500 bytes",
-                        "65535 bytes",
-                        "576 bytes"
+                        "11111010",
+                        "11111011",
+                        "10000101",
+                        "11110000"
                     ],
                     "correct": 1,
-                    "explanation": "MTU (Maximum Transmission Unit) voor Ethernet = 1500 bytes."
+                    "explanation": "Inverteer de bits (11111010) en tel er 1 bij op: 11111011."
                 },
                 {
-                    "question": "Welk protocol wordt gebruikt voor het versturen van email?",
+                    "question": "Welke codering wordt traditioneel gebruikt om karakters (tekst) om te zetten naar binaire data?",
                     "options": [
-                        "POP3",
-                        "IMAP",
-                        "SMTP",
-                        "HTTP"
-                    ],
-                    "correct": 2,
-                    "explanation": "SMTP = Simple Mail Transfer Protocol (versturen). POP3/IMAP = ontvangen."
-                },
-                {
-                    "question": "Wat is een MAC-adres?",
-                    "options": [
-                        "Software IP-adres",
-                        "Uniek hardware-identificatienummer",
-                        "Encryptie-sleutel",
-                        "Routeringsprotocol"
+                        "RGB",
+                        "ASCII",
+                        "Float",
+                        "Boolean"
                     ],
                     "correct": 1,
-                    "explanation": "MAC = Media Access Control. 48-bit hardware-adres, bijv. AA:BB:CC:DD:EE:FF"
+                    "explanation": "ASCII (American Standard Code for Information Interchange) koppelt karakters aan getallen."
                 },
                 {
-                    "question": "Op welke OSI-laag werkt het HTTP-protocol?",
+                    "question": "Wat is de hexadecimale representatie van het binaire getal 1111?",
                     "options": [
-                        "Laag 4 (Transport)",
-                        "Laag 3 (Network)",
-                        "Laag 7 (Application)",
-                        "Laag 6 (Presentation)"
-                    ],
-                    "correct": 2,
-                    "explanation": "HTTP/HTTPS werkt op laag 7 (Application). Gebruikt TCP op laag 4."
-                },
-                {
-                    "question": "Wat is het verschil tussen een hub en een switch?",
-                    "options": [
-                        "Hub is sneller",
-                        "Switch stuurt alleen naar bestemming",
-                        "Geen verschil",
-                        "Switch is draadloos"
-                    ],
-                    "correct": 1,
-                    "explanation": "Hub broadcast naar alle poorten. Switch is slim: stuurt alleen naar juiste poort."
-                },
-                {
-                    "question": "Wat is de functie van ARP (Address Resolution Protocol)?",
-                    "options": [
-                        "MAC naar IP",
-                        "IP naar MAC",
-                        "Domeinnaam naar IP",
-                        "Routering"
-                    ],
-                    "correct": 1,
-                    "explanation": "ARP vertaalt IP-adres naar MAC-adres binnen lokaal netwerk."
-                },
-                {
-                    "question": "Welke subnet mask hoort bij een /16 netwerk?",
-                    "options": [
-                        "255.0.0.0",
-                        "255.255.255.0",
-                        "255.255.0.0",
-                        "255.255.255.128"
-                    ],
-                    "correct": 2,
-                    "explanation": "/16 = 16 bits voor netwerk = 255.255.0.0. /24 = 255.255.255.0"
-                }
-            ]
-        },
-        {
-            "id": "os",
-            "name": "5. Besturingssystemen",
-            "questions": [
-                {
-                    "question": "Wat is het verschil tussen kernel mode en user mode?",
-                    "options": [
-                        "User mode is sneller",
-                        "Kernel mode heeft volledige hardware-toegang",
-                        "Alleen voor games",
-                        "Geen verschil"
-                    ],
-                    "correct": 1,
-                    "explanation": "Kernel mode: volledige toegang. User mode: beperkt voor veiligheid."
-                },
-                {
-                    "question": "Wat is een proces in een besturingssysteem?",
-                    "options": [
-                        "Type bestand",
-                        "Programma in uitvoering met eigen geheugen",
-                        "Hardwarecomponent",
-                        "Netwerkverbinding"
-                    ],
-                    "correct": 1,
-                    "explanation": "Proces = running program met eigen address space, resources en state."
-                },
-                {
-                    "question": "Wat is deadlock in een besturingssysteem?",
-                    "options": [
-                        "Systeem crash",
-                        "Processen blokkeren elkaar permanent",
-                        "Virus",
-                        "Geheugenlek"
-                    ],
-                    "correct": 1,
-                    "explanation": "Deadlock: processen wachten op elkaar's resources → niemand kan verder."
-                },
-                {
-                    "question": "Wat is het doel van virtual memory?",
-                    "options": [
-                        "Geheugen versleutelen",
-                        "Geheugen sneller maken",
-                        "Meer geheugen dan fysiek aanwezig",
-                        "Netwerk delen"
-                    ],
-                    "correct": 2,
-                    "explanation": "Virtual memory gebruikt disk als uitbreiding van RAM via paging/swapping."
-                },
-                {
-                    "question": "Welke scheduling-algoritme geeft elk proces een gelijke tijdschijf?",
-                    "options": [
-                        "First Come First Served",
-                        "Shortest Job First",
-                        "Priority Scheduling",
-                        "Round Robin"
+                        "A",
+                        "C",
+                        "E",
+                        "F"
                     ],
                     "correct": 3,
-                    "explanation": "Round Robin: elk proces krijgt gelijke time slice, dan volgende in de rij."
+                    "explanation": "1111 binair is 15 decimaal. In hexadecimaal is dit F."
                 },
                 {
-                    "question": "Wat is een thread?",
+                    "question": "Hoeveel bits worden er gebruikt voor één kleurkanaal (Rood, Groen of Blauw) in standaard 'True Color' RGB?",
                     "options": [
-                        "Type bestand",
-                        "Lichtgewicht proces dat geheugen deelt",
-                        "Netwerkprotocol",
-                        "Hardwarecomponent"
-                    ],
-                    "correct": 1,
-                    "explanation": "Threads delen geheugen binnen proces. Lichter dan processen, snellere context switch."
-                },
-                {
-                    "question": "Wat is het verschil tussen een inode en een bestandsnaam in Unix?",
-                    "options": [
-                        "Hetzelfde",
-                        "Inode alleen voor directories",
-                        "Inode bevat metadata, naam is verwijzing",
-                        "Naam bevat alle data"
+                        "1 bit",
+                        "4 bits",
+                        "8 bits",
+                        "16 bits"
                     ],
                     "correct": 2,
-                    "explanation": "Inode = metadata (size, permissions, pointers). Bestandsnaam verwijst naar inode."
+                    "explanation": "Standaard RGB gebruikt 8 bits (1 byte) per kleurkanaal, wat resulteert in waarden van 0-255."
                 },
                 {
-                    "question": "Wat is paging in geheugenbeheer?",
+                    "question": "Welke bitwise operator geeft alleen een 1 als BEIDE inputs 1 zijn?",
                     "options": [
-                        "Bestanden sorteren",
-                        "Geheugen verdelen in vaste blokken",
-                        "Back-up techniek",
-                        "Netwerkprotocol"
+                        "OR (|)",
+                        "XOR (^)",
+                        "AND (&)",
+                        "NOT (~)"
+                    ],
+                    "correct": 2,
+                    "explanation": "De AND-operator vereist dat input A én input B waar (1) zijn."
+                },
+                {
+                    "question": "Welke bitwise operator geeft een 1 als de inputs verschillend zijn (de een 1, de ander 0)?",
+                    "options": [
+                        "OR",
+                        "AND",
+                        "NOT",
+                        "XOR"
+                    ],
+                    "correct": 3,
+                    "explanation": "XOR (Exclusive OR) geeft 1 als slechts één van de inputs 1 is (verschillend)."
+                },
+                {
+                    "question": "Wat is de 'Most Significant Bit' (MSB) in een 8-bit getal?",
+                    "options": [
+                        "De meest rechtse bit",
+                        "De meest linkse bit",
+                        "De middelste bit",
+                        "De bit met waarde 1"
                     ],
                     "correct": 1,
-                    "explanation": "Paging: geheugen in vaste pages (bijv. 4KB). Voorkomt externe fragmentatie."
+                    "explanation": "De MSB is de meest linkse bit, deze vertegenwoordigt de hoogste waarde (of het teken bij signed integers)."
+                },
+                {
+                    "question": "Zet het octale getal 10 om naar decimaal.",
+                    "options": [
+                        "8",
+                        "10",
+                        "16",
+                        "2"
+                    ],
+                    "correct": 0,
+                    "explanation": "In octaal (base-8) is '10' gelijk aan 1 * 8^1 + 0 * 8^0 = 8."
+                },
+                {
+                    "question": "Wat gebeurt er bij een 'buffer overflow'?",
+                    "options": [
+                        "De computer wordt sneller",
+                        "Er wordt data geschreven buiten de gereserveerde geheugenruimte",
+                        "De harde schijf is vol",
+                        "Het scherm valt uit"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een buffer overflow treedt op wanneer een programma meer data in een buffer probeert te schrijven dan erin past."
+                },
+                {
+                    "question": "Hoeveel bytes is 1 Kilobyte (volgens de binaire definitie 2^10)?",
+                    "options": [
+                        "1000 bytes",
+                        "1024 bytes",
+                        "8000 bytes",
+                        "512 bytes"
+                    ],
+                    "correct": 1,
+                    "explanation": "In de informatica is 1 KB traditioneel 1024 bytes (2^10)."
+                },
+                {
+                    "question": "Wat is het binaire resultaat van 1010 OR 0101?",
+                    "options": [
+                        "0000",
+                        "1111",
+                        "1010",
+                        "0101"
+                    ],
+                    "correct": 1,
+                    "explanation": "OR zet een 1 als ten minste één van de bits 1 is. Hier zijn ze om en om 1, dus resultaat is 1111."
+                },
+                {
+                    "question": "Wat is de binaire representatie van hexadecimaal 'A'?",
+                    "options": [
+                        "1001",
+                        "1010",
+                        "1011",
+                        "1100"
+                    ],
+                    "correct": 1,
+                    "explanation": "A is decimaal 10. Binair is dat 1010 (8 + 2)."
+                },
+                {
+                    "question": "Welk type data is continu en niet discreet?",
+                    "options": [
+                        "Digitaal",
+                        "Binair",
+                        "Analoog",
+                        "Hexadecimaal"
+                    ],
+                    "correct": 2,
+                    "explanation": "Analoge signalen zijn continu (zoals geluidsgolven), digitale signalen zijn discreet (stapjes)."
+                },
+                {
+                    "question": "Hoeveel groepen van bits maak je om van binair naar octaal te converteren?",
+                    "options": [
+                        "Groepen van 2",
+                        "Groepen van 3",
+                        "Groepen van 4",
+                        "Groepen van 8"
+                    ],
+                    "correct": 1,
+                    "explanation": "Octaal is 2^3, dus je groepeert per 3 bits."
+                },
+                {
+                    "question": "Hoeveel groepen van bits maak je om van binair naar hexadecimaal te converteren?",
+                    "options": [
+                        "Groepen van 2",
+                        "Groepen van 3",
+                        "Groepen van 4",
+                        "Groepen van 8"
+                    ],
+                    "correct": 2,
+                    "explanation": "Hexadecimaal is 2^4, dus je groepeert per 4 bits."
                 }
             ]
         },
         {
-            "id": "database",
-            "name": "6. Databases & SQL",
+            "id": "week2",
+            "name": "Week 2: Logic & Circuits",
             "questions": [
                 {
-                    "question": "Wat is normalisatie in databases?",
+                    "question": "Wie wordt gezien als de grondlegger van de logica in computers (Boolean Algebra)?",
                     "options": [
-                        "Queries versnellen",
-                        "Data beveiligen",
-                        "Redundantie verminderen",
-                        "Data comprimeren"
+                        "Alan Turing",
+                        "Bill Gates",
+                        "George Boole",
+                        "Charles Babbage"
                     ],
                     "correct": 2,
-                    "explanation": "Normalisatie: data organiseren om duplicatie te voorkomen (1NF, 2NF, 3NF)."
+                    "explanation": "George Boole ontwikkelde de Booleaanse algebra, de basis voor digitale logica."
                 },
                 {
-                    "question": "Welk SQL-commando wordt gebruikt om data uit een tabel te selecteren?",
+                    "question": "Welke Logic Gate geeft ALTIJD een 1, behalve als beide inputs 1 zijn?",
                     "options": [
-                        "GET",
-                        "SELECT",
-                        "FETCH",
-                        "RETRIEVE"
+                        "AND",
+                        "NAND",
+                        "OR",
+                        "XOR"
                     ],
                     "correct": 1,
-                    "explanation": "SELECT * FROM tabel WHERE conditie. Basis van SQL queries."
+                    "explanation": "NAND is 'Not AND'. AND geeft alleen 1 bij 1+1. NAND is het tegenovergestelde, dus 0 bij 1+1, en 1 in alle andere gevallen."
                 },
                 {
-                    "question": "Wat is een primary key?",
+                    "question": "Wat is het kenmerk van een NOT-poort (Inverter)?",
                     "options": [
-                        "Wachtwoord",
-                        "Index op kolom",
-                        "Unieke identifier per rij",
-                        "Foreign key"
+                        "Heeft twee inputs",
+                        "Draait het signaal om (0 wordt 1, 1 wordt 0)",
+                        "Geeft altijd 1",
+                        "Geeft altijd 0"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een NOT-poort inverteert het ingangssignaal."
+                },
+                {
+                    "question": "Welke twee gates worden 'Universal Gates' genoemd omdat je er elk ander circuit mee kunt bouwen?",
+                    "options": [
+                        "AND en OR",
+                        "XOR en XNOR",
+                        "NAND en NOR",
+                        "NOT en BUFFER"
                     ],
                     "correct": 2,
-                    "explanation": "Primary key: uniek en niet-null. Identificeert elke rij in een tabel."
+                    "explanation": "Met alleen NAND-poorten of alleen NOR-poorten kun je elke andere logische poort construeren."
                 },
                 {
-                    "question": "Wat doet een INNER JOIN?",
+                    "question": "Wat is de output van een XOR-poort als input A=1 en input B=1?",
                     "options": [
-                        "Alle rijen beide tabellen",
-                        "Alleen overeenkomende rijen combineren",
-                        "Duplicaten verwijderen",
-                        "Nieuwe tabel maken"
+                        "0",
+                        "1",
+                        "Onbepaald",
+                        "High Impedance"
+                    ],
+                    "correct": 0,
+                    "explanation": "XOR (Exclusive OR) is 1 als inputs verschillen. Als ze gelijk zijn (beide 1), is de output 0."
+                },
+                {
+                    "question": "Wat is een SR-Latch?",
+                    "options": [
+                        "Een poort die optelt",
+                        "Een geheugencircuit dat 1 bit kan opslaan",
+                        "Een onderdeel van de ALU",
+                        "Een type transistor"
                     ],
                     "correct": 1,
-                    "explanation": "INNER JOIN: alleen rijen waar join-conditie in beide tabellen matcht."
+                    "explanation": "Een SR-Latch (Set-Reset) is een simpele geheugenschakeling die een toestand kan vasthouden."
                 },
                 {
-                    "question": "Wat is ACID in database-transacties?",
+                    "question": "Wat is het grote verschil tussen een Latch en een Flip-Flop?",
                     "options": [
-                        "Addition, Correction, Insertion, Deletion",
-                        "Atomicity, Consistency, Isolation, Durability",
-                        "Access, Control, Identity, Data",
-                        "Automatic, Concurrent, Integrated"
+                        "Een Flip-Flop gebruikt een kloksignaal",
+                        "Een Latch is digitaal, een Flip-Flop analoog",
+                        "Een Latch kan meer data opslaan",
+                        "Er is geen verschil"
+                    ],
+                    "correct": 0,
+                    "explanation": "Flip-flops zijn synchroon en veranderen op de rand van een kloksignaal. Latches zijn asynchroon."
+                },
+                {
+                    "question": "Wat is een transistor?",
+                    "options": [
+                        "Een mechanische schakelaar",
+                        "Een elektronische schakelaar zonder bewegende delen",
+                        "Een opslagmedium voor lange termijn",
+                        "Een koelingsmechanisme"
                     ],
                     "correct": 1,
-                    "explanation": "ACID garandeert betrouwbare transacties. Alles of niets, consistent, geïsoleerd, duurzaam."
+                    "explanation": "Transistors zijn halfgeleiders die fungeren als elektronische schakelaars (aan/uit) voor bits."
                 },
                 {
-                    "question": "Welke SQL-clausule wordt gebruikt om resultaten te filteren na een GROUP BY?",
+                    "question": "Hoe heet het proces waarbij simpele componenten worden samengevoegd tot complexere modules?",
                     "options": [
-                        "WHERE",
-                        "HAVING",
-                        "FILTER",
-                        "LIMIT"
+                        "Compile",
+                        "Encapsulation (Inkapseling)",
+                        "Debugging",
+                        "Fragmentation"
                     ],
                     "correct": 1,
-                    "explanation": "WHERE filtert vóór GROUP BY, HAVING filtert ná GROUP BY op aggregaties."
+                    "explanation": "Encapsulatie in hardware betekent het samenvoegen van basispoorten tot complexere blokken (zoals een adder)."
                 },
                 {
-                    "question": "Wat is het verschil tussen DELETE en TRUNCATE?",
+                    "question": "Wat is de functie van een 'Half Adder'?",
                     "options": [
-                        "Identiek",
-                        "TRUNCATE langzamer",
-                        "DELETE per rij, TRUNCATE alles tegelijk",
-                        "DELETE ongedaan maken"
+                        "Telt twee 8-bit getallen op",
+                        "Telt twee bits op en geeft een Sum en Carry",
+                        "Telt drie bits op (inclusief carry-in)",
+                        "Slaat data op"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een Half Adder telt 2 bits op (A+B) maar kan geen inkomende Carry verwerken."
+                },
+                {
+                    "question": "Wat ontbreekt er aan een Half Adder om een Full Adder te zijn?",
+                    "options": [
+                        "Een Carry-out",
+                        "Een Carry-in",
+                        "Een Sum output",
+                        "Een XOR poort"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een Full Adder heeft een Carry-in input nodig om gekoppeld te kunnen worden aan voorgaande adders."
+                },
+                {
+                    "question": "Waarvoor staat IC in de elektronica?",
+                    "options": [
+                        "Internal Code",
+                        "Internet Circuit",
+                        "Integrated Circuit",
+                        "Input Controller"
                     ],
                     "correct": 2,
-                    "explanation": "DELETE: per rij, kan rollback. TRUNCATE: reset tabel, sneller, geen rollback."
+                    "explanation": "Integrated Circuit (geïntegreerde schakeling), oftewel een chip."
+                },
+                {
+                    "question": "Met welke logische poort kun je controleren of twee bits gelijk zijn (Equality)?",
+                    "options": [
+                        "XOR",
+                        "XNOR",
+                        "AND",
+                        "OR"
+                    ],
+                    "correct": 1,
+                    "explanation": "XNOR geeft een 1 als beide inputs gelijk zijn (beide 0 of beide 1). XOR geeft 1 als ze verschillen."
+                },
+                {
+                    "question": "Wat is de output van een OR poort als A=0 en B=0?",
+                    "options": [
+                        "0",
+                        "1",
+                        "Onbekend",
+                        "Foutmelding"
+                    ],
+                    "correct": 0,
+                    "explanation": "Een OR poort geeft alleen 0 als alle inputs 0 zijn."
+                },
+                {
+                    "question": "Hoeveel inputs heeft een standaard basis logic gate (zoals AND/OR) minimaal?",
+                    "options": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ],
+                    "correct": 1,
+                    "explanation": "Standaard poorten zoals AND en OR vergelijken 2 signalen (NOT is de uitzondering met 1)."
+                },
+                {
+                    "question": "Wat is de waarheidstabel (truth table) voor A=1, B=0 bij een NAND poort?",
+                    "options": [
+                        "0",
+                        "1",
+                        "Null",
+                        "-1"
+                    ],
+                    "correct": 1,
+                    "explanation": "AND(1,0) = 0. NAND is NOT AND, dus de output wordt 1."
+                },
+                {
+                    "question": "Welk probleem lost de JK Flip-Flop op ten opzichte van de SR-Latch?",
+                    "options": [
+                        "Het is trager",
+                        "Het verbruikt meer stroom",
+                        "Het voorkomt de ongeldige staat (1,1)",
+                        "Het heeft geen klok nodig"
+                    ],
+                    "correct": 2,
+                    "explanation": "Bij een SR-Latch is S=1 en R=1 ongeldig. Een JK Flip-flop 'toggled' in die staat."
+                },
+                {
+                    "question": "Welke microprocessor staat bekend om zijn eenvoud en werd gebruikt in de Commodore 64?",
+                    "options": [
+                        "Intel 4004",
+                        "MOS 6502",
+                        "ARM M1",
+                        "AMD Ryzen"
+                    ],
+                    "correct": 1,
+                    "explanation": "De MOS 6502 was een goedkope, zeer populaire 8-bit processor."
+                },
+                {
+                    "question": "Wat is het doel van Logisim in deze module?",
+                    "options": [
+                        "Programmeren in Java",
+                        "Het ontwerpen en simuleren van digitale circuits",
+                        "Het hacken van websites",
+                        "Het schrijven van documentatie"
+                    ],
+                    "correct": 1,
+                    "explanation": "Logisim is software om logische schakelingen en chips visueel te simuleren."
+                },
+                {
+                    "question": "Uit welke poorten bestaat een Half Adder?",
+                    "options": [
+                        "Twee AND poorten",
+                        "Een XOR en een AND poort",
+                        "Een OR en een NOT poort",
+                        "Twee NAND poorten"
+                    ],
+                    "correct": 1,
+                    "explanation": "XOR berekent de Sum, AND berekent de Carry."
                 }
             ]
         },
         {
-            "id": "security",
-            "name": "7. Security",
+            "id": "week3",
+            "name": "Week 3: Hardware & Architectuur",
             "questions": [
                 {
-                    "question": "Wat is het verschil tussen symmetrische en asymmetrische encryptie?",
+                    "question": "Wat is de Von Neumann-architectuur?",
                     "options": [
-                        "Asymmetrisch sneller",
-                        "Symmetrisch veiliger",
-                        "Symmetrisch 1 sleutel, asymmetrisch sleutelpaar",
-                        "Geen verschil"
-                    ],
-                    "correct": 2,
-                    "explanation": "Symmetrisch: zelfde sleutel. Asymmetrisch: public/private key pair (RSA)."
-                },
-                {
-                    "question": "Wat is een hash-functie?",
-                    "options": [
-                        "Encryptiemethode",
-                        "Compressie-algoritme",
-                        "One-way functie naar vaste lengte",
-                        "Sorteeralgoritme"
-                    ],
-                    "correct": 2,
-                    "explanation": "Hash: input → vaste output. Niet omkeerbaar. Bijv. SHA-256, MD5."
-                },
-                {
-                    "question": "Wat is SQL-injection?",
-                    "options": [
-                        "Database optimaliseren",
-                        "Kwaadaardige SQL in invoervelden",
-                        "Backup-techniek",
-                        "Encryptiemethode"
+                        "Een model met gescheiden geheugen voor data en instructies",
+                        "Een model met één gedeeld geheugen voor data en instructies",
+                        "Een model zonder CPU",
+                        "Een model alleen voor quantum computers"
                     ],
                     "correct": 1,
-                    "explanation": "SQL injection: aanvaller voegt SQL toe via input. Gebruik prepared statements!"
+                    "explanation": "Kenmerkend voor Von Neumann is het 'stored-program concept' waarbij data en code in hetzelfde geheugen staan."
                 },
                 {
-                    "question": "Wat is het doel van een firewall?",
+                    "question": "Welk onderdeel van de CPU voert de daadwerkelijke berekeningen uit?",
                     "options": [
-                        "Bestanden comprimeren",
-                        "Geheugen beheren",
-                        "Netwerkverkeer filteren",
-                        "Processen schedulen"
+                        "CU (Control Unit)",
+                        "Register",
+                        "ALU (Arithmetic Logic Unit)",
+                        "Cache"
                     ],
                     "correct": 2,
-                    "explanation": "Firewall filtert inkomend/uitgaand verkeer op basis van regels (poorten, IP's)."
+                    "explanation": "De ALU doet de wiskundige (optellen) en logische (AND/OR) bewerkingen."
                 },
                 {
-                    "question": "Wat is phishing?",
+                    "question": "Wat is de 'Von Neumann bottleneck'?",
                     "options": [
-                        "Type malware",
-                        "Social engineering voor gevoelige info",
-                        "Netwerkprotocol",
-                        "Encryptiemethode"
+                        "De CPU wordt te heet",
+                        "De snelheid van dataoverdracht tussen CPU en geheugen is trager dan de CPU zelf",
+                        "De harde schijf is vol",
+                        "Te weinig stroomtoevoer"
                     ],
                     "correct": 1,
-                    "explanation": "Phishing: nepberichten om login/data te stelen. Let op verdachte links/emails!"
+                    "explanation": "De CPU kan veel sneller werken dan dat het geheugen (RAM) data kan aanleveren via de bus."
+                },
+                {
+                    "question": "Wat is de functie van de 'Program Counter' (PC)?",
+                    "options": [
+                        "Het telt hoeveel programma's open staan",
+                        "Het houdt het adres bij van de volgende uit te voeren instructie",
+                        "Het telt de tijd",
+                        "Het berekent de score van een game"
+                    ],
+                    "correct": 1,
+                    "explanation": "De PC is een register dat wijst naar het geheugenadres van de volgende instructie."
+                },
+                {
+                    "question": "Wat zijn de drie stappen van de CPU-cyclus?",
+                    "options": [
+                        "Read, Write, Save",
+                        "Input, Process, Output",
+                        "Fetch, Decode, Execute",
+                        "Stop, Drop, Roll"
+                    ],
+                    "correct": 2,
+                    "explanation": "Ophalen (Fetch), interpreteren (Decode) en uitvoeren (Execute)."
+                },
+                {
+                    "question": "Wat is het verschil tussen RAM en ROM?",
+                    "options": [
+                        "RAM is vluchtig (volatile), ROM is niet-vluchtig",
+                        "RAM is alleen lezen, ROM is schrijven",
+                        "ROM is veel sneller dan RAM",
+                        "Er is geen verschil"
+                    ],
+                    "correct": 0,
+                    "explanation": "RAM verliest data zonder stroom, ROM behoudt data (vaak gebruikt voor BIOS/UEFI)."
+                },
+                {
+                    "question": "Wat is de functie van de System Bus?",
+                    "options": [
+                        "Koeling van de processor",
+                        "Communicatiekanaal tussen CPU, Geheugen en I/O",
+                        "Stroomtoevoer naar het moederbord",
+                        "Het opslaan van data"
+                    ],
+                    "correct": 1,
+                    "explanation": "De bus transporteert data, adressen en controlesignalen tussen componenten."
+                },
+                {
+                    "question": "Wat is Cache geheugen?",
+                    "options": [
+                        "Zeer traag opslaggeheugen",
+                        "Klein, extreem snel geheugen dicht bij de CPU",
+                        "Een ander woord voor Harde Schijf",
+                        "Geheugen voor de videokaart"
+                    ],
+                    "correct": 1,
+                    "explanation": "Cache (L1/L2/L3) slaat veelgebruikte data op om de Von Neumann bottleneck te verminderen."
+                },
+                {
+                    "question": "Wat betekent Moore's Law?",
+                    "options": [
+                        "Computers worden elk jaar duurder",
+                        "Het aantal transistors op een chip verdubbelt ongeveer elke twee jaar",
+                        "Software wordt steeds trager",
+                        "Internet wordt elke dag sneller"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een observatie van Gordon Moore dat de dichtheid van transistors exponentieel groeit."
+                },
+                {
+                    "question": "Wat is een kenmerk van CISC (bv. x86) architectuur?",
+                    "options": [
+                        "Weinig en simpele instructies",
+                        "Veel en complexe instructies",
+                        "Geoptimaliseerd voor mobiele telefoons",
+                        "Gebruikt veel stroom voor weinig prestatie"
+                    ],
+                    "correct": 1,
+                    "explanation": "CISC (Complex Instruction Set Computer) heeft krachtige instructies die meerdere taken tegelijk kunnen doen."
+                },
+                {
+                    "question": "Wat is een kenmerk van RISC (bv. ARM) architectuur?",
+                    "options": [
+                        "Complexe hardware",
+                        "Gereduceerde, simpele instructieset voor efficiëntie",
+                        "Wordt alleen in desktops gebruikt",
+                        "Heeft geen registers"
+                    ],
+                    "correct": 1,
+                    "explanation": "RISC (Reduced Instruction Set Computer) is efficiënter en energiezuiniger (veel gebruikt in telefoons)."
+                },
+                {
+                    "question": "Welke bus bepaalt WAAR data vandaan moet komen of naartoe moet?",
+                    "options": [
+                        "Data Bus",
+                        "Control Bus",
+                        "Address Bus",
+                        "Universal Serial Bus"
+                    ],
+                    "correct": 2,
+                    "explanation": "De Address Bus verstuurt de locatie (het geheugenadres)."
+                },
+                {
+                    "question": "Wat doet de Control Unit (CU)?",
+                    "options": [
+                        "Rekenen",
+                        "Data opslaan",
+                        "Aansturen en coördineren van de processoronderdelen",
+                        "Beeld genereren"
+                    ],
+                    "correct": 2,
+                    "explanation": "De CU is de 'verkeersregelaar' van de processor; hij decodeert instructies en stuurt signalen."
+                },
+                {
+                    "question": "Welk type opslag is 'Secondary Storage'?",
+                    "options": [
+                        "Registers",
+                        "Cache",
+                        "RAM",
+                        "HDD / SSD"
+                    ],
+                    "correct": 3,
+                    "explanation": "Secundaire opslag is niet-vluchtig en voor lange termijn (Harde schijf, SSD)."
+                },
+                {
+                    "question": "Wat is BIOS/UEFI?",
+                    "options": [
+                        "Een virusscanner",
+                        "Firmware die de hardware initialiseert bij het opstarten",
+                        "Een teksteditor",
+                        "Een type processor"
+                    ],
+                    "correct": 1,
+                    "explanation": "Basic Input/Output System start de computer op voordat het besturingssysteem het overneemt."
+                },
+                {
+                    "question": "Wat is een 4-bit Adder?",
+                    "options": [
+                        "Een circuit dat 4 bits optelt bij 4 bits",
+                        "Een geheugenmodule van 4 bits",
+                        "Een bus van 4 lijnen",
+                        "Een netwerkkabel"
+                    ],
+                    "correct": 0,
+                    "explanation": "Een 4-bit adder (gemaakt van Full Adders) kan binaire getallen tot 15 optellen."
+                },
+                {
+                    "question": "Wat is het voordeel van een Multi-core processor?",
+                    "options": [
+                        "Hij is kleiner",
+                        "Hij kan instructies parallel uitvoeren",
+                        "Hij heeft geen koeling nodig",
+                        "Hij is goedkoper"
+                    ],
+                    "correct": 1,
+                    "explanation": "Meerdere kernen kunnen tegelijkertijd aan verschillende taken werken (parallellisme)."
+                },
+                {
+                    "question": "Welk onderdeel is het snelste geheugen in een computer?",
+                    "options": [
+                        "SSD",
+                        "RAM",
+                        "L3 Cache",
+                        "Registers"
+                    ],
+                    "correct": 3,
+                    "explanation": "Registers zitten IN de CPU en zijn direct toegankelijk zonder vertraging."
+                },
+                {
+                    "question": "Wat is ISA (Instruction Set Architecture)?",
+                    "options": [
+                        "De fysieke vorm van de chip",
+                        "De interface tussen hardware en software (de taal van de CPU)",
+                        "Een merknaam van Intel",
+                        "De snelheid van de klok"
+                    ],
+                    "correct": 1,
+                    "explanation": "ISA definieert welke commando's (opcodes) de processor begrijpt."
+                },
+                {
+                    "question": "Wat gebeurt er tijdens de 'Execute' fase van de CPU-cyclus?",
+                    "options": [
+                        "De instructie wordt opgehaald uit RAM",
+                        "De instructie wordt vertaald",
+                        "De daadwerkelijke actie (bijv. berekening) wordt uitgevoerd",
+                        "De computer sluit af"
+                    ],
+                    "correct": 2,
+                    "explanation": "Na Fetch en Decode voert de CPU de opdracht daadwerkelijk uit."
+                }
+            ]
+        },
+        {
+            "id": "week4",
+            "name": "Week 4: Software & Programming",
+            "questions": [
+                {
+                    "question": "Wat is Machine Code?",
+                    "options": [
+                        "Leesbare tekstcode (zoals Java)",
+                        "Binaire instructies die direct door de CPU worden uitgevoerd",
+                        "Code voor robots",
+                        "Pseudocode"
+                    ],
+                    "correct": 1,
+                    "explanation": "Machine code bestaat uit nullen en enen en is de enige taal die de hardware direct begrijpt."
+                },
+                {
+                    "question": "Wat is Assembly taal?",
+                    "options": [
+                        "Een high-level taal zoals Python",
+                        "Een low-level taal die mnemonics gebruikt voor machine-instructies",
+                        "Een taal om websites te bouwen",
+                        "Een database taal"
+                    ],
+                    "correct": 1,
+                    "explanation": "Assembly is een leesbare weergave van machinecode (bijv. MOV, ADD) 1-op-1 gekoppeld aan de CPU."
+                },
+                {
+                    "question": "Wat doet een Compiler?",
+                    "options": [
+                        "Voert code regel voor regel uit",
+                        "Vertaalt de volledige broncode in één keer naar machinecode",
+                        "Repareert fouten in de code",
+                        "Slaat de code op"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een compiler maakt een executable bestand van de broncode voorafgaand aan uitvoering."
+                },
+                {
+                    "question": "Wat doet een Interpreter?",
+                    "options": [
+                        "Vertaalt en voert code regel voor regel uit tijdens runtime",
+                        "Maakt een .exe bestand",
+                        "Is sneller dan een compiler",
+                        "Werkt alleen met hardware"
+                    ],
+                    "correct": 0,
+                    "explanation": "Interpreters (zoals Python) vertalen 'on the fly', wat flexibel is maar vaak langzamer dan gecompileerde code."
+                },
+                {
+                    "question": "Wat is Bytecode (bijv. in Java)?",
+                    "options": [
+                        "Machinecode voor een specifieke CPU",
+                        "Een tussenformaat dat draait op een Virtual Machine (JVM)",
+                        "Broncode geschreven door de programmeur",
+                        "Binaire code"
+                    ],
+                    "correct": 1,
+                    "explanation": "Bytecode is 'portable' code die door de Java Virtual Machine op elk systeem uitgevoerd kan worden."
+                },
+                {
+                    "question": "Wat is 'Portability' van code?",
+                    "options": [
+                        "Dat je de laptop mee kunt nemen",
+                        "Dat code op verschillende systemen/OS kan draaien zonder aanpassing",
+                        "Dat code heel klein is",
+                        "Dat code snel is"
+                    ],
+                    "correct": 1,
+                    "explanation": "High-level talen zijn portable; assembly is specifiek voor één processor."
+                },
+                {
+                    "question": "Welk voordeel heeft een High-Level taal (C, Java) t.o.v. Assembly?",
+                    "options": [
+                        "Het is sneller uit te voeren",
+                        "Het is makkelijker te lezen en te schrijven voor mensen",
+                        "Je hebt directe controle over elke transistor",
+                        "Het gebruikt minder geheugen"
+                    ],
+                    "correct": 1,
+                    "explanation": "High-level talen abstraheren de hardware, wat ontwikkeltijd en leesbaarheid verbetert."
+                },
+                {
+                    "question": "Wat is een 'Opcode'?",
+                    "options": [
+                        "Een geheime code",
+                        "Het deel van een machine-instructie dat aangeeft WELKE actie moet gebeuren",
+                        "Het adres van de data",
+                        "Een foutmelding"
+                    ],
+                    "correct": 1,
+                    "explanation": "Opcode (Operation Code) vertelt de CPU wat te doen (bijv. optellen, laden)."
+                },
+                {
+                    "question": "Wat is een Register in de context van programmeren?",
+                    "options": [
+                        "Een lijst met gebruikers",
+                        "Een variabele in het RAM geheugen",
+                        "Een snelle opslaglocatie in de CPU die direct bewerkt wordt",
+                        "Een logboek"
+                    ],
+                    "correct": 2,
+                    "explanation": "Assembly werkt direct met registers (zoals R0, R1) om berekeningen te doen."
+                },
+                {
+                    "question": "Wat betekent de assembly instructie 'MOV R0, #10'?",
+                    "options": [
+                        "Beweeg register 0 naar plaats 10",
+                        "Zet de waarde 10 in register R0",
+                        "Tel 10 op bij R0",
+                        "Verwijder R0"
+                    ],
+                    "correct": 1,
+                    "explanation": "MOV (Move) kopieert data. Hier wordt de constante waarde 10 in R0 gezet."
+                },
+                {
+                    "question": "Waarom is gecompileerde C-code meestal sneller dan Python-code?",
+                    "options": [
+                        "C is een nieuwere taal",
+                        "C wordt direct vertaald naar machinecode, Python wordt geïnterpreteerd",
+                        "Python gebruikt geen RAM",
+                        "C heeft geen variabelen"
+                    ],
+                    "correct": 1,
+                    "explanation": "Native machinecode (C) draait direct op de hardware zonder tussenlaag."
+                },
+                {
+                    "question": "Wat is Scripting (bijv. Bash)?",
+                    "options": [
+                        "Het schrijven van filmscenario's",
+                        "Het automatiseren van taken met kleine, vaak geïnterpreteerde programma's",
+                        "Het bouwen van besturingssystemen",
+                        "Het solderen van chips"
+                    ],
+                    "correct": 1,
+                    "explanation": "Scripting wordt vaak gebruikt om taken te automatiseren of programma's aan elkaar te knopen."
+                },
+                {
+                    "question": "Wat is de functie van de Linker in het compilatieproces?",
+                    "options": [
+                        "Fouten opsporen",
+                        "Verschillende object-bestanden en libraries samenvoegen tot één executable",
+                        "Code downloaden van internet",
+                        "Het scherm schoonmaken"
+                    ],
+                    "correct": 1,
+                    "explanation": "Na het compileren voegt de linker alle losse stukjes code en bibliotheken samen."
+                },
+                {
+                    "question": "Wat is broncode (Source Code)?",
+                    "options": [
+                        "De binaire file",
+                        "De door de mens leesbare instructies in een programmeertaal",
+                        "De stroomtoevoer",
+                        "De output van een programma"
+                    ],
+                    "correct": 1,
+                    "explanation": "Source code is de tekst die de programmeur typt (bijv. .java, .c, .py bestanden)."
+                },
+                {
+                    "question": "Welke taal wordt vaak gebruikt voor 'Low Level' systeemprogrammering?",
+                    "options": [
+                        "HTML",
+                        "C",
+                        "Scratch",
+                        "SQL"
+                    ],
+                    "correct": 1,
+                    "explanation": "C staat dicht bij de hardware en wordt veel gebruikt voor OS-kernels en drivers."
+                },
+                {
+                    "question": "Wat doet de instructie 'CMP' in Assembly?",
+                    "options": [
+                        "Compute: berekenen",
+                        "Compare: vergelijken van twee waarden",
+                        "Compact: code verkleinen",
+                        "Computer: opstarten"
+                    ],
+                    "correct": 1,
+                    "explanation": "CMP vergelijkt twee waarden (vaak gevolgd door een Branch/Jump instructie)."
+                },
+                {
+                    "question": "Wat is een 'Branch' instructie (bijv. BEQ)?",
+                    "options": [
+                        "Een boomstructuur maken",
+                        "De code opsplitsen",
+                        "Springen naar een ander deel van de code (Control Flow)",
+                        "Stoppen met het programma"
+                    ],
+                    "correct": 2,
+                    "explanation": "Branching zorgt voor loops en if-statements in assembly (springen naar een label)."
+                },
+                {
+                    "question": "Waarom kan software geschreven voor x86 (Intel) niet direct op ARM (Apple/Mobiel) draaien?",
+                    "options": [
+                        "Apple staat dat niet toe",
+                        "Ze hebben een andere Instruction Set Architecture (ISA)",
+                        "De stroomspanning is anders",
+                        "De schermen zijn anders"
+                    ],
+                    "correct": 1,
+                    "explanation": "De binaire instructies (machinecode) zijn specifiek voor de ISA van de processor."
+                },
+                {
+                    "question": "Wat is een algoritme?",
+                    "options": [
+                        "Een type processor",
+                        "Een stap-voor-stap procedure om een probleem op te lossen",
+                        "Een ritmisch geluid",
+                        "Een programmeertaal"
+                    ],
+                    "correct": 1,
+                    "explanation": "Een algoritme is een logische reeks stappen (recept) om een doel te bereiken."
+                },
+                {
+                    "question": "Wat is de rol van de 'Assembler'?",
+                    "options": [
+                        "De computer in elkaar zetten",
+                        "Assembly code vertalen naar Machine Code (binair)",
+                        "Java code uitvoeren",
+                        "Het internet verbinden"
+                    ],
+                    "correct": 1,
+                    "explanation": "De assembler is de software die de mnemonics (MOV, ADD) omzet naar nullen en enen."
                 }
             ]
         }
