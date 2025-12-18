@@ -164,10 +164,11 @@
         margin-top: 10px;
     }
 
-    .btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(0,212,255,0.4);
-    }
+        .btn:hover {
+            transform: scale(1.05);
+            background: #33e5ff;
+            box-shadow: 0 10px 30px rgba(0,212,255,0.4);
+        }
 
     .btn:disabled {
         opacity: 0.5;
