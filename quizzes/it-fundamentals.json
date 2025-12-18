@@ -1042,95 +1042,95 @@
             "name": "Week 5: Operating Systems",
             "questions": [
                 {
-                    "question": "Wat is de primaire functie van de kernel in een besturingssysteem?",
+                    "question": "Een programmeur voor de NES moest zelf de PPU, APU en geheugen beheren. Waarom was dit nodig?",
                     "options": [
-                        "Het bieden van een grafische gebruikersinterface",
-                        "Het beheren van hardware en systeembronnen",
-                        "Het uitvoeren van gebruikersapplicaties",
-                        "Het opslaan van bestanden op de harde schijf"
-                    ],
-                    "correct": 1,
-                    "explanation": "De kernel is de kern van het OS en beheert kritieke bronnen zoals CPU, geheugen en hardware devices. Het fungeert als brug tussen software en hardware."
-                },
-                {
-                    "question": "Waarom moesten ontwikkelaars voor de NES (Nintendo Entertainment System) in assembly taal programmeren?",
-                    "options": [
-                        "Omdat de NES een speciaal high-level framework had",
-                        "Omdat de NES geen besturingssysteem had en directe hardware toegang nodig was",
-                        "Omdat assembly sneller te leren was",
-                        "Omdat de NES alleen ROM-bestanden kon lezen"
-                    ],
-                    "correct": 1,
-                    "explanation": "De NES had geen OS, dus moesten ontwikkelaars direct met de hardware communiceren via 6502 assembly. Ze moesten zelf geheugen, graphics (PPU), audio (APU) en input beheren."
-                },
-                {
-                    "question": "Wat is het belangrijkste verschil tussen kernel mode en user mode?",
-                    "options": [
-                        "Kernel mode is langzamer dan user mode",
-                        "User mode heeft volledige toegang tot hardware",
-                        "Kernel mode heeft onbeperkte toegang tot systeembronnen, user mode niet",
-                        "Er is geen verschil, het zijn synoniemen"
+                        "De NES had een beperkte versie van Windows",
+                        "De NES draaide op een UNIX-variant",
+                        "De NES had geen besturingssysteem",
+                        "De NES gebruikte alleen high-level talen"
                     ],
                     "correct": 2,
-                    "explanation": "In kernel mode heeft het OS volledige toegang tot hardware en geheugen. User mode beperkt applicaties om directe hardware toegang te voorkomen, wat de veiligheid en stabiliteit verhoogt."
+                    "explanation": "De NES had geen OS. Ontwikkelaars werkten direct met de 6502 CPU via assembly en moesten zelf alle hardware aansturen: PPU (graphics), APU (audio), geheugen en input."
                 },
                 {
-                    "question": "Wat gebeurt er typisch wanneer een applicatie in kernel mode crasht?",
+                    "question": "Welke component van een OS beheert CPU-scheduling, geheugen en hardware devices?",
                     "options": [
-                        "Alleen de applicatie sluit af",
-                        "Het systeem toont een waarschuwing en gaat door",
-                        "Het veroorzaakt een kernel panic (Linux) of BSOD (Windows)",
-                        "Het geheugen wordt automatisch gerepareerd"
+                        "De kernel",
+                        "De shell",
+                        "De file manager",
+                        "De bootloader"
+                    ],
+                    "correct": 0,
+                    "explanation": "De kernel is de kern van het OS en beheert alle kritieke systeembronnen. Het vormt de brug tussen applicaties en hardware."
+                },
+                {
+                    "question": "Een applicatie in user mode wil data naar een bestand schrijven. Wat moet er gebeuren?",
+                    "options": [
+                        "De applicatie schrijft direct naar de schijf",
+                        "De applicatie vraagt de GPU om hulp",
+                        "De applicatie doet een system call naar de kernel",
+                        "De applicatie start een nieuw proces"
                     ],
                     "correct": 2,
-                    "explanation": "Een crash in kernel mode beïnvloedt kritieke systeemfuncties. Dit resulteert in een kernel panic op UNIX-systemen of Blue Screen of Death (BSOD) op Windows, wat een herstart vereist."
+                    "explanation": "User mode applicaties hebben geen directe hardware toegang. Ze moeten via system calls services aanvragen bij de kernel, die in kernel mode de daadwerkelijke I/O uitvoert."
                 },
                 {
-                    "question": "Wat zijn system calls?",
+                    "question": "Je ziet een Blue Screen of Death (BSOD) op Windows. Wat is de meest waarschijnlijke oorzaak?",
                     "options": [
-                        "Directe oproepen tussen twee applicaties",
-                        "Gecontroleerde verzoeken van user mode programma's aan de kernel voor services",
-                        "Foutmeldingen van het besturingssysteem",
-                        "Communicatie tussen CPU en RAM"
+                        "Een user mode applicatie is gecrasht",
+                        "De GPU is te warm geworden",
+                        "Code in kernel mode heeft een kritieke fout veroorzaakt",
+                        "Er is een netwerk timeout opgetreden"
+                    ],
+                    "correct": 2,
+                    "explanation": "BSOD treedt op bij crashes in kernel mode. Kernel code heeft volledige systeemtoegang; een fout daar destabiliseert het hele systeem, wat een herstart vereist."
+                },
+                {
+                    "question": "Wat is het UNIX/Linux equivalent van een Windows BSOD?",
+                    "options": [
+                        "System freeze",
+                        "Core dump",
+                        "Kernel panic",
+                        "Segmentation fault"
+                    ],
+                    "correct": 2,
+                    "explanation": "Kernel panic is het Linux/UNIX equivalent van BSOD. Beide duiden op een onherstelbare fout in kernel mode die een herstart vereist."
+                },
+                {
+                    "question": "Een CPU-core met Hyper-Threading kan hoeveel threads tegelijk verwerken?",
+                    "options": [
+                        "1",
+                        "2",
+                        "4",
+                        "8"
                     ],
                     "correct": 1,
-                    "explanation": "System calls zijn de primaire interface waarmee user mode programma's services aanvragen van de kernel, zoals bestandstoegang, geheugenbeheer en hardware interactie."
+                    "explanation": "SMT/Hyper-Threading laat één fysieke core twee threads tegelijk uitvoeren door resources te delen. Zonder SMT is het 1 thread per core."
                 },
                 {
-                    "question": "Wat is het verschil tussen een proces en een thread?",
+                    "question": "Threads binnen hetzelfde proces delen welke resource NIET met elkaar?",
                     "options": [
-                        "Een thread heeft eigen geheugenruimte, een proces niet",
-                        "Een proces is een onafhankelijk programma met eigen geheugen, threads delen geheugen binnen een proces",
-                        "Processen zijn sneller dan threads",
-                        "Er is geen verschil"
+                        "Heap geheugen",
+                        "Globale variabelen",
+                        "Stack geheugen",
+                        "Open file handles"
+                    ],
+                    "correct": 2,
+                    "explanation": "Elke thread heeft zijn eigen stack voor lokale variabelen en functie-aanroepen. Heap, globale variabelen en file handles worden gedeeld binnen het proces."
+                },
+                {
+                    "question": "Je systeem heeft 2 GB RAM maar draait applicaties die samen 6 GB nodig hebben. Hoe is dit mogelijk?",
+                    "options": [
+                        "De applicaties crashen automatisch",
+                        "Virtual memory gebruikt schijfruimte als uitbreiding",
+                        "De CPU comprimeert het geheugen",
+                        "Dit is niet mogelijk"
                     ],
                     "correct": 1,
-                    "explanation": "Een proces is een onafhankelijk programma met eigen geheugenruimte. Threads zijn de kleinste uitvoeringseenheden binnen een proces en delen geheugen en bronnen met elkaar."
+                    "explanation": "Virtual memory combineert RAM met swap space op de schijf. Minder gebruikte pagina's worden naar schijf verplaatst, waardoor meer virtueel geheugen beschikbaar is dan fysiek RAM."
                 },
                 {
-                    "question": "Hoeveel threads kan een enkele CPU-core tegelijk uitvoeren met Simultaneous Multithreading (SMT/Hyper-Threading)?",
-                    "options": [
-                        "1 thread",
-                        "2 threads",
-                        "4 threads",
-                        "8 threads"
-                    ],
-                    "correct": 1,
-                    "explanation": "Met SMT (zoals Intel's Hyper-Threading) kan een enkele core 2 threads tegelijk beheren door bronnen te delen. Zonder SMT kan een core maar 1 thread tegelijk uitvoeren."
-                },
-                {
-                    "question": "Wat is virtual memory?",
-                    "options": [
-                        "Extra RAM die je kunt kopen",
-                        "Een techniek die RAM en schijfruimte combineert om meer geheugen te simuleren",
-                        "Geheugen dat alleen in de cloud bestaat",
-                        "Cache geheugen in de CPU"
-                    ],
-                    "correct": 1,
-                    "explanation": "Virtual memory gebruikt zowel RAM als een deel van de harde schijf (swap space/page file) om applicaties de illusie te geven van meer geheugen dan fysiek beschikbaar is."
-                },
-                {
-                    "question": "Wat is de totale adresseerbare geheugenruimte van een 32-bit besturingssysteem?",
+                    "question": "Hoeveel geheugen kan een 32-bit OS maximaal adresseren?",
                     "options": [
                         "2 GB",
                         "4 GB",
@@ -1138,161 +1138,161 @@
                         "16 GB"
                     ],
                     "correct": 1,
-                    "explanation": "Een 32-bit systeem kan 2^32 = 4.294.967.296 adressen gebruiken, wat neerkomt op 4 GB geheugen. Dit wordt typisch verdeeld in 2 GB voor user space en 2 GB voor kernel space."
+                    "explanation": "32 bits = 2^32 = 4.294.967.296 adressen = 4 GB. Dit is een harde limiet van de adresbus-breedte, ongeacht hoeveel fysiek RAM is geïnstalleerd."
                 },
                 {
-                    "question": "Welk bestandssysteem wordt het meest gebruikt op moderne Windows systemen?",
-                    "options": [
-                        "FAT32",
-                        "ext4",
-                        "NTFS",
-                        "HFS+"
-                    ],
-                    "correct": 2,
-                    "explanation": "NTFS (New Technology File System) is het standaard bestandssysteem voor Windows. Het ondersteunt bestandspermissies, encryptie, journaling en grote bestandsgroottes."
-                },
-                {
-                    "question": "Wat is een belangrijke beperking van FAT32?",
-                    "options": [
-                        "Het kan geen mappen maken",
-                        "Maximale bestandsgrootte van 4 GB",
-                        "Het werkt alleen op Linux",
-                        "Het ondersteunt geen USB-drives"
-                    ],
-                    "correct": 1,
-                    "explanation": "FAT32 heeft een maximale bestandsgrootte van 4 GB, waardoor het ongeschikt is voor grote bestanden zoals HD-video's of disk images."
-                },
-                {
-                    "question": "Welk bestandssysteem is het meest gebruikt op Linux systemen?",
+                    "question": "Je wilt een 8 GB bestand opslaan op een USB-stick. Welk bestandssysteem kan dit NIET aan?",
                     "options": [
                         "NTFS",
+                        "exFAT",
                         "FAT32",
-                        "ext4",
-                        "APFS"
+                        "ext4"
                     ],
                     "correct": 2,
-                    "explanation": "ext4 (Fourth Extended Filesystem) is het meest gebruikte bestandssysteem op Linux. Het biedt journaling, ondersteuning voor grote bestanden en goede data-integriteit."
+                    "explanation": "FAT32 heeft een maximum bestandsgrootte van 4 GB. NTFS, exFAT en ext4 ondersteunen veel grotere bestanden."
                 },
                 {
-                    "question": "Wat is het verschil in directory structuur tussen Windows en Linux?",
+                    "question": "Op welk besturingssysteem is ext4 het standaard bestandssysteem?",
                     "options": [
-                        "Windows gebruikt forward slashes, Linux backslashes",
-                        "Windows gebruikt drive letters (C:, D:), Linux heeft een enkele root (/)",
-                        "Linux kan geen submappen hebben",
-                        "Er is geen verschil"
+                        "Windows",
+                        "macOS",
+                        "Linux",
+                        "FreeBSD"
+                    ],
+                    "correct": 2,
+                    "explanation": "ext4 (Fourth Extended Filesystem) is de standaard op de meeste Linux distributies. Windows gebruikt NTFS, macOS gebruikt APFS."
+                },
+                {
+                    "question": "In welk OS worden 'File.txt' en 'file.txt' als HETZELFDE bestand behandeld?",
+                    "options": [
+                        "Ubuntu Linux",
+                        "Debian Linux",
+                        "Windows",
+                        "macOS (standaard HFS+/APFS)"
+                    ],
+                    "correct": 2,
+                    "explanation": "Windows is case-insensitive: File.txt en file.txt zijn hetzelfde. Linux is case-sensitive. macOS is standaard case-insensitive maar kan case-sensitive worden geconfigureerd."
+                },
+                {
+                    "question": "Het pad '/home/user/documents' gebruikt welk type scheidingsteken?",
+                    "options": [
+                        "Windows-stijl backslash",
+                        "Linux/UNIX-stijl forward slash",
+                        "Beide zijn correct",
+                        "Dit is geen geldig pad"
                     ],
                     "correct": 1,
-                    "explanation": "Windows gebruikt drive letters (C:\\, D:\\) met backslashes. Linux heeft een uniforme root directory (/) met forward slashes, waar alle bestanden en drives onder vallen."
+                    "explanation": "Forward slashes (/) zijn standaard in Linux/UNIX. Windows gebruikt backslashes (\\). Het pad begint met / wat de root directory aangeeft, typisch voor Linux."
                 },
                 {
-                    "question": "Zijn Linux bestandssystemen hoofdlettergevoelig?",
+                    "question": "Welke shell is standaard in de meeste Linux distributies?",
                     "options": [
-                        "Nee, net als Windows",
-                        "Ja, File.txt en file.txt zijn verschillende bestanden",
-                        "Alleen voor systeembestanden",
-                        "Alleen in de terminal"
-                    ],
-                    "correct": 1,
-                    "explanation": "Linux bestandssystemen zijn case-sensitive: File.txt en file.txt worden als twee verschillende bestanden behandeld. Windows is over het algemeen case-insensitive."
-                },
-                {
-                    "question": "Wat is een shell in een besturingssysteem?",
-                    "options": [
-                        "De fysieke behuizing van de computer",
-                        "Een gebruikersinterface voor interactie met de kernel",
-                        "Een type geheugen",
-                        "Een beveiligingsprogramma"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een shell is een gebruikersinterface die communiceert met de kernel. Het interpreteert en voert gebruikerscommando's uit, en kan command-line (CLI) of grafisch (GUI) zijn."
-                },
-                {
-                    "question": "Welke shell is standaard op de meeste Linux systemen?",
-                    "options": [
-                        "PowerShell",
-                        "Command Prompt",
+                        "Zsh",
+                        "Fish",
                         "Bash",
-                        "Zsh"
+                        "PowerShell"
                     ],
                     "correct": 2,
-                    "explanation": "Bash (Bourne Again Shell) is de standaard CLI shell op de meeste Linux distributies. Windows gebruikt Command Prompt (cmd) of PowerShell."
+                    "explanation": "Bash (Bourne Again Shell) is de standaard op de meeste Linux distributies. Zsh is populair op macOS, PowerShell op Windows."
                 },
                 {
-                    "question": "Wat is het voordeel van een grafische shell ten opzichte van een CLI?",
+                    "question": "Een systeembeheerder wil 100 bestanden hernoemen met een script. Welk type interface is het meest geschikt?",
                     "options": [
-                        "Meer controle over het systeem",
-                        "Makkelijker te scripten",
-                        "Gebruiksvriendelijker voor beginners",
-                        "Snellere uitvoering van taken"
+                        "Grafische file manager",
+                        "Command-line interface (CLI)",
+                        "Touch screen interface",
+                        "Voice interface"
+                    ],
+                    "correct": 1,
+                    "explanation": "CLI is ideaal voor scripting en batch-operaties. Een eenvoudig bash-script met een loop kan 100+ bestanden in seconden hernoemen."
+                },
+                {
+                    "question": "Wat vertaalt generieke OS-instructies naar hardware-specifieke commando's?",
+                    "options": [
+                        "De compiler",
+                        "De shell",
+                        "Device drivers",
+                        "De bootloader"
                     ],
                     "correct": 2,
-                    "explanation": "Grafische shells (zoals Windows Explorer, GNOME, KDE) zijn gebruiksvriendelijker met point-and-click interactie. CLI's bieden meer controle en scriptingmogelijkheden voor ervaren gebruikers."
+                    "explanation": "Device drivers zijn de vertaallaag tussen kernel en hardware. Ze maken het mogelijk dat het OS werkt met diverse hardware zonder specifieke code voor elk apparaat."
                 },
                 {
-                    "question": "Wat moet een ontwikkelaar zelf regelen bij het programmeren zonder besturingssysteem?",
+                    "question": "Waarom kunnen twee processen niet elkaars geheugen direct lezen?",
                     "options": [
-                        "Alleen de grafische interface",
-                        "Memory management, input handling, graphics en sound",
-                        "Alleen het installeren van drivers",
-                        "Niets, de hardware regelt alles automatisch"
+                        "De CPU is te langzaam",
+                        "Het OS isoleert processen met gescheiden adresruimtes",
+                        "Processen draaien op verschillende CPU's",
+                        "Dit is wel mogelijk in moderne OS's"
                     ],
                     "correct": 1,
-                    "explanation": "Zonder OS moet de ontwikkelaar zelf geheugenmanagement, input handling, graphics rendering, sound management, timing, file handling en error handling implementeren."
+                    "explanation": "Elk proces krijgt zijn eigen virtuele adresruimte. Het OS en MMU zorgen voor isolatie, wat voorkomt dat processen elkaars geheugen kunnen beschadigen."
                 },
                 {
-                    "question": "Waarom worden processen van elkaar geïsoleerd door het OS?",
+                    "question": "Welke OS-familie volgt de POSIX-standaard?",
                     "options": [
-                        "Om geheugen te besparen",
-                        "Voor snellere uitvoering",
-                        "Voor veiligheid en stabiliteit - processen kunnen elkaars geheugen niet beïnvloeden",
-                        "Omdat de CPU maar één proces kan uitvoeren"
+                        "Windows NT",
+                        "MS-DOS",
+                        "UNIX-like systemen",
+                        "Alleen macOS"
                     ],
                     "correct": 2,
-                    "explanation": "Proces-isolatie via gescheiden geheugenruimtes voorkomt dat processen elkaars geheugen kunnen lezen of beschadigen, wat de veiligheid en systeemstabiliteit verbetert."
+                    "explanation": "POSIX (Portable Operating System Interface) is een standaard voor UNIX-like systemen. Linux, macOS, BSD en andere UNIX-varianten volgen deze standaard."
                 },
                 {
-                    "question": "Wat is de rol van device drivers in een besturingssysteem?",
+                    "question": "Een user mode applicatie probeert direct naar een I/O-poort te schrijven. Wat gebeurt er?",
                     "options": [
-                        "Ze vervangen de kernel",
-                        "Ze vertalen kernel instructies naar commando's die specifieke hardware begrijpt",
-                        "Ze versnellen de CPU",
-                        "Ze beheren alleen de printer"
+                        "De operatie slaagt",
+                        "Het OS blokkeert dit en genereert een exception",
+                        "De CPU negeert het verzoek",
+                        "Het systeem herstart automatisch"
                     ],
                     "correct": 1,
-                    "explanation": "Device drivers zijn gespecialiseerde software die als vertaler werken tussen de kernel en specifieke hardware. Ze vertalen generieke OS-instructies naar hardware-specifieke commando's."
+                    "explanation": "User mode code heeft geen directe hardware toegang. De CPU's protection ring mechanisme voorkomt dit; het OS genereert een exception (fout)."
                 },
                 {
-                    "question": "[EXTRA] Een 16-bit besturingssysteem kan hoeveel unieke geheugenadressen aanspreken, en wat is de maximale adresseerbare geheugengrootte?",
+                    "question": "Wat onderscheidt Windows van UNIX-like systemen qua architectuur?",
                     "options": [
-                        "32.768 adressen = 32 KB",
-                        "65.536 adressen = 64 KB",
-                        "131.072 adressen = 128 KB",
-                        "16.384 adressen = 16 KB"
+                        "Windows is open-source",
+                        "Windows heeft geen kernel",
+                        "Windows gebruikt een proprietary architectuur en eigen standaarden",
+                        "Windows draait alleen op ARM processors"
                     ],
-                    "correct": 1,
-                    "explanation": "Een 16-bit systeem kan 2^16 = 65.536 unieke adressen aanspreken. Elk adres verwijst naar 1 byte, dus 65.536 bytes = 64 KB adresseerbaar geheugen."
+                    "correct": 2,
+                    "explanation": "Windows gebruikt een proprietary architectuur (Windows NT) met eigen standaarden, terwijl UNIX-like systemen POSIX volgen en vaak open-source zijn."
                 },
                 {
-                    "question": "[EXTRA] Een applicatie in user mode wil een bestand schrijven. Beschrijf de juiste volgorde van events.",
+                    "question": "[EXTRA] Een 24-bit adresbus kan hoeveel geheugen adresseren?",
                     "options": [
-                        "Applicatie → Hardware → Kernel → Bestand",
-                        "Applicatie → System call → Kernel mode switch → Kernel schrijft via driver → Resultaat terug naar user mode",
-                        "Kernel → System call → Applicatie → Hardware",
-                        "Applicatie → Direct naar harde schijf → Bevestiging"
+                        "8 MB",
+                        "16 MB",
+                        "32 MB",
+                        "64 MB"
                     ],
                     "correct": 1,
-                    "explanation": "De applicatie doet een system call, er vindt een mode switch naar kernel mode plaats, de kernel communiceert met de hardware via de driver, en het resultaat wordt teruggestuurd naar user mode."
+                    "explanation": "24 bits = 2^24 = 16.777.216 adressen = 16 MB. Dit was de limiet van vroege Intel processors zoals de 80286 in protected mode."
                 },
                 {
-                    "question": "[EXTRA] Een systeem heeft 4 GB fysieke RAM en een 32-bit OS met 4 GB virtuele adresruimte per proces. Als 3 processen elk 2 GB virtueel geheugen claimen, hoe beheert het OS dit?",
+                    "question": "[EXTRA] Een proces doet een system call. Welke stappen vinden plaats in de juiste volgorde?",
                     "options": [
-                        "Het weigert het derde proces te starten",
-                        "Het gebruikt paging om pagina's tussen RAM en swap space te wisselen op basis van gebruik",
-                        "Elk proces krijgt precies 1.33 GB",
-                        "Het OS crasht door geheugengebrek"
+                        "Mode switch → Trap instruction → Kernel handler → Return",
+                        "Trap instruction → Mode switch → Kernel handler → Return",
+                        "Kernel handler → Mode switch → Trap → Return",
+                        "Return → Trap → Mode switch → Handler"
                     ],
                     "correct": 1,
-                    "explanation": "Via virtual memory en paging houdt het OS alleen actief gebruikte pagina's in RAM. Minder gebruikte pagina's worden naar swap space (schijf) verplaatst, zodat de totale virtuele geheugenallocatie de fysieke RAM kan overschrijden."
+                    "explanation": "De trap instruction triggert de CPU om naar kernel mode te switchen. Dan wordt de juiste kernel handler aangeroepen, die het verzoek afhandelt en terugkeert naar user mode."
+                },
+                {
+                    "question": "[EXTRA] Systeem A: 8 GB RAM, 50 processen. Systeem B: 4 GB RAM, 50 processen. Beide draaien soepel. Welke techniek maakt dit mogelijk?",
+                    "options": [
+                        "Beide systemen gebruiken RAM-compressie",
+                        "Virtual memory met demand paging",
+                        "De processen zijn identiek klein",
+                        "Time-sharing van geheugen per proces"
+                    ],
+                    "correct": 1,
+                    "explanation": "Virtual memory met demand paging laadt alleen benodigde pagina's in RAM. Niet-actieve pagina's blijven op schijf, waardoor veel processen kunnen draaien met beperkt fysiek geheugen."
                 }
             ]
         },
@@ -1301,257 +1301,257 @@
             "name": "Week 6: Networking",
             "questions": [
                 {
-                    "question": "Uit hoeveel lagen bestaat het originele TCP/IP model dat in het boek wordt gebruikt?",
+                    "question": "Het TCP/IP model dat in het boek wordt gebruikt heeft hoeveel lagen?",
                     "options": [
-                        "3 lagen",
-                        "4 lagen",
-                        "5 lagen",
-                        "7 lagen"
+                        "4",
+                        "5",
+                        "6",
+                        "7"
                     ],
-                    "correct": 1,
+                    "correct": 0,
                     "explanation": "Het originele TCP/IP model heeft 4 lagen: Link Layer, Internet Layer, Transport Layer en Application Layer. Het OSI model heeft 7 lagen."
                 },
                 {
-                    "question": "Welke laag van het TCP/IP model is verantwoordelijk voor het routeren van datapakketten tussen netwerken?",
+                    "question": "Op welke laag van het TCP/IP model werkt een router primair?",
                     "options": [
-                        "Link Layer",
-                        "Internet Layer",
+                        "Application Layer",
                         "Transport Layer",
-                        "Application Layer"
+                        "Internet Layer",
+                        "Link Layer"
                     ],
-                    "correct": 1,
-                    "explanation": "De Internet Layer is verantwoordelijk voor packet routing tussen netwerken met behulp van IP-adressen. Het zorgt ervoor dat data de juiste bestemming bereikt."
+                    "correct": 2,
+                    "explanation": "Routers werken op de Internet Layer (laag 2 in TCP/IP, laag 3 in OSI). Ze routeren pakketten tussen netwerken op basis van IP-adressen."
                 },
                 {
-                    "question": "Wat is het verschil tussen TCP en UDP in de Transport Layer?",
+                    "question": "Je streamt een live video. Welk protocol is waarschijnlijk in gebruik voor de video data?",
                     "options": [
-                        "TCP is sneller, UDP is betrouwbaarder",
-                        "TCP biedt betrouwbare, geordende levering; UDP is sneller maar zonder garantie",
-                        "UDP wordt alleen voor email gebruikt",
-                        "Er is geen verschil"
+                        "TCP - voor betrouwbare levering",
+                        "UDP - voor snelheid zonder hertransmissie",
+                        "FTP - voor bestandsoverdracht",
+                        "SMTP - voor media streaming"
                     ],
                     "correct": 1,
-                    "explanation": "TCP (Transmission Control Protocol) biedt betrouwbare, geordende dataoverdracht. UDP (User Datagram Protocol) is sneller en connectionless, maar biedt geen garantie op levering."
+                    "explanation": "Live streaming gebruikt UDP omdat snelheid belangrijker is dan perfectie. Een verloren frame wordt niet opnieuw verzonden; de stream gaat gewoon door."
                 },
                 {
-                    "question": "Welk van de volgende is een geldig privé IP-adresbereik?",
+                    "question": "Welk IP-adres is GEEN geldig privé adres?",
                     "options": [
-                        "8.8.8.0 - 8.8.8.255",
-                        "192.168.0.0 - 192.168.255.255",
-                        "200.100.50.0 - 200.100.50.255",
-                        "172.32.0.0 - 172.32.255.255"
+                        "10.0.0.1",
+                        "172.16.0.1",
+                        "172.32.0.1",
+                        "192.168.1.1"
+                    ],
+                    "correct": 2,
+                    "explanation": "172.32.0.1 is publiek. Privé ranges: 10.0.0.0/8, 172.16.0.0-172.31.255.255 (/12), 192.168.0.0/16. 172.32.x.x valt buiten de 172.16-172.31 range."
+                },
+                {
+                    "question": "Een subnet mask van 255.255.255.0 komt overeen met welke CIDR-notatie?",
+                    "options": [
+                        "/16",
+                        "/24",
+                        "/28",
+                        "/32"
                     ],
                     "correct": 1,
-                    "explanation": "De privé IP-bereiken zijn: 10.0.0.0/8, 172.16.0.0/12 (172.16.0.0 - 172.31.255.255), en 192.168.0.0/16. 172.32.x.x valt buiten het privé bereik."
+                    "explanation": "255.255.255.0 = 24 bits aan (11111111.11111111.11111111.00000000) = /24. Tel de 1-bits in de binaire representatie."
                 },
                 {
-                    "question": "Wat is het verschil tussen een privé en een publiek IP-adres?",
+                    "question": "Een /26 subnet biedt hoeveel bruikbare host-adressen?",
                     "options": [
-                        "Privé adressen zijn sneller",
-                        "Privé adressen zijn alleen binnen een LAN bereikbaar, publieke zijn wereldwijd routeerbaar",
-                        "Publieke adressen werken alleen met WiFi",
-                        "Er is geen verschil"
+                        "64",
+                        "62",
+                        "32",
+                        "30"
                     ],
                     "correct": 1,
-                    "explanation": "Privé IP-adressen zijn gereserveerd voor lokale netwerken (LAN) en niet routeerbaar op internet. Publieke IP-adressen zijn uniek en wereldwijd bereikbaar via internet."
+                    "explanation": "/26 = 6 host-bits = 2^6 = 64 adressen. Minus network (eerste) en broadcast (laatste) = 62 bruikbare hosts."
                 },
                 {
-                    "question": "Een /24 subnet mask in decimale notatie is:",
+                    "question": "IP-adres 192.168.10.67 met subnet /26. Wat is het network address?",
                     "options": [
-                        "255.255.0.0",
-                        "255.255.255.0",
-                        "255.255.255.128",
-                        "255.255.255.224"
+                        "192.168.10.0",
+                        "192.168.10.64",
+                        "192.168.10.128",
+                        "192.168.10.32"
                     ],
                     "correct": 1,
-                    "explanation": "Een /24 subnet betekent 24 bits voor het netwerk. In binair: 11111111.11111111.11111111.00000000 = 255.255.255.0 in decimaal."
+                    "explanation": "/26 = subnets van 64 adressen. 67 ÷ 64 = 1.04..., dus subnet 1. 1 × 64 = 64. Network address is 192.168.10.64 (range: .64-.127)."
                 },
                 {
-                    "question": "Hoeveel bruikbare host-adressen biedt een /24 subnet?",
+                    "question": "HTTPS gebruikt standaard welke poort?",
                     "options": [
-                        "256 adressen",
-                        "254 adressen",
-                        "255 adressen",
-                        "252 adressen"
+                        "80",
+                        "8080",
+                        "443",
+                        "22"
                     ],
-                    "correct": 1,
-                    "explanation": "Een /24 heeft 8 host-bits = 2^8 = 256 adressen. Minus 1 voor network address en 1 voor broadcast = 254 bruikbare host-adressen."
+                    "correct": 2,
+                    "explanation": "HTTPS gebruikt poort 443. HTTP gebruikt 80. SSH gebruikt 22. 8080 is een alternatieve HTTP-poort."
                 },
                 {
-                    "question": "Hoeveel bruikbare host-adressen biedt een /27 subnet?",
+                    "question": "Een webserver draait op 192.168.1.50:8080. Wat is de socket?",
                     "options": [
-                        "32 adressen",
-                        "30 adressen",
-                        "28 adressen",
-                        "64 adressen"
+                        "192.168.1.50",
+                        "8080",
+                        "192.168.1.50:8080",
+                        "http://192.168.1.50"
                     ],
-                    "correct": 1,
-                    "explanation": "Een /27 heeft 5 host-bits = 2^5 = 32 adressen. Minus network en broadcast = 30 bruikbare host-adressen."
+                    "correct": 2,
+                    "explanation": "Een socket is de combinatie van IP-adres en poort: 192.168.1.50:8080. Dit identificeert een specifiek communicatie-eindpunt uniek."
                 },
                 {
-                    "question": "Wat is de decimale notatie van een /27 subnet mask?",
+                    "question": "Bij DHCP stuurt de client eerst een broadcast. Hoe heet dit bericht?",
                     "options": [
-                        "255.255.255.192",
-                        "255.255.255.224",
-                        "255.255.255.240",
-                        "255.255.255.128"
+                        "DHCP Offer",
+                        "DHCP Request",
+                        "DHCP Discover",
+                        "DHCP Acknowledge"
                     ],
-                    "correct": 1,
-                    "explanation": "Een /27 = 27 bits netwerk. In binair: 11111111.11111111.11111111.11100000. De laatste octet 11100000 = 128+64+32 = 224."
+                    "correct": 2,
+                    "explanation": "DORA: Discover (client broadcast) → Offer (server antwoord) → Request (client kiest) → Acknowledgment (server bevestigt)."
                 },
                 {
-                    "question": "Welke poortrange bevat de 'Well-Known Ports' voor standaard services zoals HTTP en HTTPS?",
+                    "question": "Een DNS A-record koppelt wat aan wat?",
                     "options": [
-                        "1024-49151",
-                        "0-1023",
-                        "49152-65535",
-                        "80-443"
+                        "IP-adres aan MAC-adres",
+                        "Domeinnaam aan mailserver",
+                        "Domeinnaam aan IPv4-adres",
+                        "Alias aan canonical name"
                     ],
-                    "correct": 1,
-                    "explanation": "Well-Known Ports zijn 0-1023 voor standaard services. Registered Ports zijn 1024-49151, en Dynamic/Private Ports zijn 49152-65535."
+                    "correct": 2,
+                    "explanation": "A-record = Address record: koppelt domeinnaam aan IPv4. MX = mailserver, CNAME = alias, AAAA = IPv6."
                 },
                 {
-                    "question": "Wat is een socket in networking?",
+                    "question": "Welk type DNS-record gebruik je voor een mailserver?",
                     "options": [
-                        "Een fysieke netwerkaansluiting",
-                        "De combinatie van een IP-adres en een poortnummer",
-                        "Een type netwerkkabel",
-                        "Een draadloos protocol"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een socket is de combinatie van een IP-adres en poortnummer (bijv. 192.168.1.10:80). Dit definieert een volledig communicatie-eindpunt."
-                },
-                {
-                    "question": "Wat is de juiste volgorde van het DHCP-proces?",
-                    "options": [
-                        "Request → Offer → Discover → Acknowledgment",
-                        "Discover → Offer → Request → Acknowledgment",
-                        "Offer → Discover → Acknowledgment → Request",
-                        "Acknowledgment → Request → Offer → Discover"
-                    ],
-                    "correct": 1,
-                    "explanation": "DHCP werkt via DORA: Discover (client zoekt server), Offer (server biedt IP aan), Request (client vraagt IP aan), Acknowledgment (server bevestigt)."
-                },
-                {
-                    "question": "Wat is de primaire functie van DNS?",
-                    "options": [
-                        "IP-adressen toewijzen aan devices",
-                        "Domeinnamen vertalen naar IP-adressen",
-                        "Encryptie van webverkeer",
-                        "Netwerkverkeer routeren"
-                    ],
-                    "correct": 1,
-                    "explanation": "DNS (Domain Name System) vertaalt menselijk leesbare domeinnamen (zoals www.example.com) naar machine-leesbare IP-adressen (zoals 192.0.2.1)."
-                },
-                {
-                    "question": "Welk type DNS-record koppelt een domeinnaam aan een IPv4-adres?",
-                    "options": [
-                        "MX record",
-                        "CNAME record",
                         "A record",
+                        "CNAME record",
+                        "MX record",
                         "TXT record"
                     ],
                     "correct": 2,
-                    "explanation": "Een A record (Address record) koppelt een domeinnaam aan een IPv4-adres. MX is voor mail servers, CNAME voor aliassen."
+                    "explanation": "MX (Mail Exchange) records specificeren welke server e-mail voor een domein afhandelt en met welke prioriteit."
                 },
                 {
-                    "question": "Wat was ARPANET?",
+                    "question": "In welk decennium werd ARPANET, de voorloper van het internet, gelanceerd?",
                     "options": [
-                        "De eerste commerciële webbrowser",
-                        "Het voorloper-netwerk van het huidige internet, ontwikkeld door het U.S. Department of Defense",
-                        "Een vroeg besturingssysteem",
-                        "Een encryptieprotocol"
+                        "Jaren 50",
+                        "Jaren 60",
+                        "Jaren 70",
+                        "Jaren 80"
                     ],
                     "correct": 1,
-                    "explanation": "ARPANET was het eerste packet-switched netwerk, ontwikkeld door ARPA (U.S. Department of Defense) in de late jaren 60. Het evolueerde tot het moderne internet."
+                    "explanation": "ARPANET's eerste succesvolle bericht werd verzonden in 1969. Het werd ontwikkeld door ARPA (later DARPA) van het U.S. Department of Defense."
                 },
                 {
-                    "question": "Wat is een kenmerkende eigenschap van het internet?",
+                    "question": "Tim Berners-Lee ontwikkelde het World Wide Web in welk jaar?",
                     "options": [
-                        "Het wordt beheerd door één centrale organisatie",
-                        "Het is gedecentraliseerd - geen enkele entiteit bezit of controleert het",
-                        "Het werkt alleen met draadloze verbindingen",
-                        "Het is hetzelfde als het World Wide Web"
+                        "1969",
+                        "1983",
+                        "1989",
+                        "1995"
+                    ],
+                    "correct": 2,
+                    "explanation": "Tim Berners-Lee creëerde het WWW in 1989 bij CERN. 1969 = ARPANET. 1983 = TCP/IP adoptie. 1995 = commercieel internet explodeerde."
+                },
+                {
+                    "question": "E-mail, FTP en VoIP zijn voorbeelden van wat?",
+                    "options": [
+                        "Onderdelen van het WWW",
+                        "Internetdiensten die los staan van het WWW",
+                        "Alleen beschikbaar via webbrowsers",
+                        "Protocollen die alleen lokaal werken"
                     ],
                     "correct": 1,
-                    "explanation": "Het internet is gedecentraliseerd - geen enkele entiteit bezit of controleert het. Meerdere organisaties en individuen dragen bij aan onderhoud en werking."
+                    "explanation": "Het internet is meer dan het WWW. E-mail (SMTP/IMAP), FTP en VoIP zijn aparte diensten die het internet gebruiken maar niet het web."
                 },
                 {
-                    "question": "Wat is het verschil tussen het Internet en het World Wide Web?",
+                    "question": "Welk protocol voegt encryptie toe aan HTTP?",
                     "options": [
-                        "Er is geen verschil, het zijn synoniemen",
-                        "Het WWW is een applicatie/dienst die draait op het internet",
-                        "Het internet is alleen voor email",
-                        "Het WWW kwam eerder dan het internet"
-                    ],
-                    "correct": 1,
-                    "explanation": "Het internet is de infrastructuur van verbonden netwerken. Het WWW is een specifieke dienst/applicatie die op het internet draait, ontwikkeld in 1989 door Tim Berners-Lee."
-                },
-                {
-                    "question": "Welk protocol wordt gebruikt voor beveiligde, versleutelde webcommunicatie?",
-                    "options": [
-                        "HTTP",
                         "FTP",
-                        "HTTPS",
+                        "SSH",
+                        "TLS/SSL",
                         "SMTP"
                     ],
                     "correct": 2,
-                    "explanation": "HTTPS (HTTP Secure) voegt encryptie toe aan HTTP via TLS/SSL, waardoor webcommunicatie beveiligd en versleuteld is."
+                    "explanation": "HTTPS = HTTP + TLS/SSL. TLS (Transport Layer Security, opvolger van SSL) versleutelt de verbinding tussen browser en server."
                 },
                 {
-                    "question": "Welke drie technologieën vormen de basis van webontwikkeling?",
+                    "question": "HTML definieert de ___ van een webpagina, CSS de ___, JavaScript de ___.",
                     "options": [
-                        "Python, Java, C++",
-                        "HTML, CSS, JavaScript",
-                        "TCP, UDP, IP",
-                        "Apache, Nginx, IIS"
+                        "stijl, structuur, interactiviteit",
+                        "structuur, stijl, interactiviteit",
+                        "interactiviteit, structuur, stijl",
+                        "structuur, interactiviteit, stijl"
                     ],
                     "correct": 1,
-                    "explanation": "HTML (structuur), CSS (styling/layout) en JavaScript (interactiviteit) zijn de drie fundamentele technologieën voor webontwikkeling."
+                    "explanation": "HTML = structuur/content (koppen, paragrafen). CSS = stijl/layout (kleuren, fonts). JavaScript = interactiviteit/gedrag (form validatie, animaties)."
                 },
                 {
-                    "question": "Welke webserver is het meest gebruikt op Linux systemen?",
+                    "question": "Apache en Nginx zijn voorbeelden van:",
                     "options": [
-                        "IIS",
-                        "Apache of Nginx",
-                        "Tomcat",
-                        "WebLogic"
+                        "Databases",
+                        "Webservers",
+                        "Browsers",
+                        "Operating systems"
                     ],
                     "correct": 1,
-                    "explanation": "Apache HTTP Server en Nginx zijn de populairste webservers op Linux. IIS (Internet Information Services) is Microsoft's webserver voor Windows Server."
+                    "explanation": "Apache HTTP Server en Nginx zijn de meest gebruikte webservers, vooral op Linux. Ze serveren webcontent aan clients."
                 },
                 {
-                    "question": "[EXTRA] Gegeven IP-adres 192.168.1.100 met subnet /27. Bereken het network address van dit subnet.",
+                    "question": "python3 -m http.server 8000 start een webserver op welke URL?",
                     "options": [
-                        "192.168.1.0",
-                        "192.168.1.64",
-                        "192.168.1.96",
-                        "192.168.1.128"
+                        "http://localhost:80",
+                        "http://127.0.0.1:8000",
+                        "https://localhost:8000",
+                        "http://0.0.0.0:80"
+                    ],
+                    "correct": 1,
+                    "explanation": "De Python http.server module start standaard op poort 8000. localhost en 127.0.0.1 zijn equivalent. Het gebruikt HTTP, niet HTTPS."
+                },
+                {
+                    "question": "Load balancing verdeelt verkeer over meerdere servers. Welk algoritme geeft elke server om de beurt een request?",
+                    "options": [
+                        "Least Connections",
+                        "Random",
+                        "Round Robin",
+                        "Weighted"
                     ],
                     "correct": 2,
-                    "explanation": "Een /27 heeft subnets van 32 adressen (2^5). 100 ÷ 32 = 3.125, dus subnet 3 × 32 = 96. Het network address is 192.168.1.96. Range: .96 tot .127."
+                    "explanation": "Round Robin verdeelt requests sequentieel: server 1, dan 2, dan 3, dan weer 1, etc. Simpel maar effectief voor gelijke servers."
                 },
                 {
-                    "question": "[EXTRA] Je wilt 4 Class C netwerken (192.168.0.0/24 t/m 192.168.3.0/24) samenvoegen tot één supernet. Wat is de juiste CIDR-notatie?",
+                    "question": "[EXTRA] Je hebt 192.168.1.0/24 en moet 6 subnets maken voor kantoren. Welk subnet mask gebruik je minimaal?",
                     "options": [
-                        "192.168.0.0/23",
-                        "192.168.0.0/22",
-                        "192.168.0.0/21",
-                        "192.168.0.0/25"
+                        "/26 (4 subnets)",
+                        "/27 (8 subnets)",
+                        "/28 (16 subnets)",
+                        "/29 (32 subnets)"
                     ],
                     "correct": 1,
-                    "explanation": "4 netwerken samenvoegen betekent 4× meer adressen. /24 → /22 (2 bits minder = 4× meer). 192.168.0.0/22 dekt 192.168.0.0 t/m 192.168.3.255."
+                    "explanation": "Je hebt minimaal 6 subnets nodig. /27 geeft 8 subnets (2^3), wat voldoende is. /26 geeft maar 4. Elke extra bit verdubbelt het aantal subnets."
                 },
                 {
-                    "question": "[EXTRA] Een DNS-query voor www.example.com doorloopt welke volgorde van nameservers?",
+                    "question": "[EXTRA] Bij DNS-resolutie voor sub.example.com, welke volgorde is correct?",
                     "options": [
-                        "Authoritative → TLD → Root",
-                        "Root → Authoritative → TLD",
-                        "Root → TLD → Authoritative",
-                        "TLD → Root → Authoritative"
+                        "Local cache → Root → .com TLD → example.com authoritative",
+                        "Root → Local cache → .com TLD → example.com authoritative",
+                        "example.com authoritative → .com TLD → Root → Local cache",
+                        ".com TLD → Root → Local cache → example.com authoritative"
                     ],
-                    "correct": 2,
-                    "explanation": "DNS-resolutie gaat: Root nameserver (verwijst naar .com TLD) → TLD nameserver (verwijst naar example.com) → Authoritative nameserver (geeft het IP-adres)."
+                    "correct": 0,
+                    "explanation": "Eerst wordt local cache gecheckt. Bij cache miss: Root nameserver → .com TLD nameserver → example.com authoritative nameserver die het IP teruggeeft."
+                },
+                {
+                    "question": "[EXTRA] Een server heeft IP 10.50.100.200/22. Wat is het broadcast address van dit subnet?",
+                    "options": [
+                        "10.50.100.255",
+                        "10.50.103.255",
+                        "10.50.255.255",
+                        "10.50.101.255"
+                    ],
+                    "correct": 1,
+                    "explanation": "/22 = 10 host-bits. Network: 10.50.100.0 (100 binair: 01100100, eerste 6 bits). Subnet range: 10.50.100.0 - 10.50.103.255. Broadcast = laatste adres."
                 }
             ]
         },
@@ -1560,257 +1560,257 @@
             "name": "Week 7: Modern Computing",
             "questions": [
                 {
-                    "question": "Welke HTTP-methode wordt gebruikt om data op te halen van een server?",
+                    "question": "Welke HTTP-methode gebruik je om een nieuwe resource aan te maken op de server?",
                     "options": [
-                        "POST",
                         "GET",
-                        "PUT",
-                        "DELETE"
-                    ],
-                    "correct": 1,
-                    "explanation": "GET wordt gebruikt om data op te halen. POST is voor nieuwe data aanmaken, PUT voor updaten, DELETE voor verwijderen (CRUD operaties)."
-                },
-                {
-                    "question": "Wat betekent HTTP statuscode 404?",
-                    "options": [
-                        "Server error",
-                        "Succesvolle request",
-                        "Resource niet gevonden",
-                        "Redirect"
+                        "DELETE",
+                        "POST",
+                        "HEAD"
                     ],
                     "correct": 2,
-                    "explanation": "404 Not Found betekent dat de gevraagde resource niet bestaat. 2xx = succes, 3xx = redirect, 4xx = client error, 5xx = server error."
+                    "explanation": "POST creëert nieuwe resources. GET haalt op, PUT update/vervangt, DELETE verwijdert, HEAD haalt alleen headers op."
                 },
                 {
-                    "question": "Wat is Electron?",
+                    "question": "HTTP statuscode 500 betekent:",
                     "options": [
-                        "Een programmeertaal",
-                        "Een framework om cross-platform desktop apps te maken met HTML, CSS en JavaScript",
-                        "Een database systeem",
-                        "Een webserver"
+                        "Resource niet gevonden",
+                        "Geen toegang (unauthorized)",
+                        "Internal server error",
+                        "Redirect naar andere URL"
+                    ],
+                    "correct": 2,
+                    "explanation": "5xx codes zijn server errors. 500 = general server error. 404 = not found (4xx client error). 401 = unauthorized. 3xx = redirects."
+                },
+                {
+                    "question": "Een URL bevat ?page=2&sort=date. Dit deel heet:",
+                    "options": [
+                        "Fragment",
+                        "Path",
+                        "Query string",
+                        "Port"
+                    ],
+                    "correct": 2,
+                    "explanation": "Query strings beginnen met ? en bevatten key=value paren gescheiden door &. Fragments beginnen met #. Path is het deel na de host."
+                },
+                {
+                    "question": "Electron apps zijn relatief groot omdat ze bundelen:",
+                    "options": [
+                        "Alleen de applicatiecode",
+                        "Een complete browser engine en Node.js runtime",
+                        "Alleen JavaScript libraries",
+                        "Alleen CSS frameworks"
                     ],
                     "correct": 1,
-                    "explanation": "Electron combineert Chromium (browser) en Node.js om desktop applicaties te bouwen met webtechnologieën. Apps werken op Windows, macOS en Linux."
+                    "explanation": "Electron bundelt Chromium (hele browser) + Node.js. Dit maakt apps groot (100+ MB) maar zorgt voor cross-platform compatibiliteit."
                 },
                 {
-                    "question": "Wat is een nadeel van Electron apps vergeleken met native apps?",
+                    "question": "WebAssembly is geschikt voor:",
                     "options": [
-                        "Ze werken alleen op Windows",
-                        "Ze zijn groter in omvang en gebruiken meer geheugen door gebundelde browser",
-                        "Ze kunnen geen bestanden openen",
-                        "Ze hebben geen grafische interface"
+                        "Alleen tekstverwerking",
+                        "Performance-intensieve taken zoals games en image processing",
+                        "Alleen database queries",
+                        "Alleen styling van webpagina's"
                     ],
                     "correct": 1,
-                    "explanation": "Electron bundelt Chromium en Node.js, wat resulteert in grotere applicaties en hoger geheugengebruik vergeleken met lichtgewicht native apps."
+                    "explanation": "WASM draait op near-native speed. Ideaal voor CPU-intensieve taken: games, video editing, CAD, wetenschappelijke berekeningen in de browser."
                 },
                 {
-                    "question": "Wat is WebAssembly (WASM)?",
+                    "question": "Native apps hebben directe toegang tot device hardware. Welk voorbeeld past NIET?",
                     "options": [
-                        "Een nieuwe versie van JavaScript",
-                        "Een binair instructieformaat waarmee code in near-native snelheid in de browser draait",
-                        "Een CSS framework",
-                        "Een database taal"
+                        "Camera API",
+                        "GPS locatie",
+                        "Browser cookies",
+                        "Push notifications"
+                    ],
+                    "correct": 2,
+                    "explanation": "Browser cookies zijn een web-concept, geen hardware feature. Camera, GPS en push notifications zijn device-level features waar native apps directe toegang toe hebben."
+                },
+                {
+                    "question": "VMware ESXi en Microsoft Hyper-V zijn voorbeelden van:",
+                    "options": [
+                        "Type 2 hypervisors",
+                        "Container runtimes",
+                        "Type 1 (bare-metal) hypervisors",
+                        "Cloud platforms"
+                    ],
+                    "correct": 2,
+                    "explanation": "Type 1 hypervisors draaien direct op hardware zonder host OS. ESXi en Hyper-V zijn enterprise-grade bare-metal hypervisors. VirtualBox is Type 2 (op host OS)."
+                },
+                {
+                    "question": "Wat deelt een container met de host?",
+                    "options": [
+                        "Niets, complete isolatie",
+                        "Alleen netwerk",
+                        "De kernel van het OS",
+                        "Alleen opslag"
+                    ],
+                    "correct": 2,
+                    "explanation": "Containers delen de host kernel maar hebben geïsoleerde userspace (libraries, bins, configs). Dit maakt ze lichter dan VMs die een volledige OS nodig hebben."
+                },
+                {
+                    "question": "Docker is een:",
+                    "options": [
+                        "Hypervisor",
+                        "Container runtime",
+                        "Cloud provider",
+                        "Operating system"
                     ],
                     "correct": 1,
-                    "explanation": "WebAssembly is een binair formaat dat code (geschreven in C, C++, Rust) op near-native snelheid in de browser laat draaien, ideaal voor performance-intensieve taken."
+                    "explanation": "Docker is een container runtime/platform. Het bouwt, distribueert en draait containers. Het is geen hypervisor (die VM's beheert) of cloud provider."
                 },
                 {
-                    "question": "Wat is het belangrijkste voordeel van native apps?",
+                    "question": "Kubernetes wordt gebruikt voor:",
                     "options": [
-                        "Ze zijn goedkoper om te ontwikkelen",
-                        "Betere performance en directe toegang tot device hardware en API's",
-                        "Ze werken op alle platforms",
-                        "Ze hebben geen updates nodig"
+                        "Het schrijven van containers",
+                        "Database management",
+                        "Orchestratie van containers op schaal",
+                        "Frontend development"
+                    ],
+                    "correct": 2,
+                    "explanation": "Kubernetes (K8s) automatiseert deployment, scaling, en management van gecontaineriseerde applicaties over clusters van machines."
+                },
+                {
+                    "question": "Een emulator voor een gameconsolee vertaalt:",
+                    "options": [
+                        "Alleen grafische bestanden",
+                        "Instructies van één ISA naar een andere",
+                        "Alleen audio signalen",
+                        "Netwerk protocollen"
                     ],
                     "correct": 1,
-                    "explanation": "Native apps zijn geoptimaliseerd voor hun platform, bieden superieure performance, directe hardware toegang (camera, GPS, etc.) en volgen platform design guidelines."
+                    "explanation": "Emulatie vertaalt instructies tussen verschillende Instruction Set Architectures. Bijv. NES 6502 instructies → x86/ARM instructies van je PC."
                 },
                 {
-                    "question": "Wat is het verschil tussen een Type 1 en Type 2 hypervisor?",
+                    "question": "Legacy software van Windows XP draaien op moderne hardware doe je met:",
                     "options": [
-                        "Type 1 is gratis, Type 2 is betaald",
-                        "Type 1 draait direct op hardware (bare-metal), Type 2 draait op een bestaand OS",
-                        "Type 1 is langzamer dan Type 2",
-                        "Er is geen verschil"
+                        "Een nieuwe compiler",
+                        "Virtualisatie of emulatie",
+                        "Een patch voor Windows 11",
+                        "Alleen cloud services"
                     ],
                     "correct": 1,
-                    "explanation": "Type 1 (bare-metal) hypervisors draaien direct op hardware voor betere performance (bijv. VMware ESXi, Hyper-V). Type 2 draait op een host OS (bijv. VirtualBox, VMware Workstation)."
+                    "explanation": "VMs of emulatie kunnen oude OS's draaien op moderne hardware. Je kunt Windows XP virtualiseren in VirtualBox of VMware om legacy software te gebruiken."
                 },
                 {
-                    "question": "Wat is het belangrijkste verschil tussen VMs en containers?",
+                    "question": "Bij IaaS beheer je zelf:",
                     "options": [
-                        "VMs zijn sneller op te starten",
-                        "Containers delen de kernel van het host OS, VMs hebben elk een eigen OS",
-                        "Containers zijn groter in omvang",
-                        "VMs kunnen alleen op Linux draaien"
+                        "Niets, alles is gemanaged",
+                        "Alleen de data",
+                        "OS, middleware, applicaties en data",
+                        "Alleen de applicaties"
+                    ],
+                    "correct": 2,
+                    "explanation": "IaaS geeft je virtuele infrastructuur (servers, netwerk, storage). Jij beheert OS, middleware, runtime, apps en data. Provider beheert hardware en virtualisatie."
+                },
+                {
+                    "question": "Heroku en Google App Engine zijn voorbeelden van:",
+                    "options": [
+                        "IaaS",
+                        "PaaS",
+                        "SaaS",
+                        "On-Premises"
                     ],
                     "correct": 1,
-                    "explanation": "Containers delen de host OS kernel en zijn daardoor lichter en sneller op te starten. VMs hebben elk een volledig eigen OS, wat meer resources vraagt maar sterkere isolatie biedt."
+                    "explanation": "PaaS biedt een platform voor app development. Je uploadt code, platform regelt servers, scaling, etc. AWS EC2 = IaaS, Gmail = SaaS."
                 },
                 {
-                    "question": "Wat is Docker?",
+                    "question": "Microsoft 365 en Salesforce zijn voorbeelden van:",
                     "options": [
-                        "Een Type 1 hypervisor",
-                        "Een container runtime voor het maken en beheren van containers",
-                        "Een programmeertaal",
-                        "Een cloud provider"
+                        "IaaS",
+                        "PaaS",
+                        "SaaS",
+                        "FaaS"
+                    ],
+                    "correct": 2,
+                    "explanation": "SaaS = kant-en-klare software via browser. Je beheert alleen je data en instellingen. Microsoft 365, Salesforce, Dropbox, Gmail zijn SaaS."
+                },
+                {
+                    "question": "AWS Lambda en Azure Functions zijn voorbeelden van:",
+                    "options": [
+                        "IaaS",
+                        "PaaS",
+                        "SaaS",
+                        "FaaS"
+                    ],
+                    "correct": 3,
+                    "explanation": "FaaS (Function as a Service) = serverless. Je schrijft functies die op events reageren. Betaal per executie, geen servers beheren."
+                },
+                {
+                    "question": "Een nadeel van cloud computing is:",
+                    "options": [
+                        "Geen schaalbaarheid",
+                        "Afhankelijkheid van internetconnectie",
+                        "Moet zelf hardware onderhouden",
+                        "Geen automatische updates"
                     ],
                     "correct": 1,
-                    "explanation": "Docker is een populaire container runtime die het creëren, deployen en beheren van containers vereenvoudigt. Het verpakt applicaties met al hun dependencies."
+                    "explanation": "Cloud vereist betrouwbaar internet. Andere nadelen: vendor lock-in, security concerns, maandelijkse kosten. Voordelen: schaalbaarheid, geen hardware onderhoud."
                 },
                 {
-                    "question": "Wat is Kubernetes?",
+                    "question": "De grootste cloud providers zijn:",
                     "options": [
-                        "Een programmeertaal voor containers",
-                        "Een platform voor het automatiseren van deployment en management van containerized applicaties",
-                        "Een type virtual machine",
-                        "Een webframework"
-                    ],
-                    "correct": 1,
-                    "explanation": "Kubernetes is een open-source container orchestration platform dat deployment, scaling en management van containerized applicaties automatiseert."
-                },
-                {
-                    "question": "Wat is emulatie?",
-                    "options": [
-                        "Het kopiëren van bestanden",
-                        "Het nabootsen van één systeem op een ander, door instructies van één ISA te vertalen naar een andere",
-                        "Het comprimeren van data",
-                        "Het versleutelen van communicatie"
-                    ],
-                    "correct": 1,
-                    "explanation": "Emulatie bootst de functionaliteit van één systeem na op een ander door instructies te vertalen tussen verschillende Instruction Set Architectures (ISA's)."
-                },
-                {
-                    "question": "Waarvoor wordt emulatie vaak gebruikt?",
-                    "options": [
-                        "Alleen voor gaming",
-                        "Software development/testing, legacy software preservation, en educatie",
-                        "Alleen voor beveiliging",
-                        "Alleen voor netwerken"
-                    ],
-                    "correct": 1,
-                    "explanation": "Emulatie wordt gebruikt voor: testen zonder fysieke hardware, bewaren van oude software op moderne systemen, en educatie om verschillende ISA's te leren."
-                },
-                {
-                    "question": "Wat is IaaS (Infrastructure as a Service)?",
-                    "options": [
-                        "Kant-en-klare software via internet",
-                        "Gevirtualiseerde computing resources (servers, storage, netwerk) huren via internet",
-                        "Een ontwikkelplatform",
-                        "Een container service"
-                    ],
-                    "correct": 1,
-                    "explanation": "IaaS biedt gevirtualiseerde computing resources (servers, storage, netwerking) op pay-as-you-go basis. Organisaties kunnen snel op- en afschalen zonder fysieke hardware."
-                },
-                {
-                    "question": "Wat is PaaS (Platform as a Service)?",
-                    "options": [
-                        "Fysieke servers huren",
-                        "Een complete ontwikkelomgeving om applicaties te bouwen, testen en deployen",
-                        "Alleen database hosting",
-                        "Een kantoorpakket"
-                    ],
-                    "correct": 1,
-                    "explanation": "PaaS biedt een complete ontwikkelomgeving met frameworks, databases en middleware. Ontwikkelaars focussen op code zonder infrastructuurbeheer."
-                },
-                {
-                    "question": "Wat is SaaS (Software as a Service)?",
-                    "options": [
-                        "Servers huren",
-                        "Software applicaties via internet op subscription basis",
-                        "Alleen storage services",
-                        "Een programmeerframework"
-                    ],
-                    "correct": 1,
-                    "explanation": "SaaS levert kant-en-klare software via de browser op abonnementsbasis. Voorbeelden: Microsoft 365, Salesforce, Dropbox. Geen installaties of updates nodig."
-                },
-                {
-                    "question": "Wat is FaaS (Function as a Service)?",
-                    "options": [
-                        "Een file storage service",
-                        "Een event-driven serverless model waarbij individuele functies worden uitgevoerd",
-                        "Een database service",
-                        "Een netwerk service"
-                    ],
-                    "correct": 1,
-                    "explanation": "FaaS is serverless computing waarbij code in response op events draait. Geen servers beheren, automatische scaling. Ideaal voor microservices en event-driven architecturen."
-                },
-                {
-                    "question": "Wat is een belangrijk voordeel van cloud computing?",
-                    "options": [
-                        "Geen internetverbinding nodig",
-                        "Schaalbaarheid, pay-as-you-go en geen onderhoud van fysieke hardware",
-                        "Volledige controle over hardware",
-                        "Lagere beveiligingsrisico's"
-                    ],
-                    "correct": 1,
-                    "explanation": "Cloud computing biedt flexibele schaalbaarheid, kostenefficiëntie (pay-as-you-go), automatische updates, en geen fysiek onderhoud. Ideaal voor fluctuerende workloads."
-                },
-                {
-                    "question": "Welke grote cloud providers domineren de markt?",
-                    "options": [
-                        "Facebook, Twitter, Instagram",
-                        "AWS, Microsoft Azure, Google Cloud Platform",
-                        "VMware, VirtualBox, Hyper-V",
+                        "Google, Facebook, Twitter",
+                        "Dell, HP, Lenovo",
+                        "AWS, Azure, Google Cloud",
                         "Docker, Kubernetes, Podman"
                     ],
-                    "correct": 1,
-                    "explanation": "Amazon Web Services (AWS), Microsoft Azure en Google Cloud Platform (GCP) zijn de drie grootste cloud providers met uitgebreide services en wereldwijde infrastructuur."
+                    "correct": 2,
+                    "explanation": "AWS (Amazon), Azure (Microsoft) en GCP (Google) domineren de cloud markt. Ze bieden IaaS, PaaS, SaaS en diverse managed services."
                 },
                 {
-                    "question": "Wat is een qubit in quantum computing?",
+                    "question": "Een qubit verschilt van een klassieke bit omdat het:",
                     "options": [
-                        "Een klassieke bit met waarde 0 of 1",
-                        "Een quantum bit die dankzij superposition meerdere staten tegelijk kan hebben",
-                        "Een type processor",
-                        "Een eenheid van geheugen"
+                        "Alleen 0 kan zijn",
+                        "Alleen 1 kan zijn",
+                        "Meerdere staten tegelijk kan representeren (superposition)",
+                        "Sneller kan schakelen"
                     ],
-                    "correct": 1,
-                    "explanation": "Een qubit kan dankzij superposition en entanglement meerdere staten tegelijk representeren, wat quantum computers exponentieel krachtiger maakt voor bepaalde berekeningen."
+                    "correct": 2,
+                    "explanation": "Qubits kunnen dankzij quantum superposition 0, 1, of beide tegelijk zijn. Dit maakt parallelle berekeningen mogelijk die klassiek onmogelijk zijn."
                 },
                 {
-                    "question": "Wat is een uitdaging bij het bouwen van praktische quantum computers?",
+                    "question": "Quantum computers zijn nog niet praktisch vanwege:",
                     "options": [
-                        "Ze zijn te klein",
-                        "Qubit stabiliteit en decoherence veroorzaken fouten",
-                        "Ze gebruiken te weinig stroom",
-                        "Ze zijn te snel"
+                        "Te hoge kosten van elektriciteit",
+                        "Gebrek aan programmeurs",
+                        "Qubit instabiliteit en decoherence",
+                        "Te kleine schermen"
                     ],
-                    "correct": 1,
-                    "explanation": "Qubits zijn extreem gevoelig voor omgevingsinvloeden. Decoherence zorgt voor instabiliteit en fouten. Onderzoekers werken aan superconducting, trapped-ion en topological qubits."
+                    "correct": 2,
+                    "explanation": "Qubits zijn extreem gevoelig voor omgeving (temperatuur, trillingen). Decoherence laat quantum states vervallen, wat fouten veroorzaakt. Ze moeten bijna op absoluut nul draaien."
                 },
                 {
-                    "question": "[EXTRA] Een URL bevat: https://shop.example.com:443/products/item?id=42#reviews. Identificeer het correcte onderdeel.",
+                    "question": "[EXTRA] URL: https://api.example.com:8443/v2/users?active=true#profile. Wat is de port?",
                     "options": [
-                        "Scheme: http, Host: example.com, Path: /products",
-                        "Scheme: https, Host: shop.example.com, Port: 443, Path: /products/item, Query: id=42, Fragment: reviews",
-                        "Scheme: https, Host: shop, Path: /example.com/products",
-                        "Scheme: 443, Host: https, Path: shop.example.com"
+                        "443",
+                        "80",
+                        "8443",
+                        "Niet gespecificeerd"
                     ],
-                    "correct": 1,
-                    "explanation": "URL componenten: Scheme (https), Host (shop.example.com), Port (443), Path (/products/item), Query (?id=42), Fragment (#reviews)."
+                    "correct": 2,
+                    "explanation": "De port staat na de host en voor het path: :8443. Standaard HTTPS is 443, maar hier is expliciet 8443 opgegeven."
                 },
                 {
-                    "question": "[EXTRA] Je moet kiezen tussen VMs en containers. Wanneer kies je voor VMs?",
+                    "question": "[EXTRA] Je wilt een Node.js microservice die onafhankelijk schaalt deployen. De beste keuze is:",
                     "options": [
-                        "Voor microservices met snelle startup",
-                        "Wanneer je sterke isolatie nodig hebt en meerdere verschillende OS's moet draaien",
-                        "Voor maximale resource efficiency",
-                        "Wanneer je alleen Linux applicaties draait"
+                        "Een VM met volledige Linux installatie",
+                        "Een container met Docker/Kubernetes",
+                        "Bare-metal server",
+                        "Lokale laptop"
                     ],
                     "correct": 1,
-                    "explanation": "VMs zijn ideaal wanneer je sterke isolatie nodig hebt, legacy applicaties met specifieke OS-configuraties draait, of meerdere verschillende operating systems moet ondersteunen."
+                    "explanation": "Containers zijn ideaal voor microservices: lichtgewicht, snel te starten, consistent tussen dev/prod, makkelijk te schalen met Kubernetes."
                 },
                 {
-                    "question": "[EXTRA] Rangschik de cloud service modellen van meest naar minst controle voor de klant: IaaS, PaaS, SaaS, On-Premises.",
+                    "question": "[EXTRA] Rangschik van MEESTE naar MINSTE abstractie: On-Prem, IaaS, PaaS, FaaS, SaaS",
                     "options": [
-                        "SaaS → PaaS → IaaS → On-Premises",
-                        "On-Premises → IaaS → PaaS → SaaS",
-                        "IaaS → SaaS → PaaS → On-Premises",
-                        "PaaS → IaaS → SaaS → On-Premises"
+                        "SaaS → FaaS → PaaS → IaaS → On-Prem",
+                        "On-Prem → IaaS → PaaS → FaaS → SaaS",
+                        "FaaS → SaaS → PaaS → IaaS → On-Prem",
+                        "PaaS → IaaS → FaaS → SaaS → On-Prem"
                     ],
-                    "correct": 1,
-                    "explanation": "On-Premises: volledige controle. IaaS: controle over OS en apps. PaaS: controle over applicaties. SaaS: alleen gebruik, geen controle over infrastructuur."
+                    "correct": 0,
+                    "explanation": "Meeste abstractie = minste beheer. SaaS: alleen gebruiken. FaaS: alleen code. PaaS: code + config. IaaS: OS + omhoog. On-Prem: alles zelf."
                 }
             ]
         }
