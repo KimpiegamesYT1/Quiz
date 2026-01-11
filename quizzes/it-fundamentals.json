@@ -1819,114 +1819,26 @@
             "name": "Oefen Examen (40 vragen)",
             "questions": [
                 {
-                    "question": "Converteer het hexadecimale getal 2F naar decimaal.",
+                    "question": "Welke componenten zitten er in een half-adder circuit?",
                     "options": [
-                        "45",
-                        "47",
-                        "49",
-                        "51"
+                        "Een XOR poort en een AND poort",
+                        "Twee AND poorten en een inverter",
+                        "Drie NAND poorten in cascade",
+                        "Een OR poort en een NOT poort"
                     ],
-                    "correct": 1,
-                    "explanation": "2×16 + 15×1 = 32 + 15 = 47. [Hoofdstuk 1 - Leerdoel 1: Talstelsels]"
-                },
-                {
-                    "question": "Hoeveel bits zijn nodig om 256 unieke waarden te representeren?",
-                    "options": [
-                        "7 bits",
-                        "8 bits",
-                        "9 bits",
-                        "16 bits"
-                    ],
-                    "correct": 1,
-                    "explanation": "2^8 = 256. Je hebt precies 8 bits nodig om 256 unieke waarden te kunnen representeren. [Hoofdstuk 1 - Leerdoel 1: Bits & Bytes]"
-                },
-                {
-                    "question": "Wat is de Two's Complement representatie van -10 in 8 bits?",
-                    "options": [
-                        "10001010",
-                        "11110110",
-                        "11110101",
-                        "00001010"
-                    ],
-                    "correct": 1,
-                    "explanation": "10 in binair = 00001010. Inverteer alle bits: 11110101. Tel er 1 bij op: 11110110. Dit is de Two's Complement van -10. [Hoofdstuk 1 - Leerdoel 1: Getallensystemen]"
+                    "correct": 0,
+                    "explanation": "Een half-adder bestaat uit een XOR poort (voor de sum) en een AND poort (voor de carry). Het kan twee bits optellen maar heeft geen carry input. [Hoofdstuk 2 - Leerdoel 2: Digitale circuits]"
                 },
                 {
                     "question": "Wat is het belangrijkste kenmerk van computers volgens de Von Neumann architectuur?",
                     "options": [
-                        "Aparte geheugens voor data en instructies",
                         "Gemeenschappelijk geheugen voor data en instructies",
+                        "Aparte geheugens voor data en instructies",
                         "Alleen analoge signaalverwerking mogelijk",
                         "Geen gebruik van een ALU component"
                     ],
-                    "correct": 1,
+                    "correct": 0,
                     "explanation": "De Von Neumann architectuur gebruikt één gedeeld geheugen voor zowel programma-instructies als data, wat het onderscheidt van de Harvard architectuur. [Hoofdstuk 1 - Leerdoel 2: Computer architectuur]"
-                },
-                {
-                    "question": "Welk type computer wordt voornamelijk gebruikt voor complexe wetenschappelijke berekeningen en simulaties?",
-                    "options": [
-                        "Microcomputer",
-                        "Minicomputer",
-                        "Mainframe",
-                        "Supercomputer"
-                    ],
-                    "correct": 3,
-                    "explanation": "Supercomputers zijn speciaal ontworpen voor extreem zware berekeningen zoals klimaatmodellen, AI training en wetenschappelijk onderzoek, met prestaties in petaflops. [Hoofdstuk 1 - Leerdoel 2: Computertypen]"
-                },
-                {
-                    "question": "Wat is een byte in computergeheugen?",
-                    "options": [
-                        "De kleinste adresseerbare eenheid, meestal 8 bits",
-                        "Altijd precies 16 bits groot",
-                        "Een enkel bit (0 of 1)",
-                        "Een geheugenblok van 1024 bytes"
-                    ],
-                    "correct": 0,
-                    "explanation": "Een byte is de kleinste adresseerbare eenheid in computergeheugen en bestaat meestal uit 8 bits, waarmee 256 verschillende waarden kunnen worden gerepresenteerd. [Hoofdstuk 1 - Leerdoel 2: Geheugenstructuur]"
-                },
-                {
-                    "question": "Wat is de output van een XOR poort wanneer beide inputs 1 zijn?",
-                    "options": [
-                        "0",
-                        "1",
-                        "Ongedefinieerd (error state)",
-                        "Hangt af van vorige staat"
-                    ],
-                    "correct": 0,
-                    "explanation": "XOR (eXclusive OR) geeft alleen 1 wanneer de inputs verschillend zijn. Bij 1 XOR 1 = 0, en bij 0 XOR 0 = 0. [Hoofdstuk 2 - Leerdoel 1: Logische poorten]"
-                },
-                {
-                    "question": "Welke logische poort is een universele poort?",
-                    "options": [
-                        "AND",
-                        "OR",
-                        "NAND",
-                        "XOR"
-                    ],
-                    "correct": 2,
-                    "explanation": "NAND (en NOR) zijn universele poorten omdat je met alleen NAND poorten alle andere logische poorten kunt bouwen: AND, OR, NOT, XOR, etc. [Hoofdstuk 2 - Leerdoel 1: Universele poorten]"
-                },
-                {
-                    "question": "Wat is de output van: 1010 AND 1100 (binaire operatie)?",
-                    "options": [
-                        "1000",
-                        "1110",
-                        "1010",
-                        "0010"
-                    ],
-                    "correct": 0,
-                    "explanation": "AND geeft alleen 1 wanneer beide bits 1 zijn. Bit voor bit: 1 AND 1=1, 0 AND 1=0, 1 AND 0=0, 0 AND 0=0. Resultaat: 1000. [Hoofdstuk 2 - Leerdoel 1: Binaire operaties]"
-                },
-                {
-                    "question": "Welke componenten zitten er in een half-adder circuit?",
-                    "options": [
-                        "Twee AND poorten en een inverter",
-                        "Een XOR poort en een AND poort",
-                        "Drie NAND poorten in cascade",
-                        "Een OR poort en een NOT poort"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een half-adder bestaat uit een XOR poort (voor de sum) en een AND poort (voor de carry). Het kan twee bits optellen maar heeft geen carry input. [Hoofdstuk 2 - Leerdoel 2: Digitale circuits]"
                 },
                 {
                     "question": "Wat is het verschil tussen een half-adder en een full-adder?",
@@ -1940,158 +1852,15 @@
                     "explanation": "Een half-adder telt twee bits op (A en B). Een full-adder telt drie bits op (A, B en carry-in), wat nodig is voor multi-bit optelling in opeenvolgende stappen. [Hoofdstuk 4 - Leerdoel 2: Adders]"
                 },
                 {
-                    "question": "Welke component in de CPU voert rekenkundige en logische bewerkingen uit?",
+                    "question": "In welke laag van het TCP/IP model bevindt het HTTP protocol zich?",
                     "options": [
-                        "Control Unit (CU)",
-                        "Program Counter (PC)",
-                        "Arithmetic Logic Unit (ALU)",
-                        "Cache Memory"
+                        "Link Layer",
+                        "Internet Layer",
+                        "Transport Layer",
+                        "Application Layer"
                     ],
-                    "correct": 2,
-                    "explanation": "De ALU (Arithmetic Logic Unit) voert alle rekenkundige operaties (optellen, aftrekken) en logische bewerkingen (AND, OR, NOT) uit binnen de CPU. [Hoofdstuk 4 - Leerdoel 2: CPU componenten]"
-                },
-                {
-                    "question": "Wat is de functie van een SR latch?",
-                    "options": [
-                        "Het versterkt elektrische signalen",
-                        "Het slaat één bit informatie op",
-                        "Het converteert analoog naar digitaal",
-                        "Het regelt de kloksnelheid precies"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een SR (Set-Reset) latch is een sequentieel logisch circuit dat één bit kan opslaan. Het is een basisbouwsteen voor computergeheugen en flip-flops. [Hoofdstuk 6 - Leerdoel 2: Geheugen circuits]"
-                },
-                {
-                    "question": "Wat is een flip-flop in digitale elektronica?",
-                    "options": [
-                        "Een type transistor voor signaalversterking",
-                        "Een clock-gestuurd geheugen element voor één bit",
-                        "Een versterker circuit voor analoge signalen",
-                        "Een type logische poort voor berekeningen"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een flip-flop is een clock-gestuurd sequentieel circuit dat één bit informatie kan opslaan. JK flip-flops lossen het probleem van de SR latch op door te togglen bij J=K=1. [Hoofdstuk 6 - Leerdoel 2: Sequentiële circuits]"
-                },
-                {
-                    "question": "Hoeveel addresseerbare locaties kan een 16-bit adresbus aanspreken?",
-                    "options": [
-                        "16 KB",
-                        "64 KB",
-                        "256 KB",
-                        "1 MB"
-                    ],
-                    "correct": 1,
-                    "explanation": "2^16 = 65.536 bytes = 64 KB. Een 16-bit adresbus kan dus maximaal 64 kilobyte aan geheugen addresseren. [Hoofdstuk 6 - Leerdoel 2: Adressering]"
-                },
-                {
-                    "question": "Wat is de rol van transistors in digitale circuits?",
-                    "options": [
-                        "Ze slaan permanent data op in geheugen",
-                        "Ze functioneren als elektronische schakelaars",
-                        "Ze genereren elektrische stroom continu",
-                        "Ze koelen de processor tijdens werking"
-                    ],
-                    "correct": 1,
-                    "explanation": "Transistors werken als elektronische schakelaars die aan/uit (1/0) kunnen zijn. Door miljoenen transistors te combineren ontstaan logische poorten die de basis vormen van processors. [Hoofdstuk 5 - Leerdoel 1: Basis elektronica]"
-                },
-                {
-                    "question": "Wat gebeurt er in de fetch-stap van de fetch-decode-execute cycle?",
-                    "options": [
-                        "De instructie wordt uitgevoerd door ALU",
-                        "De instructie wordt opgehaald uit geheugen",
-                        "De instructie wordt geïnterpreteerd door CU",
-                        "Het resultaat wordt opgeslagen in register"
-                    ],
-                    "correct": 1,
-                    "explanation": "In de fetch-stap haalt de CPU de volgende instructie op uit het geheugen, waarbij de Program Counter het geheugenadres aangeeft. [Hoofdstuk 5 - Leerdoel 1: CPU werking]"
-                },
-                {
-                    "question": "Wat is de functie van de Program Counter (PC)?",
-                    "options": [
-                        "Het telt het aantal uitgevoerde programma's",
-                        "Het houdt het geheugenadres bij van volgende instructie",
-                        "Het berekent de processorsnelheid in Hz",
-                        "Het slaat programmaresultaten op in cache"
-                    ],
-                    "correct": 1,
-                    "explanation": "De Program Counter is een register dat het geheugenadres bevat van de volgende uit te voeren instructie, en wordt na elke instructie verhoogd voor sequentiële verwerking. [Hoofdstuk 7 - Leerdoel 2: CPU registers]"
-                },
-                {
-                    "question": "Wat is het Von Neumann bottleneck?",
-                    "options": [
-                        "De CPU kan niet genoeg instructies opslaan",
-                        "De beperkte datatransfersnelheid tussen CPU en RAM",
-                        "Het gebrek aan ALU capaciteit voor berekeningen",
-                        "De traagheid van I/O apparaten bij overdracht"
-                    ],
-                    "correct": 1,
-                    "explanation": "Het Von Neumann bottleneck is de beperkte bandbreedte tussen CPU en geheugen omdat ze dezelfde bus delen. Dit beperkt prestaties ondanks snellere CPUs. [Hoofdstuk 7 - Leerdoel 2: Architectuur beperkingen]"
-                },
-                {
-                    "question": "Welke stap komt NIET voor in de fetch-decode-execute cycle?",
-                    "options": [
-                        "Fetch - ophalen van instructie uit geheugen",
-                        "Decode - interpreteren van de instructie",
-                        "Compile - vertalen naar machine code vooraf",
-                        "Execute - uitvoeren van de operatie direct"
-                    ],
-                    "correct": 2,
-                    "explanation": "De fetch-decode-execute cycle bestaat uit drie stappen: fetch (ophalen), decode (decoderen) en execute (uitvoeren). Compileren gebeurt vooraf, niet tijdens runtime. [Hoofdstuk 7 - Leerdoel 2: Processor cyclus]"
-                },
-                {
-                    "question": "Wat is een ISA (Instruction Set Architecture)?",
-                    "options": [
-                        "Een type processor chip voor berekeningen",
-                        "De interface tussen hardware en software met instructies",
-                        "Een programmeer taal voor software ontwikkeling",
-                        "Een type geheugen voor data opslag"
-                    ],
-                    "correct": 1,
-                    "explanation": "ISA definieert welke instructies (opcodes) een processor begrijpt en hoe deze worden uitgevoerd. Voorbeelden zijn x86 (Intel/AMD) en ARM (smartphones). [Hoofdstuk 8 - Leerdoel 3: Software interface]"
-                },
-                {
-                    "question": "Welke ISA wordt voornamelijk gebruikt in smartphones en tablets?",
-                    "options": [
-                        "x86",
-                        "6502",
-                        "ARM",
-                        "PowerPC"
-                    ],
-                    "correct": 2,
-                    "explanation": "ARM (Advanced RISC Machine) is de dominante ISA voor mobiele apparaten vanwege energie-efficiëntie en RISC architectuur met eenvoudige instructies. [Hoofdstuk 8 - Leerdoel 3: Processor families]"
-                },
-                {
-                    "question": "Wat is het verschil tussen RISC en CISC architecturen?",
-                    "options": [
-                        "RISC heeft complexere instructies, CISC eenvoudiger",
-                        "RISC gebruikt eenvoudige instructies in één cycle",
-                        "Er is geen verschil tussen beide architecturen",
-                        "RISC wordt alleen in supercomputers gebruikt"
-                    ],
-                    "correct": 1,
-                    "explanation": "RISC (Reduced ISC) zoals ARM gebruikt eenvoudige instructies voor snelheid. CISC (Complex ISC) zoals x86 heeft complexere instructies die meer kunnen doen per instructie. [Hoofdstuk 8 - Leerdoel 3: Architectuur paradigma's]"
-                },
-                {
-                    "question": "Welke assembly instructie laadt data van geheugen naar een register in ARM?",
-                    "options": [
-                        "MOV",
-                        "STR",
-                        "LDR",
-                        "ADD"
-                    ],
-                    "correct": 2,
-                    "explanation": "LDR (LoaD Register) laadt data van een geheugenadres naar een register. STR (STore Register) doet het omgekeerde. MOV verplaatst data tussen registers. [Hoofdstuk 9 - Leerdoel 3: Assembly instructies]"
-                },
-                {
-                    "question": "Wat is een opcode in assembly/machine code?",
-                    "options": [
-                        "Een foutcode voor debugging doeleinden",
-                        "De operatiecode die aangeeft welke instructie",
-                        "Een wachtwoord voor secure code toegang",
-                        "Een type compiler voor vertaling"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een opcode (operation code) is het deel van een machine instructie dat specificeert welke operatie uitgevoerd moet worden, zoals ADD, MOV, of JMP. [Hoofdstuk 9 - Leerdoel 3: Machine code]"
+                    "correct": 3,
+                    "explanation": "HTTP bevindt zich in de Application Layer, samen met protocols als FTP, SMTP en DNS. Deze laag biedt diensten direct aan gebruikers. [Hoofdstuk 13 - Leerdoel 5: Protocol stack]"
                 },
                 {
                     "question": "Waarom is hexadecimaal handiger dan binair bij machine code programmeren?",
@@ -2105,48 +1874,15 @@
                     "explanation": "Hexadecimaal is compacter (1 hex cijfer = 4 bits) en beter leesbaar dan lange rijen nullen en enen, terwijl elke hex digit direct naar 4 bits te converteren is. [Hoofdstuk 9 - Leerdoel 3: Getalsrepresentatie]"
                 },
                 {
-                    "question": "Wat is de primaire functie van de kernel in een besturingssysteem?",
+                    "question": "Wat is een opcode in assembly/machine code?",
                     "options": [
-                        "Het beheert alleen de grafische interface",
-                        "Het is de core die hardware resources beheert",
-                        "Het zorgt alleen voor internet connectiviteit",
-                        "Het behandelt alleen user authenticatie"
+                        "Een foutcode voor debugging doeleinden",
+                        "De operatiecode die aangeeft welke instructie",
+                        "Een wachtwoord voor secure code toegang",
+                        "Een type compiler voor vertaling"
                     ],
                     "correct": 1,
-                    "explanation": "De kernel is de kern van het OS die CPU, geheugen en hardware beheert, communiceert met device drivers, en zorgt voor resource management en beveiliging. [Hoofdstuk 10 - Leerdoel 4: OS architectuur]"
-                },
-                {
-                    "question": "Wat is het verschil tussen kernel mode en user mode?",
-                    "options": [
-                        "Kernel mode draait sneller dan user mode",
-                        "Kernel mode heeft directe toegang tot hardware",
-                        "User mode kan alleen tekst verwerken simpel",
-                        "Er is geen verschil tussen de modi"
-                    ],
-                    "correct": 1,
-                    "explanation": "Kernel mode heeft volledige hardware toegang voor stabiliteit en veiligheid. User mode is beperkt en moet system calls gebruiken voor hardware toegang. [Hoofdstuk 10 - Leerdoel 4: Privilege levels]"
-                },
-                {
-                    "question": "Wat is de functie van virtual memory?",
-                    "options": [
-                        "Het maakt de computer sneller in uitvoering",
-                        "Het stelt systemen in staat meer geheugen te gebruiken",
-                        "Het versleutelt data in geheugen voor veiligheid",
-                        "Het voorkomt virussen en malware aanvallen"
-                    ],
-                    "correct": 1,
-                    "explanation": "Virtual memory gebruikt harde schijf ruimte als extensie van RAM via swapping, waardoor meer applicaties kunnen draaien dan fysiek RAM toelaat. [Hoofdstuk 10 - Leerdoel 4: Geheugenbeheer]"
-                },
-                {
-                    "question": "Wat is een process in een besturingssysteem?",
-                    "options": [
-                        "Een type bestand voor data opslag",
-                        "Een instantie van een programma dat uitgevoerd wordt",
-                        "Een type processor voor berekeningen",
-                        "Een netwerkverbinding tussen computers"
-                    ],
-                    "correct": 1,
-                    "explanation": "Een process is een actieve instantie van een programma met eigen geheugen, CPU tijd, en resources. Het OS beheert meerdere processen tegelijk via multitasking. [Hoofdstuk 11 - Leerdoel 4: Process management]"
+                    "explanation": "Een opcode (operation code) is het deel van een machine instructie dat specificeert welke operatie uitgevoerd moet worden, zoals ADD, MOV, of JMP. [Hoofdstuk 9 - Leerdoel 3: Machine code]"
                 },
                 {
                     "question": "Wat is het verschil tussen een process en een thread?",
@@ -2160,15 +1896,26 @@
                     "explanation": "Threads zijn lichtgewicht execution units binnen een process die geheugen delen. Processen hebben aparte geheugenruimte. Threads zijn efficiënter voor parallelle taken. [Hoofdstuk 11 - Leerdoel 4: Concurrency]"
                 },
                 {
-                    "question": "Welk Linux commando toont de huidige directory?",
+                    "question": "Welke component in de CPU voert rekenkundige en logische bewerkingen uit?",
                     "options": [
-                        "ls",
-                        "cd",
-                        "pwd",
-                        "dir"
+                        "Control Unit (CU)",
+                        "Program Counter (PC)",
+                        "Arithmetic Logic Unit (ALU)",
+                        "Cache Memory"
                     ],
                     "correct": 2,
-                    "explanation": "pwd (Print Working Directory) toont het volledige pad van de huidige directory. ls toont bestanden, cd verandert directory. [Linux CLI - Leerdoel 4: Basis commando's]"
+                    "explanation": "De ALU (Arithmetic Logic Unit) voert alle rekenkundige operaties (optellen, aftrekken) en logische bewerkingen (AND, OR, NOT) uit binnen de CPU. [Hoofdstuk 4 - Leerdoel 2: CPU componenten]"
+                },
+                {
+                    "question": "Welk type computer wordt voornamelijk gebruikt voor complexe wetenschappelijke berekeningen en simulaties?",
+                    "options": [
+                        "Microcomputer",
+                        "Minicomputer",
+                        "Mainframe",
+                        "Supercomputer"
+                    ],
+                    "correct": 3,
+                    "explanation": "Supercomputers zijn speciaal ontworpen voor extreem zware berekeningen zoals klimaatmodellen, AI training en wetenschappelijk onderzoek, met prestaties in petaflops. [Hoofdstuk 1 - Leerdoel 2: Computertypen]"
                 },
                 {
                     "question": "Welk Linux commando gebruik je om bestandspermissies te wijzigen?",
@@ -2182,15 +1929,59 @@
                     "explanation": "chmod (CHange MODe) wijzigt read/write/execute permissions. chown wijzigt eigenaar, chgrp wijzigt groep, ls -l toont permissions. [Linux CLI - Leerdoel 4: Permissies]"
                 },
                 {
-                    "question": "Wat is de functie van DNS (Domain Name System)?",
+                    "question": "Welke ISA wordt voornamelijk gebruikt in smartphones en tablets?",
                     "options": [
-                        "Het versleutelt netwerkverkeer voor veiligheid",
-                        "Het wijst automatisch IP-adressen toe aan apparaten",
-                        "Het vertaalt domeinnamen naar IP-adressen",
-                        "Het beheert email servers voor domeinen"
+                        "x86",
+                        "6502",
+                        "ARM",
+                        "PowerPC"
                     ],
                     "correct": 2,
-                    "explanation": "DNS is het 'telefoonboek' van het internet dat domeinnamen (google.com) vertaalt naar IP-adressen (142.250.185.46) die computers gebruiken. [Hoofdstuk 12 - Leerdoel 5: Internet protocols]"
+                    "explanation": "ARM (Advanced RISC Machine) is de dominante ISA voor mobiele apparaten vanwege energie-efficiëntie en RISC architectuur met eenvoudige instructies. [Hoofdstuk 8 - Leerdoel 3: Processor families]"
+                },
+                {
+                    "question": "Wat is de functie van virtual memory?",
+                    "options": [
+                        "Het maakt de computer sneller in uitvoering",
+                        "Het stelt systemen in staat meer geheugen te gebruiken",
+                        "Het versleutelt data in geheugen voor veiligheid",
+                        "Het voorkomt virussen en malware aanvallen"
+                    ],
+                    "correct": 1,
+                    "explanation": "Virtual memory gebruikt harde schijf ruimte als extensie van RAM via swapping, waardoor meer applicaties kunnen draaien dan fysiek RAM toelaat. [Hoofdstuk 10 - Leerdoel 4: Geheugenbeheer]"
+                },
+                {
+                    "question": "Welke assembly instructie laadt data van geheugen naar een register in ARM?",
+                    "options": [
+                        "MOV",
+                        "STR",
+                        "LDR",
+                        "ADD"
+                    ],
+                    "correct": 2,
+                    "explanation": "LDR (LoaD Register) laadt data van een geheugenadres naar een register. STR (STore Register) doet het omgekeerde. MOV verplaatst data tussen registers. [Hoofdstuk 9 - Leerdoel 3: Assembly instructies]"
+                },
+                {
+                    "question": "Wat is het Von Neumann bottleneck?",
+                    "options": [
+                        "De CPU kan niet genoeg instructies opslaan",
+                        "Het gebrek aan ALU capaciteit voor berekeningen",
+                        "De traagheid van I/O apparaten bij overdracht",
+                        "De beperkte datatransfersnelheid tussen CPU en RAM"
+                    ],
+                    "correct": 3,
+                    "explanation": "Het Von Neumann bottleneck is de beperkte bandbreedte tussen CPU en geheugen omdat ze dezelfde bus delen. Dit beperkt prestaties ondanks snellere CPUs. [Hoofdstuk 7 - Leerdoel 2: Architectuur beperkingen]"
+                },
+                {
+                    "question": "Wat is de functie van een SR latch?",
+                    "options": [
+                        "Het versterkt elektrische signalen",
+                        "Het converteert analoog naar digitaal",
+                        "Het slaat één bit informatie op",
+                        "Het regelt de kloksnelheid precies"
+                    ],
+                    "correct": 2,
+                    "explanation": "Een SR (Set-Reset) latch is een sequentieel logisch circuit dat één bit kan opslaan. Het is een basisbouwsteen voor computergeheugen en flip-flops. [Hoofdstuk 6 - Leerdoel 2: Geheugen circuits]"
                 },
                 {
                     "question": "Wat is de functie van DHCP (Dynamic Host Configuration Protocol)?",
@@ -2215,15 +2006,59 @@
                     "explanation": "192.168.0.0/16 is het Class C private IP bereik voor lokale netwerken. Class A is 10.0.0.0/8, Class B is 172.16.0.0/12. [Hoofdstuk 12 - Leerdoel 5: IP addressing]"
                 },
                 {
-                    "question": "In welke laag van het TCP/IP model bevindt het HTTP protocol zich?",
+                    "question": "Wat is de primaire functie van de kernel in een besturingssysteem?",
                     "options": [
-                        "Link Layer",
-                        "Internet Layer",
-                        "Transport Layer",
-                        "Application Layer"
+                        "Het beheert alleen de grafische interface",
+                        "Het is de core die hardware resources beheert",
+                        "Het zorgt alleen voor internet connectiviteit",
+                        "Het behandelt alleen user authenticatie"
+                    ],
+                    "correct": 1,
+                    "explanation": "De kernel is de kern van het OS die CPU, geheugen en hardware beheert, communiceert met device drivers, en zorgt voor resource management en beveiliging. [Hoofdstuk 10 - Leerdoel 4: OS architectuur]"
+                },
+                {
+                    "question": "Wat is een flip-flop in digitale elektronica?",
+                    "options": [
+                        "Een type transistor voor signaalversterking",
+                        "Een versterker circuit voor analoge signalen",
+                        "Een type logische poort voor berekeningen",
+                        "Een clock-gestuurd geheugen element voor één bit"
                     ],
                     "correct": 3,
-                    "explanation": "HTTP bevindt zich in de Application Layer, samen met protocols als FTP, SMTP en DNS. Deze laag biedt diensten direct aan gebruikers. [Hoofdstuk 13 - Leerdoel 5: Protocol stack]"
+                    "explanation": "Een flip-flop is een clock-gestuurd sequentieel circuit dat één bit informatie kan opslaan. JK flip-flops lossen het probleem van de SR latch op door te togglen bij J=K=1. [Hoofdstuk 6 - Leerdoel 2: Sequentiële circuits]"
+                },
+                {
+                    "question": "Wat is het verschil tussen RISC en CISC architecturen?",
+                    "options": [
+                        "RISC heeft complexere instructies, CISC eenvoudiger",
+                        "Er is geen verschil tussen beide architecturen",
+                        "RISC wordt alleen in supercomputers gebruikt",
+                        "RISC gebruikt eenvoudige instructies in één cycle"
+                    ],
+                    "correct": 3,
+                    "explanation": "RISC (Reduced ISC) zoals ARM gebruikt eenvoudige instructies voor snelheid. CISC (Complex ISC) zoals x86 heeft complexere instructies die meer kunnen doen per instructie. [Hoofdstuk 8 - Leerdoel 3: Architectuur paradigma's]"
+                },
+                {
+                    "question": "Wat is een ISA (Instruction Set Architecture)?",
+                    "options": [
+                        "Een type processor chip voor berekeningen",
+                        "Een programmeer taal voor software ontwikkeling",
+                        "Een type geheugen voor data opslag",
+                        "De interface tussen hardware en software met instructies"
+                    ],
+                    "correct": 3,
+                    "explanation": "ISA definieert welke instructies (opcodes) een processor begrijpt en hoe deze worden uitgevoerd. Voorbeelden zijn x86 (Intel/AMD) en ARM (smartphones). [Hoofdstuk 8 - Leerdoel 3: Software interface]"
+                },
+                {
+                    "question": "Welk Linux commando toont de huidige directory?",
+                    "options": [
+                        "ls",
+                        "cd",
+                        "pwd",
+                        "dir"
+                    ],
+                    "correct": 2,
+                    "explanation": "pwd (Print Working Directory) toont het volledige pad van de huidige directory. ls toont bestanden, cd verandert directory. [Linux CLI - Leerdoel 4: Basis commando's]"
                 },
                 {
                     "question": "Welke HTTP status code betekent 'Not Found'?",
@@ -2237,15 +2072,37 @@
                     "explanation": "404 Not Found: de server kan de gevraagde resource niet vinden. 200=OK, 301=Moved Permanently, 500=Internal Server Error. [Hoofdstuk 13 - Leerdoel 4: Web protocols]"
                 },
                 {
-                    "question": "Welke HTTP method wordt gebruikt om data naar een server te sturen voor het creëren van een nieuwe resource?",
+                    "question": "Wat is een process in een besturingssysteem?",
                     "options": [
-                        "GET",
-                        "POST",
-                        "PUT",
-                        "DELETE"
+                        "Een type bestand voor data opslag",
+                        "Een instantie van een programma dat uitgevoerd wordt",
+                        "Een type processor voor berekeningen",
+                        "Een netwerkverbinding tussen computers"
                     ],
                     "correct": 1,
-                    "explanation": "POST stuurt data naar de server om een nieuwe resource te creëren. GET haalt data op, PUT update/vervangt, DELETE verwijdert. [Linux CLI - Leerdoel 5: HTTP verbs]"
+                    "explanation": "Een process is een actieve instantie van een programma met eigen geheugen, CPU tijd, en resources. Het OS beheert meerdere processen tegelijk via multitasking. [Hoofdstuk 11 - Leerdoel 4: Process management]"
+                },
+                {
+                    "question": "Welke stap komt NIET voor in de fetch-decode-execute cycle?",
+                    "options": [
+                        "Fetch - ophalen van instructie uit geheugen",
+                        "Decode - interpreteren van de instructie",
+                        "Compile - vertalen naar machine code vooraf",
+                        "Execute - uitvoeren van de operatie direct"
+                    ],
+                    "correct": 2,
+                    "explanation": "De fetch-decode-execute cycle bestaat uit drie stappen: fetch (ophalen), decode (decoderen) en execute (uitvoeren). Compileren gebeurt vooraf, niet tijdens runtime. [Hoofdstuk 7 - Leerdoel 2: Processor cyclus]"
+                },
+                {
+                    "question": "Wat gebeurt er in de fetch-stap van de fetch-decode-execute cycle?",
+                    "options": [
+                        "De instructie wordt uitgevoerd door ALU",
+                        "De instructie wordt geïnterpreteerd door CU",
+                        "Het resultaat wordt opgeslagen in register",
+                        "De instructie wordt opgehaald uit geheugen"
+                    ],
+                    "correct": 3,
+                    "explanation": "In de fetch-stap haalt de CPU de volgende instructie op uit het geheugen, waarbij de Program Counter het geheugenadres aangeeft. [Hoofdstuk 5 - Leerdoel 1: CPU werking]"
                 },
                 {
                     "question": "Wat is het belangrijkste verschil tussen TCP en UDP?",
@@ -2257,10 +2114,151 @@
                     ],
                     "correct": 0,
                     "explanation": "TCP garandeert betrouwbare, geordende levering met error checking (connection-oriented). UDP is connectionless, sneller maar zonder garanties. [Linux CLI - Leerdoel 5: Transport protocols]"
+                },
+                {
+                    "question": "Wat is de functie van DNS (Domain Name System)?",
+                    "options": [
+                        "Het versleutelt netwerkverkeer voor veiligheid",
+                        "Het wijst automatisch IP-adressen toe aan apparaten",
+                        "Het vertaalt domeinnamen naar IP-adressen",
+                        "Het beheert email servers voor domeinen"
+                    ],
+                    "correct": 2,
+                    "explanation": "DNS is het 'telefoonboek' van het internet dat domeinnamen (google.com) vertaalt naar IP-adressen (142.250.185.46) die computers gebruiken. [Hoofdstuk 12 - Leerdoel 5: Internet protocols]"
+                },
+                {
+                    "question": "Wat is de Two's Complement representatie van -10 in 8 bits?",
+                    "options": [
+                        "11110110",
+                        "10001010",
+                        "11110101",
+                        "00001010"
+                    ],
+                    "correct": 0,
+                    "explanation": "10 in binair = 00001010. Inverteer alle bits: 11110101. Tel er 1 bij op: 11110110. Dit is de Two's Complement van -10. [Hoofdstuk 1 - Leerdoel 1: Getallensystemen]"
+                },
+                {
+                    "question": "Converteer het hexadecimale getal 2F naar decimaal.",
+                    "options": [
+                        "47",
+                        "45",
+                        "49",
+                        "51"
+                    ],
+                    "correct": 0,
+                    "explanation": "2×16 + 15×1 = 32 + 15 = 47. [Hoofdstuk 1 - Leerdoel 1: Talstelsels]"
+                },
+                {
+                    "question": "Welke HTTP method wordt gebruikt om data naar een server te sturen voor het creëren van een nieuwe resource?",
+                    "options": [
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "DELETE"
+                    ],
+                    "correct": 1,
+                    "explanation": "POST stuurt data naar de server om een nieuwe resource te creëren. GET haalt data op, PUT update/vervangt, DELETE verwijdert. [Linux CLI - Leerdoel 5: HTTP verbs]"
+                },
+                {
+                    "question": "Wat is het verschil tussen kernel mode en user mode?",
+                    "options": [
+                        "Kernel mode draait sneller dan user mode",
+                        "Kernel mode heeft directe toegang tot hardware",
+                        "User mode kan alleen tekst verwerken simpel",
+                        "Er is geen verschil tussen de modi"
+                    ],
+                    "correct": 1,
+                    "explanation": "Kernel mode heeft volledige hardware toegang voor stabiliteit en veiligheid. User mode is beperkt en moet system calls gebruiken voor hardware toegang. [Hoofdstuk 10 - Leerdoel 4: Privilege levels]"
+                },
+                {
+                    "question": "Wat is een byte in computergeheugen?",
+                    "options": [
+                        "De kleinste adresseerbare eenheid, meestal 8 bits",
+                        "Altijd precies 16 bits groot",
+                        "Een enkel bit (0 of 1)",
+                        "Een geheugenblok van 1024 bytes"
+                    ],
+                    "correct": 0,
+                    "explanation": "Een byte is de kleinste adresseerbare eenheid in computergeheugen en bestaat meestal uit 8 bits, waarmee 256 verschillende waarden kunnen worden gerepresenteerd. [Hoofdstuk 1 - Leerdoel 2: Geheugenstructuur]"
+                },
+                {
+                    "question": "Wat is de output van een XOR poort wanneer beide inputs 1 zijn?",
+                    "options": [
+                        "0",
+                        "1",
+                        "Ongedefinieerd (error state)",
+                        "Hangt af van vorige staat"
+                    ],
+                    "correct": 0,
+                    "explanation": "XOR (eXclusive OR) geeft alleen 1 wanneer de inputs verschillend zijn. Bij 1 XOR 1 = 0, en bij 0 XOR 0 = 0. [Hoofdstuk 2 - Leerdoel 1: Logische poorten]"
+                },
+                {
+                    "question": "Wat is de output van: 1010 AND 1100 (binaire operatie)?",
+                    "options": [
+                        "1000",
+                        "1110",
+                        "1010",
+                        "0010"
+                    ],
+                    "correct": 0,
+                    "explanation": "AND geeft alleen 1 wanneer beide bits 1 zijn. Bit voor bit: 1 AND 1=1, 0 AND 1=0, 1 AND 0=0, 0 AND 0=0. Resultaat: 1000. [Hoofdstuk 2 - Leerdoel 1: Binaire operaties]"
+                },
+                {
+                    "question": "Hoeveel addresseerbare locaties kan een 16-bit adresbus aanspreken?",
+                    "options": [
+                        "16 KB",
+                        "256 KB",
+                        "1 MB",
+                        "64 KB"
+                    ],
+                    "correct": 3,
+                    "explanation": "2^16 = 65.536 bytes = 64 KB. Een 16-bit adresbus kan dus maximaal 64 kilobyte aan geheugen addresseren. [Hoofdstuk 6 - Leerdoel 2: Adressering]"
+                },
+                {
+                    "question": "Wat is de rol van transistors in digitale circuits?",
+                    "options": [
+                        "Ze slaan permanent data op in geheugen",
+                        "Ze genereren elektrische stroom continu",
+                        "Ze koelen de processor tijdens werking",
+                        "Ze functioneren als elektronische schakelaars"
+                    ],
+                    "correct": 3,
+                    "explanation": "Transistors werken als elektronische schakelaars die aan/uit (1/0) kunnen zijn. Door miljoenen transistors te combineren ontstaan logische poorten die de basis vormen van processors. [Hoofdstuk 5 - Leerdoel 1: Basis elektronica]"
+                },
+                {
+                    "question": "Wat is de functie van de Program Counter (PC)?",
+                    "options": [
+                        "Het telt het aantal uitgevoerde programma's",
+                        "Het berekent de processorsnelheid in Hz",
+                        "Het slaat programmaresultaten op in cache",
+                        "Het houdt het geheugenadres bij van volgende instructie"
+                    ],
+                    "correct": 3,
+                    "explanation": "De Program Counter is een register dat het geheugenadres bevat van de volgende uit te voeren instructie, en wordt na elke instructie verhoogd voor sequentiële verwerking. [Hoofdstuk 7 - Leerdoel 2: CPU registers]"
+                },
+                {
+                    "question": "Hoeveel bits zijn nodig om 256 unieke waarden te representeren?",
+                    "options": [
+                        "8 bits",
+                        "7 bits",
+                        "9 bits",
+                        "16 bits"
+                    ],
+                    "correct": 0,
+                    "explanation": "2^8 = 256. Je hebt precies 8 bits nodig om 256 unieke waarden te kunnen representeren. [Hoofdstuk 1 - Leerdoel 1: Bits & Bytes]"
+                },
+                {
+                    "question": "Welke logische poort is een universele poort?",
+                    "options": [
+                        "AND",
+                        "OR",
+                        "NAND",
+                        "XOR"
+                    ],
+                    "correct": 2,
+                    "explanation": "NAND (en NOR) zijn universele poorten omdat je met alleen NAND poorten alle andere logische poorten kunt bouwen: AND, OR, NOT, XOR, etc. [Hoofdstuk 2 - Leerdoel 1: Universele poorten]"
                 }
             ]
         }
     ]
 }
-
- 
