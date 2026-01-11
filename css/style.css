@@ -376,9 +376,21 @@
         text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
     }
 
+    @media (max-width: 600px) {
+        .grade-display {
+            font-size: 2.5em;
+        }
+    }
+
     .score-details {
         font-size: 1.2em;
         opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+        .score-details {
+            font-size: 1em;
+        }
     }
 
     /* Exam Results Styles */
