@@ -1860,7 +1860,6 @@
                         "Geen gebruik van een ALU component"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "De Von Neumann architectuur gebruikt één gedeeld geheugen voor zowel programma-instructies als data, wat het onderscheidt van de Harvard architectuur. [Hoofdstuk 1 - Leerdoel 2: Computer architectuur]"
                 },
                 {
@@ -1872,7 +1871,6 @@
                         "Supercomputer"
                     ],
                     "correct": 3,
-                    "randomOrder": true,
                     "explanation": "Supercomputers zijn speciaal ontworpen voor extreem zware berekeningen zoals klimaatmodellen, AI training en wetenschappelijk onderzoek, met prestaties in petaflops. [Hoofdstuk 1 - Leerdoel 2: Computertypen]"
                 },
                 {
@@ -1884,7 +1882,6 @@
                         "Een geheugenblok van 1024 bytes"
                     ],
                     "correct": 0,
-                    "randomOrder": true,
                     "explanation": "Een byte is de kleinste adresseerbare eenheid in computergeheugen en bestaat meestal uit 8 bits, waarmee 256 verschillende waarden kunnen worden gerepresenteerd. [Hoofdstuk 1 - Leerdoel 2: Geheugenstructuur]"
                 },
                 {
@@ -1896,7 +1893,6 @@
                         "Hangt af van vorige staat"
                     ],
                     "correct": 0,
-                    "randomOrder": true,
                     "explanation": "XOR (eXclusive OR) geeft alleen 1 wanneer de inputs verschillend zijn. Bij 1 XOR 1 = 0, en bij 0 XOR 0 = 0. [Hoofdstuk 2 - Leerdoel 1: Logische poorten]"
                 },
                 {
@@ -1908,7 +1904,6 @@
                         "XOR"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "NAND (en NOR) zijn universele poorten omdat je met alleen NAND poorten alle andere logische poorten kunt bouwen: AND, OR, NOT, XOR, etc. [Hoofdstuk 2 - Leerdoel 1: Universele poorten]"
                 },
                 {
@@ -1931,7 +1926,6 @@
                         "Een OR poort en een NOT poort"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Een half-adder bestaat uit een XOR poort (voor de sum) en een AND poort (voor de carry). Het kan twee bits optellen maar heeft geen carry input. [Hoofdstuk 2 - Leerdoel 2: Digitale circuits]"
                 },
                 {
@@ -1943,7 +1937,6 @@
                         "Een full-adder kan alleen maar optellen enkelvoudig"
                     ],
                     "correct": 0,
-                    "randomOrder": true,
                     "explanation": "Een half-adder telt twee bits op (A en B). Een full-adder telt drie bits op (A, B en carry-in), wat nodig is voor multi-bit optelling in opeenvolgende stappen. [Hoofdstuk 4 - Leerdoel 2: Adders]"
                 },
                 {
@@ -1955,7 +1948,6 @@
                         "Cache Memory"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "De ALU (Arithmetic Logic Unit) voert alle rekenkundige operaties (optellen, aftrekken) en logische bewerkingen (AND, OR, NOT) uit binnen de CPU. [Hoofdstuk 4 - Leerdoel 2: CPU componenten]"
                 },
                 {
@@ -1967,7 +1959,6 @@
                         "Het regelt de kloksnelheid precies"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Een SR (Set-Reset) latch is een sequentieel logisch circuit dat één bit kan opslaan. Het is een basisbouwsteen voor computergeheugen en flip-flops. [Hoofdstuk 6 - Leerdoel 2: Geheugen circuits]"
                 },
                 {
@@ -1979,7 +1970,6 @@
                         "Een type logische poort voor berekeningen"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Een flip-flop is een clock-gestuurd sequentieel circuit dat één bit informatie kan opslaan. JK flip-flops lossen het probleem van de SR latch op door te togglen bij J=K=1. [Hoofdstuk 6 - Leerdoel 2: Sequentiële circuits]"
                 },
                 {
@@ -2002,7 +1992,6 @@
                         "Ze koelen de processor tijdens werking"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Transistors werken als elektronische schakelaars die aan/uit (1/0) kunnen zijn. Door miljoenen transistors te combineren ontstaan logische poorten die de basis vormen van processors. [Hoofdstuk 5 - Leerdoel 1: Basis elektronica]"
                 },
                 {
@@ -2014,7 +2003,6 @@
                         "Het resultaat wordt opgeslagen in register"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "In de fetch-stap haalt de CPU de volgende instructie op uit het geheugen, waarbij de Program Counter het geheugenadres aangeeft. [Hoofdstuk 5 - Leerdoel 1: CPU werking]"
                 },
                 {
@@ -2026,7 +2014,6 @@
                         "Het slaat programmaresultaten op in cache"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "De Program Counter is een register dat het geheugenadres bevat van de volgende uit te voeren instructie, en wordt na elke instructie verhoogd voor sequentiële verwerking. [Hoofdstuk 7 - Leerdoel 2: CPU registers]"
                 },
                 {
@@ -2038,7 +2025,6 @@
                         "De traagheid van I/O apparaten bij overdracht"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Het Von Neumann bottleneck is de beperkte bandbreedte tussen CPU en geheugen omdat ze dezelfde bus delen. Dit beperkt prestaties ondanks snellere CPUs. [Hoofdstuk 7 - Leerdoel 2: Architectuur beperkingen]"
                 },
                 {
@@ -2050,7 +2036,6 @@
                         "Execute - uitvoeren van de operatie direct"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "De fetch-decode-execute cycle bestaat uit drie stappen: fetch (ophalen), decode (decoderen) en execute (uitvoeren). Compileren gebeurt vooraf, niet tijdens runtime. [Hoofdstuk 7 - Leerdoel 2: Processor cyclus]"
                 },
                 {
@@ -2062,7 +2047,6 @@
                         "Een type geheugen voor data opslag"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "ISA definieert welke instructies (opcodes) een processor begrijpt en hoe deze worden uitgevoerd. Voorbeelden zijn x86 (Intel/AMD) en ARM (smartphones). [Hoofdstuk 8 - Leerdoel 3: Software interface]"
                 },
                 {
@@ -2074,7 +2058,6 @@
                         "PowerPC"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "ARM (Advanced RISC Machine) is de dominante ISA voor mobiele apparaten vanwege energie-efficiëntie en RISC architectuur met eenvoudige instructies. [Hoofdstuk 8 - Leerdoel 3: Processor families]"
                 },
                 {
@@ -2086,7 +2069,6 @@
                         "RISC wordt alleen in supercomputers gebruikt"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "RISC (Reduced ISC) zoals ARM gebruikt eenvoudige instructies voor snelheid. CISC (Complex ISC) zoals x86 heeft complexere instructies die meer kunnen doen per instructie. [Hoofdstuk 8 - Leerdoel 3: Architectuur paradigma's]"
                 },
                 {
@@ -2098,7 +2080,6 @@
                         "ADD"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "LDR (LoaD Register) laadt data van een geheugenadres naar een register. STR (STore Register) doet het omgekeerde. MOV verplaatst data tussen registers. [Hoofdstuk 9 - Leerdoel 3: Assembly instructies]"
                 },
                 {
@@ -2110,7 +2091,6 @@
                         "Een type compiler voor vertaling"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Een opcode (operation code) is het deel van een machine instructie dat specificeert welke operatie uitgevoerd moet worden, zoals ADD, MOV, of JMP. [Hoofdstuk 9 - Leerdoel 3: Machine code]"
                 },
                 {
@@ -2122,7 +2102,6 @@
                         "Het werkt alleen op moderne computers"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Hexadecimaal is compacter (1 hex cijfer = 4 bits) en beter leesbaar dan lange rijen nullen en enen, terwijl elke hex digit direct naar 4 bits te converteren is. [Hoofdstuk 9 - Leerdoel 3: Getalsrepresentatie]"
                 },
                 {
@@ -2134,7 +2113,6 @@
                         "Het behandelt alleen user authenticatie"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "De kernel is de kern van het OS die CPU, geheugen en hardware beheert, communiceert met device drivers, en zorgt voor resource management en beveiliging. [Hoofdstuk 10 - Leerdoel 4: OS architectuur]"
                 },
                 {
@@ -2146,7 +2124,6 @@
                         "Er is geen verschil tussen de modi"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Kernel mode heeft volledige hardware toegang voor stabiliteit en veiligheid. User mode is beperkt en moet system calls gebruiken voor hardware toegang. [Hoofdstuk 10 - Leerdoel 4: Privilege levels]"
                 },
                 {
@@ -2158,7 +2135,6 @@
                         "Het voorkomt virussen en malware aanvallen"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Virtual memory gebruikt harde schijf ruimte als extensie van RAM via swapping, waardoor meer applicaties kunnen draaien dan fysiek RAM toelaat. [Hoofdstuk 10 - Leerdoel 4: Geheugenbeheer]"
                 },
                 {
@@ -2170,7 +2146,6 @@
                         "Een netwerkverbinding tussen computers"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Een process is een actieve instantie van een programma met eigen geheugen, CPU tijd, en resources. Het OS beheert meerdere processen tegelijk via multitasking. [Hoofdstuk 11 - Leerdoel 4: Process management]"
                 },
                 {
@@ -2182,7 +2157,6 @@
                         "Threads zijn langzamer dan processen altijd"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "Threads zijn lichtgewicht execution units binnen een process die geheugen delen. Processen hebben aparte geheugenruimte. Threads zijn efficiënter voor parallelle taken. [Hoofdstuk 11 - Leerdoel 4: Concurrency]"
                 },
                 {
@@ -2194,7 +2168,6 @@
                         "dir"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "pwd (Print Working Directory) toont het volledige pad van de huidige directory. ls toont bestanden, cd verandert directory. [Linux CLI - Leerdoel 4: Basis commando's]"
                 },
                 {
@@ -2206,7 +2179,6 @@
                         "ls -l"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "chmod (CHange MODe) wijzigt read/write/execute permissions. chown wijzigt eigenaar, chgrp wijzigt groep, ls -l toont permissions. [Linux CLI - Leerdoel 4: Permissies]"
                 },
                 {
@@ -2218,7 +2190,6 @@
                         "Het beheert email servers voor domeinen"
                     ],
                     "correct": 2,
-                    "randomOrder": true,
                     "explanation": "DNS is het 'telefoonboek' van het internet dat domeinnamen (google.com) vertaalt naar IP-adressen (142.250.185.46) die computers gebruiken. [Hoofdstuk 12 - Leerdoel 5: Internet protocols]"
                 },
                 {
@@ -2230,7 +2201,6 @@
                         "Het beheert email routing en verzending"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "DHCP wijst automatisch IP-adressen, subnet masks, default gateways en DNS servers toe aan netwerk apparaten, wat handmatige configuratie overbodig maakt. [Hoofdstuk 12 - Leerdoel 5: Netwerk configuratie]"
                 },
                 {
@@ -2275,7 +2245,6 @@
                         "DELETE"
                     ],
                     "correct": 1,
-                    "randomOrder": true,
                     "explanation": "POST stuurt data naar de server om een nieuwe resource te creëren. GET haalt data op, PUT update/vervangt, DELETE verwijdert. [Linux CLI - Leerdoel 5: HTTP verbs]"
                 },
                 {
@@ -2287,7 +2256,6 @@
                         "TCP kan alleen kleine bestanden verzenden"
                     ],
                     "correct": 0,
-                    "randomOrder": true,
                     "explanation": "TCP garandeert betrouwbare, geordende levering met error checking (connection-oriented). UDP is connectionless, sneller maar zonder garanties. [Linux CLI - Leerdoel 5: Transport protocols]"
                 }
             ]

@@ -154,40 +154,15 @@ function showQuestion() {
     const optionsDiv = document.getElementById('options');
     optionsDiv.innerHTML = '';
     
-    // Prepare options with their original indices
-    let optionsToDisplay = q.options.map((option, index) => ({
-        text: option,
-        originalIndex: index
-    }));
-    
-    // Randomize if randomOrder is true
-    if (q.randomOrder === true) {
-        // Shuffle array using Fisher-Yates algorithm
-        for (let i = optionsToDisplay.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [optionsToDisplay[i], optionsToDisplay[j]] = [optionsToDisplay[j], optionsToDisplay[i]];
-        }
-        // Store the mapping for this question
-        if (!q.shuffledMapping) {
-            q.shuffledMapping = optionsToDisplay.map(opt => opt.originalIndex);
-        }
-    } else {
-        // No randomization, keep original order
-        if (!q.shuffledMapping) {
-            q.shuffledMapping = [0, 1, 2, 3];
-        }
-    }
-    
     const letters = ['A', 'B', 'C', 'D'];
-    optionsToDisplay.forEach((option, displayIndex) => {
+    q.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.innerHTML = `
-            <div class="option-letter">${letters[displayIndex]}</div>
-            <div>${option.text}</div>
+            <div class="option-letter">${letters[index]}</div>
+            <div>${option}</div>
         `;
-        // When user clicks, we need both: displayIndex for visual selection, originalIndex for answer
-        optionDiv.onclick = () => selectOption(option.originalIndex, displayIndex);
+        optionDiv.onclick = () => selectOption(index);
         optionsDiv.appendChild(optionDiv);
     });
 
@@ -198,16 +173,14 @@ function showQuestion() {
     updateProgress();
 }
 
-function selectOption(originalIndex, displayIndex) {
+function selectOption(index) {
     if (answered && !isExamMode) return;
     
     const options = document.querySelectorAll('.option');
     options.forEach(opt => opt.classList.remove('selected'));
-    // Select the visual option at displayIndex
-    options[displayIndex].classList.add('selected');
+    options[index].classList.add('selected');
     document.getElementById('next-btn').disabled = false;
-    // Store the original index for answer validation
-    answers[currentQuestion] = originalIndex;
+    answers[currentQuestion] = index;
 }
 
 function nextQuestion() {
@@ -233,20 +206,16 @@ function nextQuestion() {
             
             options.forEach(opt => opt.style.pointerEvents = 'none');
             
-            // Find which displayed option corresponds to the correct answer
-            const correctDisplayIndex = q.shuffledMapping.indexOf(q.correct);
-            const selectedDisplayIndex = q.shuffledMapping.indexOf(selectedOption);
-            
             if (selectedOption === q.correct) {
                 score++;
-                options[selectedDisplayIndex].classList.add('correct');
+                options[selectedOption].classList.add('correct');
                 feedback.className = 'feedback correct';
                 feedback.innerHTML = `✓ Correct!<div class="explanation">💡 ${q.explanation}</div>`;
             } else {
-                options[selectedDisplayIndex].classList.add('incorrect');
-                options[correctDisplayIndex].classList.add('correct');
+                options[selectedOption].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
                 feedback.className = 'feedback incorrect';
-                feedback.innerHTML = `✗ Fout!<div class="correct-answer">Het juiste antwoord is: ${letters[correctDisplayIndex]} </div><div class="explanation"> ${q.explanation}</div>`;
+                feedback.innerHTML = `✗ Fout!<div class="correct-answer">Het juiste antwoord is: ${letters[q.correct]} </div><div class="explanation"> ${q.explanation}</div>`;
             }
             
             feedback.classList.remove('hidden');
