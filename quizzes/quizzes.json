@@ -4,11 +4,5 @@
         "title": "IT Fundamentals",
         "file": "quizzes/it-fundamentals.json",
         "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer."
-    },
-    {
-        "id": "it-fundamentals-examen",
-        "title": "IT Fundamentals - Oefen Examen",
-        "file": "quizzes/it-fundamentals-examen.json",
-        "description": "40 vragen examen op HBO-niveau. Beantwoord minimaal 26 vragen correct (65%) voor een voldoende."
     }
 ]
