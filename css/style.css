@@ -368,6 +368,19 @@
         font-size: 0.9em;
         line-height: 1.4;
     }
+    /* Grade Display Styles */
+    .grade-display {
+        font-size: 4em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .score-details {
+        font-size: 1.2em;
+        opacity: 0.9;
+    }
+
     /* Exam Results Styles */
     .exam-results {
         margin-top: 30px;
@@ -412,11 +425,36 @@
         gap: 10px;
         margin-bottom: 10px;
         font-size: 0.95em;
+        position: relative;
+    }
+
+    .collapse-indicator {
+        margin-left: auto;
+        color: #00d4ff;
+        font-size: 0.8em;
+        transition: transform 0.3s ease;
+    }
+
+    .exam-result-item.collapsible .result-header:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 5px;
+        margin: -5px;
+        padding: 5px;
     }
 
     .result-icon {
         font-size: 1.2em;
         font-weight: bold;
+        max-height: 500px;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        opacity: 1;
+    }
+
+    .result-details.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
         min-width: 20px;
     }
 
