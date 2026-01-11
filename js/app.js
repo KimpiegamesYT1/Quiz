@@ -186,8 +186,8 @@ function showQuestion() {
             <div class="option-letter">${letters[displayIndex]}</div>
             <div>${option.text}</div>
         `;
-        // When user clicks, store the original index
-        optionDiv.onclick = () => selectOption(option.originalIndex);
+        // When user clicks, we need both: displayIndex for visual selection, originalIndex for answer
+        optionDiv.onclick = () => selectOption(option.originalIndex, displayIndex);
         optionsDiv.appendChild(optionDiv);
     });
 
@@ -198,14 +198,16 @@ function showQuestion() {
     updateProgress();
 }
 
-function selectOption(index) {
+function selectOption(originalIndex, displayIndex) {
     if (answered && !isExamMode) return;
     
     const options = document.querySelectorAll('.option');
     options.forEach(opt => opt.classList.remove('selected'));
-    options[index].classList.add('selected');
+    // Select the visual option at displayIndex
+    options[displayIndex].classList.add('selected');
     document.getElementById('next-btn').disabled = false;
-    answers[currentQuestion] = index;
+    // Store the original index for answer validation
+    answers[currentQuestion] = originalIndex;
 }
 
 function nextQuestion() {
