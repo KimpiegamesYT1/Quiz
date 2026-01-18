@@ -356,7 +356,7 @@ function showExamResults() {
     const incorrectCount = activeQuestions.length - correctCount;
     
     resultsContainer.innerHTML = `
-        <h3 style="margin-top: 30px; color: #00d4ff;">Gedetailleerde Resultaten:</h3>
+        <h3 style="margin-top: 30px; color: #fff;">Gedetailleerde Resultaten:</h3>
         <p style="color: #ccc; margin-bottom: 15px;">
             <span style="color: #00ff88;">✓ ${correctCount} correct</span> • 
             <span style="color: #ff4444;">✗ ${incorrectCount} fout</span>

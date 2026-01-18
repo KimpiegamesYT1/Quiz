@@ -1,3 +1,25 @@
+    /* Mobiele optimalisaties voor exam-resultaat */
+    @media (max-width: 600px) {
+        .explanation-detail {
+            font-size: 0.95em;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        .result-header {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+        }
+        .result-header strong {
+            display: block;
+            width: 100%;
+            margin-bottom: 2px;
+        }
+        .result-icon {
+            display: none;
+        }
+    }
     /* Quiz subtitel onder de titel */
     .quiz-subtitle {
         font-size: 0.95em;
@@ -376,29 +398,32 @@
         line-height: 1.4;
     }
     /* Grade Display Styles */
+
+.grade-display {
+    font-size: 2.2em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    line-height: 1.1;
+}
+
+@media (max-width: 600px) {
     .grade-display {
-        font-size: 4em;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        font-size: 1.3em;
     }
+}
 
-    @media (max-width: 600px) {
-        .grade-display {
-            font-size: 2.5em;
-        }
-    }
+.score-details {
+    font-size: 1em;
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
 
+@media (max-width: 600px) {
     .score-details {
-        font-size: 1.2em;
-        opacity: 0.9;
+        font-size: 0.85em;
     }
-
-    @media (max-width: 600px) {
-        .score-details {
-            font-size: 1em;
-        }
-    }
+}
 
     /* Exam Results Styles */
     .exam-results {
@@ -406,6 +431,7 @@
         max-height: 500px;
         overflow-y: auto;
         padding-right: 10px;
+        color: #fff;
     }
 
     .exam-results::-webkit-scrollbar {
