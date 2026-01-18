@@ -1,3 +1,10 @@
+    /* Quiz subtitel onder de titel */
+    .quiz-subtitle {
+        font-size: 0.95em;
+        color: #b0b0b0;
+        margin-bottom: 18px;
+        text-align: center;
+    }
     * {
         margin: 0;
         padding: 0;

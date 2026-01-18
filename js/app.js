@@ -54,15 +54,22 @@ async function loadQuiz() {
         const listResponse = await fetch('quizzes/quizzes.json');
         const quizzes = await listResponse.json();
         const quizInfo = quizzes.find(q => q.id === quizId);
-        
         if (!quizInfo) {
             throw new Error('Quiz not found');
         }
 
         const response = await fetch(quizInfo.file);
         const data = await response.json();
-        
+
         currentQuiz = data;
+
+        // Zet subtitel indien aanwezig
+        const subtitle = quizInfo.subtitle || 'kwartiel 2';
+        const subtitleDiv = document.getElementById('quiz-subtitle');
+        if (subtitleDiv) {
+            subtitleDiv.textContent = subtitle;
+            subtitleDiv.style.display = 'block';
+        }
         
         // Reset global state
         questions = [];

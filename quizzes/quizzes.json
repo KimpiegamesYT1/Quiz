@@ -3,6 +3,7 @@
         "id": "it-fundamentals",
         "title": "IT Fundamentals",
         "file": "quizzes/it-fundamentals.json",
-        "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer."
+        "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
+        "subtitle": "kwartiel 2"
     }
 ]
