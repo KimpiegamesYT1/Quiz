@@ -17,6 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (document.getElementById('quiz-title')) {
         loadQuiz();
     }
+
+    // Keyboard support: A/B/C/D to select, Enter for next
+    document.addEventListener('keydown', function(e) {
+        // Only if quiz is gestart en quiz-screen zichtbaar
+        const quizScreen = document.getElementById('quiz-screen');
+        if (!quizScreen || quizScreen.classList.contains('hidden')) return;
+
+        // A/B/C/D (case-insensitive)
+        const key = e.key.toLowerCase();
+        const validKeys = ['a', 'b', 'c', 'd'];
+        if (validKeys.includes(key)) {
+            const idx = validKeys.indexOf(key);
+            const options = document.querySelectorAll('.option');
+            if (options[idx]) {
+                options[idx].click();
+            }
+        }
+        // Enter: volgende/controleer
+        if (e.key === 'Enter') {
+            const nextBtn = document.getElementById('next-btn');
+            if (nextBtn && !nextBtn.disabled) {
+                nextBtn.click();
+            }
+        }
+    });
 });
 
 async function loadQuizList() {
