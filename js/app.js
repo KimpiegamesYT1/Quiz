@@ -49,7 +49,16 @@ async function loadQuizList() {
         const response = await fetch('quizzes/quizzes.json');
         const quizzes = await response.json();
         const list = document.getElementById('quiz-list');
-        
+
+        // Toon subtitel van eerste quiz (of pas aan indien gewenst)
+        if (quizzes.length > 0 && quizzes[0].subtitle) {
+            const subtitleSpan = document.getElementById('main-quiz-subtitle');
+            if (subtitleSpan) {
+                subtitleSpan.textContent = quizzes[0].subtitle;
+                subtitleSpan.style.display = 'inline';
+            }
+        }
+
         quizzes.forEach(quiz => {
             const card = document.createElement('div');
             card.className = 'quiz-card';
