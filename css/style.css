@@ -1,5 +1,8 @@
     /* Mobiele optimalisaties voor exam-resultaat */
     @media (max-width: 600px) {
+                .end-screen {
+                    padding: 20px !important;
+                }
         .explanation-detail {
             font-size: 0.95em;
             padding-left: 12px;
@@ -28,6 +31,9 @@
         .exam-result-item {
             align-items: center !important;
             text-align: center !important;
+        }
+        .result-details {
+            margin-left: 0 !important;
         }
     }
     /* Quiz subtitel onder de titel */
