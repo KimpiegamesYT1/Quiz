@@ -50,21 +50,15 @@ async function loadQuizList() {
         const quizzes = await response.json();
         const list = document.getElementById('quiz-list');
 
-        // Toon subtitel van eerste quiz (of pas aan indien gewenst)
-        if (quizzes.length > 0 && quizzes[0].subtitle) {
-            const subtitleSpan = document.getElementById('main-quiz-subtitle');
-            if (subtitleSpan) {
-                subtitleSpan.textContent = quizzes[0].subtitle;
-                subtitleSpan.style.display = 'inline';
-            }
-        }
-
         quizzes.forEach(quiz => {
             const card = document.createElement('div');
             card.className = 'quiz-card';
             card.onclick = () => window.location.href = `quiz.html?id=${quiz.id}`;
             card.innerHTML = `
-                <h3>${quiz.title}</h3>
+                <h3 style="display: flex; align-items: baseline; gap: 8px;">
+                  <span style="color: #00d4ff;">${quiz.title}</span>
+                  ${quiz.subtitle ? `<span class='quiz-subtitle' style='font-size:0.95em; color:#b0b0b0; font-weight:400;'>${quiz.subtitle}</span>` : ''}
+                </h3>
                 <p>${quiz.description}</p>
             `;
             list.appendChild(card);
