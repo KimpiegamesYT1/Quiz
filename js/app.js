@@ -17,6 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (document.getElementById('quiz-title')) {
         loadQuiz();
     }
+
+    // Keyboard support: A/B/C/D to select, Enter for next
+    document.addEventListener('keydown', function(e) {
+        // Only if quiz is gestart en quiz-screen zichtbaar
+        const quizScreen = document.getElementById('quiz-screen');
+        if (!quizScreen || quizScreen.classList.contains('hidden')) return;
+
+        // A/B/C/D (case-insensitive)
+        const key = e.key.toLowerCase();
+        const validKeys = ['a', 'b', 'c', 'd'];
+        if (validKeys.includes(key)) {
+            const idx = validKeys.indexOf(key);
+            const options = document.querySelectorAll('.option');
+            if (options[idx]) {
+                options[idx].click();
+            }
+        }
+        // Enter: volgende/controleer
+        if (e.key === 'Enter') {
+            const nextBtn = document.getElementById('next-btn');
+            if (nextBtn && !nextBtn.disabled) {
+                nextBtn.click();
+            }
+        }
+    });
 });
 
 async function loadQuizList() {
@@ -24,15 +49,18 @@ async function loadQuizList() {
         const response = await fetch('quizzes/quizzes.json');
         const quizzes = await response.json();
         const list = document.getElementById('quiz-list');
-        
+
         quizzes.forEach(quiz => {
             const card = document.createElement('div');
             card.className = 'quiz-card';
             card.onclick = () => window.location.href = `quiz.html?id=${quiz.id}`;
-            card.innerHTML = `
-                <h3>${quiz.title}</h3>
-                <p>${quiz.description}</p>
-            `;
+                        card.innerHTML = `
+                                <h3 style="display: flex; align-items: baseline; gap: 8px;">
+                                    <span style=\"color: #00d4ff;\">${quiz.title}</span>
+                                    ${quiz.subtitle ? `<span class='quiz-subtitle' style='font-size:0.65em; color:#b0b0b0; font-weight:400; line-height:1;'>${quiz.subtitle}</span>` : ''}
+                                </h3>
+                                <p>${quiz.description}</p>
+                        `;
             list.appendChild(card);
         });
     } catch (error) {
@@ -54,15 +82,22 @@ async function loadQuiz() {
         const listResponse = await fetch('quizzes/quizzes.json');
         const quizzes = await listResponse.json();
         const quizInfo = quizzes.find(q => q.id === quizId);
-        
         if (!quizInfo) {
             throw new Error('Quiz not found');
         }
 
         const response = await fetch(quizInfo.file);
         const data = await response.json();
-        
+
         currentQuiz = data;
+
+        // Zet subtitel indien aanwezig
+        const subtitle = quizInfo.subtitle || 'kwartiel 2';
+        const subtitleDiv = document.getElementById('quiz-subtitle');
+        if (subtitleDiv) {
+            subtitleDiv.textContent = subtitle;
+            subtitleDiv.style.display = 'block';
+        }
         
         // Reset global state
         questions = [];
@@ -324,7 +359,7 @@ function showExamResults() {
     const incorrectCount = activeQuestions.length - correctCount;
     
     resultsContainer.innerHTML = `
-        <h3 style="margin-top: 30px; color: #00d4ff;">Gedetailleerde Resultaten:</h3>
+        <h3 style="margin-top: 30px; color: #fff;">Gedetailleerde Resultaten:</h3>
         <p style="color: #ccc; margin-bottom: 15px;">
             <span style="color: #00ff88;">✓ ${correctCount} correct</span> • 
             <span style="color: #ff4444;">✗ ${incorrectCount} fout</span>
