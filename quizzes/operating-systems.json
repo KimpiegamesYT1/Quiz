@@ -54,7 +54,7 @@
           "options": [
             "De naam van het script",
             "Het proces-ID van het script",
-            "Het aantal argumenten dat meegegeven is op de commandoregel",
+            "Het aantal argumenten dat is meegegeven",
             "De exitcode van het vorige commando"
           ],
           "correct": 2,
