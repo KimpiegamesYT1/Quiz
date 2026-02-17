@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#00b4ff"/>
+      <stop offset="1" stop-color="#7b00ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)" />
+  <g fill="#fff" font-family="Arial, Helvetica, sans-serif">
+    <text x="60" y="160" font-size="64" font-weight="700">QuizIt</text>
+    <text x="60" y="240" font-size="36">Oefen IT & Operating Systems</text>
+    <rect x="60" y="280" width="420" height="6" fill="#fff" opacity="0.25" />
+    <text x="60" y="380" font-size="140" font-weight="700">?</text>
+  </g>
+</svg>
