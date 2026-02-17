@@ -8,10 +8,10 @@
     }
     ,
     {
-        "id": "operating-systems",
-        "title": "Operating Systems",
-        "file": "quizzes/operating-systems.json",
-        "description": "Oefen voor Operating Systems met vragen over geheugenbeheer, bestandssystemen, synchronisatie en meer.",
+        "id": "computernetwerken",
+        "title": "Computernetwerken",
+        "file": "quizzes/computernetwerken.json",
+        "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
         "subtitle": "kwartiel 3"
     }
 ]

@@ -1,0 +1,376 @@
+{
+  "title": "Computernetwerken Quiz",
+  "categories": [
+    {
+      "id": "week1",
+      "name": "Week 1: Topologie & Ontwerpen",
+      "questions": [
+        {
+          "question": "Wat is de maximale typische afstand van een LAN?",
+          "options": [
+            "1 kilometer",
+            "10 kilometer",
+            "100 meter",
+            "1 meter"
+          ],
+          "correct": 2,
+          "explanation": "Een LAN (Local Area Network) heeft een typische maximale afstand van 100 meter bij gebruik van UTP-bekabeling (Cat5/6). Dit is ook de maximale segmentlengte van Ethernet."
+        },
+        {
+          "question": "Wat beschrijft een fysieke topologie?",
+          "options": [
+            "De werkelijke bekabelingsindeling en vorm van het netwerk",
+            "Hoe apparaten er voor de gebruiker verbonden lijken te zijn",
+            "De logische verbindingen tussen routers",
+            "Het IP-adresseringsschema van het netwerk"
+          ],
+          "correct": 0,
+          "explanation": "Een fysieke topologie beschrijft de daadwerkelijke, fysieke bekabelingsindeling of vorm van het netwerk — inclusief routers, switches en andere apparaten."
+        },
+        {
+          "question": "Welke uitspraak is correct over een bus-topologie?",
+          "options": [
+            "Alle apparaten zijn verbonden in een cirkel",
+            "Elk apparaat heeft een eigen directe verbinding naar een centraal punt",
+            "Elk apparaat is verbonden met elk ander apparaat",
+            "Één lange kabel fungeert als backbone en verbindt alle apparaten via drop lines"
+          ],
+          "correct": 3,
+          "explanation": "Bij een bus-topologie fungeert één lange kabel als backbone. Apparaten zijn hieraan verbonden via drop lines en taps. Dit wordt ook wel lineaire topologie genoemd."
+        },
+        {
+          "question": "Wat is een voordeel van ring-topologie ten opzichte van bus-topologie?",
+          "options": [
+            "Lagere installatiekosten",
+            "Geen datacollisies",
+            "Het netwerk blijft werken als de ring breekt",
+            "Ondersteunt bidirectioneel verkeer"
+          ],
+          "correct": 1,
+          "explanation": "Bij ring-topologie wordt het signaal in één richting doorgegeven en is er een gestructureerde toegangscontrole. Hierdoor treden er geen datacollisies op, in tegenstelling tot een bus-topologie."
+        },
+        {
+          "question": "Een aantal pc's is verbonden via een SWITCH in een ster-topologie. Wat is de logische topologie?",
+          "options": [
+            "Bus (multiaccess)",
+            "Ring",
+            "Point-to-Point",
+            "Full mesh"
+          ],
+          "correct": 2,
+          "explanation": "Een switch maakt voor elk apparaat een aparte, dedicated verbinding. Daardoor is de logische topologie Point-to-Point. Bij een HUB zou de logische topologie Bus zijn."
+        },
+        {
+          "question": "Wat is de primaire functie van de core layer in het hiërarchische LAN-ontwerpmodel?",
+          "options": [
+            "Hoge snelheid backbone bieden en distribution layers met elkaar verbinden",
+            "Eindgebruikers directe toegang geven tot het netwerk",
+            "Routing, filtering en WAN-toegang verzorgen",
+            "Netwerkverkeer segmenteren via VLANs"
+          ],
+          "correct": 0,
+          "explanation": "De core layer (backbone) verbindt distribution layers met hoge snelheid. Het biedt schaalbaarheid, hoge beschikbaarheid en snelle convergentie. Routing en filtering zijn taken van de distribution layer."
+        },
+        {
+          "question": "Welke apparaten zijn typisch aanwezig in de distribution layer?",
+          "options": [
+            "Eindgebruikers-pc's en printers",
+            "Wireless access points en hubs",
+            "Alleen access switches",
+            "High-speed routers, multilayer switches, firewalls en IPS/IDS-apparaten"
+          ],
+          "correct": 3,
+          "explanation": "De distribution layer bevat apparaten voor routing, filtering en QoS: high-speed routers, multilayer switches, firewalls, IPS/IDS en proxy servers."
+        },
+        {
+          "question": "Welke uitspraak over de access layer is correct?",
+          "options": [
+            "Access-switches zijn onderling verbonden voor redundantie",
+            "De access layer geeft eindapparaten directe toegang tot het netwerk",
+            "De access layer bevat de core backbone-routers",
+            "Eindapparaten zijn onderdeel van de access layer zelf"
+          ],
+          "correct": 1,
+          "explanation": "De access layer (ook wel 'network edge') geeft eindapparaten directe netwerktoegang. Eindapparaten zijn GEEN onderdeel van de access layer zelf. Access-switches zijn ook niet onderling verbonden — communicatie verloopt via de distribution layer."
+        },
+        {
+          "question": "Wat is de typische schaal van een WAN?",
+          "options": [
+            "Staat, land of wereldwijd",
+            "Stad of metropolitaan gebied",
+            "Groep gebouwen op een campus",
+            "Één gebouw of ruimte"
+          ],
+          "correct": 0,
+          "explanation": "Een WAN (Wide Area Network) verbindt netwerken over grote geografische afstanden: van enkele kilometers tot duizenden kilometers, over staten, landen of wereldwijd."
+        },
+        {
+          "question": "Wat is het grootste voordeel van een full mesh-topologie?",
+          "options": [
+            "Het is de goedkoopste topologie",
+            "Het vereist de minste bekabeling",
+            "Maximale foutbestendigheid doordat elk knooppunt direct verbonden is met elk ander knooppunt",
+            "Het eenvoudigst te configureren en beheren"
+          ],
+          "correct": 2,
+          "explanation": "Bij full mesh is elk knooppunt direct verbonden met elk ander knooppunt. Dit biedt maximale redundantie en foutbestendigheid (high fault tolerance), maar is ook de duurste optie."
+        },
+        {
+          "question": "Een beheerder wil netwerkverkeer van de HR-afdeling scheiden van de ICT-afdeling op hetzelfde fysieke switch-netwerk. Welke technologie past hij toe?",
+          "options": [
+            "NAT (Network Address Translation)",
+            "STP (Spanning Tree Protocol)",
+            "VLAN (Virtual Local Area Network)",
+            "OSPF (Open Shortest Path First)"
+          ],
+          "correct": 2,
+          "explanation": "VLANs (Virtual LANs) maken het mogelijk om netwerkverkeer logisch te scheiden op dezelfde fysieke switch-infrastructuur. Dit wordt toegepast in de access layer voor security- en prestatiedoeleinden."
+        },
+        {
+          "question": "Welk routingprotocol ondersteunt VLSM?",
+          "options": [
+            "RIP versie 1",
+            "OSPF",
+            "Uitsluitend statische routing",
+            "Geen enkel routingprotocol is vereist voor VLSM"
+          ],
+          "correct": 1,
+          "explanation": "VLSM wordt ondersteund door: RIP versie 2, OSPF, EIGRP, Dual IS-IS en BGP. RIP versie 1 ondersteunt VLSM NIET, omdat het classful is."
+        },
+        {
+          "question": "Wat is een kenmerk van de hub-and-spoke topologie?",
+          "options": [
+            "Elk knooppunt is direct verbonden met elk ander knooppunt",
+            "Het biedt volledige redundantie tussen alle knooppunten",
+            "Er is geen redundantie; het lijkt op een ster-topologie",
+            "Het is altijd goedkoper dan partial mesh"
+          ],
+          "correct": 2,
+          "explanation": "Hub-and-spoke is vergelijkbaar met de ster-topologie: één centraal knooppunt (hub) verbonden met spokes. Er is geen redundantie — als de hub uitvalt, valt het hele netwerk uit."
+        },
+        {
+          "question": "Wanneer is een two-tier (collapsed core) ontwerp het meest geschikt?",
+          "options": [
+            "Een kleine campus in één gebouw waar een aparte core layer niet nodig is",
+            "Wanneer meer dan twee paar distribution switches vereist zijn",
+            "In grote enterprise netwerken die meerdere landen omspannen",
+            "Wanneer maximale redundantie tussen distribution layers vereist is"
+          ],
+          "correct": 0,
+          "explanation": "Bij een kleine campus in één gebouw kan de core layer worden samengevoegd met de distribution layer (collapsed core). Dit is kostenefficiënt wanneer een aparte core niet nodig is."
+        },
+        {
+          "question": "Welke technologie wordt geassocieerd met een PAN (Personal Area Network)?",
+          "options": [
+            "IEEE 802.11 WiFi",
+            "Cat6 Ethernet-kabel",
+            "Glasvezelkabel",
+            "Bluetooth"
+          ],
+          "correct": 3,
+          "explanation": "Een PAN is een netwerk op persoonlijke schaal (enkele meters). Bluetooth is de typische draadloze technologie. USB is een voorbeeld van een bedrade PAN-verbinding (bijv. pc naar camera)."
+        },
+        {
+          "question": "Hoeveel bruikbare hostadressen biedt een /27-subnet?",
+          "options": [
+            "32",
+            "30",
+            "28",
+            "16"
+          ],
+          "correct": 1,
+          "explanation": "Een /27 subnet heeft 32 adressen totaal (2^5). Minus netwerkadres en broadcastadres = 30 bruikbare hostadressen. Subnetmasker: 255.255.255.224."
+        },
+        {
+          "question": "Een bedrijf wil drie vestigingen in verschillende steden met elkaar verbinden via een privaat telecommunicatienetwerk. Om welk type netwerk gaat het?",
+          "options": [
+            "LAN",
+            "PAN",
+            "CAN",
+            "WAN"
+          ],
+          "correct": 3,
+          "explanation": "Een WAN (Wide Area Network) verbindt meerdere LANs over grote geografische afstanden. Wanneer een bedrijf vestigingen in verschillende steden of landen met een privaat netwerk verbindt, is dat per definitie een WAN."
+        },
+        {
+          "question": "Een aantal pc's is verbonden via een HUB in een ster-topologie. Wat is de logische topologie?",
+          "options": [
+            "Point-to-Point",
+            "Ring",
+            "Bus (multiaccess)",
+            "Full mesh"
+          ],
+          "correct": 2,
+          "explanation": "Een HUB stuurt data naar alle poorten tegelijk (broadcast). Hierdoor is de logische topologie Bus (multiaccess): alle apparaten delen hetzelfde medium en slechts één kan tegelijk zenden."
+        },
+        {
+          "question": "Wanneer wordt een three-tier ontwerp aanbevolen volgens het Cisco hiërarchische model?",
+          "options": [
+            "Altijd, ongeacht de netwerkgrootte",
+            "Alleen voor netwerken met minder dan 50 gebruikers",
+            "Wanneer het netwerk past in één gebouw",
+            "Wanneer meer dan twee paar distribution switches vereist zijn"
+          ],
+          "correct": 3,
+          "explanation": "Cisco beveelt een three-tier design aan wanneer meer dan twee paar distribution switches vereist zijn. Dit scheidt de core en distribution layers en biedt betere schaalbaarheid."
+        },
+        {
+          "question": "Wat is de primaire functie van de distribution layer?",
+          "options": [
+            "Eindgebruikersconnectiviteit bieden via access switches",
+            "Routing, filtering en WAN-toegang verzorgen tussen access en core layers",
+            "Als high-speed backbone van het enterprise netwerk fungeren",
+            "Draadloze access points beheren in het netwerk"
+          ],
+          "correct": 1,
+          "explanation": "De distribution layer vormt het communicatiepunt tussen access en core. Primaire functies: routing, filtering, WAN-toegang en QoS. Het bepaalt ook de snelste route voor netwerkaanvragen."
+        },
+        {
+          "question": "Wat is de typische maximale afstand van een CAN (Campus Area Network)?",
+          "options": [
+            "Circa 1,6 km (1 mijl) of minder",
+            "Circa 100 meter",
+            "Enkele meters",
+            "Duizenden kilometers"
+          ],
+          "correct": 0,
+          "explanation": "Een CAN beslaat een groep gebouwen op een campus, typisch tot circa 1,6 km (1 mijl). Het gebruikt fiber of coax bekabeling en soms microwave draadloos."
+        },
+        {
+          "question": "Wat is een belangrijk voordeel van VLSM ten opzichte van classful subnetting?",
+          "options": [
+            "Het vereist slechts één subnetmasker voor het gehele netwerk",
+            "Het wordt ondersteund door alle routingprotocollen inclusief RIP v1",
+            "Het maakt efficiënt gebruik van IP-adresruimte door per subnet een ander masker te gebruiken",
+            "Het vereenvoudigt het netwerkontwerp door vaste subnetgroottes te gebruiken"
+          ],
+          "correct": 2,
+          "explanation": "VLSM (Variable Length Subnet Masks) staat toe dat je per subnet een ander masker gebruikt, afgestemd op het benodigde aantal hosts. Hierdoor worden adressen niet onnodig verspild."
+        },
+        {
+          "question": "Welke uitspraak over access-switches in het hiërarchische model is correct?",
+          "options": [
+            "Ze zijn onderling verbonden voor redundantie",
+            "Ze zijn niet onderling verbonden; communicatie verloopt via de distribution layer",
+            "Ze verbinden direct met de core layer",
+            "Ze vervangen de functie van routers in het netwerk"
+          ],
+          "correct": 1,
+          "explanation": "In het hiërarchische LAN-model zijn access-switches NIET onderling verbonden. Communicatie tussen eindapparaten op verschillende access-switches verloopt altijd via de distribution layer."
+        },
+        {
+          "question": "Wat is het doel van het scheiden van de ontwikkel-, test-, acceptatie- en productie-omgeving (OTAP) in een bedrijfsnetwerk?",
+          "options": [
+            "Kosten besparen door minder servers te gebruiken",
+            "Voorkomen dat wijzigingen in de ontwikkelomgeving direct impact hebben op de productieomgeving",
+            "Alle gebruikers tegelijk toegang geven tot de nieuwste software",
+            "De netwerksnelheid verhogen door verkeer te verdelen"
+          ],
+          "correct": 1,
+          "explanation": "Een OTAP-omgeving scheidt de levenscyclus van software: Ontwikkeling → Test → Acceptatie → Productie. Dit voorkomt dat onstabiele of ongeteste code de productieomgeving verstoort. Dit is een netwerk-ontwerp- en security-principe."
+        },
+        {
+          "question": "Wat is een groot nadeel van bus-topologie?",
+          "options": [
+            "Als de backbone-kabel uitvalt, stopt alle netwerkcommunicatie",
+            "Het vereist een centrale switch die een single point of failure is",
+            "Het is de duurste topologie om te implementeren",
+            "Het biedt geen enkele vorm van detectie van datacollisies"
+          ],
+          "correct": 0,
+          "explanation": "Bij bus-topologie fungeert één kabel als backbone. Een storing in deze kabel onderbreekt alle communicatie in het netwerk. Dit is het grootste nadeel van bus-topologie."
+        },
+        {
+          "question": "Hoeveel bruikbare hostadressen biedt een /26-subnet?",
+          "options": [
+            "64",
+            "126",
+            "62",
+            "30"
+          ],
+          "correct": 2,
+          "explanation": "Een /26 subnet heeft 64 adressen totaal (2^6). Minus netwerkadres en broadcastadres = 62 bruikbare hostadressen. Subnetmasker: 255.255.255.192."
+        },
+        {
+          "question": "Hoe verschilt partial mesh van hub-and-spoke topologie?",
+          "options": [
+            "Partial mesh heeft minder redundantie dan hub-and-spoke",
+            "Partial mesh biedt meer redundantie dan hub-and-spoke, maar is duurder",
+            "Partial mesh verbindt elk knooppunt direct met elk ander knooppunt",
+            "Partial mesh en hub-and-spoke zijn identiek qua kosten"
+          ],
+          "correct": 1,
+          "explanation": "Partial mesh is een hybride van hub-and-spoke en full mesh. Het biedt meer redundantie dan hub-and-spoke (niet elk knooppunt is een single point of failure), maar is goedkoper dan full mesh."
+        },
+        {
+          "question": "VERHAALVRAAG – ITM Netwerkontwerp Nieuwegein\n\nDe ICT-afdeling van ITM moet het netwerk voor de hoofdvestiging in Nieuwegein (220 medewerkers, 8 afdelingen) opnieuw inrichten. De eisen zijn: (1) gescheiden netwerkverkeer per afdeling voor security, (2) gecentraliseerde routering en internettoegangsbeheer, (3) een snelle verbinding tussen de distributiebblokken van het gebouw, (4) draadloze toegang voor BYOD. Welk ontwerp voldoet het best aan al deze eisen?",
+          "options": [
+            "Een plat netwerk waarbij alle apparaten verbonden zijn aan één grote switch",
+            "Een ring-topologie die alle afdelingswitches in serie verbindt",
+            "Een two-tier ontwerp waarbij access en distribution samengevoegd zijn, zonder core layer",
+            "Een three-tier hiërarchisch ontwerp met Access (VLANs/BYOD), Distribution (routing/filtering/security) en Core (backbone) layers"
+          ],
+          "correct": 3,
+          "explanation": "Een three-tier hiërarchisch ontwerp voldoet aan alle eisen: Access layer voor VLAN-segmentatie en draadloze toegang (BYOD), Distribution layer voor routing, filtering en gecentraliseerd toegangsbeheer, en een Core layer voor de snelle backbone tussen distributieblokken."
+        },
+        {
+          "question": "VERHAALVRAAG – VLSM Berekening bij ITM\n\nEen netwerkbeheerder bij ITM werkt met adresblok 192.168.10.0/24. Hij past VLSM toe voor drie subnetten (begin altijd met het grootste): Afdeling Vracht (60 hosts), Afdeling Logistiek (25 hosts), WAN-link routers (2 hosts). Welk subnetadres en masker zijn correct voor de afdeling Vracht (het grootste subnet)?",
+          "options": [
+            "192.168.10.0/26 — subnetmasker 255.255.255.192, biedt 62 bruikbare adressen",
+            "192.168.10.0/27 — subnetmasker 255.255.255.224, biedt 30 bruikbare adressen",
+            "192.168.10.0/25 — subnetmasker 255.255.255.128, biedt 126 bruikbare adressen",
+            "192.168.10.0/24 — subnetmasker 255.255.255.0, biedt 254 bruikbare adressen"
+          ],
+          "correct": 0,
+          "explanation": "Voor 60 hosts is een /26 subnet nodig (2^6 = 64 adressen, 62 bruikbaar). /25 heeft 126 bruikbare adressen — meer dan nodig, verspilling. Bij VLSM begin je altijd met het grootste subnet: 192.168.10.0/26 (adresbereik .0 t/m .63)."
+        },
+        {
+          "question": "VERHAALVRAAG – Lagenanalyse ITM-netwerk\n\nEen netwerkarchitect analyseert het nieuwe ITM-netwerk. Een collega heeft firewalls, IPS-apparaten en high-speed multilayer switches geplaatst in een bepaalde laag. De architect stelt ook vast dat communicatie tussen eindapparaten op verschillende afdelingswitches via deze laag verloopt. Een junior IT-student suggereert dat deze apparaten beter in de access layer geplaatst kunnen worden. Waarom heeft de student ongelijk?",
+          "options": [
+            "De access layer bevat alleen eindapparaten en connectiviteitsapparatuur, niet de beveiligings- en routeringsapparaten",
+            "IPS en firewalls kunnen technisch gezien alleen functioneren in de core layer",
+            "Deze apparaten horen in de distribution layer, die routing, filtering en WAN-toegang verzorgt en de grenslaag vormt tussen access en core",
+            "De student heeft gelijk; firewalls mogen overal in het netwerk geplaatst worden"
+          ],
+          "correct": 2,
+          "explanation": "Firewalls, IPS-apparaten en multilayer switches horen in de distribution layer. Deze laag verzorgt routing, filtering, QoS en WAN-toegang, en vormt de controle- en servicelaag tussen access en core. De access layer is gereserveerd voor eindgebruikersconnectiviteit via switches (en optioneel wireless)."
+        }
+      ]
+    },
+    {
+      "id": "week2",
+      "name": "Week 2: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "week3",
+      "name": "Week 3: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "week4",
+      "name": "Week 4: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "week5",
+      "name": "Week 5: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "week6",
+      "name": "Week 6: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "week7",
+      "name": "Week 7: Binnenkort beschikbaar",
+      "questions": []
+    },
+    {
+      "id": "examen",
+      "name": "Examen: Binnenkort beschikbaar",
+      "questions": []
+    }
+  ]
+}

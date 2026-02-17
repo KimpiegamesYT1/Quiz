@@ -1,0 +1,46 @@
+TOETSMATRIJS NETWERKINFRASTRUCTUUR
+
+Totaal gewicht: 100%
+Totaal aantal vragen: 40
+
+-------------------------------------------------------------------------------
+LEERDOEL 1: [INFRA/ANA/1]
+Beschrijving: Bestaand netwerk analyseren en plaatsen in referentiemodellen (OSI).
+Week:         1
+Gewicht:      11% (Onthouden: 5,5% | Toepassen: 5,5%)
+Vragen:       4 (Onthouden: 2 | Toepassen: 2)
+
+LEERDOEL 2: [INFRA/ONTW/1]
+Beschrijving: Technisch ontwerp maken multi-site netwerk (componenten/protocollen).
+Week:         1 & 2
+Gewicht:      11% (Onthouden: 0% | Toepassen: 11%)
+Vragen:       4 (Onthouden: 0 | Toepassen: 4)
+
+LEERDOEL 3: [INFRA/REA/1] (Lokaal)
+Beschrijving: Bouwen van een lokaal netwerk op basis van ontwerp (fysiek/virtueel).
+Week:         3 & 4
+Gewicht:      34% (Onthouden: 17% | Toepassen: 17%)
+Vragen:       14 (Onthouden: 7 | Toepassen: 7)
+
+LEERDOEL 4: [INFRA/REA/1] (Verbinden)
+Beschrijving: Meerdere lokale netwerken met elkaar verbinden voor data-uitwisseling.
+Week:         4 & 5
+Gewicht:      22% (Onthouden: 11% | Toepassen: 11%)
+Vragen:       10 (Onthouden: 5 | Toepassen: 5)
+
+LEERDOEL 5: [INFRA/REA/1] (Security)
+Beschrijving: Basis beveiliging opzetten en configureren voor netwerken.
+Week:         6
+Gewicht:      11% (Onthouden: 5,5% | Toepassen: 5,5%)
+Vragen:       4 (Onthouden: 2 | Toepassen: 2)
+
+LEERDOEL 6: [INFRA/ONTW/1 en REA/1] (Monitoring)
+Beschrijving: Monitoring-programmatuur installeren en configureren.
+Week:         7
+Gewicht:      11% (Onthouden: 5,5% | Toepassen: 5,5%)
+Vragen:       4 (Onthouden: 2 | Toepassen: 2)
+-------------------------------------------------------------------------------
+
+SAMENVATTING TAXONOMIE:
+- Onthouden (Totaal): 44,5%
+- Toepassen (Totaal): 55,5%

@@ -1,0 +1,39 @@
+MODULE OVERZICHT: 1.3 COMPUTERNETWERKEN (2025-2026)
+
+ALGEMENE INFO
+-------------------------------------------------------------------------------
+Code Leereenheid:  L.ACT.30221
+Locatie:           Enschede (Leerjaar 1, Kwartiel 3)
+Studiepunten:      5 EC
+Moduleleider:      John Tutert
+
+TOETSING (T.ACT.55844)
+-------------------------------------------------------------------------------
+Vorm:              Digitaal (TestVision) - 135 minuten
+Type:              40 Multiple Choice vragen
+Cesuur:            66,3%
+Hulpmiddelen:      Geen (Generatieve AI niet toegestaan tijdens toets)
+
+LEERDOELEN & WEIGHT (TOP 3)
+-------------------------------------------------------------------------------
+1. [IN/REA/1] Bouwen lokaal netwerk:             34% (14 vragen)
+2. [IN/REA/1] Verbinden lokale netwerken:        22% (10 vragen)
+3. [IN/ANA/1] Analyseren & OSI-model:            11% (4 vragen)
+   [IN/ONT/1] Technisch ontwerp multi-site:      11% (4 vragen)
+   [IN/REA/1] Basis beveiliging:                 11% (4 vragen)
+   [ONT/REA]  Monitoring & configuratie:         11% (4 vragen)
+
+STUDIEBELASTING (PER WEEK)
+-------------------------------------------------------------------------------
+Hoorcollege:       3 uur
+Practicum:         3 uur
+Zelfstudie:        4 - 10 uur
+
+LEERMIDDELEN
+-------------------------------------------------------------------------------
+Boek:              CompTIA Network+ Study Guide (Lammle & Buhagiar, 6th Ed)
+Software:          Cisco Packet Tracer 8.2.x
+Extra:             VLSM Workbook Student Edition v2.0
+                   Practicum Handleiding v187 (John Tutert)
+-------------------------------------------------------------------------------
+"Wie dit leest is een ICT-er!"
