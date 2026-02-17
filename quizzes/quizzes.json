@@ -6,4 +6,12 @@
         "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
         "subtitle": "kwartiel 2"
     }
+    ,
+    {
+        "id": "operating-systems",
+        "title": "Operating Systems",
+        "file": "quizzes/operating-systems.json",
+        "description": "Oefen voor Operating Systems met vragen over geheugenbeheer, bestandssystemen, synchronisatie en meer.",
+        "subtitle": "kwartiel 3"
+    }
 ]
