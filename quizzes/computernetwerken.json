@@ -339,8 +339,339 @@
     },
     {
       "id": "week2",
-      "name": "Week 2: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Week 2: Internet Protocol & VLSM",
+      "questions": [
+        {
+          "question": "Wat is de maximale waarde van één octet in een IPv4-adres?",
+          "options": [
+            "128",
+            "255",
+            "256",
+            "512"
+          ],
+          "correct": 1,
+          "explanation": "Een octet bestaat uit 8 bits. De maximale waarde is 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 = 128+64+32+16+8+4+2+1 = 255."
+        },
+        {
+          "question": "Tot welke adresklasse behoort het IP-adres 172.31.45.10?",
+          "options": [
+            "Class A",
+            "Class B",
+            "Class C",
+            "Class D"
+          ],
+          "correct": 1,
+          "explanation": "Class B heeft een eerste octet tussen 128-191. Het adres 172.31.45.10 valt binnen dit bereik, dus het is een Class B-adres."
+        },
+        {
+          "question": "Wat is het classful subnetmasker van een Class C-adres?",
+          "options": [
+            "255.0.0.0 (/8)",
+            "255.255.255.0 (/24)",
+            "255.255.0.0 (/16)",
+            "255.255.255.128 (/25)"
+          ],
+          "correct": 1,
+          "explanation": "Een Class C-adres heeft standaard een /24 prefix, wat overeenkomt met subnetmasker 255.255.255.0. De eerste 24 bits (3 octets) zijn network portion."
+        },
+        {
+          "question": "Welk adresbereik is gereserveerd voor private Class A-adressen?",
+          "options": [
+            "192.168.0.0 - 192.168.255.255",
+            "172.16.0.0 - 172.31.255.255",
+            "10.0.0.0 - 10.255.255.255",
+            "127.0.0.0 - 127.255.255.255"
+          ],
+          "correct": 2,
+          "explanation": "Het private Class A-bereik is 10.0.0.0 tot 10.255.255.255. Dit is het grootste private adresbereik (16.777.216 adressen) en wordt vaak gebruikt in grote enterprise netwerken."
+        },
+        {
+          "question": "Wat is de functie van een broadcast-adres in een subnet?",
+          "options": [
+            "Het eerste bruikbare IP-adres voor een host",
+            "Het laatste bruikbare IP-adres voor een host",
+            "Een adres om alle hosts in dat subnet tegelijk te bereiken",
+            "Een adres dat alleen door de router gebruikt wordt"
+          ],
+          "correct": 2,
+          "explanation": "Het broadcast-adres (altijd het laatste adres in een subnet) wordt gebruikt om alle hosts in dat specifieke subnet tegelijk te bereiken. Broadcast-verkeer gaat NIET door een router."
+        },
+        {
+          "question": "Hoeveel bruikbare host-adressen heeft een /28 subnet?",
+          "options": [
+            "16",
+            "14",
+            "30",
+            "32"
+          ],
+          "correct": 1,
+          "explanation": "Een /28 heeft 4 host bits (32-28=4). Totaal adressen = 2^4 = 16. Bruikbare adressen = 16 - 2 (network + broadcast) = 14 bruikbare host-adressen."
+        },
+        {
+          "question": "Wat is het verschil tussen unicast en multicast verkeer?",
+          "options": [
+            "Unicast is 1-naar-1, multicast is 1-naar-groep",
+            "Unicast is sneller dan multicast",
+            "Multicast gaat niet door routers, unicast wel",
+            "Er is geen verschil, beide termen betekenen hetzelfde"
+          ],
+          "correct": 0,
+          "explanation": "Unicast-verkeer gaat van één zender naar één ontvanger (1-naar-1). Multicast-verkeer gaat van één zender naar een specifieke groep ontvangers (1-naar-groep). Multicast gebruikt Class D-adressen (224-239)."
+        },
+        {
+          "question": "Welk IP-adresbereik wordt gebruikt voor loopback-testen?",
+          "options": [
+            "10.0.0.0/8",
+            "192.168.0.0/16",
+            "127.0.0.0/8",
+            "169.254.0.0/16"
+          ],
+          "correct": 2,
+          "explanation": "Het bereik 127.0.0.0/8 is gereserveerd voor loopback-testen. Het meest gebruikte adres is 127.0.0.1 (localhost), waarmee een apparaat zichzelf kan testen zonder netwerkverkeer te genereren."
+        },
+        {
+          "question": "Hoeveel bits heeft een IPv6-adres?",
+          "options": [
+            "32 bits",
+            "64 bits",
+            "128 bits",
+            "256 bits"
+          ],
+          "correct": 2,
+          "explanation": "IPv6 gebruikt 128-bit adressen (tegenover 32-bit voor IPv4). Dit levert 2^128 = 3,4 × 10^38 mogelijke adressen op, wat voldoende is voor vele generaties."
+        },
+        {
+          "question": "Bij VLSM-berekeningen moet je altijd beginnen met het alloceren van welk subnet?",
+          "options": [
+            "Het subnet met de minste hosts",
+            "Het subnet met de meeste hosts",
+            "Het maakt niet uit, volgorde is willekeurig",
+            "Altijd eerst de WAN-links"
+          ],
+          "correct": 1,
+          "explanation": "Bij VLSM begin je ALTIJD met het grootste subnet (meeste hosts) en werk je naar het kleinste. Dit voorkomt verspilling van adresruimte en zorgt voor efficiënte allocatie."
+        },
+        {
+          "question": "Welk subnetmasker hoort bij de CIDR-notatie /26?",
+          "options": [
+            "255.255.255.192",
+            "255.255.255.224",
+            "255.255.255.240",
+            "255.255.255.128"
+          ],
+          "correct": 0,
+          "explanation": "Een /26 betekent 26 bits op '1' in het subnetmasker. Dit geeft: 11111111.11111111.11111111.11000000 = 255.255.255.192. De laatste 6 bits (64 adressen) zijn voor hosts."
+        },
+        {
+          "question": "Wat gebeurt er met broadcast-verkeer als het een router bereikt?",
+          "options": [
+            "De router stuurt het door naar alle verbonden netwerken",
+            "De router blokkeert het broadcast-verkeer",
+            "De router converteert het naar unicast-verkeer",
+            "De router stuurt het alleen door naar het internet"
+          ],
+          "correct": 1,
+          "explanation": "Routers blokkeren broadcast-verkeer en sturen het NIET door naar andere netwerken. Broadcasts blijven binnen het lokale subnet (broadcast domain). Dit voorkomt broadcast storms in grote netwerken."
+        },
+        {
+          "question": "Bij een /25 subnet, hoeveel bits zijn er beschikbaar voor host-adressen?",
+          "options": [
+            "7 bits",
+            "8 bits",
+            "25 bits",
+            "5 bits"
+          ],
+          "correct": 0,
+          "explanation": "Een /25 betekent dat 25 bits voor de network portion zijn. Van de 32 bits blijven er 32-25 = 7 bits over voor hosts. Dit geeft 2^7 = 128 adressen, waarvan 126 bruikbaar."
+        },
+        {
+          "question": "Wat is het network-adres van 192.168.10.65/27?",
+          "options": [
+            "192.168.10.0",
+            "192.168.10.32",
+            "192.168.10.64",
+            "192.168.10.96"
+          ],
+          "correct": 2,
+          "explanation": "Een /27 subnet heeft blokken van 32 adressen (2^5). De blokken beginnen op: 0, 32, 64, 96, 128, etc. Het adres 192.168.10.65 valt in het blok dat begint bij 192.168.10.64."
+        },
+        {
+          "question": "Hoeveel subnets kunnen gecreëerd worden door 3 bits te 'lenen' van het host-gedeelte?",
+          "options": [
+            "3 subnets",
+            "6 subnets",
+            "8 subnets",
+            "16 subnets"
+          ],
+          "correct": 2,
+          "explanation": "Aantal subnets = 2^s, waarbij s het aantal geleende bits is. Met 3 geleende bits: 2^3 = 8 subnets. Elke geleende bit verdubbelt het aantal mogelijke subnets."
+        },
+        {
+          "question": "Welk type IPv6-verkeer selecteert één host uit een groep op basis van de kortste afstand?",
+          "options": [
+            "Unicast",
+            "Multicast",
+            "Anycast",
+            "Broadcast"
+          ],
+          "correct": 2,
+          "explanation": "Anycast in IPv6 selecteert één host uit een groep van hosts op basis van het kortste pad (routing protocol). Dit wordt gebruikt voor load balancing en redundantie. IPv6 heeft geen broadcast."
+        },
+        {
+          "question": "Wat is het broadcast-adres van het subnet 192.168.1.128/26?",
+          "options": [
+            "192.168.1.255",
+            "192.168.1.191",
+            "192.168.1.190",
+            "192.168.1.127"
+          ],
+          "correct": 1,
+          "explanation": "Een /26 subnet heeft 64 adressen. Het subnet 192.168.1.128/26 loopt van .128 t/m .191. Het broadcast-adres is altijd het laatste adres in het subnet: 192.168.1.191."
+        },
+        {
+          "question": "Welke uitspraak over private IP-adressen is correct?",
+          "options": [
+            "Ze zijn uniek over het hele internet",
+            "Ze kunnen niet gebruikt worden in lokale netwerken",
+            "Ze worden niet doorgestuurd op het internet en kunnen in meerdere netwerken tegelijk gebruikt worden",
+            "Ze zijn sneller dan publieke IP-adressen"
+          ],
+          "correct": 2,
+          "explanation": "Private IP-adressen (10.x.x.x, 172.16-31.x.x, 192.168.x.x) worden door ISP-routers op het internet NIET doorgestuurd. Hierdoor kunnen verschillende organisaties dezelfde private adressen gebruiken zonder conflict."
+        },
+        {
+          "question": "Hoeveel bits zijn er in totaal in een IPv4-adres?",
+          "options": [
+            "16 bits",
+            "32 bits",
+            "64 bits",
+            "24 bits"
+          ],
+          "correct": 1,
+          "explanation": "Een IPv4-adres bestaat uit 4 octets van elk 8 bits: 4 × 8 = 32 bits totaal. Dit geeft 2^32 = ongeveer 4,3 miljard unieke adressen."
+        },
+        {
+          "question": "Bij classless subnetting, wat vertegenwoordigt de formule 2^h - 2?",
+          "options": [
+            "Het aantal mogelijke subnets",
+            "Het aantal bruikbare host-adressen per subnet",
+            "Het totale aantal bits in het subnetmasker",
+            "Het aantal network bits"
+          ],
+          "correct": 1,
+          "explanation": "De formule 2^h - 2 berekent het aantal bruikbare host-adressen, waarbij h het aantal host bits is. De -2 is voor het network-adres en broadcast-adres die NIET toegewezen kunnen worden aan hosts."
+        },
+        {
+          "question": "Wat is de eerste bruikbare host-adres in het subnet 10.20.30.96/28?",
+          "options": [
+            "10.20.30.96",
+            "10.20.30.97",
+            "10.20.30.98",
+            "10.20.30.100"
+          ],
+          "correct": 1,
+          "explanation": "Het eerste adres (.96) is het network-adres en kan niet gebruikt worden voor een host. Het eerste bruikbare host-adres is altijd network-adres + 1, dus 10.20.30.97."
+        },
+        {
+          "question": "Welk private IP-bereik behoort tot Class B?",
+          "options": [
+            "10.0.0.0 - 10.255.255.255",
+            "172.16.0.0 - 172.31.255.255",
+            "192.168.0.0 - 192.168.255.255",
+            "169.254.0.0 - 169.254.255.255"
+          ],
+          "correct": 1,
+          "explanation": "Het private Class B-bereik is 172.16.0.0 t/m 172.31.255.255 (16 Class B-netwerken). Dit bereik wordt veel gebruikt in middelgrote tot grote bedrijfsnetwerken."
+        },
+        {
+          "question": "Hoeveel adressen bevat een /30 subnet totaal (inclusief network en broadcast)?",
+          "options": [
+            "2",
+            "4",
+            "8",
+            "16"
+          ],
+          "correct": 1,
+          "explanation": "Een /30 heeft 2 host bits (32-30=2). Totaal adressen = 2^2 = 4. Hiervan zijn er 2 bruikbaar (4-2=2). /30 wordt vaak gebruikt voor point-to-point WAN-links tussen routers."
+        },
+        {
+          "question": "Wat is het doel van het opdelen van een netwerk in subnets?",
+          "options": [
+            "Om de internetsnelheid te verhogen",
+            "Om meer IPv4-adressen te creëren",
+            "Om verkeer te segmenteren voor betere beveiliging, performance en beheer",
+            "Om IPv6 te vermijden"
+          ],
+          "correct": 2,
+          "explanation": "Subnetting verdeelt een netwerk in kleinere, beheersbare segmenten. Dit verbetert beveiliging (segmentatie), performance (kleinere broadcast domains), en maakt efficiënt gebruik van IP-adresruimte mogelijk."
+        },
+        {
+          "question": "Welke CIDR-notatie geeft een subnetmasker van 255.255.255.224?",
+          "options": [
+            "/26",
+            "/27",
+            "/28",
+            "/25"
+          ],
+          "correct": 1,
+          "explanation": "255.255.255.224 in binair = 11111111.11111111.11111111.11100000. Tel de '1'-bits: 24 + 3 = 27 bits. Dit komt overeen met /27 CIDR-notatie (32 host-adressen, 30 bruikbaar)."
+        },
+        {
+          "question": "Een beheerder heeft het netwerk 192.168.50.0/24. Hij wil dit verdelen in 8 gelijke subnets. Welke prefix moet hij gebruiken?",
+          "options": [
+            "/25",
+            "/26",
+            "/27",
+            "/28"
+          ],
+          "correct": 2,
+          "explanation": "Voor 8 subnets zijn 3 extra bits nodig (2^3 = 8). Het originele /24 + 3 bits = /27. Elk /27-subnet heeft 32 adressen (30 bruikbaar): .0, .32, .64, .96, .128, .160, .192, .224."
+        },
+        {
+          "question": "Wat is het verschil tussen een Class D en Class E IP-adres?",
+          "options": [
+            "Class D is voor unicast, Class E voor broadcast",
+            "Class D (224-239) is voor multicast, Class E (240-255) is gereserveerd voor experimenteel gebruik",
+            "Class D is sneller dan Class E",
+            "Er is geen verschil"
+          ],
+          "correct": 1,
+          "explanation": "Class D (224-239) wordt gebruikt voor multicast-verkeer (1-naar-groep). Class E (240-255) is gereserveerd voor experimenteel/research gebruik en wordt niet in productie-netwerken gebruikt."
+        },
+        {
+          "question": "VERHAALVRAAG – Subnetting Scenario\n\nEen netwerkbeheerder krijgt het adresbereik 192.168.100.0/24 toegewezen. Hij moet vier afdelingen van internet voorzien: Sales (55 hosts), IT (28 hosts), HR (12 hosts) en een WAN-link tussen twee routers (2 hosts). Hij past VLSM toe om adresruimte te besparen. Welke subnet-toewijzing is correct als hij begint met het grootste subnet?",
+          "options": [
+            "Sales: 192.168.100.0/26 (62 hosts), IT: 192.168.100.64/27 (30 hosts), HR: 192.168.100.96/28 (14 hosts), WAN: 192.168.100.112/30 (2 hosts)",
+            "Sales: 192.168.100.0/25 (126 hosts), IT: 192.168.100.128/26 (62 hosts), HR: 192.168.100.192/27 (30 hosts), WAN: 192.168.100.224/30 (2 hosts)",
+            "Sales: 192.168.100.0/28 (14 hosts), IT: 192.168.100.16/28 (14 hosts), HR: 192.168.100.32/28 (14 hosts), WAN: 192.168.100.48/30 (2 hosts)",
+            "Alle afdelingen krijgen /24 subnets voor maximale flexibiliteit"
+          ],
+          "correct": 0,
+          "explanation": "Bij VLSM begin je met het grootste subnet (Sales: 55 hosts → /26 met 62 bruikbaar). Dan IT (28 hosts → /27 met 30), HR (12 hosts → /28 met 14), en WAN (2 hosts → /30 met 2). Optie A gebruikt precies genoeg adresruimte zonder verspilling."
+        },
+        {
+          "question": "VERHAALVRAAG – Network/Broadcast Analyse\n\nEen junior netwerk-engineer analyseert het subnet 172.16.48.0/20 en stelt dat het broadcast-adres 172.16.48.255 is. Een senior collega corrigeert hem. Wat is het werkelijke broadcast-adres en waarom is de junior engineer fout?",
+          "options": [
+            "172.16.63.255 — een /20 heeft 12 host bits (4096 adressen), dus het subnet loopt van .48.0 tot .63.255",
+            "172.16.48.255 — de junior had gelijk, het laatste adres van de derde octet is altijd het broadcast-adres",
+            "172.16.49.255 — een /20 subnet heeft precies 512 adressen",
+            "172.16.255.255 — broadcast adressen gebruiken altijd 255 in de laatste twee octets"
+          ],
+          "correct": 0,
+          "explanation": "Een /20 betekent 20 network bits en 12 host bits (2^12 = 4096 adressen). Het subnet begint bij 172.16.48.0 en eindigt bij 172.16.63.255. De junior vergat dat bij /20 de subnetgrens NIET op octetlen valt — het subnet beslaat 16 waarden in de derde octet (.48 t/m .63)."
+        },
+        {
+          "question": "VERHAALVRAAG – VLSM Design Fout\n\nEen student krijgt de opdracht om 192.168.5.0/24 te verdelen voor: LAN1 (50 hosts), LAN2 (25 hosts), LAN3 (10 hosts). Hij wijst toe: LAN1 = .0/28, LAN2 = .16/28, LAN3 = .32/28. De docent geeft een onvoldoende. Wat is de belangrijkste fout?",
+          "options": [
+            "Een /28 subnet heeft slechts 14 bruikbare adressen — te weinig voor LAN1 (50 hosts) en LAN2 (25 hosts)",
+            "De student had /24 subnets moeten gebruiken voor alle LANs",
+            "192.168.5.0 is een ongeldig startadres voor subnetting",
+            "De student vergat het broadcast-adres toe te wijzen"
+          ],
+          "correct": 0,
+          "explanation": "Een /28 subnet heeft slechts 16 adressen totaal (14 bruikbaar). Dit is voldoende voor LAN3 (10 hosts), maar NIET voor LAN1 (50 hosts → minimaal /26) of LAN2 (25 hosts → minimaal /27). De student begreep niet hoe je het juiste subnetmasker kiest op basis van het aantal benodigde hosts."
+        }
+      ]
     },
     {
       "id": "week3",
