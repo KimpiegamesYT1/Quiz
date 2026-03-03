@@ -415,6 +415,9 @@ function initPacmanGame() {
     // ── Main loop ────────────────────────────────────────────────────────────
     let tickAccum = 0;
     let ghostMoveCounter = 0;
+    let pacMoveCounter  = 0;
+    const PAC_SPEED   = 4; // move 1 tile every N ticks  (~7.5 tiles/s at 30fps)
+    const GHOST_SPEED = 6; // ghosts slightly slower
 
     function tick() {
         if (paused || gameOver || won) return;
@@ -433,12 +436,13 @@ function initPacmanGame() {
             if (frightTimer === 0) ghosts.forEach(g => { g.frightened = false; });
         }
 
-        // Move Pac-Man every frame
-        pacMove();
+        // Move Pac-Man every PAC_SPEED ticks
+        pacMoveCounter++;
+        if (pacMoveCounter % PAC_SPEED === 0) pacMove();
 
-        // Move ghosts every other frame (slower)
+        // Move ghosts every GHOST_SPEED ticks
         ghostMoveCounter++;
-        if (ghostMoveCounter % 2 === 0) ghosts.forEach(g => ghostMove(g));
+        if (ghostMoveCounter % GHOST_SPEED === 0) ghosts.forEach(g => ghostMove(g));
 
         checkCollisions();
 
