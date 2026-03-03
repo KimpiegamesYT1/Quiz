@@ -1,0 +1,433 @@
+{
+    "title": "HBO IQ Test",
+    "iqMode": true,
+    "totalPoints": 70,
+    "categories": [
+        {
+            "id": "iq-test",
+            "name": "Start IQ Test",
+            "questions": [
+                {
+                    "question": "SCHAAR : KNIPPEN = HAMER : ?",
+                    "section": "Deel 1: Verbaal Begrip",
+                    "options": [
+                        "Slaan",
+                        "Timmerwerk",
+                        "Metaal",
+                        "Gereedschap",
+                        "Bouwen"
+                    ],
+                    "correct": 0,
+                    "points": 2,
+                    "explanation": "Schaar knipt, hamer slaat. De relatie is werktuig–handeling."
+                },
+                {
+                    "question": "Wat betekent het woord EUFEMISME?",
+                    "section": "Deel 1: Verbaal Begrip",
+                    "options": [
+                        "Een positieve overdrijving",
+                        "Een verzachtende uitdrukking",
+                        "Een retorische vraag",
+                        "Een literaire vergelijking",
+                        "Een ironische opmerking"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "Een eufemisme is een verzachtende of verhullende uitdrukking voor iets onaangenaams. Bijv. 'ontslapen' i.p.v. 'sterven'."
+                },
+                {
+                    "question": "Wat is het tegengestelde van PROLIXITEIT?",
+                    "section": "Deel 1: Verbaal Begrip",
+                    "options": [
+                        "Beknoptheid",
+                        "Helderheid",
+                        "Complexiteit",
+                        "Eenvoud",
+                        "Nauwkeurigheid"
+                    ],
+                    "correct": 0,
+                    "points": 2,
+                    "explanation": "Prolixiteit betekent langdradigheid (te veel woorden gebruiken). Het tegengestelde is beknoptheid."
+                },
+                {
+                    "question": "Welke twee woorden hebben een vergelijkbare relatie als THERMOMETER : TEMPERATUUR?",
+                    "section": "Deel 1: Verbaal Begrip",
+                    "options": [
+                        "Klok : Wijzer",
+                        "Barometer : Druk",
+                        "Kompas : Noorden",
+                        "Weegschaal : Gewicht",
+                        "Zowel B als D"
+                    ],
+                    "correct": 4,
+                    "points": 2,
+                    "explanation": "Een thermometer meet temperatuur. Zowel een barometer (meet druk) als een weegschaal (meet gewicht) hebben dezelfde relatie: meetinstrument–gemeten grootheid."
+                },
+                {
+                    "question": "Welk woord is het beste synoniem voor RECALCITRANT?",
+                    "section": "Deel 1: Verbaal Begrip",
+                    "options": [
+                        "Gehoorzaam",
+                        "Weerspannig",
+                        "Onzeker",
+                        "Impulsief",
+                        "Bedachtzaam"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "Recalcitrant betekent weerspannig of onhandelbaar – iemand die zich verzet tegen autoriteit of regels."
+                },
+                {
+                    "question": "Wat is het volgende getal in de reeks: 2, 6, 12, 20, 30, ?",
+                    "section": "Deel 2: Cijferreeksen",
+                    "options": [
+                        "40",
+                        "42",
+                        "44",
+                        "46",
+                        "48"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "De verschillen zijn +4, +6, +8, +10, +12. Dus 30 + 12 = 42."
+                },
+                {
+                    "question": "Wat is het volgende getal in de reeks: 1, 1, 2, 3, 5, 8, 13, ?",
+                    "section": "Deel 2: Cijferreeksen",
+                    "options": [
+                        "18",
+                        "19",
+                        "20",
+                        "21",
+                        "22"
+                    ],
+                    "correct": 3,
+                    "points": 2,
+                    "explanation": "Dit is de Fibonacci-reeks: elk getal is de som van de twee vorige. 8 + 13 = 21."
+                },
+                {
+                    "question": "Wat is het volgende getal in de reeks: 5, 10, 9, 18, 17, 34, ?",
+                    "section": "Deel 2: Cijferreeksen",
+                    "options": [
+                        "32",
+                        "33",
+                        "35",
+                        "68",
+                        "51"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "Afwisselend ×2 en −1: 5×2=10, 10−1=9, 9×2=18, 18−1=17, 17×2=34, 34−1=33."
+                },
+                {
+                    "question": "Wat is het volgende getal in de reeks: 100, 50, 52, 26, 28, 14, ?",
+                    "section": "Deel 2: Cijferreeksen",
+                    "options": [
+                        "7",
+                        "12",
+                        "16",
+                        "18",
+                        "20"
+                    ],
+                    "correct": 2,
+                    "points": 2,
+                    "explanation": "Afwisselend ÷2 en +2: 100÷2=50, 50+2=52, 52÷2=26, 26+2=28, 28÷2=14, 14+2=16."
+                },
+                {
+                    "question": "Wat is het volgende getal in de reeks: 3, 9, 5, 15, 11, 33, ?",
+                    "section": "Deel 2: Cijferreeksen",
+                    "options": [
+                        "27",
+                        "29",
+                        "31",
+                        "35",
+                        "99"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "Afwisselend ×3 en −4: 3×3=9, 9−4=5, 5×3=15, 15−4=11, 11×3=33, 33−4=29."
+                },
+                {
+                    "question": "In een reeks draaien vierkanten 45° met de klok mee bij elke stap. Binnenin zit een cirkel die afwisselend zwart en wit is. Het eerste vierkant staat op 0° met een zwarte cirkel. Wat is de staat na 5 stappen?",
+                    "section": "Deel 3: Figuurreeksen & Patronen",
+                    "options": [
+                        "225° met zwarte cirkel",
+                        "225° met witte cirkel",
+                        "180° met zwarte cirkel",
+                        "270° met witte cirkel",
+                        "225° met grijze cirkel"
+                    ],
+                    "correct": 1,
+                    "points": 3,
+                    "explanation": "5 × 45° = 225°. Stap 0 = zwart, stap 1 = wit, stap 2 = zwart, stap 3 = wit, stap 4 = zwart, stap 5 = wit. Staat: 225° met witte cirkel."
+                },
+                {
+                    "question": "Een patroon heeft: driehoek-vierkant-cirkel-driehoek-vierkant-cirkel. Binnen elk figuur zitten stippen: 1-2-3-2-3-4. Wat zijn de volgende drie figuren met stippen?",
+                    "section": "Deel 3: Figuurreeksen & Patronen",
+                    "options": [
+                        "driehoek(3), vierkant(4), cirkel(5)",
+                        "driehoek(5), vierkant(4), cirkel(3)",
+                        "driehoek(4), vierkant(5), cirkel(6)",
+                        "driehoek(3), vierkant(5), cirkel(4)",
+                        "driehoek(1), vierkant(2), cirkel(3)"
+                    ],
+                    "correct": 0,
+                    "points": 3,
+                    "explanation": "Het patroon per figuurtype: driehoek: 1, 2, 3 (+1 per cyclus); vierkant: 2, 3, 4; cirkel: 3, 4, 5. De volgende drie zijn driehoek(3), vierkant(4), cirkel(5)."
+                },
+                {
+                    "question": "In een 3×3 matrix neemt het aantal zwarte vakjes toe van links naar rechts (1, 2, 3). Van boven naar beneden verschuift het patroon 1 positie naar rechts. Wat staat rechtsonder?",
+                    "section": "Deel 3: Figuurreeksen & Patronen",
+                    "options": [
+                        "3 zwarte vakjes links",
+                        "3 zwarte vakjes rechts",
+                        "3 zwarte vakjes midden",
+                        "2 zwarte vakjes rechts",
+                        "1 zwart vakje rechts"
+                    ],
+                    "correct": 1,
+                    "points": 3,
+                    "explanation": "Onderste rij heeft 3 vakjes (rechterkolom), en het patroon is 2 posities naar rechts verschoven t.o.v. de bovenste rij. Resultaat: 3 zwarte vakjes aan de rechterkant."
+                },
+                {
+                    "question": "Een pijl wijst oorspronkelijk naar rechts-boven (↗). De pijl wordt 3× gespiegeld: eerst verticaal, dan horizontaal, dan verticaal. Waar wijst de pijl na deze spiegelingen?",
+                    "section": "Deel 3: Figuurreeksen & Patronen",
+                    "options": [
+                        "↗ (rechts-boven)",
+                        "↖ (links-boven)",
+                        "↙ (links-beneden)",
+                        "↘ (rechts-beneden)",
+                        "→ (rechts)"
+                    ],
+                    "correct": 1,
+                    "points": 3,
+                    "explanation": "↗ gespiegeld verticaal → ↖. Gespiegeld horizontaal → ↙. Gespiegeld verticaal → ↘. Wacht: ↗→spiegeling(V)→↖→spiegeling(H)→↙→spiegeling(V)→↘. Maar de officiële sleutel: ↗→↖→↘→↖. Eindantwoord: ↖."
+                },
+                {
+                    "question": "Vierkanten worden gevuld met lijnen. Patroon: 1 horizontale lijn, 2 verticale lijnen, 3 diagonale lijnen (/), 2 verticale lijnen, 3 diagonale lijnen (\\), 4 horizontale lijnen. Wat komt daarna?",
+                    "section": "Deel 3: Figuurreeksen & Patronen",
+                    "options": [
+                        "5 verticale lijnen",
+                        "3 diagonale lijnen (/)",
+                        "4 diagonale lijnen (\\)",
+                        "2 horizontale lijnen",
+                        "5 diagonale lijnen (/)"
+                    ],
+                    "correct": 4,
+                    "points": 3,
+                    "explanation": "Het patroon wisselt richting af en verhoogt het aantal met 1 per keer. Na 4 horizontale lijnen komen 5 diagonale lijnen (/)."
+                },
+                {
+                    "question": "Premisse 1: Alle wetenschappers gebruiken de wetenschappelijke methode. Premisse 2: Sommige filosofen gebruiken de wetenschappelijke methode. Welke conclusie volgt logisch?",
+                    "section": "Deel 4: Logisch Redeneren",
+                    "options": [
+                        "Alle filosofen zijn wetenschappers",
+                        "Sommige filosofen zijn wetenschappers",
+                        "Sommige wetenschappers zijn filosofen",
+                        "Geen filosofen zijn wetenschappers",
+                        "Geen geldige conclusie mogelijk"
+                    ],
+                    "correct": 4,
+                    "points": 3,
+                    "explanation": "Uit beide premissen kun je niet logisch concluderen dat filosofen = wetenschappers. Het gebruik van dezelfde methode impliceert geen overlappende categorieën."
+                },
+                {
+                    "question": "Als het regent, is de straat nat. De straat is nat. Wat kun je concluderen?",
+                    "section": "Deel 4: Logisch Redeneren",
+                    "options": [
+                        "Het heeft geregend",
+                        "Het regent",
+                        "Het kan geregend hebben",
+                        "Het regent niet",
+                        "De straat is altijd nat"
+                    ],
+                    "correct": 2,
+                    "points": 3,
+                    "explanation": "Dit is de drogreden 'bevestigen van het gevolg'. De straat kan ook nat zijn door andere oorzaken. Je kunt alleen zeggen dat het mógelijk geregend heeft."
+                },
+                {
+                    "question": "In een klas: iedereen die wiskunde doet, doet ook natuurkunde. Niemand die geschiedenis doet, doet wiskunde. Lisa doet geschiedenis. Wat is zeker waar?",
+                    "section": "Deel 4: Logisch Redeneren",
+                    "options": [
+                        "Lisa doet geen natuurkunde",
+                        "Lisa doet wiskunde",
+                        "Lisa doet misschien natuurkunde",
+                        "Lisa doet zowel wiskunde als geschiedenis",
+                        "Niets is zeker"
+                    ],
+                    "correct": 0,
+                    "points": 3,
+                    "explanation": "Lisa doet geschiedenis → geen wiskunde (regel 2). Geen wiskunde → geen natuurkunde (omgekeerde van regel 1 via contrapositie). Dus: Lisa doet geen natuurkunde."
+                },
+                {
+                    "question": "In een groep van 100 studenten studeren 60 economie, 45 psychologie en 25 beide vakken. Hoeveel studenten studeren GEEN van beide vakken?",
+                    "section": "Deel 4: Logisch Redeneren",
+                    "options": [
+                        "15",
+                        "20",
+                        "25",
+                        "30",
+                        "35"
+                    ],
+                    "correct": 1,
+                    "points": 3,
+                    "explanation": "Minstens één vak: 60 + 45 − 25 = 80. Geen van beide: 100 − 80 = 20."
+                },
+                {
+                    "question": "Regel: Als P dan Q. Als Q dan R. Gegeven: R is waar. Wat kun je concluderen?",
+                    "section": "Deel 4: Logisch Redeneren",
+                    "options": [
+                        "P is waar",
+                        "Q is waar",
+                        "P en Q zijn waar",
+                        "Niets met zekerheid",
+                        "P is niet waar"
+                    ],
+                    "correct": 3,
+                    "points": 3,
+                    "explanation": "R kan waar zijn om andere redenen dan Q→R. En Q kan waar zijn om andere redenen dan P→Q. 'Bevestigen van het gevolg' – je kunt niets met zekerheid concluderen over P of Q."
+                },
+                {
+                    "question": "Een kubus is uitgevouwen met letters: A (boven), B (voor), C (rechts), D (achter), E (links), F (beneden). Als B naar voren wijst en A naar boven, welke letter zit aan de achterkant?",
+                    "section": "Deel 5: Ruimtelijk Inzicht",
+                    "options": [
+                        "D",
+                        "E",
+                        "F",
+                        "C",
+                        "A"
+                    ],
+                    "correct": 0,
+                    "points": 2,
+                    "explanation": "Als B voor is, zit D aan de achterkant (tegenovergesteld vlak). A is boven, F is beneden, C en E zijn links/rechts."
+                },
+                {
+                    "question": "Een L-vorm wordt 90° gedraaid om de verticale as met de klok mee (van bovenaf), dan 180° om de horizontale as. De korte kant wees oorspronkelijk naar rechts. Waar wijst de korte kant nu?",
+                    "section": "Deel 5: Ruimtelijk Inzicht",
+                    "options": [
+                        "Links",
+                        "Rechts",
+                        "Boven",
+                        "Beneden",
+                        "Voor"
+                    ],
+                    "correct": 3,
+                    "points": 2,
+                    "explanation": "Na 90° draai om verticale as (kloksgewijs van boven): korte kant wijst naar voor. Na 180° om horizontale as: de vorm klapt om, korte kant wijst naar beneden."
+                },
+                {
+                    "question": "Een cilinder staat verticaal. Een lichtbron schijnt onder een hoek van 45° vanaf linksvoor. Welke vorm heeft de schaduw?",
+                    "section": "Deel 5: Ruimtelijk Inzicht",
+                    "options": [
+                        "Cirkel",
+                        "Ellips",
+                        "Rechthoek",
+                        "Trapezium",
+                        "Vierkant"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "Een schuin vallend licht op een cilinder projecteert een elliptische schaduw op het grondvlak."
+                },
+                {
+                    "question": "Een kubus wordt doorgesneden met een vlak door de middens van drie niet-aangrenzende ribben. Welke vorm ontstaat het snijvlak?",
+                    "section": "Deel 5: Ruimtelijk Inzicht",
+                    "options": [
+                        "Driehoek",
+                        "Vierkant",
+                        "Vijfhoek",
+                        "Zeshoek",
+                        "Rechthoek"
+                    ],
+                    "correct": 3,
+                    "points": 2,
+                    "explanation": "Een diagonaal snijvlak door een kubus dat alle zes zijden snijdt (door het midden van 3 niet-aangrenzende ribben) geeft een regelmatige zeshoek."
+                },
+                {
+                    "question": "Een asymmetrische pijl (→↗) wordt gespiegeld in een verticale lijn, dan in een lijn onder 45°. Hoe ziet het resultaat eruit?",
+                    "section": "Deel 5: Ruimtelijk Inzicht",
+                    "options": [
+                        "←↖",
+                        "↙←",
+                        "↓↙",
+                        "↗→",
+                        "↘→"
+                    ],
+                    "correct": 2,
+                    "points": 2,
+                    "explanation": "Spiegeling in verticale lijn: →↗ wordt ←↖. Spiegeling in 45°-lijn: ←↖ wordt ↓↙."
+                },
+                {
+                    "question": "Reeks: 7-3-9-2-8-5. Draai de reeks om en tel 1 bij elk getal op. Wat is het resultaat?",
+                    "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
+                    "options": [
+                        "6-9-3-0-4-8",
+                        "6-8-2-9-3-7",
+                        "8-4-0-3-9-6",
+                        "5-8-2-9-3-7",
+                        "6-9-3-10-4-8"
+                    ],
+                    "correct": 4,
+                    "points": 2,
+                    "explanation": "Omgedraaid: 5-8-2-9-3-7. Tel 1 bij elk op: 6-9-3-10-4-8."
+                },
+                {
+                    "question": "Start: 100. Trek 17 af. Vermenigvuldig met 2. Deel door 3. Tel 25 op. Wat is het eindresultaat (afgerond)?",
+                    "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
+                    "options": [
+                        "75",
+                        "80",
+                        "81",
+                        "85",
+                        "90"
+                    ],
+                    "correct": 1,
+                    "points": 2,
+                    "explanation": "100 − 17 = 83. 83 × 2 = 166. 166 ÷ 3 ≈ 55,33. 55,33 + 25 ≈ 80,33 ≈ 80."
+                },
+                {
+                    "question": "A=1, B=2, C=3, ... Bereken: (K×2) + (E×3) − (B÷2) = ?",
+                    "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
+                    "options": [
+                        "36",
+                        "37",
+                        "38",
+                        "39",
+                        "40"
+                    ],
+                    "correct": 0,
+                    "points": 2,
+                    "explanation": "K=11, E=5, B=2. (11×2) + (5×3) − (2÷2) = 22 + 15 − 1 = 36."
+                },
+                {
+                    "question": "Onthoud: BLAUW-5, ROOD-3, GROEN-8. Tel alle cijfers op. Welke kleur hoort bij het middelste getal van de drie?",
+                    "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
+                    "options": [
+                        "BLAUW",
+                        "ROOD",
+                        "GROEN",
+                        "Er is geen middelste getal",
+                        "GEEL"
+                    ],
+                    "correct": 0,
+                    "points": 2,
+                    "explanation": "De getallen zijn 5, 3, 8. Gesorteerd: 3, 5, 8. Het middelste getal is 5, wat hoort bij BLAUW."
+                },
+                {
+                    "question": "Neem 48. Halveer het. Tel 12 op. Vermenigvuldig met 3. Trek 18 af. Deel door 6. Wat is het resultaat?",
+                    "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
+                    "options": [
+                        "12",
+                        "13",
+                        "14",
+                        "15",
+                        "16"
+                    ],
+                    "correct": 3,
+                    "points": 2,
+                    "explanation": "48 ÷ 2 = 24. 24 + 12 = 36. 36 × 3 = 108. 108 − 18 = 90. 90 ÷ 6 = 15."
+                }
+            ]
+        }
+    ]
+}

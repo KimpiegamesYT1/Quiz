@@ -9,6 +9,7 @@ let quizStarted = false;
 let activeQuestions = [];
 let answered = false;
 let isExamMode = false; // Track if we're in exam mode
+let isIQMode = false;   // Track if we're in IQ test mode
 
 // Check which page we are on
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // A/B/C/D (case-insensitive)
         const key = e.key.toLowerCase();
-        const validKeys = ['a', 'b', 'c', 'd'];
+        const validKeys = ['a', 'b', 'c', 'd', 'e'];
         if (validKeys.includes(key)) {
             const idx = validKeys.indexOf(key);
             const options = document.querySelectorAll('.option');
@@ -90,6 +91,7 @@ async function loadQuiz() {
         const data = await response.json();
 
         currentQuiz = data;
+        isIQMode = !!data.iqMode;
 
         // Zet subtitel indien aanwezig
         const subtitle = quizInfo.subtitle || 'kwartiel 2';
@@ -149,8 +151,8 @@ async function loadQuiz() {
 function startQuiz(category) {
     const cat = categories[category];
     
-    // Check if this is exam mode (category id contains 'examen')
-    isExamMode = category.toLowerCase().includes('examen');
+    // Check if this is exam mode (IQ test or category id contains 'examen')
+    isExamMode = isIQMode || category.toLowerCase().includes('examen');
     
     if (cat.questions) {
         activeQuestions = cat.questions;
@@ -169,11 +171,22 @@ function startQuiz(category) {
     showQuestion();
 }
 
+function getLetters(count) {
+    return ['A', 'B', 'C', 'D', 'E', 'F'].slice(0, count);
+}
+
 function showQuestion() {
     const q = activeQuestions[currentQuestion];
     document.getElementById('question-number').textContent = `Vraag ${currentQuestion + 1} van ${activeQuestions.length}`;
-    document.getElementById('question-text').textContent = q.question;
-    
+
+    // Show section label above question text in IQ mode
+    if (isIQMode && q.section) {
+        document.getElementById('question-text').innerHTML =
+            `<div style="font-size:0.72em;color:#00d4ff;margin-bottom:8px;font-weight:600;letter-spacing:0.04em;">${q.section}</div>${q.question}`;
+    } else {
+        document.getElementById('question-text').textContent = q.question;
+    }
+
     // Handle question image
     const imageContainer = document.getElementById('question-image');
     const imageElement = document.getElementById('question-img');
@@ -189,7 +202,7 @@ function showQuestion() {
     const optionsDiv = document.getElementById('options');
     optionsDiv.innerHTML = '';
     
-    const letters = ['A', 'B', 'C', 'D'];
+    const letters = getLetters(q.options.length);
     q.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
@@ -230,14 +243,18 @@ function nextQuestion() {
             if (currentQuestion < activeQuestions.length) {
                 showQuestion();
             } else {
-                showExamResults();
+                if (isIQMode) {
+                    showIQResults();
+                } else {
+                    showExamResults();
+                }
             }
         } else {
             // Practice mode: show immediate feedback
             const q = activeQuestions[currentQuestion];
             const options = document.querySelectorAll('.option');
             const feedback = document.getElementById('feedback');
-            const letters = ['A', 'B', 'C', 'D'];
+            const letters = getLetters(q.options.length);
             
             options.forEach(opt => opt.style.pointerEvents = 'none');
             
@@ -359,17 +376,16 @@ function showExamResults() {
     const incorrectCount = activeQuestions.length - correctCount;
     
     resultsContainer.innerHTML = `
-        <h3 style="margin-top: 30px; color: #fff;">Gedetailleerde Resultaten:</h3>
-        <p style="color: #ccc; margin-bottom: 15px;">
-            <span style="color: #00ff88;">✓ ${correctCount} correct</span> • 
-            <span style="color: #ff4444;">✗ ${incorrectCount} fout</span>
+        <h3>Gedetailleerde Resultaten</h3>
+        <p class="exam-summary">
+            <span class="count-correct">✓ ${correctCount} correct</span> · 
+            <span class="count-incorrect">✗ ${incorrectCount} fout</span>
         </p>
     `;
     
-    const letters = ['A', 'B', 'C', 'D'];
-    
     activeQuestions.forEach((q, index) => {
         const isCorrect = answers[index] === q.correct;
+        const letters = getLetters(q.options.length);
         const resultDiv = document.createElement('div');
         resultDiv.className = `exam-result-item ${isCorrect ? 'correct collapsible' : 'incorrect'}`;
         
@@ -422,6 +438,7 @@ function restartQuiz() {
     activeQuestions = [];
     answered = false;
     isExamMode = false;
+    isIQMode = false;
     
     // Clean up exam results if present
     const existingResults = document.getElementById('end-screen').querySelector('.exam-results');
@@ -431,4 +448,142 @@ function restartQuiz() {
     
     document.getElementById('end-screen').classList.add('hidden');
     document.getElementById('start-screen').classList.remove('hidden');
+}
+
+// ─── IQ MODE RESULTS ────────────────────────────────────────────────────────
+
+function getIQInfo(points) {
+    if (points >= 63) return { iq: '130+',    label: 'Hoogbegaafd',            color: '#c084fc' };
+    if (points >= 56) return { iq: '120–129', label: 'Zeer intelligent',        color: '#60a5fa' };
+    if (points >= 49) return { iq: '110–119', label: 'Bovengemiddeld',          color: '#34d399' };
+    if (points >= 42) return { iq: '100–109', label: 'Gemiddeld voor HBO',      color: '#fbbf24' };
+    if (points >= 35) return { iq: '90–99',   label: 'Laag gemiddeld',          color: '#f97316' };
+    if (points >= 28) return { iq: '80–89',   label: 'Beneden gemiddeld',       color: '#f87171' };
+    return               { iq: '< 80',    label: 'Ver beneden gemiddeld',   color: '#ef4444' };
+}
+
+function showIQResults() {
+    // Sum points for correct answers
+    let totalEarned = 0;
+    activeQuestions.forEach((q, index) => {
+        if (answers[index] === q.correct) {
+            totalEarned += (q.points || 1);
+        }
+    });
+
+    const totalPossible = (currentQuiz && currentQuiz.totalPoints) ? currentQuiz.totalPoints : 70;
+    const iqInfo = getIQInfo(totalEarned);
+    const correctCount = activeQuestions.filter((q, i) => answers[i] === q.correct).length;
+    const incorrectCount = activeQuestions.length - correctCount;
+
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('end-screen').classList.remove('hidden');
+
+    // Header score block
+    const scoreDiv = document.getElementById('score');
+    scoreDiv.className = 'score';
+    scoreDiv.innerHTML = `
+        <div style="font-size:2.8em;font-weight:800;color:${iqInfo.color};line-height:1;">IQ ${iqInfo.iq}</div>
+        <div style="font-size:1.1em;color:#e0e0e0;margin-top:6px;font-weight:600;">${iqInfo.label}</div>
+        <div style="font-size:0.82em;color:#b0b0b0;margin-top:6px;">
+            ${totalEarned} / ${totalPossible} punten &nbsp;·&nbsp;
+            <span style="color:#00ff88;">✓ ${correctCount} correct</span> &nbsp;·&nbsp;
+            <span style="color:#ff4444;">✗ ${incorrectCount} fout</span>
+        </div>
+    `;
+    document.getElementById('score-text').innerHTML = '';
+
+    // IQ Scale
+    const scaleRows = [
+        { range: '130+',    label: 'Hoogbegaafd',          minPts: 63, color: '#c084fc' },
+        { range: '120–129', label: 'Zeer intelligent',      minPts: 56, color: '#60a5fa' },
+        { range: '110–119', label: 'Bovengemiddeld',        minPts: 49, color: '#34d399' },
+        { range: '100–109', label: 'Gemiddeld voor HBO',    minPts: 42, color: '#fbbf24' },
+        { range: '90–99',   label: 'Laag gemiddeld',        minPts: 35, color: '#f97316' },
+        { range: '80–89',   label: 'Beneden gemiddeld',     minPts: 28, color: '#f87171' },
+        { range: '< 80',    label: 'Ver beneden gemiddeld', minPts: 0,  color: '#ef4444' },
+    ];
+
+    const scaleHTML = scaleRows.map(row => {
+        const active = iqInfo.iq === row.range;
+        const barWidth = Math.min(100, Math.round((row.minPts / 70) * 85) + 15);
+        return `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;
+                    padding:5px 10px;border-radius:8px;
+                    ${ active ? `background:rgba(255,255,255,0.07);border-left:3px solid ${row.color};` : 'opacity:0.55;' }">
+            <div style="width:68px;font-size:0.78em;font-weight:700;color:${row.color};flex-shrink:0;">IQ ${row.range}</div>
+            <div style="flex:1;background:#333;border-radius:4px;height:7px;overflow:hidden;">
+                <div style="width:${barWidth}%;height:100%;background:${row.color};border-radius:4px;"></div>
+            </div>
+            <div style="font-size:0.78em;color:#ccc;width:160px;text-align:right;">
+                ${row.label}${active ? ' <strong style="color:#fff;">← jij</strong>' : ''}
+            </div>
+        </div>`;
+    }).join('');
+
+    // Per-question detail
+    const resultsContainer = document.createElement('div');
+    resultsContainer.className = 'exam-results';
+    resultsContainer.innerHTML = `
+        <h3 style="margin-top:30px;color:#fff;">📊 IQ Schaal (HBO populatie)</h3>
+        <div style="margin:14px 0 24px;">${scaleHTML}</div>
+        <div style="padding:12px;background:rgba(255,255,255,0.05);border-radius:8px;
+                    font-size:0.78em;color:#999;line-height:1.6;margin-bottom:24px;">
+            ⚠️ <strong style="color:#ccc;">Disclaimer:</strong> Dit is een educatieve indicatieve test, geen officiële IQ-meting.
+            Voor een officiële IQ-bepaling raadpleeg een GZ-psycholoog.<br>
+            Gebaseerd op WAIS-IV, Raven's Matrices en CHC-model vraagtypen.
+        </div>
+        <h3 style="color:#fff;">Gedetailleerde Resultaten</h3>
+        <p style="color:#ccc;margin-bottom:15px;">
+            <span style="color:#00ff88;">✓ ${correctCount} correct</span> &nbsp;·&nbsp;
+            <span style="color:#ff4444;">✗ ${incorrectCount} fout</span> &nbsp;·&nbsp;
+            <span style="color:#fbbf24;">${totalEarned} / ${totalPossible} punten</span>
+        </p>
+    `;
+
+    activeQuestions.forEach((q, index) => {
+        const isCorrect = answers[index] === q.correct;
+        const letters = getLetters(q.options.length);
+        const resultDiv = document.createElement('div');
+        resultDiv.className = `exam-result-item ${isCorrect ? 'correct collapsible' : 'incorrect'}`;
+
+        const sectionTag = q.section
+            ? `<div style="font-size:0.7em;color:#00d4ff;margin-bottom:2px;">${q.section} · ${q.points} punt${q.points > 1 ? 'en' : ''}</div>`
+            : '';
+
+        const header = document.createElement('div');
+        header.className = 'result-header';
+        header.innerHTML = `
+            <span class="result-icon">${isCorrect ? '✓' : '✗'}</span>
+            <div>${sectionTag}<strong>Vraag ${index + 1}:</strong> ${q.question}
+            ${isCorrect ? '<span class="collapse-indicator">▼</span>' : ''}</div>
+        `;
+
+        const details = document.createElement('div');
+        details.className = `result-details ${isCorrect ? 'collapsed' : ''}`;
+        details.innerHTML = `
+            <div>Jouw antwoord: <strong>${letters[answers[index]]}. ${q.options[answers[index]]}</strong></div>
+            ${!isCorrect ? `<div class="correct-answer-detail">Correct antwoord: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong></div>` : ''}
+            <div class="explanation-detail">💡 ${q.explanation}</div>
+        `;
+
+        if (isCorrect) {
+            header.style.cursor = 'pointer';
+            header.onclick = () => {
+                details.classList.toggle('collapsed');
+                const ind = header.querySelector('.collapse-indicator');
+                if (ind) ind.textContent = details.classList.contains('collapsed') ? '▼' : '▲';
+            };
+        }
+
+        resultDiv.appendChild(header);
+        resultDiv.appendChild(details);
+        resultsContainer.appendChild(resultDiv);
+    });
+
+    const endScreen = document.getElementById('end-screen');
+    const existing = endScreen.querySelector('.exam-results');
+    if (existing) existing.remove();
+    const buttons = endScreen.querySelectorAll('.btn');
+    endScreen.insertBefore(resultsContainer, buttons[0]);
 }

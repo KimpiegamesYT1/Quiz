@@ -1,5 +1,13 @@
 [
     {
+        "id": "iq-test",
+        "title": "HBO IQ Test",
+        "file": "quizzes/iq-test.json",
+        "description": "Test je cognitieve vaardigheden met 30 vragen over verbaal begrip, cijferreeksen, figuurreeksen, logisch redeneren, ruimtelijk inzicht en werkgeheugen. Ontvang je IQ-schatting aan het einde.",
+        "subtitle": "IQ Test"
+    }
+    ,
+    {
         "id": "it-fundamentals",
         "title": "IT Fundamentals",
         "file": "quizzes/it-fundamentals.json",
