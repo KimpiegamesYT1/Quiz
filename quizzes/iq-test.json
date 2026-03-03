@@ -1,6 +1,6 @@
 {
     "title": "HBO IQ Test",
-    "iqMode": true,
+    "mode": "iq",
     "totalPoints": 70,
     "categories": [
         {

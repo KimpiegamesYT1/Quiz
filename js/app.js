@@ -9,7 +9,7 @@ let quizStarted = false;
 let activeQuestions = [];
 let answered = false;
 let isExamMode = false; // Track if we're in exam mode
-let isIQMode = false;   // Track if we're in IQ test mode
+let isIQMode = false;   // true when quiz has mode:'iq' — no per-question feedback, points-based IQ result
 
 // Check which page we are on
 document.addEventListener('DOMContentLoaded', () => {
@@ -91,7 +91,7 @@ async function loadQuiz() {
         const data = await response.json();
 
         currentQuiz = data;
-        isIQMode = !!data.iqMode;
+        isIQMode = data.mode === 'iq';
 
         // Zet subtitel indien aanwezig
         const subtitle = quizInfo.subtitle || 'kwartiel 2';
@@ -142,6 +142,12 @@ async function loadQuiz() {
         document.getElementById('quiz-title').textContent = data.title;
         document.title = data.title;
 
+        // IQ mode: skip category menu and start immediately
+        if (isIQMode && data.categories.length === 1) {
+            startQuiz(data.categories[0].id);
+            return;
+        }
+
     } catch (error) {
         console.error('Error loading quiz:', error);
         alert('Er is een fout opgetreden bij het laden van de quiz.');
@@ -151,7 +157,7 @@ async function loadQuiz() {
 function startQuiz(category) {
     const cat = categories[category];
     
-    // Check if this is exam mode (IQ test or category id contains 'examen')
+    // Check if this is exam mode (IQ mode or category id contains 'examen')
     isExamMode = isIQMode || category.toLowerCase().includes('examen');
     
     if (cat.questions) {
@@ -234,8 +240,8 @@ function nextQuestion() {
     if (!answered) {
         const selectedOption = answers[currentQuestion];
         
-        if (isExamMode) {
-            // Exam mode: no immediate feedback, just save answer and move on
+        if (isExamMode || isIQMode) {
+            // Exam / IQ mode: no immediate feedback, just save answer and move on
             answered = true;
             currentQuestion++;
             
