@@ -43,7 +43,8 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        background: linear-gradient(135deg, #0f1219 0%, #131a2b 100%);
+        background-attachment: fixed;
         min-height: 100vh;
         color: #fff;
         padding: 10px;
@@ -215,13 +216,13 @@
     .start-screen, .end-screen {
         text-align: center;
         padding: 30px 28px;
-        background: rgba(255,255,255,0.07);
+        background: rgba(255,255,255,0.05);
         border-radius: 12px;
     }
 
     .end-screen h2 {
         font-size: 1.8em;
-        color: #e0e0e0;
+        color: #ffffff;
         margin-bottom: 12px;
     }
 
@@ -232,19 +233,19 @@
     }
 
     .score.excellent {
-        color: #4ec990;
+        color: #34d399;
     }
 
     .score.good {
-        color: #5ab8cc;
+        color: #38bdf8;
     }
 
     .score.average {
-        color: #c9a84e;
+        color: #fbbf24;
     }
 
     .score.poor {
-        color: #c0544e;
+        color: #f87171;
     }
 
     .results-container {
@@ -261,11 +262,11 @@
     }
 
     .result-item.correct {
-        border-left-color: #4ec990;
+        border-left-color: #34d399;
     }
 
     .result-item.incorrect {
-        border-left-color: #c0544e;
+        border-left-color: #f87171;
     }
 
     .result-question {
@@ -284,11 +285,11 @@
     }
 
     .correct-text {
-        color: #4ec990;
+        color: #34d399;
     }
 
     .incorrect-text {
-        color: #c0544e;
+        color: #f87171;
     }
 
     .hidden {
@@ -449,11 +450,11 @@
     }
 
     .exam-result-item.correct {
-        border-left-color: #4ec990;
+        border-left-color: #34d399;
     }
 
     .exam-result-item.incorrect {
-        border-left-color: #c0544e;
+        border-left-color: #f87171;
     }
 
     .result-header {
@@ -500,11 +501,11 @@
     }
 
     .exam-result-item.correct .result-icon {
-        color: #4ec990;
+        color: #34d399;
     }
 
     .exam-result-item.incorrect .result-icon {
-        color: #c0544e;
+        color: #f87171;
     }
 
     .result-details > div {
@@ -512,7 +513,7 @@
     }
 
     .correct-answer-detail {
-        color: #4ec990;
+        color: #34d399;
         font-weight: 500;
     }
 
@@ -534,11 +535,11 @@
     }
 
     .exam-summary .count-correct {
-        color: #4ec990;
+        color: #34d399;
     }
 
     .exam-summary .count-incorrect {
-        color: #c0544e;
+        color: #f87171;
     }
 
     .exam-results h3 {
@@ -565,7 +566,7 @@
     }
 
     #score-text {
-        color: rgba(255,255,255,0.7);
+        color: rgba(255,255,255,0.8);
         font-size: 0.95em;
         margin-bottom: 16px;
         line-height: 1.5;
