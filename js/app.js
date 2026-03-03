@@ -177,15 +177,12 @@ function getLetters(count) {
 
 function showQuestion() {
     const q = activeQuestions[currentQuestion];
-    document.getElementById('question-number').textContent = `Vraag ${currentQuestion + 1} van ${activeQuestions.length}`;
+    
+    // Show section label small and grey after question number
+    const sectionSuffix = (isIQMode && q.section) ? `  <span style="font-size:0.82em;color:#888;font-weight:400;">${q.section}</span>` : '';
+    document.getElementById('question-number').innerHTML = `Vraag ${currentQuestion + 1} van ${activeQuestions.length}${sectionSuffix}`;
 
-    // Show section label above question text in IQ mode
-    if (isIQMode && q.section) {
-        document.getElementById('question-text').innerHTML =
-            `<div style="font-size:0.72em;color:#00d4ff;margin-bottom:8px;font-weight:600;letter-spacing:0.04em;">${q.section}</div>${q.question}`;
-    } else {
-        document.getElementById('question-text').textContent = q.question;
-    }
+    document.getElementById('question-text').textContent = q.question;
 
     // Handle question image
     const imageContainer = document.getElementById('question-image');
