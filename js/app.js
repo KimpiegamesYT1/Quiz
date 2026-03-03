@@ -190,10 +190,12 @@ function showQuestion() {
     
     if (q.image) {
         imageElement.src = q.image;
+        imageElement.onclick = () => openLightbox(q.image);
         imageContainer.classList.remove('hidden');
     } else {
         imageContainer.classList.add('hidden');
         imageElement.src = '';
+        imageElement.onclick = null;
     }
     
     const optionsDiv = document.getElementById('options');
@@ -426,6 +428,24 @@ function showExamResults() {
     
     const buttons = endScreen.querySelectorAll('.btn');
     endScreen.insertBefore(resultsContainer, buttons[0]);
+}
+
+// ─── LIGHTBOX ───────────────────────────────────────────────────────────────
+
+function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = src;
+    lb.classList.add('active');
+    document.addEventListener('keydown', lightboxKeyHandler);
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.removeEventListener('keydown', lightboxKeyHandler);
+}
+
+function lightboxKeyHandler(e) {
+    if (e.key === 'Escape') closeLightbox();
 }
 
 function restartQuiz() {

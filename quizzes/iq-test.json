@@ -162,8 +162,9 @@
                     "explanation": "5 × 45° = 225°. Stap 0 = zwart, stap 1 = wit, stap 2 = zwart, stap 3 = wit, stap 4 = zwart, stap 5 = wit. Staat: 225° met witte cirkel."
                 },
                 {
-                    "question": "Een patroon heeft: driehoek-vierkant-cirkel-driehoek-vierkant-cirkel. Binnen elk figuur zitten stippen: 1-2-3-2-3-4. Wat zijn de volgende drie figuren met stippen?",
+                    "question": "Welke drie figuren met stippen komen als volgende in het patroon?",
                     "section": "Deel 3: Figuurreeksen & Patronen",
+                    "image": "quizzes/Assets/vraag12.png",
                     "options": [
                         "driehoek(3), vierkant(4), cirkel(5)",
                         "driehoek(5), vierkant(4), cirkel(3)",
@@ -176,8 +177,9 @@
                     "explanation": "Het patroon per figuurtype: driehoek: 1, 2, 3 (+1 per cyclus); vierkant: 2, 3, 4; cirkel: 3, 4, 5. De volgende drie zijn driehoek(3), vierkant(4), cirkel(5)."
                 },
                 {
-                    "question": "In een 3×3 matrix neemt het aantal zwarte vakjes toe van links naar rechts (1, 2, 3). Van boven naar beneden verschuift het patroon 1 positie naar rechts. Wat staat rechtsonder?",
+                    "question": "Welke afbeelding hoort rechtsonder in de matrix?",
                     "section": "Deel 3: Figuurreeksen & Patronen",
+                    "image": "quizzes/Assets/vraag%2013.png",
                     "options": [
                         "3 zwarte vakjes links",
                         "3 zwarte vakjes rechts",
@@ -204,8 +206,9 @@
                     "explanation": "↗ gespiegeld verticaal → ↖. Gespiegeld horizontaal → ↙. Gespiegeld verticaal → ↘. Wacht: ↗→spiegeling(V)→↖→spiegeling(H)→↙→spiegeling(V)→↘. Maar de officiële sleutel: ↗→↖→↘→↖. Eindantwoord: ↖."
                 },
                 {
-                    "question": "Vierkanten worden gevuld met lijnen. Patroon: 1 horizontale lijn, 2 verticale lijnen, 3 diagonale lijnen (/), 2 verticale lijnen, 3 diagonale lijnen (\\), 4 horizontale lijnen. Wat komt daarna?",
+                    "question": "Welk vakje ontbreekt als volgende in de reeks?",
                     "section": "Deel 3: Figuurreeksen & Patronen",
+                    "image": "quizzes/Assets/vraag%2015.png",
                     "options": [
                         "5 verticale lijnen",
                         "3 diagonale lijnen (/)",
@@ -288,8 +291,9 @@
                     "explanation": "R kan waar zijn om andere redenen dan Q→R. En Q kan waar zijn om andere redenen dan P→Q. 'Bevestigen van het gevolg' – je kunt niets met zekerheid concluderen over P of Q."
                 },
                 {
-                    "question": "Een kubus is uitgevouwen met letters: A (boven), B (voor), C (rechts), D (achter), E (links), F (beneden). Als B naar voren wijst en A naar boven, welke letter zit aan de achterkant?",
+                    "question": "De kubus wordt gevouwen zodat B naar voren wijst en A naar boven. Welke letter zit aan de achterkant?",
                     "section": "Deel 5: Ruimtelijk Inzicht",
+                    "image": "quizzes/Assets/vraag21.png",
                     "options": [
                         "D",
                         "E",
@@ -400,7 +404,7 @@
                     "explanation": "K=11, E=5, B=2. (11×2) + (5×3) − (2÷2) = 22 + 15 − 1 = 36."
                 },
                 {
-                    "question": "Onthoud: BLAUW-5, ROOD-3, GROEN-8. Tel alle cijfers op. Welke kleur hoort bij het middelste getal van de drie?",
+                    "question": "Onthoud: BLAUW-5, ROOD-3, GROEN-8. Zet ze achter elkaar van laag naar hoog. Welke kleur hoort bij het middelste getal van de drie?",
                     "section": "Deel 6: Werkgeheugen & Mentale Manipulatie",
                     "options": [
                         "BLAUW",

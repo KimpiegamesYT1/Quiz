@@ -3,7 +3,8 @@
         "id": "iq-test",
         "title": "HBO IQ Test",
         "file": "quizzes/iq-test.json",
-        "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting."
+        "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting.",
+        "subtitle": "IQ Test"
     }
     ,
     {
