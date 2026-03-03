@@ -628,3 +628,133 @@
         margin-bottom: 16px;
         line-height: 1.5;
     }
+
+    /* ─── PAC-MAN EASTER EGG ──────────────────────────────────────────────────────── */
+    
+    .pacman-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .pacman-modal.show {
+        display: flex;
+    }
+
+    .pacman-content {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border: 2px solid #00d4ff;
+        border-radius: 12px;
+        padding: 20px;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+        animation: slideDown 0.3s ease;
+    }
+
+    .pacman-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        padding-bottom: 10px;
+    }
+
+    .pacman-header h2 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #00d4ff;
+    }
+
+    .pacman-close {
+        background: transparent;
+        border: none;
+        font-size: 28px;
+        color: #00d4ff;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .pacman-close:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+
+    .pacman-game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #pacman-canvas {
+        background: #0a0a0a;
+        border: 2px solid #00d4ff;
+        border-radius: 8px;
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .pacman-instructions {
+        width: 100%;
+        background: rgba(0, 212, 255, 0.1);
+        border-left: 3px solid #00d4ff;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        color: #ccc;
+    }
+
+    .pacman-instructions p {
+        margin: 6px 0;
+        line-height: 1.4;
+    }
+
+    .pacman-instructions p:first-child {
+        margin-top: 0;
+    }
+
+    .pacman-instructions p:last-child {
+        margin-bottom: 0;
+    }
+
+    .pacman-instructions strong {
+        color: #00d4ff;
+        font-weight: 600;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }

@@ -12,6 +12,315 @@ let isExamMode = false; // Track if we're in exam mode
 let isIQMode = false;   // true when quiz has mode:'iq' — no per-question feedback, points-based IQ result
 
 // Check which page we are on
+// ─── PACMAN EASTER EGG ──────────────────────────────────────────────────────
+let pacmanKeySequence = '';
+let pacmanTimeout;
+
+document.addEventListener('keydown', (e) => {
+    // Track keyboard input for "pacman" sequence
+    const key = e.key.toLowerCase();
+    
+    // Only add letter keys
+    if (/^[a-z]$/.test(key)) {
+        pacmanKeySequence += key;
+        
+        // Keep only the last 6 characters
+        if (pacmanKeySequence.length > 6) {
+            pacmanKeySequence = pacmanKeySequence.slice(-6);
+        }
+        
+        // Check if sequence ends with "pacman"
+        if (pacmanKeySequence.endsWith('pacman')) {
+            e.preventDefault();
+            openPacmanGame();
+            pacmanKeySequence = ''; // Reset after triggering
+        }
+        
+        // Reset sequence after 2 seconds of inactivity
+        clearTimeout(pacmanTimeout);
+        pacmanTimeout = setTimeout(() => {
+            pacmanKeySequence = '';
+        }, 2000);
+    }
+});
+
+function openPacmanGame() {
+    let modal = document.getElementById('pacman-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'pacman-modal';
+        modal.className = 'pacman-modal';
+        modal.innerHTML = `
+            <div class="pacman-content">
+                <div class="pacman-header">
+                    <h2>🎮 Pac-Man</h2>
+                    <button class="pacman-close" onclick="closePacmanGame()">&times;</button>
+                </div>
+                <div class="pacman-game-container">
+                    <canvas id="pacman-canvas" width="400" height="400"></canvas>
+                    <div class="pacman-instructions">
+                        <p><strong>⬅️➡️⬆️⬇️</strong> Beweging | <strong>ESC</strong> Afsluiten</p>
+                        <p>Eet alle puntjes! Vermijd de spoken! 👻</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Start the game
+        initPacmanGame();
+    } else {
+        modal.style.display = 'flex';
+        initPacmanGame();
+    }
+}
+
+function closePacmanGame() {
+    const modal = document.getElementById('pacman-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        if (window.pacmanGameRunning) {
+            window.pacmanGameRunning = false;
+        }
+    }
+}
+
+function initPacmanGame() {
+    const canvas = document.getElementById('pacman-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const tileSize = 20;
+    const cols = canvas.width / tileSize;
+    const rows = canvas.height / tileSize;
+    
+    // Game state
+    const game = {
+        pacman: { x: 5, y: 5, dx: 0, dy: 0, nextDx: 0, nextDy: 0 },
+        ghosts: [
+            { x: 10, y: 8, dx: -1, dy: 0, color: '#ff0000' },
+            { x: 12, y: 8, dx: 1, dy: 0, color: '#ffb6c1' },
+            { x: 11, y: 10, dx: 0, dy: -1, color: '#00ffff' }
+        ],
+        pellets: new Set(),
+        powerPellets: new Set(),
+        score: 0,
+        gameOver: false,
+        won: false
+    };
+    
+    // Initialize pellets
+    for (let x = 1; x < cols - 1; x++) {
+        for (let y = 1; y < rows - 1; y++) {
+            // Avoid placing pellets at starting positions
+            if (!((x === 5 && y === 5) || (x >= 9 && x <= 12 && y >= 7 && y <= 10))) {
+                if (Math.random() < 0.15) {
+                    game.pellets.add(`${x},${y}`);
+                }
+            }
+        }
+    }
+    
+    // Place some power pellets
+    for (let i = 0; i < 4; i++) {
+        let x, y;
+        do {
+            x = Math.floor(Math.random() * (cols - 2)) + 1;
+            y = Math.floor(Math.random() * (rows - 2)) + 1;
+        } while (game.pellets.has(`${x},${y}`) || game.powerPellets.has(`${x},${y}`));
+        game.powerPellets.add(`${x},${y}`);
+    }
+    
+    // Keyboard controls
+    const keys = {};
+    const handleKey = (e) => {
+        keys[e.key.toLowerCase()] = e.type === 'keydown';
+        
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            closePacmanGame();
+        }
+        
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            e.preventDefault();
+            
+            if (e.key === 'ArrowUp') { game.pacman.nextDy = -1; game.pacman.nextDx = 0; }
+            if (e.key === 'ArrowDown') { game.pacman.nextDy = 1; game.pacman.nextDx = 0; }
+            if (e.key === 'ArrowLeft') { game.pacman.nextDx = -1; game.pacman.nextDy = 0; }
+            if (e.key === 'ArrowRight') { game.pacman.nextDx = 1; game.pacman.nextDy = 0; }
+        }
+    };
+    
+    document.addEventListener('keydown', handleKey);
+    document.addEventListener('keyup', handleKey);
+    
+    function canMove(x, y) {
+        if (x < 0 || x >= cols || y < 0 || y >= rows) return false;
+        // Simple boundary check
+        return true;
+    }
+    
+    function update() {
+        if (game.gameOver || game.won) return;
+        
+        // Update Pac-Man direction
+        if (canMove(game.pacman.x + game.pacman.nextDx, game.pacman.y + game.pacman.nextDy)) {
+            game.pacman.dx = game.pacman.nextDx;
+            game.pacman.dy = game.pacman.nextDy;
+        }
+        
+        // Move Pac-Man
+        if (canMove(game.pacman.x + game.pacman.dx, game.pacman.y + game.pacman.dy)) {
+            game.pacman.x += game.pacman.dx;
+            game.pacman.y += game.pacman.dy;
+        }
+        
+        // Check pellet collision
+        const pelletKey = `${game.pacman.x},${game.pacman.y}`;
+        if (game.pellets.has(pelletKey)) {
+            game.pellets.delete(pelletKey);
+            game.score += 10;
+        }
+        if (game.powerPellets.has(pelletKey)) {
+            game.powerPellets.delete(pelletKey);
+            game.score += 50;
+        }
+        
+        // Win condition
+        if (game.pellets.size === 0 && game.powerPellets.size === 0) {
+            game.won = true;
+        }
+        
+        // Update ghosts with simple AI
+        game.ghosts.forEach(ghost => {
+            // Simple random direction changes
+            if (Math.random() < 0.02) {
+                const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+                const newDir = dirs[Math.floor(Math.random() * dirs.length)];
+                ghost.dx = newDir[0];
+                ghost.dy = newDir[1];
+            }
+            
+            // Move ghost
+            if (canMove(ghost.x + ghost.dx, ghost.y + ghost.dy)) {
+                ghost.x += ghost.dx;
+                ghost.y += ghost.dy;
+            } else {
+                // Change direction if hitting wall
+                const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+                const newDir = dirs[Math.floor(Math.random() * dirs.length)];
+                ghost.dx = newDir[0];
+                ghost.dy = newDir[1];
+            }
+            
+            // Check collision with Pac-Man
+            if (ghost.x === game.pacman.x && ghost.y === game.pacman.y) {
+                game.gameOver = true;
+            }
+        });
+    }
+    
+    function draw() {
+        // Clear canvas
+        ctx.fillStyle = '#0a0a0a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw grid border
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 1;
+        
+        for (let x = 0; x <= cols; x++) {
+            ctx.beginPath();
+            ctx.moveTo(x * tileSize, 0);
+            ctx.lineTo(x * tileSize, canvas.height);
+            ctx.stroke();
+        }
+        
+        for (let y = 0; y <= rows; y++) {
+            ctx.beginPath();
+            ctx.moveTo(0, y * tileSize);
+            ctx.lineTo(canvas.width, y * tileSize);
+            ctx.stroke();
+        }
+        
+        // Draw pellets
+        ctx.fillStyle = '#dda0dd';
+        game.pellets.forEach(key => {
+            const [x, y] = key.split(',').map(Number);
+            ctx.beginPath();
+            ctx.arc(x * tileSize + tileSize / 2, y * tileSize + tileSize / 2, 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // Draw power pellets
+        ctx.fillStyle = '#ffff00';
+        game.powerPellets.forEach(key => {
+            const [x, y] = key.split(',').map(Number);
+            ctx.beginPath();
+            ctx.arc(x * tileSize + tileSize / 2, y * tileSize + tileSize / 2, 5, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // Draw Pac-Man
+        ctx.fillStyle = '#ffff00';
+        ctx.beginPath();
+        ctx.arc(game.pacman.x * tileSize + tileSize / 2, game.pacman.y * tileSize + tileSize / 2, 8, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Draw ghosts
+        game.ghosts.forEach(ghost => {
+            ctx.fillStyle = ghost.color;
+            ctx.fillRect(ghost.x * tileSize + 2, ghost.y * tileSize + 2, tileSize - 4, tileSize - 4);
+            
+            // Eyes
+            ctx.fillStyle = 'white';
+            ctx.fillRect(ghost.x * tileSize + 4, ghost.y * tileSize + 4, 4, 4);
+            ctx.fillRect(ghost.x * tileSize + 12, ghost.y * tileSize + 4, 4, 4);
+        });
+        
+        // Draw score
+        ctx.fillStyle = '#fff';
+        ctx.font = '14px Arial';
+        ctx.fillText(`Score: ${game.score}`, 10, canvas.height + 25);
+        
+        // Draw status messages
+        if (game.gameOver) {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff0000';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+            ctx.fillText(`Score: ${game.score}`, canvas.width / 2, canvas.height / 2 + 40);
+            ctx.textAlign = 'left';
+        } else if (game.won) {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff00';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('JE HEBT GEWONNEN!', canvas.width / 2, canvas.height / 2);
+            ctx.fillText(`Score: ${game.score}`, canvas.width / 2, canvas.height / 2 + 40);
+            ctx.textAlign = 'left';
+        }
+    }
+    
+    window.pacmanGameRunning = true;
+    const gameLoop = setInterval(() => {
+        if (!window.pacmanGameRunning) {
+            clearInterval(gameLoop);
+            document.removeEventListener('keydown', handleKey);
+            document.removeEventListener('keyup', handleKey);
+            return;
+        }
+        
+        update();
+        draw();
+    }, 100);
+}
+
+// ─── QUIZ KEYBOARD SUPPORT ──────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('quiz-list')) {
         loadQuizList();
