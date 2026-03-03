@@ -66,6 +66,7 @@ function openPacmanGame() {
             </div>
         `;
         document.body.appendChild(modal);
+        modal.style.display = 'flex';
         
         // Start the game
         initPacmanGame();
@@ -280,8 +281,8 @@ function initPacmanGame() {
         
         // Draw score
         ctx.fillStyle = '#fff';
-        ctx.font = '14px Arial';
-        ctx.fillText(`Score: ${game.score}`, 10, canvas.height + 25);
+        ctx.font = 'bold 14px Arial';
+        ctx.fillText(`Score: ${game.score}`, 10, 18);
         
         // Draw status messages
         if (game.gameOver) {
