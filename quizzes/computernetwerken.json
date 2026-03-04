@@ -314,12 +314,12 @@
           "explanation": "Een three-tier hiërarchisch ontwerp voldoet aan alle eisen: Access layer voor VLAN-segmentatie en draadloze toegang (BYOD), Distribution layer voor routing, filtering en gecentraliseerd toegangsbeheer, en een Core layer voor de snelle backbone tussen distributieblokken."
         },
         {
-          "question": "VERHAALVRAAG – VLSM Berekening bij ITM\n\nEen netwerkbeheerder bij ITM werkt met adresblok 192.168.10.0/24. Hij past VLSM toe voor drie subnetten (begin altijd met het grootste): Afdeling Vracht (60 hosts), Afdeling Logistiek (25 hosts), WAN-link routers (2 hosts). Welk subnetadres en masker zijn correct voor de afdeling Vracht (het grootste subnet)?",
+          "question": "VERHAALVRAAG – VLSM Berekening bij ITM\n\nEen netwerkbeheerder bij ITM werkt met adresblok 192.168.10.0/24. Hij past VLSM toe voor drie subnetten (begin altijd met het grootste): Afdeling Vracht (60 hosts), Afdeling Logistiek (25 hosts), WAN-link routers (2 hosts). Welk subnetadres en masker zijn correct voor de afdeling Vracht (het grootste subnet)? ",
           "options": [
-            "192.168.10.0/26 — subnetmasker 255.255.255.192, biedt 62 bruikbare adressen",
-            "192.168.10.0/27 — subnetmasker 255.255.255.224, biedt 30 bruikbare adressen",
-            "192.168.10.0/25 — subnetmasker 255.255.255.128, biedt 126 bruikbare adressen",
-            "192.168.10.0/24 — subnetmasker 255.255.255.0, biedt 254 bruikbare adressen"
+            "192.168.10.0/26 — subnetmasker 255.255.255.192",
+            "192.168.10.0/27 — subnetmasker 255.255.255.224",
+            "192.168.10.0/25 — subnetmasker 255.255.255.128",
+            "192.168.10.0/24 — subnetmasker 255.255.255.0"
           ],
           "correct": 0,
           "explanation": "Voor 60 hosts is een /26 subnet nodig (2^6 = 64 adressen, 62 bruikbaar). /25 heeft 126 bruikbare adressen — meer dan nodig, verspilling. Bij VLSM begin je altijd met het grootste subnet: 192.168.10.0/26 (adresbereik .0 t/m .63)."
