@@ -675,13 +675,675 @@
     },
     {
       "id": "week3",
-      "name": "Week 3: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Week 3: Switching",
+      "questions": [
+        {
+          "question": "Wat is de primaire functie van het CSMA/CD-algoritme binnen een Ethernet-netwerk?",
+          "options": [
+            "Het toewijzen van IP-adressen aan hosts om conflicten te voorkomen.",
+            "Het versleutelen van data om afluisteren op de lijn tegen te gaan.",
+            "Het detecteren en herstellen van botsingen op een gedeeld medium (half-duplex).",
+            "Het prioriteren van Voice-verkeer boven data-verkeer om vertraging te minimaliseren."
+          ],
+          "correct": 2,
+          "explanation": "CSMA/CD (Carrier Sense Multiple Access / Collision Detect) is het protocol dat in oudere half-duplex Ethernet netwerken (hubs/coax) bepaalde wanneer een apparaat mocht zenden. Als twee apparaten tegelijk zonden, detecteerde CD de botsing, stuurde een jam-signaal en startte een random backoff timer."
+        },
+        {
+          "question": "Een netwerkbeheerder vervangt een Hub door een Layer 2 Switch. Wat is het effect op de Collision Domains en Broadcast Domains?",
+          "options": [
+            "Het aantal Collision Domains blijft gelijk, het aantal Broadcast Domains neemt toe.",
+            "Zowel het aantal Collision Domains als het aantal Broadcast Domains neemt toe.",
+            "Zowel het aantal Collision Domains als het aantal Broadcast Domains blijft gelijk.",
+            "Het aantal Collision Domains neemt toe, het aantal Broadcast Domains blijft gelijk."
+          ],
+          "correct": 3,
+          "explanation": "Een Hub is één groot Collision Domain en één Broadcast Domain. Een Switch scheidt Collision Domains per poort (micro-segmentatie), maar laat Broadcasts (zoals ARP) standaard door naar alle poorten. Dus: Collision Domains nemen toe (van 1 naar aantal poorten), Broadcast Domain blijft 1 (gelijk). Broadcast domains worden alleen gescheiden door Routers of VLANs, niet door standaard switching."
+        },
+        {
+          "question": "Welk frame-veld wordt door de IEEE 802.1Q standaard toegevoegd aan de Ethernet-header om VLAN-identificatie mogelijk te maken?",
+          "options": [
+            "Preamble",
+            "Frame Check Sequence (FCS)",
+            "Tag Control Information (Tag)",
+            "Source MAC Address"
+          ],
+          "correct": 2,
+          "explanation": "802.1Q voegt een 4-byte tag toe in de Ethernet header, met daarin de Tag Control Information (TCI) waar het VLAN ID (12 bits) in zit. Preamble is voor timing, FCS voor foutcontrole, MAC voor adressering."
+        },
+        {
+          "question": "Wat is een karakteristiek kenmerk van de 'Native VLAN' op een 802.1Q trunk-poort?",
+          "options": [
+            "Verkeer op dit VLAN krijgt de hoogste prioriteit (CoS waarde 7).",
+            "Dit VLAN wordt uitsluitend gebruikt voor SSH en Telnet beheer.",
+            "Dit VLAN is standaard uitgeschakeld om veiligheidsredenen.",
+            "Verkeer op dit VLAN wordt zonder VLAN-tag (untagged) over de trunk verstuurd."
+          ],
+          "correct": 3,
+          "explanation": "De Native VLAN is speciaal omdat frames die bij dit VLAN horen niet worden getagd (untagged) wanneer ze over de trunk gaan. Standaard is dit VLAN 1. Als een switch een untagged frame ontvangt op een trunk, wordt het naar de Native VLAN gestuurd."
+        },
+        {
+          "question": "Je configureert een switchpoort voor een IP-telefoon en een PC. De PC is aangesloten op de telefoon. Welke configuratie is vereist om spraak- en dataverkeer te scheiden?",
+          "options": [
+            "Configureer een Data VLAN en een apart Voice VLAN op dezelfde access poort.",
+            "Configureer de poort als Trunk en sta alle VLANs toe.",
+            "Configureer de poort als Access poort en wijs twee data-VLANs toe.",
+            "Configureer EtherChannel om de bandbreedte te verdubbelen."
+          ],
+          "correct": 0,
+          "explanation": "Dit heet een 'Voice VLAN' configuratie. De switchpoort krijgt instructies om Voice-verkeer (getagd) in het Voice VLAN te zetten en Data-verkeer (untagged van de PC) in het Data VLAN. Een Trunk is bedoeld voor switch-naar-switch (of router). Twee data-VLANs op één access poort kan technisch niet zonder tagging op de PC."
+        },
+        {
+          "question": "Wat is het fundamentele verschil tussen een 'End-to-End VLAN' en een 'Local VLAN' ontwerp?",
+          "options": [
+            "End-to-End VLANs zijn gebaseerd op geografische locatie; Local VLANs op functie.",
+            "End-to-End VLANs gebruiken routers; Local VLANs gebruiken alleen switches.",
+            "End-to-End VLANs zijn veiliger dan Local VLANs omdat ze encryptie gebruiken.",
+            "End-to-End VLANs strekken zich uit over de hele campus; Local VLANs blijven binnen de distributie/access laag van een gebouw."
+          ],
+          "correct": 3,
+          "explanation": "Bij End-to-End is VLAN 10 overal in het bedrijf beschikbaar (gebruiker behoudt IP als hij verhuist naar ander gebouw). Bij Local VLANs is VLAN 10 gebonden aan één fysieke switch/gebouw. Verhuis je, dan krijg je een nieuw VLAN en IP."
+        },
+        {
+          "question": "Welk gevaar schuilt er in het toevoegen van een gebruikte switch (met een hoger revisienummer) aan een bestaand VTP-domein in Client-modus?",
+          "options": [
+            "De switch zal weigeren te functioneren totdat het revisienummer op 0 is gezet.",
+            "De switch zal automatisch veranderen in een VTP Server en het domein overnemen.",
+            "De switch kan de VLAN-database van de VTP Server en andere clients overschrijven met zijn eigen (mogelijk lege) database.",
+            "De switch zal een broadcast storm veroorzaken omdat STP nog niet is geconvergeerd."
+          ],
+          "correct": 2,
+          "explanation": "VTP synchroniseert op basis van het hoogste Revision Number. Als de nieuwe switch (zelfs als Client!) een hoger nummer heeft, zullen de Server en andere Clients denken dat de nieuwe switch de meest recente update heeft. Ze overschrijven hun database met die van de nieuwe switch. Een Client kan wel degelijk de database van een Server overschrijven als het revisienummer hoger is."
+        },
+        {
+          "question": "Een switch staat in VTP Transparent modus. Wat doet deze switch met ontvangen VTP-advertisements?",
+          "options": [
+            "Hij verwerkt ze, past zijn VLAN-database aan en stuurt ze door.",
+            "Hij negeert ze volledig en stuurt ze niet door (drop).",
+            "Hij past zijn VLAN-database niet aan, maar stuurt de advertisements wel door naar de buren.",
+            "Hij stuurt een foutmelding terug naar de VTP Server omdat hij niet in hetzelfde domein zit."
+          ],
+          "correct": 2,
+          "explanation": "Transparent modus doet niet mee aan VTP (past eigen database niet aan), maar is wel een goed 'doorgeefluik'. VTP versie 2 stuurt advertisements door. Hij negeert ze niet volledig (stuurt door), maar verwerkt ze niet voor zichzelf."
+        },
+        {
+          "question": "Om VTP-synchronisatie tussen twee switches succesvol te laten verlopen, moeten drie instellingen identiek zijn. Welke combinatie is correct?",
+          "options": [
+            "VTP Domain Name, VTP Password, VTP Version.",
+            "VTP Domain Name, VTP Mode, Switch Hostname.",
+            "VTP Password, VLAN ID range, Native VLAN.",
+            "VTP Version, Trunk Encapsulation, Spanning Tree Mode."
+          ],
+          "correct": 0,
+          "explanation": "Voor VTP-sync moeten de Domain Name en het Password (indien ingesteld) exact overeenkomen (hoofdlettergevoelig!). Ook de Version moet compatibel zijn. Hostname maakt niet uit. Switchport modes zijn voor connectiviteit, niet de VTP-database sync zelf."
+        },
+        {
+          "question": "Wat is het primaire doel van het Spanning Tree Protocol (STP)?",
+          "options": [
+            "Het verdelen van netwerkverkeer over meerdere kabels (Load Balancing).",
+            "Het voorkomen van Layer 2 lussen (loops) in een netwerk met redundante paden.",
+            "Het dynamisch toewijzen van VLANs aan access-poorten.",
+            "Het beveiligen van de switch tegen ongeautoriseerde toegang."
+          ],
+          "correct": 1,
+          "explanation": "STP is ontworpen voor redundantie. Als je kabels dubbel aansluit voor betrouwbaarheid, ontstaan er lussen. Zonder STP blijven frames eeuwig rondcirkelen (loop). STP blokkeert logisch één pad om de lus te verbreken. Load Balancing is niet het primaire doel van standaard STP."
+        },
+        {
+          "question": "Wat is de oorzaak van een 'Broadcast Storm'?",
+          "options": [
+            "Een defecte netwerkkaart die continu frames stuurt (jabbering).",
+            "Het ontbreken van VLANs in een groot netwerk.",
+            "Een te hoog aantal ARP-requests tijdens de opstartfase van computers.",
+            "Redundante verbindingen tussen switches zonder een lus-preventie mechanisme (zoals STP)."
+          ],
+          "correct": 3,
+          "explanation": "Een Broadcast Storm ontstaat vaak door een Layer 2 loop. Een broadcast frame (naar FFFF.FFFF.FFFF) wordt door switches naar alle poorten geflood. In een lus komt dat frame terug bij de eerste switch, die het weer flood, enzovoort. Dit laat het netwerk vastlopen. Jabbering is een fysieke fout, geen loop-probleem."
+        },
+        {
+          "question": "Op basis waarvan wordt de Root Bridge gekozen in een STP-topologie?",
+          "options": [
+            "De switch met het hoogste MAC-adres.",
+            "De switch met de meeste actieve poorten.",
+            "De switch met de laagste Bridge ID (Prioriteit + MAC-adres).",
+            "De switch met de hoogste Bridge ID (Prioriteit + MAC-adres)."
+          ],
+          "correct": 2,
+          "explanation": "STP verkiezing: Laagste Bridge ID wint. Bridge ID = Priority + MAC Address. Als Priorities gelijk zijn (standaard 32768), wint het laagste MAC-adres. De switch met de hoogste ID verliest juist."
+        },
+        {
+          "question": "In welke STP-status leert een switch wel MAC-adressen, maar stuurt hij nog geen dataverkeer door?",
+          "options": [
+            "Learning",
+            "Blocking / Discarding",
+            "Listening",
+            "Forwarding"
+          ],
+          "correct": 0,
+          "explanation": "Listening: Stuurt/ontvangt BPDUs, bouwt geen MAC tabel op, stuurt geen data. Learning: Stuurt/ontvangt BPDUs, bouwt wel MAC tabel op, stuurt geen data. Forwarding: Alles actief."
+        },
+        {
+          "question": "Wat is het belangrijkste voordeel van RSTP (802.1w) ten opzichte van het klassieke STP (802.1D)?",
+          "options": [
+            "RSTP ondersteunt meer VLANs (tot 4096).",
+            "RSTP versleutelt de BPDU-pakketten voor extra veiligheid.",
+            "RSTP vereist geen configuratie en werkt out-of-the-box op alle routers.",
+            "RSTP heeft een veel snellere convergentietijd bij wijzigingen in de topologie."
+          ],
+          "correct": 3,
+          "explanation": "STP kan 30-50 seconden duren om te herstellen (convergeren). RSTP (Rapid STP) doet dit vaak binnen enkele seconden of milliseconden door nieuwe poortrollen en mechanismen. Beiden ondersteunen evenveel VLANs (per instantie). Encryptie is geen onderdeel van RSTP."
+        },
+        {
+          "question": "Welk type poort op een switch vervoert verkeer van meerdere VLANs tussen switches onderling?",
+          "options": [
+            "Trunk Port",
+            "Access Port",
+            "Console Port",
+            "Management Port"
+          ],
+          "correct": 0,
+          "explanation": "Een Trunk is een punt-tot-punt verbinding die frames van meerdere VLANs vervoert (m.b.v. tagging). Een Access poort is voor 1 VLAN (randapparatuur)."
+        },
+        {
+          "question": "Je wilt Inter-VLAN routing configureren met een 'Router-on-a-Stick'. Wat moet je op de router-interface configureren?",
+          "options": [
+            "Eén IP-adres op de fysieke interface voor alle VLANs.",
+            "De interface instellen op 'switchport mode access'.",
+            "Het routing protocol OSPF om de VLANs te leren kennen.",
+            "Subinterfaces met 802.1Q encapsulation en een IP-adres per VLAN."
+          ],
+          "correct": 3,
+          "explanation": "Router-on-a-stick vereist subinterfaces. Elke subinterface wordt gekoppeld aan een VLAN ID (encapsulation dot1Q 10) en krijgt een IP-adres dat dient als Default Gateway voor dat VLAN. Een fysieke interface kan maar één IP hebben en begrijpt zonder configuratie geen tags."
+        },
+        {
+          "question": "Wat gebeurt er als twee apparaten in hetzelfde Ethernet-netwerk tegelijkertijd data verzenden (in een shared medium/hub omgeving)?",
+          "options": [
+            "De data wordt gemixt en komt sneller aan (multiplexing).",
+            "Er ontstaat een collision; beide apparaten stoppen en wachten een willekeurige tijd (backoff).",
+            "De switch buffert het tweede pakket totdat de lijn vrij is.",
+            "Het apparaat met de hoogste prioriteit mag doorgaan, de ander wordt verbroken."
+          ],
+          "correct": 1,
+          "explanation": "Dit beschrijft de kern van Ethernet op een shared medium: Collision → Jam Signal → Random Backoff → Retry. Multiplexing gebeurt niet op de kabel bij baseband Ethernet."
+        },
+        {
+          "question": "Een switch ontvangt een frame met een destination MAC-adres dat niet in zijn MAC-adres tabel (CAM table) staat. Wat doet de switch?",
+          "options": [
+            "Hij stuurt het frame uit op alle poorten, behalve de poort van ontvangst (flood).",
+            "Hij gooit het frame weg (drop).",
+            "Hij stuurt het frame terug naar de afzender (return to sender).",
+            "Hij stuurt een ARP-request naar de router."
+          ],
+          "correct": 0,
+          "explanation": "Dit heet Flooding. Als de switch het adres niet kent ('Unknown Unicast'), stuurt hij het frame naar alle actieve poorten in dat VLAN, behalve de poort waar het vandaan kwam. Hij hoopt dat het juiste apparaat reageert, zodat hij het MAC-adres kan leren."
+        },
+        {
+          "question": "Welk IP-subnetmasker past bij een /27 notatie (vaak gebruikt bij subnetting van VLANs)?",
+          "options": [
+            "255.255.255.192",
+            "255.255.255.240",
+            "255.255.255.248",
+            "255.255.255.224"
+          ],
+          "correct": 3,
+          "explanation": "/27 betekent 27 enen: /24 = 255.255.255.0, +3 bits (128 + 64 + 32) = 224. Dus: 255.255.255.224. .192 is /26, .240 is /28, .248 is /29."
+        },
+        {
+          "question": "Wat is de functie van een BPDU (Bridge Protocol Data Unit) in STP?",
+          "options": [
+            "Het transporteren van gebruikersdata tussen VLANs.",
+            "Het uitwisselen van informatie tussen switches om de Root Bridge te kiezen en lussen te detecteren.",
+            "Het controleren van wachtwoorden voor VTP-domeinen.",
+            "Het meten van de kabellengte om de snelheid te bepalen."
+          ],
+          "correct": 1,
+          "explanation": "BPDU's zijn de 'hartslag' van STP. Switches sturen ze elke 2 seconden om elkaar te vertellen wie ze zijn (BID) en wat de kosten naar de Root Bridge zijn."
+        },
+        {
+          "question": "Een beheerder stelt de 'System ID Extension' in als onderdeel van de Bridge ID. Waarvoor wordt dit gebruikt?",
+          "options": [
+            "Om het serienummer van de switch mee te sturen.",
+            "Om het VLAN-ID op te nemen in de prioriteit (PVST+).",
+            "Om aan te geven dat de switch Gigabit poorten heeft.",
+            "Om onderscheid te maken tussen IPv4 en IPv6 verkeer."
+          ],
+          "correct": 1,
+          "explanation": "Bij PVST+ (Per VLAN Spanning Tree) draait er een STP instantie per VLAN. Om voor elk VLAN een unieke Bridge ID te hebben, wordt het VLAN-nummer (System ID Extension) opgeteld bij de Priority."
+        },
+        {
+          "question": "Wat is een 'Designated Port' in STP?",
+          "options": [
+            "De poort die direct verbonden is met de Root Bridge (kortste pad).",
+            "Een poort die in Blocking state staat om lussen te voorkomen.",
+            "Een poort die handmatig is uitgeschakeld door de beheerder.",
+            "De poort op een segment die data mag doorsturen naar het netwerk (één per segment)."
+          ],
+          "correct": 3,
+          "explanation": "Root Port: Beste weg NAAR de Root (1 per non-root switch). Designated Port: Beste weg VANAF de Root het segment op (1 per kabel/segment). Deze poort staat altijd in Forwarding. Een geblokkeerde poort is een Alternate of Backup port (in RSTP termen) of gewoon Nondesignated."
+        },
+        {
+          "question": "Waarom zou je VTP 'Pruning' inschakelen in een netwerk?",
+          "options": [
+            "Om onnodig broadcast-verkeer van VLANs over trunks te voorkomen naar switches die dat VLAN niet hebben.",
+            "Om de VTP-versie automatisch te upgraden naar versie 3.",
+            "Om te voorkomen dat switches in Client-modus VLANs kunnen verwijderen.",
+            "Om de beveiliging van het VTP-wachtwoord te verhogen."
+          ],
+          "correct": 0,
+          "explanation": "VTP Pruning zorgt ervoor dat broadcast-verkeer van bijvoorbeeld VLAN 50 niet over een trunk wordt gestuurd naar een switch waar géén poorten in VLAN 50 zitten. Dit bespaart bandbreedte."
+        },
+        {
+          "question": "Wat is het voordeel van het scheiden van 'Voice' en 'Data' in aparte VLANs?",
+          "options": [
+            "Voice-verkeer kan makkelijker worden opgenomen voor kwaliteitscontrole.",
+            "Er kan QoS (Quality of Service) worden toegepast om voorrang te geven aan spraakverkeer.",
+            "Computers kunnen dan fungeren als telefoons zonder extra software.",
+            "Het bespaart IP-adressen omdat telefoons geen IP nodig hebben."
+          ],
+          "correct": 1,
+          "explanation": "Door telefoons in een apart VLAN te zetten, kan de switch en router dat verkeer makkelijker herkennen en prioriteit geven (QoS) boven dataverkeer (YouTube, downloads), wat essentieel is voor goede gesprekskwaliteit."
+        },
+        {
+          "question": "Welk commando gebruik je op een Cisco switch om de status van VTP en de huidige configuratie revisie te bekijken?",
+          "options": [
+            "show vlan brief",
+            "show ip interface brief",
+            "show vtp status",
+            "show spanning-tree summary"
+          ],
+          "correct": 2,
+          "explanation": "show vtp status geeft de VTP Versie, Domeinnaam, Modus (Server/Client) en het cruciale Configuration Revision nummer."
+        },
+        {
+          "question": "Een PC in VLAN 10 wil communiceren met een server in VLAN 20. Beide apparaten zijn verbonden met dezelfde Layer 2 switch. Wat is nodig voor deze communicatie?",
+          "options": [
+            "Niets, de switch stuurt verkeer direct tussen poorten.",
+            "Een Trunk-verbinding tussen de PC en de Server.",
+            "Een Layer 3 apparaat (Router of Layer 3 Switch) om te routeren tussen de subnetten.",
+            "De VLANs moeten dezelfde naam hebben in de VTP database."
+          ],
+          "correct": 2,
+          "explanation": "VLANs zijn gescheiden broadcast domeinen (aparte subnetten). Een Layer 2 switch verbindt ze niet. Om van het ene naar het andere subnet te gaan, moet je Routeren (via een Router of Layer 3 switch). Een trunk verbindt switches, geen eindapparaten."
+        },
+        {
+          "question": "Wat gebeurt er met een poort die de status 'Blocking' (of Discarding) heeft in STP?",
+          "options": [
+            "De poort is fysiek uitgeschakeld (shutdown).",
+            "De poort ontvangt wel BPDUs, maar verstuurt geen gebruikersdata.",
+            "De poort leert MAC-adressen en stuurt data door, maar traag.",
+            "De poort functioneert als een Hub-poort (half-duplex)."
+          ],
+          "correct": 1,
+          "explanation": "Een geblokkeerde poort mag geen data verzenden of ontvangen om lussen te voorkomen. Echter, hij moet wel BPDU's blijven ontvangen om te weten of de topologie verandert (bijv. als de Root Bridge uitvalt, moet hij misschien actief worden)."
+        },
+        {
+          "question": "Welke VLAN-nummers behoren tot de 'Normal Range' en worden opgeslagen in vlan.dat?",
+          "options": [
+            "1 tot 1005",
+            "1006 tot 4094",
+            "0 en 4095",
+            "Alleen VLAN 1"
+          ],
+          "correct": 0,
+          "explanation": "Normal Range is 1-1005. Deze worden opgeslagen in vlan.dat op de flash. Extended range (1006-4094) wordt alleen ondersteund in VTP Transparent mode (bij oudere VTP versies) en staat in de running-config."
+        },
+        {
+          "question": "Wat is het effect van het commando 'switchport mode dynamic auto' op een switchpoort?",
+          "options": [
+            "De poort wordt altijd een Trunk.",
+            "De poort wordt een Trunk als de andere kant is ingesteld op trunk of dynamic desirable.",
+            "De poort blijft altijd een Access poort, ongeacht de andere kant.",
+            "De poort onderhandelt zelf het snelste duplex-type (Half of Full)."
+          ],
+          "correct": 1,
+          "explanation": "DTP (Dynamic Trunking Protocol): Dynamic Auto betekent 'Ik wil wel trunk worden als jij het vraagt.' Dynamic Desirable betekent 'Ik wil trunk worden en ik vraag het jou ook.' Auto + Auto = Access. Auto + Desirable = Trunk. Auto + Trunk (ON) = Trunk."
+        },
+        {
+          "question": "Wat is de maximale kabellengte voor een standaard UTP-kabel (zoals CAT6) binnen Ethernet specificaties voordat signaalverlies optreedt?",
+          "options": [
+            "50 meter",
+            "100 meter",
+            "185 meter",
+            "500 meter"
+          ],
+          "correct": 1,
+          "explanation": "De standaard limiet voor UTP-bekabeling (Ethernet over twisted pair) is 100 meter (90m vaste kabel + 10m patchkabels)."
+        }
+      ]
     },
     {
       "id": "week4",
-      "name": "Week 4: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Week 4: Wireless & WAN",
+      "questions": [
+        {
+          "question": "Welk fundamenteel probleem lost het CSMA/CA-mechanisme op in draadloze netwerken?",
+          "options": [
+            "Het gebrek aan bandbreedte voor video-streaming.",
+            "Het onvermogen om tegelijk te zenden en te luisteren.",
+            "De beperkte reikwijdte van het 5 GHz frequentiespectrum.",
+            "De gevoeligheid voor interferentie van magnetrons."
+          ],
+          "correct": 1,
+          "explanation": "Wifi is Half Duplex; de radio kan niet zenden en ontvangen tegelijk. Collision Detection (CD) is dus onmogelijk. CSMA/CA (Collision Avoidance) lost dit op door willekeurig te wachten als het kanaal bezet is."
+        },
+        {
+          "question": "Welke set kanalen in de 2.4 GHz-band vertoont geen frequentie-overlap?",
+          "options": [
+            "Kanalen 1, 2 en 3",
+            "Kanalen 2, 4 en 6",
+            "Kanalen 5, 10 en 15",
+            "Kanalen 1, 6 en 11"
+          ],
+          "correct": 3,
+          "explanation": "Kanalen 1, 6 en 11 overlappen elkaar niet in het 2.4 GHz spectrum (elk kanaal heeft ruimte nodig). Bij de andere opties is er sprake van frequentie-overlap, wat storing veroorzaakt."
+        },
+        {
+          "question": "Wat is een onderscheidend kenmerk van een Infrastructure Mode (BSS) netwerk?",
+          "options": [
+            "Apparaten communiceren direct met elkaar (peer-to-peer).",
+            "Apparaten gebruiken Bluetooth voor de data-overdracht.",
+            "Apparaten verbinden alleen via een bedrade switch.",
+            "Apparaten communiceren uitsluitend via een Access Point."
+          ],
+          "correct": 3,
+          "explanation": "In Infrastructure Mode (BSS) verloopt al het verkeer centraal via het Access Point, in tegenstelling tot Ad-hoc. Ad-hoc is peer-to-peer, Bluetooth en bedrade switches zijn niet specifiek voor BSS."
+        },
+        {
+          "question": "Welk type antenne biedt een 360-graden dekking rondom het Access Point?",
+          "options": [
+            "Yagi-antenne",
+            "Parabolische antenne",
+            "Dipool-antenne",
+            "Omnidirectionele antenne"
+          ],
+          "correct": 3,
+          "explanation": "Omnidirectionele antennes zenden in een 'donut'-vorm (360 graden horizontaal), ideaal voor centrale plaatsing. Yagi, parabolisch en dipool zijn directioneel (bundelen signaal)."
+        },
+        {
+          "question": "Waardoor wordt de beveiligingsstandaard WEP als onveilig beschouwd?",
+          "options": [
+            "Het protocol versleutelt de data helemaal niet.",
+            "De gebruikte encryptiesleutels zijn te lang voor oude hardware.",
+            "De Initialization Vector (IV) is te kort en herhaalt zich snel.",
+            "Het vereist een dure server voor de authenticatie van gebruikers."
+          ],
+          "correct": 2,
+          "explanation": "De 24-bit IV is te kort. Bij druk verkeer wordt deze hergebruikt, waardoor hackers patronen kunnen herkennen en de sleutel kunnen berekenen. WEP versleutelt wél (A is onjuist), de sleutellengte is niet het probleem (B), en het vereist geen aparte server (D)."
+        },
+        {
+          "question": "Wat is de primaire functie van het RTS/CTS-mechanisme?",
+          "options": [
+            "Het verhogen van de datasnelheid.",
+            "Het versleutelen van het signaal.",
+            "Het besparen van batterijspanning.",
+            "Het voorkomen van databotsingen."
+          ],
+          "correct": 3,
+          "explanation": "RTS (Request to Send) en CTS (Clear to Send) reserveren het medium tijdelijk, wat botsingen voorkomt bij het 'Hidden Node' probleem. Snelheidsverhoging, encryptie en batterijbesparing zijn geen functies van RTS/CTS."
+        },
+        {
+          "question": "Welke signaalsterkte wordt minimaal aanbevolen voor betrouwbare voice- en datatoepassingen?",
+          "options": [
+            "-30 dBm",
+            "-67 dBm",
+            "-90 dBm",
+            "-100 dBm"
+          ],
+          "correct": 1,
+          "explanation": "-67 dBm is de industriestandaard voor de grens van goede dekking, zeker voor real-time toepassingen zoals VoIP. -30 dBm is heel sterk (onnodig), -90 dBm is onbruikbaar zwak."
+        },
+        {
+          "question": "Wat wordt verstaan onder een 'Rogue Access Point'?",
+          "options": [
+            "Een AP dat is geconfigureerd voor gasttoegang.",
+            "Een AP dat werkt op de 5 GHz frequentieband.",
+            "Een ongeautoriseerd AP dat is aangesloten op het LAN.",
+            "Een AP dat defect is en geen signaal meer uitzendt."
+          ],
+          "correct": 2,
+          "explanation": "Een Rogue AP is niet beheerd door IT en vormt een beveiligingslek (bijv. een werknemer die zelf een routertje meeneemt). Gasttoegang en 5 GHz zijn legitieme scenario's, een defect AP is iets anders."
+        },
+        {
+          "question": "Hoeveel overlap tussen Access Points wordt aanbevolen voor goede roaming?",
+          "options": [
+            "0% tot 5%",
+            "40% tot 50%",
+            "80% tot 90%",
+            "10% tot 15%"
+          ],
+          "correct": 3,
+          "explanation": "10-15% overlap zorgt ervoor dat een client het volgende AP ziet voordat de verbinding met het oude AP verbroken wordt. Te weinig overlap geeft disconnects, te veel overlap geeft interferentie."
+        },
+        {
+          "question": "Waarom biedt MAC-filtering geen waterdichte beveiliging?",
+          "options": [
+            "MAC-adressen kunnen eenvoudig worden nagebootst (spoofing).",
+            "MAC-adressen veranderen elke keer dat een apparaat herstart.",
+            "MAC-filtering vertraagt de netwerkverbinding aanzienlijk.",
+            "MAC-filtering werkt niet op moderne 5 GHz netwerken."
+          ],
+          "correct": 0,
+          "explanation": "MAC-adressen worden onversleuteld verzonden. Een hacker kan een toegestaan adres kopiëren (spoofen) naar zijn eigen netwerkkaart. MAC-adressen veranderen niet automatisch, filtering vertraagt het netwerk niet significant, en het werkt wel op 5 GHz."
+        },
+        {
+          "question": "Welk encryptie-algoritme wordt gebruikt door WPA2 voor data-integriteit?",
+          "options": [
+            "AES",
+            "DES",
+            "RC4",
+            "TKIP"
+          ],
+          "correct": 0,
+          "explanation": "AES (Advanced Encryption Standard) is het sterke encryptie-algoritme dat bij WPA2 hoort. TKIP hoort bij WPA(1), RC4 bij WEP, DES is een oud algemeen encryptie-algoritme."
+        },
+        {
+          "question": "Wat is een kenmerk van een Ad Hoc (IBSS) netwerkconfiguratie?",
+          "options": [
+            "Het vereist een centrale router voor IP-toewijzing.",
+            "Het verbindt clients direct zonder tussenkomst van een AP.",
+            "Het biedt toegang tot het internet via een modem.",
+            "Het ondersteunt roaming tussen meerdere verdiepingen."
+          ],
+          "correct": 1,
+          "explanation": "Ad Hoc (IBSS) is een peer-to-peer netwerk zonder centraal Access Point. Centrale routers, internetverbinding en roaming beschrijven andere netwerktypes."
+        },
+        {
+          "question": "Welk voordeel biedt de 5 GHz-band ten opzichte van de 2.4 GHz-band?",
+          "options": [
+            "Een groter bereik door muren heen.",
+            "Een betere ondersteuning voor oude apparatuur.",
+            "Meer beschikbare kanalen zonder overlap.",
+            "Lagere energiekosten voor de zender."
+          ],
+          "correct": 2,
+          "explanation": "5 GHz biedt veel meer kanalen (bijv. 36, 40, 44, etc.) die elkaar niet storen. 5 GHz reikt minder ver (A is onjuist), oudere apparatuur ondersteunt vaak alleen 2.4 GHz (B is onjuist), en energiekosten zijn niet het onderscheid (D is onjuist)."
+        },
+        {
+          "question": "Wat is het doel van de techniek 'War Driving'?",
+          "options": [
+            "Het fysiek vernielen van netwerkapparatuur.",
+            "Het in kaart brengen van draadloze netwerken.",
+            "Het storen van wifi-signalen met ruis.",
+            "Het versterken van het eigen wifi-signaal."
+          ],
+          "correct": 1,
+          "explanation": "War Driving is het rondrijden met apparatuur om open of zwakke wifi-netwerken te lokaliseren en in kaart te brengen. De andere opties beschrijven andere (aanvals)technieken."
+        },
+        {
+          "question": "Waarom is het verbergen van de SSID een zwakke beveiligingsmaatregel?",
+          "options": [
+            "De SSID staat nog steeds in andere management frames.",
+            "De SSID is nodig om encryptie correct toe te passen.",
+            "De router stopt met het accepteren van nieuwe clients.",
+            "De bandbreedte van het netwerk wordt gehalveerd."
+          ],
+          "correct": 0,
+          "explanation": "De SSID zit ook in andere pakketten (management frames). Zodra een legitieme gebruiker verbindt, kan een hacker de naam alsnog zien. De andere antwoorden zijn technisch onjuist."
+        },
+        {
+          "question": "Wat onderscheidt een Wireless Router van een Wireless Access Point?",
+          "options": [
+            "Het routeren van verkeer tussen verschillende netwerken (IP-subnets).",
+            "Het bieden van draadloze connectiviteit aan clients.",
+            "Het gebruik van antennes voor signaaltransmissie.",
+            "Het ondersteunen van WPA2-beveiliging."
+          ],
+          "correct": 0,
+          "explanation": "Een router verbindt netwerken (Layer 3, bijv. LAN naar WAN). Een AP is een Layer 2 bridge (Wired naar Wireless binnen hetzelfde subnet). Draadloze connectiviteit, antennes en WPA2 gelden voor beide apparaten."
+        },
+        {
+          "question": "Wat is het effect van 'Frequency-hopping spread spectrum' (FHSS)?",
+          "options": [
+            "Het zendt uit op één frequentie met maximaal vermogen.",
+            "Het wisselt snel van frequentie om interferentie te vermijden.",
+            "Het gebruikt alle frequenties tegelijk voor hogere snelheid.",
+            "Het converteert analoge signalen naar digitale signalen."
+          ],
+          "correct": 1,
+          "explanation": "FHSS springt continu tussen frequenties, wat het lastiger maakt om het signaal te storen of af te luisteren. De andere opties beschrijven andere modulatietechnieken."
+        },
+        {
+          "question": "Welke rol speelt de RADIUS-server in een 802.1x implementatie?",
+          "options": [
+            "Het versleutelen van het draadloze dataverkeer.",
+            "Het toewijzen van IP-adressen aan de clients.",
+            "Het valideren van de inloggegevens van de gebruiker.",
+            "Het versterken van het signaal van het Access Point."
+          ],
+          "correct": 2,
+          "explanation": "De RADIUS-server controleert de gebruikersnaam en het wachtwoord in een Enterprise-omgeving (802.1x). Encryptie doet het AP/Client, IP-adressen worden toegewezen door de DHCP-server."
+        },
+        {
+          "question": "Welk apparaat veroorzaakt vaak interferentie op de 2.4 GHz frequentieband?",
+          "options": [
+            "Een magnetron.",
+            "Een rookmelder.",
+            "Een led-lamp.",
+            "Een FM-radio."
+          ],
+          "correct": 0,
+          "explanation": "Magnetrons werken ook op ±2.45 GHz en lekken vaak straling, wat het wifi-signaal wegdrukt. Rookmelders, led-lampen en FM-radio's werken op andere frequenties of storen niet."
+        },
+        {
+          "question": "Wat betekent de term 'Half Duplex' voor een wifi-verbinding?",
+          "options": [
+            "Data wordt slechts in één richting verstuurd.",
+            "Data wordt met halve snelheid verstuurd.",
+            "Zenden en ontvangen kan niet tegelijkertijd.",
+            "Zenden en ontvangen gebeurt op aparte kanalen."
+          ],
+          "correct": 2,
+          "explanation": "Half Duplex betekent dat communicatie twee kanten op kan, maar niet tegelijkertijd (zoals een walkietalkie). Eén richting is Simplex. Halve snelheid en aparte kanalen zijn onjuiste definities."
+        },
+        {
+          "question": "Welk protocol werd tijdelijk ingevoerd om WEP te vervangen vóór de komst van WPA2?",
+          "options": [
+            "TKIP",
+            "CCMP",
+            "IPsec",
+            "HTTPS"
+          ],
+          "correct": 0,
+          "explanation": "TKIP (Temporal Key Integrity Protocol) was de tussenoplossing in WPA om de zwakke WEP-encryptie iets te verbeteren zonder nieuwe hardware. CCMP hoort bij WPA2, IPsec en HTTPS zijn andere protocollen."
+        },
+        {
+          "question": "Wat wordt gevisualiseerd met een 'Heat Map' in netwerkbeheer?",
+          "options": [
+            "De temperatuur van de serverruimte.",
+            "De fysieke locatie van netwerkkabels.",
+            "De dekking van het draadloze signaal.",
+            "De drukte op de internetverbinding."
+          ],
+          "correct": 2,
+          "explanation": "Een Heat Map toont met kleuren waar het signaal sterk of zwak is op een plattegrond. Temperatuur, kabellocaties en internetdrukte zijn andere beheerstools."
+        },
+        {
+          "question": "Wat vormt samen een Extended Service Set (ESS)?",
+          "options": [
+            "Eén AP met meerdere antennes.",
+            "Een AP en een draadloze router.",
+            "Een netwerk zonder Access Points.",
+            "Meerdere AP's met dezelfde SSID."
+          ],
+          "correct": 3,
+          "explanation": "ESS bestaat uit meerdere BSS'en (Access Points) die verbonden zijn via een kabel en samen één logisch netwerk vormen met dezelfde SSID. Eén AP met meerdere antennes is een BSS."
+        },
+        {
+          "question": "Welke eigenschap hoort bij een directionele antenne?",
+          "options": [
+            "Het signaal wordt in een bolvorm verspreid.",
+            "Het signaal wordt gebundeld in één richting.",
+            "Het signaal wordt gelijkmatig verdeeld over de ruimte.",
+            "Het signaal bereikt eenvoudig meerdere verdiepingen."
+          ],
+          "correct": 1,
+          "explanation": "Directionele antennes (zoals Yagi) bundelen energie in een straal om grotere afstanden te overbruggen. Bolvorm en gelijkmatige verdeling horen bij omnidirectioneel."
+        },
+        {
+          "question": "Wat gebeurt er met de bandbreedte in een 'Shared Medium' zoals wifi?",
+          "options": [
+            "De bandbreedte neemt toe bij meer gebruikers.",
+            "De bandbreedte blijft constant voor elke gebruiker.",
+            "De bandbreedte wordt verdeeld over de actieve gebruikers.",
+            "De bandbreedte wordt bepaald door de afstand tot de router."
+          ],
+          "correct": 2,
+          "explanation": "Wifi is een gedeeld medium. De totale capaciteit van het Access Point wordt verdeeld over alle actieve gebruikers. Meer gebruikers = minder bandbreedte per gebruiker. Afstand is een factor maar bepaalt niet de verdeling."
+        },
+        {
+          "question": "Welk nadeel heeft het gebruik van de 5 GHz frequentieband?",
+          "options": [
+            "Er is meer interferentie van andere apparaten.",
+            "Het signaal wordt sterker gedempt door obstakels.",
+            "De maximale datasnelheid is lager dan bij 2.4 GHz.",
+            "Er zijn minder kanalen beschikbaar voor gebruik."
+          ],
+          "correct": 1,
+          "explanation": "Hogere frequenties (5 GHz) worden sterker geabsorbeerd door muren en obstakels dan lagere frequenties (2.4 GHz). 5 GHz heeft juist minder interferentie (A is onjuist), is sneller (C is onjuist), en heeft meer kanalen (D is onjuist)."
+        },
+        {
+          "question": "Welke componenten zijn vereist voor WPA2-Enterprise?",
+          "options": [
+            "Supplicant, Authenticator, Authentication Server.",
+            "Client, Router, Internet Service Provider.",
+            "Laptop, Switch, Firewall.",
+            "Access Point, WEP-Key, MAC-adres."
+          ],
+          "correct": 0,
+          "explanation": "802.1x vereist een Client (Supplicant), een toegangspunt (Authenticator) en een database (Authentication Server / RADIUS). De andere opties zijn generieke netwerktermen zonder de juiste rolverdeling."
+        },
+        {
+          "question": "Wat is het effect van Multipath Distortion (signaalweerkaatsing)?",
+          "options": [
+            "Het verhoogt altijd de signaalsterkte.",
+            "Het kan leiden tot data-corruptie.",
+            "Het verandert de frequentie van het signaal.",
+            "Het schakelt de encryptie uit."
+          ],
+          "correct": 1,
+          "explanation": "Multipath (weerkaatsing) zorgt dat signalen op verschillende tijden aankomen, wat data onleesbaar kan maken (hoewel MIMO dit positief gebruikt). Signaalsterkte verhogen is niet gegarandeerd, frequentieverandering en encryptie uitschakelen zijn technisch onjuist."
+        },
+        {
+          "question": "Wat is de functie van een 'Distribution System' in een draadloos netwerk?",
+          "options": [
+            "Het verbinden van AP's met het bedrade netwerk.",
+            "Het verdelen van IP-adressen aan clients.",
+            "Het scannen van frequenties op interferentie.",
+            "Het versleutelen van wachtwoorden."
+          ],
+          "correct": 0,
+          "explanation": "Het Distribution System (meestal Ethernet) verbindt de draadloze cellen met elkaar zodat communicatie mogelijk is. IP-adressen worden door DHCP verdeeld, frequentiescanning en wachtwoordencryptie zijn andere functies."
+        },
+        {
+          "question": "Welke IEEE-standaard beschrijft de werking van Wi-Fi 6?",
+          "options": [
+            "802.11ac",
+            "802.11g",
+            "802.11n",
+            "802.11ax"
+          ],
+          "correct": 3,
+          "explanation": "802.11ax is de technische naam voor Wi-Fi 6. 802.11ac is Wi-Fi 5, 802.11n is Wi-Fi 4, 802.11g is een oudere standaard."
+        }
+      ]
     },
     {
       "id": "week5",

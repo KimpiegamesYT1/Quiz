@@ -575,6 +575,9 @@ async function loadQuizList() {
         quizzes.forEach(quiz => {
             const card = document.createElement('div');
             card.className = 'quiz-card';
+            if (quiz.wide) {
+                card.classList.add('quiz-card-wide');
+            }
             card.onclick = () => window.location.href = `quiz.html?id=${quiz.id}`;
                         card.innerHTML = `
                                 <h3 style="display: flex; align-items: baseline; gap: 8px;">

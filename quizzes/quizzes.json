@@ -1,10 +1,11 @@
 [
     {
-        "id": "iq-test",
-        "title": "HBO IQ Test",
-        "file": "quizzes/iq-test.json",
-        "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting.",
-        "subtitle": "IQ Test"
+        "id": "computernetwerken",
+        "title": "Computernetwerken",
+        "file": "quizzes/computernetwerken.json",
+        "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
+        "subtitle": "kwartiel 3",
+        "wide": true
     }
     ,
     {
@@ -16,10 +17,10 @@
     }
     ,
     {
-        "id": "computernetwerken",
-        "title": "Computernetwerken",
-        "file": "quizzes/computernetwerken.json",
-        "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
-        "subtitle": "kwartiel 3"
+        "id": "iq-test",
+        "title": "HBO IQ Test",
+        "file": "quizzes/iq-test.json",
+        "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting.",
+        "subtitle": "IQ Test"
     }
 ]
