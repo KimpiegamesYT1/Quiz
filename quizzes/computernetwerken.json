@@ -734,7 +734,7 @@
         },
         {
           "question": "Wat is het fundamentele verschil tussen een 'End-to-End VLAN' en een 'Local VLAN' ontwerp?",
-            "options": [
+          "options": [
             "End-to-End: gebruiker behoudt VLAN/IP overal; Local: VLAN gebonden aan één gebouw.",
             "End-to-End VLANs gebruiken routers; Local VLANs gebruiken alleen switches.",
             "End-to-End VLANs zijn veiliger omdat ze encryptie gebruiken.",
@@ -1347,8 +1347,339 @@
     },
     {
       "id": "week5",
-      "name": "Week 5: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Week 5: Routing",
+      "questions": [
+        {
+          "question": "Wat is de primaire functie van een router binnen een computernetwerk?",
+          "options": [
+            "Het blokkeren van ongewenst netwerkverkeer op basis van poortnummers.",
+            "Het converteren van analoge signalen naar digitale signalen.",
+            "Het doorsturen van datapakketten tussen verschillende computernetwerken.",
+            "Het verbinden van eindapparaten binnen hetzelfde lokale netwerk (LAN)."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): De hoofdfunctie van een router is het bepalen van het optimale pad en het doorsturen van IP-pakketten naar externe netwerken.\n\nOnjuist (A): Dit is de primaire functie van een firewall, niet van een router (hoewel routers basis ACL's kunnen hebben).\n\nOnjuist (B): Dit is de functie van een modem.\n\nOnjuist (D): Het verbinden van apparaten binnen hetzelfde LAN is de taak van een switch."
+        },
+        {
+          "question": "Hoe leert een router standaard de routes naar netwerken die fysiek met zijn eigen interfaces zijn verbonden?",
+          "options": [
+            "Door de 'Directly Connected' functionaliteit die actief wordt zodra een interface een IP-adres krijgt en wordt ingeschakeld.",
+            "Door de handmatige configuratie van een statische route door de netwerkbeheerder.",
+            "Door het uitwisselen van Hello-pakketten met naburige switches.",
+            "Door updates te ontvangen via een geconfigureerd dynamisch routingprotocol."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Zodra een routerinterface een IP-adres heeft en 'up' is, plaatst de router dit netwerk automatisch als 'Directly Connected' in de routing table.\n\nOnjuist (B): Statische routes moeten handmatig voor externe netwerken worden ingevoerd, niet voor fysiek aangesloten netwerken.\n\nOnjuist (C): Hello-pakketten worden gebruikt door dynamische protocollen (zoals OSPF) om buren te vinden, niet voor direct aangesloten netwerken.\n\nOnjuist (D): Dynamische protocollen leren routes van andere routers, niet de routes die fysiek aan de router zelf vastzitten."
+        },
+        {
+          "question": "Welke notatie wordt in een routing table gebruikt om een 'default static route' aan te duiden?",
+          "options": [
+            "0.0.0.0",
+            "127.0.0.1",
+            "192.168.1.1",
+            "255.255.255.255"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): 0.0.0.0 (vaak in combinatie met subnetmasker 0.0.0.0) representeert \"alle netwerken die de router NIET kent\" en wordt gebruikt als gateway of last resort.\n\nOnjuist (B): Dit is het loopback-adres voor de localhost.\n\nOnjuist (C): Dit is een veelvoorkomend standaard IP-adres voor particuliere routers, geen aanduiding voor een route.\n\nOnjuist (D): Dit is het broadcast-adres voor het huidige netwerk."
+        },
+        {
+          "question": "Voor welk type netwerk is de configuratie van een statische route de meest logische en efficiënte keuze?",
+          "options": [
+            "Een complex netwerk met frequente topologiewijzigingen.",
+            "Een groot bedrijfsnetwerk met honderden onderling verbonden routers.",
+            "Een netwerk van een Internet Service Provider (ISP).",
+            "Een stub-netwerk met slechts één fysieke uitgang naar de rest van het netwerk."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Een stub-netwerk heeft maar één pad naar buiten. Een statische (default) route is hier het efficiëntst omdat er geen complexe routeberekeningen nodig zijn.\n\nOnjuist (A, B, C): In deze scenario's groeit de configuratiecomplexiteit enorm bij statische routes. Hier zijn dynamische routingprotocollen (zoals OSPF of BGP) noodzakelijk."
+        },
+        {
+          "question": "Wat is het belangrijkste verschil in toepassingsgebied tussen een Interior Gateway Protocol (IGP) en een Exterior Gateway Protocol (EGP)?",
+          "options": [
+            "Een IGP routeert pakketten binnen één Autonomous System, terwijl een EGP pakketten tussen verschillende Autonomous Systems routeert.",
+            "Een IGP routeert uitsluitend IPv4-verkeer, terwijl een EGP uitsluitend IPv6-verkeer routeert.",
+            "Een IGP wordt gebruikt op draadloze netwerken, terwijl een EGP wordt ingezet op bekabelde glasvezelverbindingen.",
+            "Een IGP zoekt altijd naar de hoogste bandbreedte, terwijl een EGP zoekt naar het kortste aantal hops."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): IGP's (zoals OSPF, EIGRP, RIP) opereren intradomain (binnen één AS). EGP's (zoals BGP) opereren interdomain (tussen AS'en).\n\nOnjuist (B): Zowel IGP als EGP hebben versies voor zowel IPv4 als IPv6.\n\nOnjuist (C): Het medium (draadloos/bekabeld) staat los van het type routingprotocol.\n\nOnjuist (D): De keuze voor bandbreedte of hops hangt af van het specifieke protocol (Link-State vs Distance Vector), niet van de IGP/EGP classificatie."
+        },
+        {
+          "question": "Welke waarde gebruikt een router om de betrouwbaarheid ('believability') van verschillende routingprotocollen ten opzichte van elkaar te wegen?",
+          "options": [
+            "Administrative Distance (AD)",
+            "Autonomous System Number (ASN)",
+            "Hop Count",
+            "Metric"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De Administrative Distance (een waarde van 0-255) geeft de betrouwbaarheid van de routebron aan. Hoe lager het getal, hoe betrouwbaarder.\n\nOnjuist (B): Het ASN is een identificatienummer voor een routingdomein (bedrijf/ISP), gebruikt door BGP.\n\nOnjuist (C): Hop count is een specifieke metric voor RIP.\n\nOnjuist (D): De metric wordt gebruikt om het beste pad te kiezen binnen hetzelfde protocol, niet tussen verschillende protocollen."
+        },
+        {
+          "question": "Welk mechanisme voorkomt routing loops door een router te verbieden een geleerde route terug te sturen via dezelfde interface als waarover deze is binnengekomen?",
+          "options": [
+            "Dijkstra's Algorithm",
+            "Poison Reverse",
+            "Shortest Path First (SPF)",
+            "Split Horizon"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Split Horizon is een regel binnen Distance Vector-protocollen die stelt dat een router geen netwerk mag adverteren via de interface waarvandaan de update is ontvangen.\n\nOnjuist (A & C): Dit zijn algoritmen die gebruikt worden in Link-State protocollen (zoals OSPF) om het netwerk in kaart te brengen.\n\nOnjuist (B): Poison reverse adverteert de route wél terug over dezelfde interface, maar dan expres met een onbereikbare 'infinite' metric."
+        },
+        {
+          "question": "Hoe categoriseert men het Routing Information Protocol (RIP)?",
+          "options": [
+            "Als een Distance Vector routingprotocol.",
+            "Als een Exterior Gateway routingprotocol.",
+            "Als een Link-State routingprotocol.",
+            "Als een Path Vector routingprotocol."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): RIP is een Distance Vector protocol dat richting (interface) en afstand (hops) gebruikt.\n\nOnjuist (B): RIP is een IGP, geen EGP.\n\nOnjuist (C): OSPF is een Link-State protocol.\n\nOnjuist (D): BGP is een Path Vector protocol."
+        },
+        {
+          "question": "Wat is de maximale hop count in het RIP-protocol voordat een netwerk als onbereikbaar wordt beschouwd?",
+          "options": [
+            "15 hops",
+            "16 hops",
+            "100 hops",
+            "255 hops"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): RIP heeft een maximum hop count van 15. Een netwerk op 16 hops afstand wordt als 'infinity' (onbereikbaar) gezien.\n\nOnjuist (B, C, D): 16 is de onbereikbare statuswaarde. 100 en 255 behoren respectievelijk tot metrics of limieten van IGRP en EIGRP."
+        },
+        {
+          "question": "Via welk specifiek multicast-adres verstuurt RIP versie 2 zijn routingupdates?",
+          "options": [
+            "224.0.0.5",
+            "224.0.0.6",
+            "224.0.0.9",
+            "255.255.255.255"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): RIPv2 is geüpgraded van broadcast naar multicast en gebruikt adres 224.0.0.9 om bandbreedte te besparen.\n\nOnjuist (A & B): Dit zijn de multicast-adressen die OSPF gebruikt.\n\nOnjuist (D): Dit is het broadcast-adres dat RIP versie 1 gebruikte."
+        },
+        {
+          "question": "Welke twee metrieken ('metrics') gebruikt EIGRP standaard om het beste pad naar een bestemming te berekenen?",
+          "options": [
+            "Bandwidth en Delay",
+            "Bandwidth en Hop count",
+            "Delay en Reliability",
+            "Hop count en Load"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Het EIGRP-algoritme berekent standaard de \"composite metric\" op basis van Bandwidth (de traagste link) en Delay (de cumulatieve vertraging).\n\nOnjuist (B, C, D): EIGRP kan Load en Reliability meewegen, maar dit is standaard uitgeschakeld. Hop count is de metric van RIP, niet de hoofdfactor voor EIGRP padberekening."
+        },
+        {
+          "question": "Wat is een fundamenteel kenmerk van een Link-State routingprotocol in tegenstelling tot een Distance Vector protocol?",
+          "options": [
+            "Het bouwt een abstracte en complete topologiekaart van het gehele netwerk.",
+            "Het kent uitsluitend de afstand en richting naar de volgende router in het pad.",
+            "Het verstuurt periodiek de volledige routing table naar zijn buren.",
+            "Het wordt uitsluitend gebruikt voor routering tussen verschillende autonome systemen (EGP)."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Link-State protocollen (zoals OSPF) verzamelen Link-State Advertisements (LSA's) om een complete \"map\" (topologie) te bouwen met het Dijkstra-algoritme.\n\nOnjuist (B): Dit is precies de definitie van een Distance Vector protocol.\n\nOnjuist (C): Distance Vector protocollen sturen periodiek tabellen (bijv. RIP). Link-State verstuurt LSA's alleen bij wijzigingen.\n\nOnjuist (D): OSPF is een IGP, bedoeld voor binnen een AS."
+        },
+        {
+          "question": "Welk algoritme wordt door OSPF toegepast om het kortste pad naar alle bestemmingen te berekenen?",
+          "options": [
+            "Bellman-Ford algoritme",
+            "Dijkstra's Shortest Path First (SPF) algoritme",
+            "Diffusing Update Algorithm (DUAL)",
+            "Path Vector algoritme"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): OSPF gebruikt het algoritme van Dijkstra om de SPF-tree te bouwen en zo de kortste paden te bepalen.\n\nOnjuist (A): Dit wordt gebruikt door oudere protocollen zoals RIP.\n\nOnjuist (C): DUAL is het algoritme dat wordt gebruikt door EIGRP.\n\nOnjuist (D): Dit verwijst naar de techniek die BGP gebruikt."
+        },
+        {
+          "question": "Wat is de specifieke functie van 'Area 0' in een multiarea OSPF-ontwerp?",
+          "options": [
+            "Het fungeert als een geïsoleerd netwerk voor experimentele protocollen.",
+            "Het is de 'backbone' area waaraan alle andere OSPF-gebieden moeten worden gekoppeld.",
+            "Het is de enige area die rechtstreeks communiceert via het BGP-protocol.",
+            "Het is een gereserveerde area speciaal voor apparaten zonder IP-adres."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Multiarea OSPF hanteert een hiërarchisch ontwerp waarbij Area 0 (de transit/backbone area) het centrale punt is. Verkeer tussen andere area's loopt altijd via Area 0.\n\nOnjuist (A, C, D): Area 0 staat volledig in het teken van intern OSPF-verkeer stroomlijnen. Het heeft niets te maken met BGP-verplichtingen of ip-loze apparaten."
+        },
+        {
+          "question": "Welke benaming krijgt een OSPF-router die interfaces heeft aangesloten op meerdere verschillende OSPF-area's?",
+          "options": [
+            "Area Border Router (ABR)",
+            "Autonomous System Boundary Router (ASBR)",
+            "Backbone Router",
+            "Internal Router"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Een ABR verbindt Area 0 met andere (regular) area's.\n\nOnjuist (B): Een ASBR verbindt het OSPF-domein met een extern netwerk (bijv. het internet of een BGP-domein).\n\nOnjuist (C): Een Backbone Router heeft interfaces in Area 0, maar is niet per definitie een grensrouter.\n\nOnjuist (D): Een Internal Router heeft al zijn interfaces in precies één dezelfde area."
+        },
+        {
+          "question": "Op welk type netwerk vindt binnen OSPF de verkiezing plaats voor een Designated Router (DR) en Backup Designated Router (BDR)?",
+          "options": [
+            "Op broadcast-netwerken zoals Ethernet.",
+            "Op directe punt-tot-punt serieverbindingen.",
+            "Op fysieke consoleverbindingen.",
+            "Op virtuele loopback-interfaces."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De DR/BDR-verkiezing voorkomt te veel LSA-verkeer op multi-access broadcast netwerken (zoals een Ethernet-switch met meerdere routers).\n\nOnjuist (B): Op een point-to-point verbinding zijn slechts twee routers, een DR/BDR is daar onnodig.\n\nOnjuist (C & D): Dit zijn geen netwerktypen waar LSA's worden geflood naar groepen routers."
+        },
+        {
+          "question": "Welk IPv4 protocolnummer is toegewezen aan het OSPF-protocol voor communicatie tussen routers?",
+          "options": [
+            "Protocol 1",
+            "Protocol 6",
+            "Protocol 17",
+            "Protocol 89"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): OSPF gebruikt zijn eigen transportprotocol op de netwerklaag, geregistreerd onder IPv4-protocolnummer 89.\n\nOnjuist (A, B, C): 1 is ICMP, 6 is TCP, 17 is UDP."
+        },
+        {
+          "question": "Wat is het belangrijkste doel van het Border Gateway Protocol (BGP)?",
+          "options": [
+            "Het bieden van een loop-free routing systeem voor informatie-uitwisseling tússen verschillende Autonomous Systems.",
+            "Het dynamisch toewijzen van IPv4-adressen aan werkplekken in een bedrijfsnetwerk.",
+            "Het opzetten van een veilige, versleutelde VPN-verbinding tussen twee filialen.",
+            "Het verdelen van netwerkverkeer over de interne switches in een lokaal datacenter."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): BGP is het standaard EGP voor het internet en verbindt verschillende AS'en (zoals ISP's en grote bedrijven) loop-vrij met elkaar.\n\nOnjuist (B): Dit is de functie van DHCP.\n\nOnjuist (C): Dit is de functie van protocollen zoals IPsec.\n\nOnjuist (D): Switch traffic is Data Link Layer, BGP is interdomain routing op de Network Layer."
+        },
+        {
+          "question": "Welk Transport Layer protocol en poortnummer gebruikt BGP om betrouwbare sessies op te bouwen met neighbor routers?",
+          "options": [
+            "TCP poort 21",
+            "TCP poort 179",
+            "UDP poort 53",
+            "UDP poort 520"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): BGP gedraagt zich als een applicatie en gebruikt een betrouwbare TCP-verbinding op poort 179 om updates uit te wisselen.\n\nOnjuist (A): TCP 21 is voor FTP.\n\nOnjuist (C): UDP 53 is voor DNS.\n\nOnjuist (D): UDP 520 wordt gebruikt door RIP."
+        },
+        {
+          "question": "Hoe ontdekt BGP zijn neighbor routers in het netwerk?",
+          "options": [
+            "Door BGP neighbors handmatig op IP-adres te definiëren via configuratie.",
+            "Door constant broadcast-berichten te sturen naar het netwerksegment.",
+            "Door het automatisch uitzenden van multicast Hello-pakketten.",
+            "Door het lokaal opvragen van ARP-tabellen."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): BGP kan niet dynamisch buren ontdekken; de netwerkbeheerder moet de IP-adressen van de neighbors handmatig in de configuratie vastleggen (neighbor x.x.x.x remote-as y).\n\nOnjuist (B, C): BGP gebruikt geen hello packets (zoals OSPF of EIGRP) of broadcasts om buren te vinden.\n\nOnjuist (D): ARP wordt gebruikt voor MAC-adres resolutie, niet voor het opzetten van BGP adjacencies."
+        },
+        {
+          "question": "Wat geeft het Autonomous System Number (ASN) aan in een BGP-omgeving?",
+          "options": [
+            "De administratieve afstand (AD) van het protocol dat lokaal wordt gebruikt.",
+            "De collectie van routers die beheerd worden onder één gezamenlijke administratieve autoriteit.",
+            "De fysieke locatie (het land) waar de router zich bevindt.",
+            "De maximale bandbreedte die het netwerk aankan."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Een Autonomous System is een verzameling netwerken en routers onder de controle van één entiteit (zoals een bedrijf of ISP). Dit wordt aangeduid met een ASN (bijv. 64512).\n\nOnjuist (A): AD is lokaal bepaald en definieert betrouwbaarheid.\n\nOnjuist (C, D): Locatie en bandbreedte staan los van de identificatie via een ASN."
+        },
+        {
+          "question": "Binnen BGP wordt onderscheid gemaakt tussen eBGP en iBGP. Wat is een vereiste voor een eBGP (External BGP) neighbor relatie?",
+          "options": [
+            "De neighbors moeten zich in verschillende IP-subnetten en in hetzelfde Autonomous System bevinden.",
+            "De neighbors moeten zich in verschillende Autonomous Systems (verschillende ASN's) bevinden.",
+            "De neighbors mogen geen fysieke verbinding met elkaar hebben.",
+            "De neighbors moeten identieke routingtabellen bezitten."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Bij External BGP bevinden de twee routers zich in verschillende AS'en. (Bij Internal BGP in hetzelfde AS).\n\nOnjuist (A): Hetzelfde AS betekent dat het om iBGP gaat.\n\nOnjuist (C): eBGP neighbors zijn juist heel vaak direct fysiek verbonden.\n\nOnjuist (D): BGP neighbors wisselen routes uit; hun tabellen hoeven niet op voorhand identiek te zijn."
+        },
+        {
+          "question": "Wat is de rol van het commando router eigrp 64521 in een netwerkapparaat?",
+          "options": [
+            "Het activeert het EIGRP routingproces waarbij de router onderdeel wordt van routingdomein 64521.",
+            "Het configureert een statische route naar netwerk 64521.",
+            "Het wijzigt de Administrative Distance van het EIGRP-protocol naar 64521.",
+            "Het zet de kloksnelheid van de seriële interface op 64521 baud."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Dit is het globale configuratiecommando om EIGRP te activeren en het toe te wijzen aan Autonomous System-nummer 64521.\n\nOnjuist (B): Statische routes worden geconfigureerd met ip route.\n\nOnjuist (C): De AD is een waarde tussen 0 en 255.\n\nOnjuist (D): Dit doe je met het clock rate commando op een specifieke interface."
+        },
+        {
+          "question": "Welk pakkettype verstuurt OSPF direct als antwoord op een Link-State Request (LSR) om verouderde database-informatie bij een buurman te actualiseren?",
+          "options": [
+            "Database Description (DBD)",
+            "Hello Packet",
+            "Link-State Acknowledgment (LSAck)",
+            "Link-State Update (LSU)"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Een Link-State Update (LSU) wordt verstuurd met de expliciete LSA's die de buurrouter aanvroeg in zijn LSR.\n\nOnjuist (A): DBD's worden eerder in het proces gestuurd om de database samen te vatten.\n\nOnjuist (B): Hello's houden de nabuurschap actief.\n\nOnjuist (C): Een LSAck bevestigt alleen de ontvangst van een LSU, maar bevat niet de gevraagde netwerkgegevens."
+        },
+        {
+          "question": "Wat is het grote voordeel van het opdelen van een groot OSPF-netwerk in meerdere area's (Multiarea OSPF)?",
+          "options": [
+            "Het stelt routers in staat om IP-adressen dynamisch uit te delen.",
+            "Het verhoogt de draadloze signaalsterkte voor aangesloten apparaten.",
+            "Het vermindert de belasting op de processor en het geheugen van de routers doordat routingtabellen kleiner worden.",
+            "Het versleutelt al het netwerkverkeer tussen de area's automatisch met IPsec."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Multiarea OSPF lokaliseert wijzigingen tot één area en zorgt voor kleinere routingtabellen (route summarization), wat veel CPU en RAM bespaart.\n\nOnjuist (A): Dit is DHCP.\n\nOnjuist (B): Routing protocollen hebben geen invloed op radiogolven.\n\nOnjuist (D): OSPFv3 ondersteunt IPsec authenticatie, maar multiarea OSPF verzorgt geen automatische versleuteling van dataverkeer."
+        },
+        {
+          "question": "Welke Administrative Distance (AD) krijgt een Internal EIGRP-route standaard toegewezen door een Cisco-router?",
+          "options": [
+            "1",
+            "90",
+            "110",
+            "120"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Internal EIGRP heeft een standaard AD van 90.\n\nOnjuist (A): Dit is voor statische routes.\n\nOnjuist (C): Dit is voor OSPF.\n\nOnjuist (D): Dit is voor RIP."
+        },
+        {
+          "question": "Wat betekent de term 'classless' in de context van protocollen zoals RIPv2 in tegenstelling tot het 'classful' RIPv1?",
+          "options": [
+            "Het protocol verstuurt het subnetmasker mee in de routing updates, wat Variable Length Subnet Masking (VLSM) mogelijk maakt.",
+            "Het protocol weigert updates te sturen naar routers van een ander merk of klasse.",
+            "Het protocol wordt niet meer gebruikt op hedendaagse netwerkapparatuur.",
+            "Het protocol zet de subnetmaskers in de tabellen automatisch om naar een /24 prefix."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Een classless protocol stuurt het subnetmasker expliciet mee. Hierdoor kan het netwerk werken met subnets van verschillende grootten (VLSM) en discontiguous subnets.\n\nOnjuist (B): Dit is verzonnen. RIP is een open standaard.\n\nOnjuist (C): RIPv1 is antiek, RIPv2 wordt nog wel eens in kleine netwerken aangetroffen.\n\nOnjuist (D): Het forceert juist géén klassikale grenzen (/8, /16 of /24), maar respecteert het daadwerkelijk geconfigureerde masker.\n\nPraktijk / Situatie Vragen (Toepassen / Analyseren)"
+        },
+        {
+          "question": "Situatie: Router R1 leert over de bestemming 192.168.50.0/24 via vier verschillende wegen. Een collega-beheerder heeft een statische route geconfigureerd. Daarnaast ontvangt de router updates voor dit exacte netwerk via EIGRP, via OSPF en via RIPv2.\nWelke route installeert de router in zijn actieve routing table om datapakketten naar 192.168.50.0/24 door te sturen?",
+          "options": [
+            "De EIGRP-route",
+            "De OSPF-route",
+            "De RIPv2-route",
+            "De statische route"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): De router kijkt naar de Administrative Distance (AD) om de \"believability\" te bepalen. De laagste AD wint. De statische route heeft AD 1 en wint van EIGRP (90), OSPF (110) en RIPv2 (120).\n\nOnjuist (A, B, C): Deze protocollen hebben een hogere AD en zijn daardoor volgens de router \"minder betrouwbaar\" dan de handmatige configuratie."
+        },
+        {
+          "question": "Situatie: In een OSPF-netwerk zijn vier routers aangesloten op dezelfde Ethernet-switch. Het proces start tegelijkertijd en de routers voeren de Designated Router (DR) verkiezing uit. De routers hebben de volgende configuraties:\n\nRouter 1: Priority = 100, OSPF Router ID = 10.0.0.1\n\nRouter 2: Priority = 50, OSPF Router ID = 192.168.1.1\n\nRouter 3: Priority = 100, OSPF Router ID = 10.0.0.2\n\nRouter 4: Priority = 0, OSPF Router ID = 200.200.200.200\n\nWelke router wordt de uiteindelijke Designated Router (DR) voor dit netwerksegment?",
+          "options": [
+            "Router 1",
+            "Router 2",
+            "Router 3",
+            "Router 4"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): De DR wordt gekozen op basis van de hoogste Priority. R1 en R3 staan bovenaan met beide Priority 100. Bij een gelijke stand ('tie') wint de hoogste Router ID. Omdat 10.0.0.2 hoger is dan 10.0.0.1, wint Router 3.\n\nOnjuist (A): Heeft een gelijke prioriteit maar een lagere Router ID dan Router 3.\n\nOnjuist (B): Heeft een lagere prioriteit (50). De hoge Router ID maakt dan niet meer uit.\n\nOnjuist (D): Priority 0 betekent dat de router zich uitsluit van de verkiezing; deze zal nooit DR of BDR worden."
+        },
+        {
+          "question": "Situatie: De Internationale Transport Maatschappij (ITM) heeft meerdere hoofdvestigingen in Europa. Binnen hun eigen netwerk gebruiken ze OSPF voor snelle, hiërarchische routing. Om betrouwbaarheid en load-balancing te garanderen, huurt ITM verbindingen bij twee verschillende Internet Service Providers (ISP's). De netwerkarchitect wil actief inkomend en uitgaand verkeer sturen en manipuleren via specifieke policies richting beide ISP's.\nWelk routingprotocol moet de netwerkarchitect instellen op de randrouters van ITM om met de ISP's te communiceren?",
+          "options": [
+            "BGP versie 4",
+            "EIGRP",
+            "OSPF versie 2",
+            "RIP versie 2"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): BGPv4 (een EGP) is speciaal ontworpen voor verbindingen naar één of meerdere ISP's (verschillende Autonomous Systems) en biedt uitgebreide middelen om via policies de route-selectie te manipuleren.\n\nOnjuist (B, C, D): EIGRP, OSPF en RIP zijn Interior Gateway Protocols (IGP's). Ze missen de policy- en schaalbaarheidsfeatures die vereist zijn voor verbindingen en verkeersmanipulatie op het niveau van internetproviders."
+        }
+      ]
     },
     {
       "id": "week6",
