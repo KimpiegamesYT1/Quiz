@@ -1683,8 +1683,339 @@
     },
     {
       "id": "week6",
-      "name": "Week 6: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Week 6: Security & VPN",
+      "questions": [
+        {
+          "question": "Wat is de primaire doelstelling van het beveiligingsprincipe 'Confidentiality' (vertrouwelijkheid) binnen de CIA-triade?",
+          "options": [
+            "Het garanderen dat gegevens altijd en direct toegankelijk zijn voor legitieme gebruikers.",
+            "Het loggen van alle netwerkactiviteiten om achteraf de bron van een aanval te traceren.",
+            "Het waarborgen dat gegevens uitsluitend leesbaar of zichtbaar zijn voor de geautoriseerde ontvanger.",
+            "Het zekerstellen dat verzonden netwerkpakketten onderweg niet per ongeluk of moedwillig worden gewijzigd."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Confidentiality draait om het privé houden van data, meestal door middel van encryptie, zodat alleen geautoriseerde partijen de inhoud kunnen inzien.\n\nOnjuist (A): Dit beschrijft 'Availability' (Beschikbaarheid).\n\nOnjuist (B): Dit valt onder auditing en non-repudiation, wat niet direct de hoofdfocus is van confidentiality.\n\nOnjuist (D): Dit beschrijft 'Integrity' (Integriteit)."
+        },
+        {
+          "question": "Welk type aanval is een specifiek voorbeeld van een inbreuk op de integriteit (Integrity) van gegevens?",
+          "options": [
+            "Een Denial of Service (DoS) aanval waarbij een server overspoeld wordt met verkeer.",
+            "Een Man-in-the-middle aanval waarbij bestelbedragen in een webshop stiekem worden aangepast.",
+            "Een ping sweep over een netwerksegment om actieve IP-adressen te ontdekken.",
+            "Een wiretapping-operatie waarbij netwerkverkeer ongemerkt wordt gekopieerd en meegelezen."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Bij integriteit gaat het erom dat gegevens onderweg NIET worden gewijzigd. Het aanpassen van een transactiebedrag is een typische integriteitsaanval (data diddling/salami attack of via man-in-the-middle).\n\nOnjuist (A): Een DoS is een aanval op de beschikbaarheid (Availability).\n\nOnjuist (C & D): Ping sweeps en wiretapping (het enkel meelezen of verzamelen van data) zijn aanvallen op de vertrouwelijkheid (Confidentiality)."
+        },
+        {
+          "question": "Wat is het belangrijkste verschil tussen symmetrische encryptie en asymmetrische encryptie?",
+          "options": [
+            "Symmetrische encryptie gebruikt één gedeelde sleutel, asymmetrische encryptie gebruikt een publieke en een private sleutel.",
+            "Symmetrische encryptie verwerkt uitsluitend tekstbestanden, asymmetrische encryptie verwerkt ook videostreams.",
+            "Symmetrische encryptie is ontworpen door Cisco, asymmetrische encryptie is een open IETF-standaard.",
+            "Symmetrische encryptie is veel trager dan asymmetrische encryptie en daardoor minder geschikt voor bulkdata."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Bij symmetrische encryptie gebruiken verzender en ontvanger dezelfde 'shared' sleutel. Asymmetrische encryptie gebruikt een sleutelpaar (public en private).\n\nOnjuist (B): Beide kunnen alle soorten digitale data versleutelen.\n\nOnjuist (C): Beide methoden maken gebruik van wijdverbreide open standaarden (zoals AES en RSA).\n\nOnjuist (D): Asymmetrische encryptie is juist trager. Symmetrische encryptie is snel en zeer geschikt voor grote hoeveelheden data (payloads)."
+        },
+        {
+          "question": "Welk algoritme behoort tot de categorie 'symmetrische encryptie'?",
+          "options": [
+            "Advanced Encryption Standard (AES)",
+            "Diffie-Hellman (DH)",
+            "Rivest-Shamir-Adleman (RSA)",
+            "Secure Hash Algorithm 1 (SHA-1)"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): AES is momenteel de geprefereerde en sterkste standaard voor symmetrische encryptie (naast oudere versies zoals DES en 3DES).\n\nOnjuist (B): Diffie-Hellman wordt gebruikt voor het veilig uitwisselen van sleutels (Key Exchange).\n\nOnjuist (C): RSA is het meest bekende algoritme voor asymmetrische encryptie.\n\nOnjuist (D): SHA-1 is een hashing-algoritme, geen encryptie-algoritme."
+        },
+        {
+          "question": "Hoe stelt een systeem via hashing vast of de integriteit van een bestand behouden is gebleven?",
+          "options": [
+            "Door de asymmetrische sleutel te controleren bij een externe certificaatautoriteit.",
+            "Door het bestand opnieuw te versleutelen met een symmetrische AES-sleutel en de pakketgrootte te meten.",
+            "Door te controleren of het IP-adres in de header overeenkomt met de afzender in het pakket.",
+            "Door de berekende hashwaarde van de ontvanger te vergelijken met de meegestuurde hashwaarde van de afzender."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Zowel zender als ontvanger voeren de data door hetzelfde algoritme (bijv. MD5 of SHA-1). Als de resulterende hashes (digests) identiek zijn, is de data onderweg niet veranderd.\n\nOnjuist (A, B, C): Deze methoden controleren respectievelijk de authenticiteit, encryptie of de routeringspaden, maar niet de bit-voor-bit integriteit van de payload op de manier zoals hashing dat doet."
+        },
+        {
+          "question": "Welke defensieve techniek wordt in een netwerk geïmplementeerd met als primair doel aanvallers af te leiden en hun tactieken te bestuderen?",
+          "options": [
+            "Een Packet-filtering firewall",
+            "Een Stateful firewall",
+            "Een Vulnerability scanner",
+            "Een Honey pot"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Een Honey pot (of Honey net) fungeert als een aantrekkelijk, kwetsbaar lijkend doelwit. Aanvallers verspillen hieraan hun tijd, terwijl de beheerder hun gedrag veilig kan analyseren.\n\nOnjuist (A & B): Firewalls houden ongewenst verkeer actief buiten op basis van regels en sessies.\n\nOnjuist (C): Vulnerability scanners (zoals Nessus of Nmap) testen het netwerk proactief op configuratiefouten en ontbrekende patches."
+        },
+        {
+          "question": "Wat onderscheidt een stateful firewall van een eenvoudige packet-filtering firewall?",
+          "options": [
+            "Een stateful firewall inspecteert uitsluitend inkomend verkeer en negeert uitgaand verkeer volledig.",
+            "Een stateful firewall is altijd een fysiek hardwareapparaat, terwijl packet-filtering uitsluitend in software draait.",
+            "Een stateful firewall onthoudt lopende sessies en herkent of inkomend verkeer een antwoord is op uitgaand verkeer.",
+            "Een stateful firewall versleutelt de data automatisch met IPsec voordat het naar het internet wordt gestuurd."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een stateful firewall houdt een state-tabel bij van actieve verbindingen. Hierdoor weet de firewall dat een inkomend pakket hoort bij een reeds goedgekeurde uitgaande sessie (zoals een HTTP-reply) en laat deze door.\n\nOnjuist (A): Een stateful firewall inspecteert verkeer in beide richtingen om de sessiestatus bij te houden.\n\nOnjuist (B): Beide typen firewalls kunnen als hardware of software worden uitgevoerd.\n\nOnjuist (D): Encryptie (IPsec) is de functie van een VPN-gateway, niet inherent van een stateful firewall."
+        },
+        {
+          "question": "Welk protocol voor Remote-Access Security is gebaseerd op UDP en wordt beschouwd als een open standaard?",
+          "options": [
+            "IEEE 802.1X",
+            "RADIUS",
+            "SSH",
+            "TACACS+"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): RADIUS is een open standaard gebaseerd op UDP voor authenticatie, autorisatie en accounting (AAA).\n\nOnjuist (A): IEEE 802.1X is een standaard voor netwerktoegangscontrole op poortniveau (LAN), geen specifiek UDP remote-access protocol.\n\nOnjuist (C): SSH biedt een beveiligde CLI-sessie via TCP (poort 22).\n\nOnjuist (D): TACACS+ is een alternatief voor RADIUS, maar het is gebaseerd op TCP en is van oorsprong Cisco proprietary."
+        },
+        {
+          "question": "Wat is een belangrijk kenmerk van een Site-to-Site Virtual Private Network (VPN)?",
+          "options": [
+            "De gebruikers (hosts) moeten zelf speciale VPN-clientsoftware installeren om de verbinding te openen.",
+            "De tunnel wordt uitsluitend gebruikt voor het doorgeven van analoge telefoongesprekken (POTS).",
+            "Het netwerk is lokaal geconfigureerd en host-apparaten merken niet dat hun verkeer via een VPN-tunnel loopt.",
+            "Het netwerk kan alleen functioneren als beide locaties exact dezelfde IP-adressen gebruiken."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Bij een Site-to-Site VPN zetten de randrouters (gateways) de tunnel op. De eindgebruikers (hosts) hebben hier geen weet van en hebben geen speciale software nodig; de verbinding is voor hen transparant.\n\nOnjuist (A): Dit beschrijft een Remote-Access (Client-to-Site) VPN.\n\nOnjuist (B): Een VPN draait over pakketgeschakelde IP-netwerken (breedband/internet), niet uitsluitend over oude POTS circuitschakelingen.\n\nOnjuist (D): Subnetten op beide locaties moeten juist verschillend zijn om routering tussen de netwerken mogelijk te maken."
+        },
+        {
+          "question": "Op welke laag van het OSI-model opereert het Internet Protocol Security (IPsec) raamwerk?",
+          "options": [
+            "Laag 2 (Data Link)",
+            "Laag 3 (Network)",
+            "Laag 4 (Transport)",
+            "Laag 7 (Application)"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): IPsec beschermt en authenticeert IP-pakketten en functioneert daarmee op de netwerklaag (Laag 3).\n\nOnjuist (A): Voorbeelden van L2 VPN's zijn L2TPP of L2F.\n\nOnjuist (C & D): IPsec opereert dieper in de netwerkstack dan transport- of applicatieprotocollen, wat het transparant maakt voor applicaties."
+        },
+        {
+          "question": "Welke methode of welk protocol gebruikt IPsec om ervoor te zorgen dat data niet stiekem is aangepast (Integriteit)?",
+          "options": [
+            "Authentication Header (AH) of HMAC",
+            "Diffie-Hellman (DH)",
+            "Encapsulating Security Payload (ESP) in Transport modus",
+            "Pre-Shared Keys (PSK)"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Hashing-mechanismen zoals HMAC (vaak binnen het AH-protocol of gecombineerd in ESP) zorgen voor de bewijsvoering dat data niet veranderd is (integriteit).\n\nOnjuist (B): DH verzorgt de veilige sleuteluitwisseling.\n\nOnjuist (C): ESP levert standaard vertrouwelijkheid (encryptie), hoewel het HMAC kan toevoegen, is de focus primair encryptie. AH is puur voor integriteit.\n\nOnjuist (D): PSK verzorgt de authenticatie van de afzender."
+        },
+        {
+          "question": "Wat is de rol van het Diffie-Hellman (DH) algoritme binnen IPsec?",
+          "options": [
+            "Het creëren van de digitale handtekening van de router om phishing te voorkomen.",
+            "Het comprimeren van data om bandbreedte op de WAN-verbinding te besparen.",
+            "Het verdelen van inkomend verkeer over meerdere firewall-interfaces (Load Balancing).",
+            "Het veilig uitwisselen van een cryptografische sleutel over een onbeveiligd communicatiekanaal."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): DH stelt twee partijen (Alice en Bob) in staat om, door publieke informatie en een eigen geheim te combineren (de bekende verf-analogie), wiskundig op exact dezelfde 'shared secret' encryptiesleutel uit te komen zonder deze sleutel letterlijk over het netwerk te versturen.\n\nOnjuist (A, B, C): Dit zijn functies van respectievelijk RSA (certificaten), compressie-algoritmen (zoals LZS) en netwerkswitches/routers."
+        },
+        {
+          "question": "Welk protocol regelt procedures en pakketformaten om Security Associations (SAs) op te zetten, te onderhandelen en te verwijderen binnen IKE?",
+          "options": [
+            "Diffie-Hellman (DH)",
+            "ISAKMP",
+            "OAKLEY",
+            "SKEME"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): ISAKMP (Internet Security Association and Key Management Protocol) is het framework binnen IKE dat verantwoordelijk is voor de regels en formaten van de Security Associations.\n\nOnjuist (A): DH zorgt voor de wiskundige berekening van de sleutel.\n\nOnjuist (C): OAKLEY definieert het mechanisme voor de sleuteluitwisseling (het fungeert als middleware).\n\nOnjuist (D): SKEME is specifiek gericht op de daadwerkelijke creatie en refreshment van de sleutels (anoniem via public keys)."
+        },
+        {
+          "question": "Uit hoeveel fasen (Phases) bestaat het opzetten van een volledige IPsec-tunnel in de IKEv1-architectuur?",
+          "options": [
+            "Eén fase waarin zowel management als dataverkeer direct wordt onderhandeld.",
+            "Twee fasen (Fase 1 voor de IKE SA en Fase 2 voor de IPsec SA's).",
+            "Drie fasen (Authenticatie, Encryptie en Dataoverdracht).",
+            "Zes fasen die overeenkomen met de onderliggende OSI-lagen."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): IKEv1 vereist eerst Fase 1 (het bouwen van een veilig ISAKMP controlekanaal) en daarna Fase 2 (het bouwen van de IPSec SAs voor de daadwerkelijke data).\n\nOnjuist (A, C, D): Dit strookt niet met de architectuur van IKEv1. IKEv2 vereenvoudigt weliswaar het proces, maar IKEv1 hanteert strikt Fase 1 en Fase 2."
+        },
+        {
+          "question": "Wat is het resultaat van een succesvolle afronding van IKE Fase 1?",
+          "options": [
+            "Een bidirectioneel beveiligd communicatiekanaal genaamd de ISAKMP SA.",
+            "Een open verbinding zonder encryptie waarop netwerkbeheerders diagnostische tests kunnen uitvoeren.",
+            "Twee unidirectionele IPsec SA's die direct data van de gebruikers transporteren.",
+            "Volledige herziening van de router's routing table met BGP-routes."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Fase 1 eindigt in een 'ISAKMP SA', een veilige, tweerichtings (bidirectionele) tunnel waarmee de routers in Fase 2 verder in het geheim kunnen praten.\n\nOnjuist (B): Het kanaal is juist wél versleuteld.\n\nOnjuist (C): Unidirectionele IPsec SA's (inbound en outbound) zijn het resultaat van Fase 2, niet Fase 1.\n\nOnjuist (D): Routing protocollen (zoals BGP) staan los van de IKE onderhandelingen."
+        },
+        {
+          "question": "Welk kenmerk hoort specifiek bij de IKEv1 Fase 1 'Aggressive Mode' in tegenstelling tot 'Main Mode'?",
+          "options": [
+            "Aggressive Mode is veel flexibeler en biedt meer cryptografische voorstellen (proposals) aan.",
+            "Aggressive Mode is trager omdat het uit zes verschillende berichten bestaat.",
+            "Aggressive Mode verbergt alle identiteiten (zoals IP-adressen) voor meekijkende partijen.",
+            "Aggressive Mode verstuurt de Diffie-Hellman sleutel en de Nonce direct in het eerste bericht."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Om het proces te versnellen, stuurt Aggressive Mode de SA payload, Proposal, Diffie-Hellman Key Exchange én Nonce al in message 1.\n\nOnjuist (A): Main Mode is juist flexibeler met meer proposals.\n\nOnjuist (B): Aggressive Mode bestaat uit slechts drie berichten, Main Mode uit zes.\n\nOnjuist (C): Main Mode verbergt de identiteiten beter. Aggressive mode offert wat veiligheid/verborgenheid op voor snelheid."
+        },
+        {
+          "question": "Welke taak wordt exclusief uitgevoerd tijdens IKE Fase 2 (Quick Mode)?",
+          "options": [
+            "Het bepalen of er RSA-certificaten of een PSK (Pre-Shared Key) gebruikt gaan worden.",
+            "Het kiezen van de actieve IKEv1 of IKEv2 versie.",
+            "Het onderhandelen van de specifieke IPSec SA parameters, zoals de encapsulatie (AH/ESP) voor de datastroom.",
+            "Het uitwisselen van de allereerste onbeveiligde 'Hello' berichten."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Quick Mode (Fase 2) wordt uitgevoerd BINNEN de veilige tunnel van Fase 1. Hier worden de regels voor de daadwerkelijke dataverkeersbescherming vastgelegd (Welke encryptie voor de data? AH of ESP? Tunnel of Transport mode?).\n\nOnjuist (A, B, D): Dit gebeurt allemaal in Fase 1 of daarvoor."
+        },
+        {
+          "question": "Een netwerkbeheerder stelt het IPsec-encapsulatieprotocol in. Wat is het verschil in functionaliteit tussen het gebruik van de protocollen 'AH' en 'ESP'?",
+          "options": [
+            "AH werkt uitsluitend op draadloze netwerken, ESP werkt uitsluitend op bekabelde netwerken.",
+            "AH beschermt alleen de integriteit van het pakket, terwijl ESP ook de inhoud (content) kan versleutelen voor vertrouwelijkheid.",
+            "AH gebruikt UDP, terwijl ESP standaard via TCP verloopt.",
+            "AH versleutelt de data sneller dan ESP, maar gebruikt een zwakkere encryptiesleutel."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Authentication Header (AH) levert enkel integriteit. Encapsulating Security Payload (ESP) voegt hier vertrouwelijkheid (encryptie) van de payload aan toe.\n\nOnjuist (A, C, D): Beiden werken op IP-niveau, protocol 50 (ESP) en protocol 51 (AH), en werken onafhankelijk van L2-media of zwakkere encryptie. AH biedt domweg geen encryptie."
+        },
+        {
+          "question": "Wat gebeurt er met de IP-header in de IPsec 'Transport Mode' in tegenstelling tot de 'Tunnel Mode'?",
+          "options": [
+            "In Transport Mode blijft de originele IP-header behouden en onversleuteld; alleen de payload wordt beveiligd.",
+            "In Transport Mode wordt de originele IP-header versleuteld en binnen een geheel nieuwe IP-header geplaatst.",
+            "In Transport Mode wordt de IP-header verwijderd en vervangen door een MAC-adres header.",
+            "In Transport Mode wordt de IP-header samengevoegd met de TCP-header om overhead te reduceren."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Transport mode beveiligt de traffic tússen twee endpoints (vaak app tot app). De originele IP-header is nodig voor lokale aflevering en blijft onversleuteld voorop het pakket staan.\n\nOnjuist (B): Dit is de definitie van Tunnel Mode, wat vaak wordt gebruikt tussen security gateways.\n\nOnjuist (C, D): IP-headers verdwijnen niet zomaar, dat breekt de Laag 3 communicatie."
+        },
+        {
+          "question": "Wat is de minimale vermindering in berichtaantal wanneer men overstapt van een standaard IKEv1 (Main Mode) set-up naar een IKEv2 set-up om alle SA's (IKE + IPsec) te bouwen?",
+          "options": [
+            "Van twaalf berichten in IKEv1 naar acht berichten in IKEv2.",
+            "Van negen berichten in IKEv1 naar vier berichten in IKEv2.",
+            "Van zes berichten in IKEv1 naar twee berichten in IKEv2.",
+            "Er is geen verschil in het aantal berichten, alleen in de gebruikte encryptie."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Een volledige Main Mode (6 berichten) + Quick mode (3 berichten) kost in IKEv1 in totaal negen berichten. IKEv2 kan dit efficiënt afhandelen met slechts vier berichten (IKE_SA_INIT request/response en IKE_AUTH request/response).\n\nOnjuist (A, C, D): De telling van negen naar vier is de significante reductie die in de theorie is benadrukt."
+        },
+        {
+          "question": "Wat is de primaire reden dat Generic Routing Encapsulation (GRE) vaak in combinatie met IPsec wordt toegepast voor Site-to-Site VPN's?",
+          "options": [
+            "GRE comprimeert grote bestanden effectiever dan IPsec dat zelf kan doen.",
+            "GRE en IPsec zijn ontwikkeld door hetzelfde bedrijf en vereisen elkaars licentiesystemen.",
+            "IPsec kan alleen unicast pakketten transporteren, terwijl GRE ook multicast- en broadcastverkeer (zoals benodigd voor OSPF of EIGRP) door de tunnel laat passeren.",
+            "IPsec werkt niet op glasvezelverbindingen, tenzij GRE de fysieke omzetting regelt."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): IPsec beveiligt heel goed, maar accepteert geen multicast/broadcast. Dynamische routing protocollen hebben dit wel nodig. GRE kapselt dit verkeer in als unicast IP-pakket, en IPsec versleutelt vervolgens dat unicast GRE-pakket.\n\nOnjuist (A, B, D): GRE voert standaard geen compressie uit, is een IETF-standaard (geen licentie-lock) en staat los van fysieke media zoals glasvezel."
+        },
+        {
+          "question": "Hoeveel bytes extra overhead creëert de toevoeging van een GRE-header plus de nieuwe (tunneling) IP-header in totaal ten minste per pakket?",
+          "options": [
+            "4 bytes",
+            "16 bytes",
+            "24 bytes",
+            "64 bytes"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een standaard IPv4-header is 20 bytes en een GRE-header voegt minimaal 4 bytes toe (bevat o.a. GRE flag en Protocol type). Tezamen zorgt dit voor minimaal 24 bytes aan extra overhead voor getunnelde pakketten.\n\nOnjuist (A, B, D): Deze waarden komen niet overeen met de opbouw van de GRE + nieuwe IP-header."
+        },
+        {
+          "question": "Wat doet het commando crypto isakmp key cisco123 address 192.168.2.2 op een Cisco-router?",
+          "options": [
+            "Het genereert een asymmetrisch RSA-sleutelpaar met de naam 'cisco123' voor de externe beheerder.",
+            "Het stelt een Pre-Shared Key (PSK) in voor IKE Fase 1 authenticatie met de externe router op het opgegeven adres.",
+            "Het weigert inkomend IPsec-verkeer (Access Control List) vanaf het adres 192.168.2.2.",
+            "Het zet het wachtwoord van het apparaat om in een onleesbare MD5 hash in de configuratiefile."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Binnen IKE Fase 1 definieert dit commando de gedeelde 'password' string (de PSK 'cisco123') die moet overeenkomen met de router op IP-adres 192.168.2.2 om succesvol de identiteit te valideren.\n\nOnjuist (A): Dit commando heeft betrekking op pre-shared (symmetrische/gelijksoortige) authenticatie, niet op generatie van asymmetrische RSA-sleutels.\n\nOnjuist (C): Een ACL wordt gedefinieerd met access-list commando's.\n\nOnjuist (D): Het beveiligen van wachtwoorden in de config wordt gedaan met service password-encryption of door gebruik te maken van secrets."
+        },
+        {
+          "question": "In de IKE Fase 1 configuratie definieert men een specifieke group. Wat wordt hiermee bepaald?",
+          "options": [
+            "Welke routers in hetzelfde OSPF-netwerkgebied vallen.",
+            "De Diffie-Hellman (DH) groep, welke de sterkte bepaalt van de sleutel die in het uitwisselingsproces berekend wordt.",
+            "Het VLAN-nummer waar de VPN-tunnel in moet eindigen.",
+            "Het aantal gebruikers dat gelijktijdig via Remote-Access verbonden mag zijn."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): In de instelling group {1 | 2 | 5 | 14 ...} bepaalt men de moduluswaarde (sterkte) van de wiskundige berekening voor de Diffie-Hellman sleuteluitwisseling. Hoger is veiliger, maar rekentechnisch zwaarder.\n\nOnjuist (A, C, D): OSPF-area's, VLANs en het aantal VPN-gebruikers hebben niets te maken met het crypto isakmp policy configuratieblok."
+        },
+        {
+          "question": "Wat wordt er in IPsec bedoeld met een 'Transform Set'?",
+          "options": [
+            "Het fysieke modem dat inbelverbindingen omzet naar TCP/IP.",
+            "De afspraak over de tijdsduur dat een VPN mag openstaan, uitgedrukt in kilobyte limieten.",
+            "De combinatie van protocollen en algoritmen (zoals ESP, AES en SHA) die samen de beveiligingspolicy voor het IPsec dataverkeer vormen.",
+            "Het mechanisme dat IPv4 adressen vertaalt naar IPv6 adressen aan de rand van het netwerk."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een transform set (geconfigureerd met bv. crypto ipsec transform-set NAAM esp-aes esp-sha-hmac) dicteert exact welke methoden worden ingezet tijdens Fase 2 om het dataverkeer vorm te geven en te beschermen.\n\nOnjuist (A, B, D): A is een analoge modem, B refereert aan de SA lifetime, D verwijst naar NAT64/translatie-mechanismen."
+        },
+        {
+          "question": "Welk protocol wordt standaard gebruikt door een Vulnerability Scanner om snel te inventariseren welke applicaties achter poorten draaien of welke apparaten 'live' zijn?",
+          "options": [
+            "Het Dynamic Host Configuration Protocol (DHCP)",
+            "Een ICMP ping sweep en port scan tactiek (zoals Nmap gebruikt)",
+            "Het Spanning Tree Protocol (STP)",
+            "Het Open Shortest Path First (OSPF) routingprotocol"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Scanners zoals Nmap voeren een ping sweep (met ICMP) uit en scannen poorten om diensten bloot te leggen en de topologie te verkennen.\n\nOnjuist (A, C, D): Dit zijn infrastructurele protocollen voor IP-uitgifte, Layer 2 loop-preventie en Layer 3 routing, geen scanning tools."
+        },
+        {
+          "question": "Wat is een karakteristiek kenmerk van het 'SKEME' protocol binnen het IKE raamwerk?",
+          "options": [
+            "Het versleutelt de originele IP-header.",
+            "Het is volledig afhankelijk van handmatig ingevoerde statische sleutels.",
+            "Het biedt anonimiteit, maakt snelle sleutelverversing (refreshment) mogelijk en gebruikt mechanismen om Denial-of-Service (DoS) aanvallen tegen te gaan.",
+            "Het wordt exclusief gebruikt voor Layer 2 VPN verbindingen."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): SKEME is de uitwisselingsmethode binnen IKE die anonimiteit ondersteunt, repudiation toestaat en met name 'cookies' gebruikt ter preventie van DoS aanvallen tijdens key generation.\n\nOnjuist (A, B, D): Header-encryptie hoort bij IPsec Tunnel Mode. SKEME genereert nieuwe dynamische sleutels (dus geen vaste statische sleutels) en opereert in Layer 3 IKE.\n\nPraktijk / Situatie Vragen (Toepassen / Analyseren)"
+        },
+        {
+          "question": "Situatie: In het netwerk van de 'Internationale Transport Maatschappij' (ITM) heeft de beheerder een standaard IPsec VPN opgezet tussen Nederland en Zweden (gebruikmakend van ESP). De bedrijfstopologie vereist echter dat routing-updates via OSPF (OSPF gebruikt multicast adres 224.0.0.5) automatisch tussen beide vestigingen worden gesynchroniseerd. Tot verrassing van de beheerder wordt er geen OSPF-'neighbor'-relatie opgebouwd.\n\nWat is de juiste technische ingreep om dit probleem op te lossen?",
+          "options": [
+            "De beheerder moet overschakelen naar IKEv1 Aggressive Mode, zodat multicast berichten sneller in Fase 1 kunnen worden doorgestuurd.",
+            "De beheerder moet de IPsec-tunnel uitschakelen, een GRE-tunnel opzetten en OSPF-verkeer via deze in een IPsec omhulde GRE-tunnel routeren.",
+            "De beheerder moet het OSPF-protocol vervangen door BGP, aangezien IPsec uitsluitend BGP-verkeer native accepteert in Tunnel Mode.",
+            "De beheerder moet de Authentication Header (AH) toevoegen aan de Transform Set, omdat OSPF uitsluitend met AH-authenticatie kan synchroniseren."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Native IPsec ondersteunt geen multicast/broadcastverkeer en dropt dus de OSPF-updates. De klassieke architectuur-oplossing is om het verkeer (inclusief multicast OSPF) door een GRE-tunnel te sturen, en vervolgens dat GRE-pakket (wat een unicast IP-pakket is) te beveiligen met IPsec (GRE over IPsec).\n\nOnjuist (A, C, D): Aggressive mode lost niets op qua transporttype in Fase 2. IPsec verwerpt evengoed BGP als het via multicast/broadcast zou lopen, en eBGP loopt buiten tunnels om (of via TCP unicast). AH voegt slechts integriteitscontroles toe en repareert de unicast-restrictie niet."
+        },
+        {
+          "question": "Situatie: Tijdens een netwerkaudit ontdek je dat een voormalige medewerker een apparaatje op het netwerk heeft aangesloten. Dit apparaat stuurde stilletjes een stortvloed aan verzoeken ('TCP SYN flood') naar de centrale bedrijfsserver, waardoor de server dusdanig overweldigd raakte dat legitieme klanten de webportal niet meer konden bereiken.\n\nTegen welk principe van de CIA-triade is deze aanval specifiek gericht, en welke defensieve maatregel had de impact mogelijk kunnen beperken?",
+          "options": [
+            "Confidentiality; het implementeren van sterke AES-encryptie over het gehele netwerk.",
+            "Integrity; het afdwingen van SHA-256 hashing op alle inkomende webverzoeken.",
+            "Availability; het opstellen van een Access Control List (ACL) of Incident Response plan dat afwijkende verkeersvolumes herkent en filtert.",
+            "Non-repudiation; het verplichten van Two-factor authentication (2FA) voor de klantenportals."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een TCP SYN flood is een Denial of Service (DoS) aanval gericht op het onbereikbaar maken van resources, oftewel 'Availability' (Beschikbaarheid). Filterende mechanismen (ACLs) of snelle mitigatiereacties in een incident response systeem kunnen dit blokkeren/beperken.\n\nOnjuist (A & B): Vertrouwelijkheid (encryptie) en Integriteit (hashing) worden niet geraakt door een DoS-aanval; het systeem raakt gewoon uitgeput.\n\nOnjuist (D): 2FA houdt ongeautoriseerde accounts buiten, maar stopt de stroom aan valse SYN-pakketten naar de server niet."
+        },
+        {
+          "question": "Situatie: Je bent systeembeheerder en configureert een Client-to-Site VPN voor de mobiele medewerkers van je bedrijf. Deze medewerkers loggen in vanaf wisselende locaties (zoals hotels of cafés) via onvoorspelbare, dynamische IP-adressen. Je merkt dat IKEv1 'Main Mode' in Fase 1 vaak faalt bij de authenticatie omdat het erg afhankelijk is van vaste identiteiten (IP's) die vroeg in het zes-stappenplan gecontroleerd worden. Je besluit de configuratie aan te passen.\n\nWelke IKEv1 configuratiemodus is in dit specifieke remote-access scenario de meest geschikte en praktische keuze, ondanks dat het iets minder veilig is omdat identiteiten eerder onversleuteld worden meegezonden?",
+          "options": [
+            "Aggressive Mode",
+            "IKE_SA_INIT Mode",
+            "Quick Mode",
+            "Transport Mode"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Aggressive Mode in IKEv1 condenseert de zes stappen van Main Mode naar drie stappen. Het stuurt identiteitsinformatie en hashes al veel vroeger in het proces. Dit is flexibeler, wat het uitermate geschikt maakt voor Client-to-Site VPN's waarbij de cliënt wisselende of onbekende IP-adressen gebruikt.\n\nOnjuist (B): IKE_SA_INIT is de benaming voor de equivalente start in IKEv2, niet in IKEv1.\n\nOnjuist (C): Quick Mode is Fase 2 (opzetten van de IPsec SA's), niet voor het afhandelen van de wisselende inkomende IP's in Fase 1.\n\nOnjuist (D): Transport Mode gaat over het wel/niet verbergen van de IP-header in Fase 2 dataverkeer, niet over de IKEv1 handshake logica."
+        }
+      ]
     },
     {
       "id": "week7",
