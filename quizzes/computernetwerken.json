@@ -680,10 +680,10 @@
         {
           "question": "Wat is de primaire functie van het CSMA/CD-algoritme binnen een Ethernet-netwerk?",
           "options": [
-            "Het toewijzen van IP-adressen aan hosts om conflicten te voorkomen.",
-            "Het versleutelen van data om afluisteren op de lijn tegen te gaan.",
+            "Het voorkomen van collisions door proactief tijdsintervallen te reserveren.",
+            "Het routeren van frames naar specifieke en geïsoleerde collision domains.",
             "Het detecteren en herstellen van botsingen op een gedeeld medium (half-duplex).",
-            "Het prioriteren van Voice-verkeer boven data-verkeer om vertraging te minimaliseren."
+            "Het dynamisch toewijzen van prioriteit aan data-verkeer om vertraging te minimaliseren."
           ],
           "correct": 2,
           "explanation": "CSMA/CD (Carrier Sense Multiple Access / Collision Detect) is het protocol dat in oudere half-duplex Ethernet netwerken (hubs/coax) bepaalde wanneer een apparaat mocht zenden. Als twee apparaten tegelijk zonden, detecteerde CD de botsing, stuurde een jam-signaal en startte een random backoff timer."
@@ -716,7 +716,7 @@
             "Verkeer op dit VLAN krijgt de hoogste prioriteit (CoS waarde 7).",
             "Dit VLAN wordt uitsluitend gebruikt voor SSH en Telnet beheer.",
             "Dit VLAN is standaard uitgeschakeld om veiligheidsredenen.",
-            "Verkeer op dit VLAN wordt zonder VLAN-tag (untagged) over de trunk verstuurd."
+            "Verkeer op dit VLAN wordt zonder VLAN-tag over de trunk verstuurd."
           ],
           "correct": 3,
           "explanation": "De Native VLAN is speciaal omdat frames die bij dit VLAN horen niet worden getagd (untagged) wanneer ze over de trunk gaan. Standaard is dit VLAN 1. Als een switch een untagged frame ontvangt op een trunk, wordt het naar de Native VLAN gestuurd."
@@ -734,11 +734,11 @@
         },
         {
           "question": "Wat is het fundamentele verschil tussen een 'End-to-End VLAN' en een 'Local VLAN' ontwerp?",
-          "options": [
-            "End-to-End VLANs zijn gebaseerd op geografische locatie; Local VLANs op functie.",
+            "options": [
+            "End-to-End: gebruiker behoudt VLAN/IP overal; Local: VLAN gebonden aan één gebouw.",
             "End-to-End VLANs gebruiken routers; Local VLANs gebruiken alleen switches.",
-            "End-to-End VLANs zijn veiliger dan Local VLANs omdat ze encryptie gebruiken.",
-            "End-to-End VLANs strekken zich uit over de hele campus; Local VLANs blijven binnen de distributie/access laag van een gebouw."
+            "End-to-End VLANs zijn veiliger omdat ze encryptie gebruiken.",
+            "End-to-End strekt zich over campus uit; Local blijft in één distributieblok."
           ],
           "correct": 3,
           "explanation": "Bij End-to-End is VLAN 10 overal in het bedrijf beschikbaar (gebruiker behoudt IP als hij verhuist naar ander gebouw). Bij Local VLANs is VLAN 10 gebonden aan één fysieke switch/gebouw. Verhuis je, dan krijg je een nieuw VLAN en IP."
@@ -748,7 +748,7 @@
           "options": [
             "De switch zal weigeren te functioneren totdat het revisienummer op 0 is gezet.",
             "De switch zal automatisch veranderen in een VTP Server en het domein overnemen.",
-            "De switch kan de VLAN-database van de VTP Server en andere clients overschrijven met zijn eigen (mogelijk lege) database.",
+            "De switch kan de VLAN-database van de VTP Server en andere clients overschrijven met zijn eigen database.",
             "De switch zal een broadcast storm veroorzaken omdat STP nog niet is geconvergeerd."
           ],
           "correct": 2,
@@ -780,7 +780,7 @@
           "question": "Wat is het primaire doel van het Spanning Tree Protocol (STP)?",
           "options": [
             "Het verdelen van netwerkverkeer over meerdere kabels (Load Balancing).",
-            "Het voorkomen van Layer 2 lussen (loops) in een netwerk met redundante paden.",
+            "Het voorkomen van Layer 2 loops in een netwerk met redundante paden.",
             "Het dynamisch toewijzen van VLANs aan access-poorten.",
             "Het beveiligen van de switch tegen ongeautoriseerde toegang."
           ],
@@ -793,7 +793,7 @@
             "Een defecte netwerkkaart die continu frames stuurt (jabbering).",
             "Het ontbreken van VLANs in een groot netwerk.",
             "Een te hoog aantal ARP-requests tijdens de opstartfase van computers.",
-            "Redundante verbindingen tussen switches zonder een lus-preventie mechanisme (zoals STP)."
+            "Redundante verbindingen tussen switches zonder een lus-preventie mechanisme."
           ],
           "correct": 3,
           "explanation": "Een Broadcast Storm ontstaat vaak door een Layer 2 loop. Een broadcast frame (naar FFFF.FFFF.FFFF) wordt door switches naar alle poorten geflood. In een lus komt dat frame terug bij de eerste switch, die het weer flood, enzovoort. Dit laat het netwerk vastlopen. Jabbering is een fysieke fout, geen loop-probleem."
@@ -857,7 +857,7 @@
           "question": "Wat gebeurt er als twee apparaten in hetzelfde Ethernet-netwerk tegelijkertijd data verzenden (in een shared medium/hub omgeving)?",
           "options": [
             "De data wordt gemixt en komt sneller aan (multiplexing).",
-            "Er ontstaat een collision; beide apparaten stoppen en wachten een willekeurige tijd (backoff).",
+            "Er ontstaat een collision; beide apparaten stoppen en wachten een willekeurige tijd.",
             "De switch buffert het tweede pakket totdat de lijn vrij is.",
             "Het apparaat met de hoogste prioriteit mag doorgaan, de ander wordt verbroken."
           ],
@@ -867,7 +867,7 @@
         {
           "question": "Een switch ontvangt een frame met een destination MAC-adres dat niet in zijn MAC-adres tabel (CAM table) staat. Wat doet de switch?",
           "options": [
-            "Hij stuurt het frame uit op alle poorten, behalve de poort van ontvangst (flood).",
+            "Hij stuurt het frame uit op alle poorten, behalve de poort van ontvangst.",
             "Hij gooit het frame weg (drop).",
             "Hij stuurt het frame terug naar de afzender (return to sender).",
             "Hij stuurt een ARP-request naar de router."
@@ -913,8 +913,8 @@
           "options": [
             "De poort die direct verbonden is met de Root Bridge (kortste pad).",
             "Een poort die in Blocking state staat om lussen te voorkomen.",
-            "Een poort die handmatig is uitgeschakeld door de beheerder.",
-            "De poort op een segment die data mag doorsturen naar het netwerk (één per segment)."
+            "De poort die is geselecteerd als secundair pad naar de root-switch.",
+            "De poort op een segment die data mag doorsturen naar het netwerk."
           ],
           "correct": 3,
           "explanation": "Root Port: Beste weg NAAR de Root (1 per non-root switch). Designated Port: Beste weg VANAF de Root het segment op (1 per kabel/segment). Deze poort staat altijd in Forwarding. Een geblokkeerde poort is een Alternate of Backup port (in RSTP termen) of gewoon Nondesignated."
@@ -934,7 +934,7 @@
           "question": "Wat is het voordeel van het scheiden van 'Voice' en 'Data' in aparte VLANs?",
           "options": [
             "Voice-verkeer kan makkelijker worden opgenomen voor kwaliteitscontrole.",
-            "Er kan QoS (Quality of Service) worden toegepast om voorrang te geven aan spraakverkeer.",
+            "Er kan QoS worden toegepast om voorrang te geven aan spraakverkeer.",
             "Computers kunnen dan fungeren als telefoons zonder extra software.",
             "Het bespaart IP-adressen omdat telefoons geen IP nodig hebben."
           ],
@@ -957,7 +957,7 @@
           "options": [
             "Niets, de switch stuurt verkeer direct tussen poorten.",
             "Een Trunk-verbinding tussen de PC en de Server.",
-            "Een Layer 3 apparaat (Router of Layer 3 Switch) om te routeren tussen de subnetten.",
+            "Een Layer 3 apparaat om te routeren tussen de subnetten.",
             "De VLANs moeten dezelfde naam hebben in de VTP database."
           ],
           "correct": 2,
@@ -1060,13 +1060,13 @@
         {
           "question": "Waardoor wordt de beveiligingsstandaard WEP als onveilig beschouwd?",
           "options": [
-            "Het protocol versleutelt de data helemaal niet.",
-            "De gebruikte encryptiesleutels zijn te lang voor oude hardware.",
-            "De Initialization Vector (IV) is te kort en herhaalt zich snel.",
-            "Het vereist een dure server voor de authenticatie van gebruikers."
+            "Het protocol maakt gebruik van een statisch 128-bit hash-algoritme.",
+            "De encryptiesleutels vernieuwen zich zonder centrale authenticatie.",
+            "De Initialization Vector is te kort en herhaalt zich snel.",
+            "Het asymmetrische encryptiemodel vereist te veel rekenkracht."
           ],
           "correct": 2,
-          "explanation": "De 24-bit IV is te kort. Bij druk verkeer wordt deze hergebruikt, waardoor hackers patronen kunnen herkennen en de sleutel kunnen berekenen. WEP versleutelt wél (A is onjuist), de sleutellengte is niet het probleem (B), en het vereist geen aparte server (D)."
+          "explanation": "De 24-bit IV is te kort. Bij druk verkeer wordt deze hergebruikt, waardoor hackers in het versleutelde verkeer patronen kunnen herkennen en zo de sleutel kunnen berekenen. WEP maakt gebruik van de RC4-stream cipher (een symmetrisch model, geen hash) en het eigenlijke probleem is niet het vernieuwen of de rekenkracht, maar puur het snelle hergebruik van de IV."
         },
         {
           "question": "Wat is de primaire functie van het RTS/CTS-mechanisme?",
@@ -1154,18 +1154,18 @@
             "Lagere energiekosten voor de zender."
           ],
           "correct": 2,
-          "explanation": "5 GHz biedt veel meer kanalen (bijv. 36, 40, 44, etc.) die elkaar niet storen. 5 GHz reikt minder ver (A is onjuist), oudere apparatuur ondersteunt vaak alleen 2.4 GHz (B is onjuist), en energiekosten zijn niet het onderscheid (D is onjuist)."
+          "explanation": "5 GHz biedt veel meer kanalen (zoals 36, 40, 44) die elkaar niet storen. Fysiek gezien reikt een 5 GHz-signaal minder ver door objecten, ondersteunt oudere apparatuur vaak alleen 2.4 GHz, en het verschil in energiekosten is voor gebruik onbeduidend."
         },
         {
           "question": "Wat is het doel van de techniek 'War Driving'?",
           "options": [
-            "Het fysiek vernielen van netwerkapparatuur.",
+            "Het lanceren van georganiseerde DoS-aanvallen op netwerken.",
             "Het in kaart brengen van draadloze netwerken.",
-            "Het storen van wifi-signalen met ruis.",
-            "Het versterken van het eigen wifi-signaal."
+            "Het forceren van onveilige connecties via een Rogue AP.",
+            "Het onderscheppen van bekabeld verkeer door af te tappen."
           ],
           "correct": 1,
-          "explanation": "War Driving is het rondrijden met apparatuur om open of zwakke wifi-netwerken te lokaliseren en in kaart te brengen. De andere opties beschrijven andere (aanvals)technieken."
+          "explanation": "War Driving is het rondrijden met apparatuur om open of zwakke wifi-netwerken te lokaliseren en in kaart te brengen. De andere opties beschrijven actieve aanvalstechnieken die wezenlijk anders zijn."
         },
         {
           "question": "Waarom is het verbergen van de SSID een zwakke beveiligingsmaatregel?",
@@ -1247,13 +1247,13 @@
         {
           "question": "Wat wordt gevisualiseerd met een 'Heat Map' in netwerkbeheer?",
           "options": [
-            "De temperatuur van de serverruimte.",
+            "De drukte op specifieke switchpoorten.",
             "De fysieke locatie van netwerkkabels.",
             "De dekking van het draadloze signaal.",
-            "De drukte op de internetverbinding."
+            "De concentratie van broadcast-verkeer."
           ],
           "correct": 2,
-          "explanation": "Een Heat Map toont met kleuren waar het signaal sterk of zwak is op een plattegrond. Temperatuur, kabellocaties en internetdrukte zijn andere beheerstools."
+          "explanation": "Een Heat Map toont met kleuren waar het signaal sterk of zwak is op een plattegrond. Switchpoort-drukte, kabellocaties en broadcast-verkeer hebben andere analysetools nodig."
         },
         {
           "question": "Wat vormt samen een Extended Service Set (ESS)?",
@@ -1297,7 +1297,7 @@
             "Er zijn minder kanalen beschikbaar voor gebruik."
           ],
           "correct": 1,
-          "explanation": "Hogere frequenties (5 GHz) worden sterker geabsorbeerd door muren en obstakels dan lagere frequenties (2.4 GHz). 5 GHz heeft juist minder interferentie (A is onjuist), is sneller (C is onjuist), en heeft meer kanalen (D is onjuist)."
+          "explanation": "Hogere frequenties (5 GHz) worden over het algemeen sterker geabsorbeerd door muren en obstakels dan lagere frequenties (2.4 GHz). Het voordeel is dat 5 GHz door de hogere capaciteit en meer beschikbare kanalen veel sneller is en minder last heeft van interferentie."
         },
         {
           "question": "Welke componenten zijn vereist voor WPA2-Enterprise?",
