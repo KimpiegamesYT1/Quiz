@@ -2580,10 +2580,10 @@
         {
           "question": "Een netwerkontwerper monteert één enkel draadloos access point in het midden van de kantine, zodat studenten in alle richtingen eromheen gelijke verbinding hebben. Welk type antenne is het meest geschikt voor deze situatie?",
           "options": [
-            "Een directionele (gerichte) antenne.",
-            "Een omnidirectionele (rondstralende) antenne.",
+            "Een directionele antenne.",
+            "Een omnidirectionele antenne.",
             "Een parabolische schotelantenne.",
-            "Een yagi-antenne (beam)."
+            "Een yagi-antenne."
           ],
           "correct": 1,
           "explanation": "Correct: Een omnidirectionele antenne straalt het signaal uit in een 360-graden patroon (donutvorm), ideaal voor centrale plaatsing. Fout A, C en D: Dit zijn allemaal voorbeelden van antennes die het signaal bundelen en in één specifieke richting sturen om grote afstanden te overbruggen (point-to-point)."
