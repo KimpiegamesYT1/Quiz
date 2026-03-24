@@ -2020,7 +2020,308 @@
     {
       "id": "week7",
       "name": "Week 7: Binnenkort beschikbaar",
-      "questions": []
+      "questions": [
+        {
+          "question": "Een IDS werkt passief en analyseert het netwerkverkeer zonder dit te onderbreken. Welke technische voorwaarde is hiervoor noodzakelijk?",
+          "options": [
+            "Het netwerkverkeer wordt gespiegeld zodat het IDS een kopie ontvangt",
+            "Het netwerkverkeer wordt versleuteld voordat het de IDS bereikt",
+            "Het netwerkverkeer passeert het IDS voordat het wordt doorgestuurd",
+            "Het netwerkverkeer wordt gefilterd op basis van bekende aanvalssignaturen"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Een IPS is geïmplementeerd in inline modus. Wat betekent dit voor de verwerking van kwaadaardig verkeer?",
+          "options": [
+            "Het IPS analyseert een kopie van het verkeer en verstuurt vervolgens een alert",
+            "Het IPS blokkeert het kwaadaardige verkeer voordat het de bestemming bereikt",
+            "Het IPS spiegelt het verkeer naar een externe analyseserver voor inspectie",
+            "Het IPS slaat het verkeer op in een buffer voor asynchrone verwerking"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Een HIDS is geïnstalleerd op een individuele host. Welke activiteit monitort een HIDS primair?",
+          "options": [
+            "Wijzigingen in verkeerspatronen op het gehele bedrijfsnetwerk",
+            "Verbindingsverzoeken afkomstig van externe netwerksegmenten",
+            "Lokale gebruikersactiviteit en uitvoering van systeemprogramma's",
+            "Uitgaand internetverkeer van de organisatie als geheel"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "Welke IDS/IPS-detectiemethode vergelijkt inkomend verkeer met bekende aanvalspatronen?",
+          "options": [
+            "Anomaly-based detection op basis van afwijkend gedrag",
+            "Policy-based detection op basis van netwerktoegangsregels",
+            "Behavior-based detection op basis van gebruikersprofielen",
+            "Signature-based detection op basis van bekende handtekeningen"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Wat is een voordeel van een IDS ten opzichte van een IPS wanneer de sensor overbelast raakt?",
+          "options": [
+            "Een overbelasting van de IDS-sensor heeft geen impact op het netwerkverkeer",
+            "Een overbelasting van de IDS-sensor blokkeert automatisch al het inkomende verkeer",
+            "Een overbelasting van de IDS-sensor leidt tot versnelde pakketaflevering",
+            "Een overbelasting van de IDS-sensor activeert automatisch een alternatief systeem"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Wat is een nadeel van een Network-Based IPS (NIPS) ten opzichte van een Host-Based IPS (HIPS)?",
+          "options": [
+            "Een NIPS is afhankelijk van het besturingssysteem van elke afzonderlijke host",
+            "Een NIPS kan versleuteld netwerkverkeer niet inspecteren of blokkeren",
+            "Een NIPS moet op alle individuele hosts worden geïnstalleerd en beheerd",
+            "Een NIPS biedt uitsluitend bescherming op applicatieniveau per individuele host"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Welke eigenschap hebben zowel IDS als IPS gemeenschappelijk?",
+          "options": [
+            "Beide systemen blokkeren actief kwaadaardig verkeer in het netwerk",
+            "Beide systemen zijn uitsluitend geschikt voor host-gebaseerde implementaties",
+            "Beide systemen gebruiken signatures om misbruikpatronen te herkennen",
+            "Beide systemen vereisen een inline implementatie in het netwerkpad"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "Een IPS kan een single-packet attack stoppen voordat het doelwit wordt bereikt. Welke eigenschap maakt dit mogelijk?",
+          "options": [
+            "Het IPS analyseert gespiegeld verkeer en stuurt vervolgens een blokkeerinstructie",
+            "Het IPS werkt passief en detecteert aanvallen na aflevering bij de bestemming",
+            "Het IPS slaat verdachte pakketten op en analyseert ze achteraf op kwaadaardige inhoud",
+            "Het IPS inspecteert originele pakketten inline en blokkeert ze direct bij detectie"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "In welke RFC is de huidige Syslog-standaard door de IETF gestandaardiseerd?",
+          "options": [
+            "RFC 5424",
+            "RFC 3410",
+            "RFC 1901",
+            "RFC 1157"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Welk UDP-poortnummer gebruikt Syslog standaard voor het versturen van berichten naar een logging server?",
+          "options": [
+            "UDP-poort 161",
+            "UDP-poort 514",
+            "UDP-poort 162",
+            "UDP-poort 443"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Een syslog-bericht heeft ernst-niveau Level 2. Welke omschrijving hoort bij dit niveau?",
+          "options": [
+            "Alert — onmiddellijke actie is vereist",
+            "Error Condition — een foutsituatie heeft zich voorgedaan",
+            "Critical Condition — een kritieke situatie heeft zich voorgedaan",
+            "Warning Condition — een aandachtspunt dat opvolging vereist"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "De Syslog-standaard bestaat uit drie lagen. Welke laag is verantwoordelijk voor het daadwerkelijk transporteren van het bericht over het netwerk?",
+          "options": [
+            "Syslog content, die de inhoud van het bericht bevat",
+            "Syslog collector, die de berichten centraliseert op de server",
+            "Syslog application, die berichten genereert en interpreteert",
+            "Syslog transport, die het bericht over het netwerk verstuurt"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Een beheerder wil syslog-berichten raadplegen zonder directe CLI-toegang tot het netwerkapparaat. Naar welke bestemming worden de berichten dan doorgestuurd?",
+          "options": [
+            "Een externe syslog-server die berichten ontvangt via het netwerk",
+            "De lokale buffer die uitsluitend via de CLI van het apparaat toegankelijk is",
+            "De consolelijn van het apparaat voor directe weergave bij verbinding",
+            "Het RAM-geheugen van de router dat periodiek wordt gewist bij herstart"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Syslog en SNMP zijn beide monitoringprotocollen. Wat is een fundamenteel verschil in hun werkwijze?",
+          "options": [
+            "Syslog gebruikt een actief poll-mechanisme, terwijl SNMP passief werkt",
+            "Syslog werkt op een push-mechanisme, terwijl SNMP actief polt bij apparaten",
+            "SNMP verstuurt berichten in platte tekst, terwijl Syslog binair formaat gebruikt",
+            "Syslog kan apparaatconfiguraties wijzigen, terwijl SNMP uitsluitend leest"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Een syslog-server ontvangt passief berichten van netwerkapparaten. Welke actie kan een syslog-server NIET uitvoeren?",
+          "options": [
+            "Ontvangen syslog-berichten opslaan in een database voor latere analyse",
+            "Syslog-berichten ontvangen via UDP-poort 514 van netwerkapparaten",
+            "Actief informatie opvragen bij een netwerkapparaat via het syslog-protocol",
+            "Softwaretools uitvoeren voor automatische verwerking van ontvangen logdata"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "Welk syslog-ernst-niveau heeft de laagste urgentie van alle beschikbare niveaus?",
+          "options": [
+            "Emergency (Level 0) — het systeem is volledig onbruikbaar geworden",
+            "Alert (Level 1) — onmiddellijke actie is noodzakelijk",
+            "Notification (Level 5) — normaal maar significante melding",
+            "Debugging (Level 7) — diagnostisch bericht voor foutopsporing"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Op welk UDP-poortnummer verstuurt een SNMP-agent een trap naar de SNMP-manager?",
+          "options": [
+            "UDP-poort 162",
+            "UDP-poort 161",
+            "UDP-poort 514",
+            "UDP-poort 443"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Een SNMP-manager wil de huidige CPU-belasting ophalen bij een beheerd apparaat. Welke SNMP-operatie wordt hiervoor gebruikt?",
+          "options": [
+            "set-request om een waarde op te slaan in een MIB-variabele",
+            "get-request om een waarde op te halen uit een specifieke variabele",
+            "get-bulk-request om grote hoeveelheden tabeldata tegelijk op te halen",
+            "get-next-request om de volgende variabele in een tabel op te zoeken"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Een beheerder wil via SNMP de hostnaam van een router wijzigen. Welke SNMP-operatie maakt het aanpassen van configuratiewaarden mogelijk?",
+          "options": [
+            "get-request om de huidige hostnaam op te halen bij het apparaat",
+            "get-response om een bevestiging van de configuratie te ontvangen",
+            "set-request om een nieuwe waarde op te slaan in een MIB-variabele",
+            "trap om een melding te sturen naar de SNMP-manager over de wijziging"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "SNMPv3 biedt verbeterde beveiliging ten opzichte van oudere SNMP-versies. Welke authenticatiemethode gebruikt SNMPv3?",
+          "options": [
+            "Community-string authenticatie op basis van onversleutelde platte tekst",
+            "IP-adresauthenticatie in combinatie met een vooraf gedeelde sleutel",
+            "Certificaat-gebaseerde authenticatie via een PKI-infrastructuur",
+            "Gebruikersnaam-authenticatie met gegevensbeveiliging via HMAC en AES"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Wat zijn community strings in SNMPv1 en SNMPv2c?",
+          "options": [
+            "Platte tekst wachtwoorden die toegang tot MIB-objecten authenticeren",
+            "Versleutelde tokens die per sessie worden aangemaakt voor beveiliging",
+            "Gebruikersnamen met bijbehorende rollen voor toegangsbeheer",
+            "Binaire sleutels die worden uitgewisseld via een beveiligd protocol"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Wat is het OID-nummer voor Cisco in de MIB-hiërarchie?",
+          "options": [
+            "1.3.6.1.4.1.7",
+            "1.3.6.1.4.1.9",
+            "1.3.6.1.2.1.9",
+            "1.3.6.1.4.1.1"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Wat is het voordeel van SNMP-traps ten opzichte van regulier polling door de SNMP-manager?",
+          "options": [
+            "Traps bieden sterkere authenticatie dan standaard SNMP-polling",
+            "Traps bevatten uitgebreidere diagnostische informatie dan polling-responses",
+            "Traps verminderen de netwerklast doordat minder pollingsverzoeken nodig zijn",
+            "Traps zijn beschikbaar in alle SNMP-versies inclusief de alleroudste versies"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "Een beheerder beschikt uitsluitend over een read-only (ro) community string. Welke actie is hiermee NIET mogelijk?",
+          "options": [
+            "De huidige waarde van een MIB-variabele opvragen via een get-request",
+            "De uptime van een router uitlezen via de SNMP-manager",
+            "De status van een netwerkinterface controleren via de SNMP-manager",
+            "De hostnaam van een apparaat wijzigen via een set-request"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Welke component van het SNMP-systeem slaat operationele statistieken op en biedt toegang aan geauthenticeerde beheerders?",
+          "options": [
+            "Management Information Base (MIB)",
+            "Network Management System (NMS)",
+            "SNMP manager binnen het beheersysteem",
+            "SNMP trap receiver voor het ontvangen van meldingen"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Welk type netwerkapparaat is typisch aanwezig in de distribution layer van een hiërarchisch netwerkontwerp?",
+          "options": [
+            "Hubs en draadloze access points voor eindgebruikersverbindingen",
+            "High-speed routers en multilayer switches met filtering en QoS",
+            "Eenvoudige switches voor directe aansluiting van eindapparaten",
+            "Servers en storage-systemen voor centralisatie van applicatiedata"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "In een hiërarchisch LAN-ontwerp zijn access layer switches niet onderling verbonden. Via welke laag verloopt communicatie tussen apparaten op verschillende access layer switches?",
+          "options": [
+            "Via de core layer door directe backbone-verbindingen",
+            "Via een dedicated management VLAN in de core layer",
+            "Via de distribution layer door gerouteerde verbindingen",
+            "Via een directe link tussen de betrokken access layer switches"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "Een beveiligingsbeheerder merkt dat zijn IDS herhaaldelijk aanvallen detecteert op een interne server. Het kwaadaardige verkeer bereikt de server echter telkens toch, omdat het IDS alleen een waarschuwing genereert. De beheerder wil dit structureel oplossen zonder het netwerkontwerp volledig te herstructureren. Welke aanpassing is het meest geschikt?",
+          "options": [
+            "De IDS uitbreiden met extra sensoren op alle netwerksegmenten",
+            "De IDS configureren met een strengere en bijgewerkte signature-database",
+            "De IDS combineren met een syslog-server voor betere logregistratie",
+            "De IDS vervangen door een IPS in inline modus die verkeer actief blokkeert"
+          ],
+          "correct": 3
+        },
+        {
+          "question": "Een netwerkbeheerder ontvangt een melding in het NMS dat een routerinterface is uitgevallen. Bij controle blijkt dat de SNMP-manager deze melding heeft ontvangen zonder dat er een poll was verstuurd. De organisatie gebruikt SNMPv2c met een read-write community string. Welk mechanisme heeft de melding verstuurd?",
+          "options": [
+            "Een SNMP-trap die door de agent zelfstandig naar de manager is verstuurd",
+            "Een get-request die door de SNMP-manager periodiek was geconfigureerd",
+            "Een syslog-bericht dat door de router naar de SNMP-manager is doorgestuurd",
+            "Een set-request die door een andere beheerder handmatig is verzonden"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Na een beveiligingsincident wil een IT-afdeling reconstrueren wat er de afgelopen weken is voorgevallen. Daarnaast willen zij bij toekomstige kritieke netwerkgebeurtenissen direct worden gewaarschuwd. Een junior collega stelt voor uitsluitend Syslog te gebruiken voor beide doeleinden. Welk aanvullend protocol is het meest geschikt voor de real-time alerting?",
+          "options": [
+            "IDS, omdat dit systeem passief alle netwerkgebeurtenissen registreert",
+            "SNMP, omdat dit protocol actief apparaatstatus opvraagt en traps verstuurt",
+            "IPS, omdat dit systeem kwaadaardig verkeer direct blokkeert bij detectie",
+            "Syslog met verhoogd ernst-niveau voor kritieke netwerkgebeurtenissen"
+          ],
+          "correct": 1
+        }
+      ]
     },
     {
       "id": "examen",
