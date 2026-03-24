@@ -2355,8 +2355,449 @@
     },
     {
       "id": "examen",
-      "name": "Examen: Binnenkort beschikbaar",
-      "questions": []
+      "name": "Oefen Examen (40 vragen)",
+      "questions": [
+        {
+          "question": "Wat is de primaire reden om een two-tier (collapsed core) netwerkontwerp te implementeren in plaats van een three-tier ontwerp?",
+          "options": [
+            "Het biedt de hoogste mate van redundantie en fouttolerantie voor wereldwijde WAN-verbindingen.",
+            "Het combineert de access- en distributielaag om bekabelingskosten in datacenters te reduceren.",
+            "Het is kostenefficiënt voor kleinere campussen waar een aparte fysieke core-laag overbodig is.",
+            "Het voorkomt datacollisies volledig door het elimineren van verouderde access-switches."
+          ],
+          "correct": 2,
+          "explanation": "Correct: Bij kleinere campussen is een aparte core-laag vaak onnodig duur; de core- en distributiefuncties worden logisch samengevoegd (collapsed core). Fout A: Voor wereldwijde redundantie is juist een three-tier ontwerp beter. Fout B: Niet de access- en distributielaag, maar de core- en distributielaag worden samengevoegd. Fout D: Datacollisies worden voorkomen door microsegmentatie (full-duplex switches), niet door de gelaagdheid van het ontwerp."
+        },
+        {
+          "question": "Een netwerkarchitect ontwerpt een infrastructuur waarbij elk knooppunt fysiek direct is verbonden met elk ander knooppunt in het netwerk. Wat is het belangrijkste nadeel van deze fysieke topologie?",
+          "options": [
+            "De implementatie is zeer complex en kostbaar door de exponentiële hoeveelheid vereiste bekabeling.",
+            "De topologie is uiterst kwetsbaar; als één kabel breekt, valt de communicatie in het hele netwerk uit.",
+            "Het netwerk ondersteunt door deze opzet uitsluitend half-duplex communicatie, wat leidt tot vertragingen.",
+            "Het routeren van pakketten is onmogelijk omdat er geen centrale distribution-switch aanwezig is."
+          ],
+          "correct": 0,
+          "explanation": "Correct: Een full-mesh topologie vereist dat elk apparaat fysiek met alle andere apparaten wordt verbonden. Dit wordt bij opschaling enorm duur en onbeheerbaar. Fout B: Dit is juist de meest fouttolerante topologie (hoge redundantie). Fout C: Full-mesh staat los van half- of full-duplex communicatie. Fout D: Routeren is prima mogelijk via de vele beschikbare paden."
+        },
+        {
+          "question": "Waarin verschilt een Campus Area Network (CAN) voornamelijk van een Wide Area Network (WAN)?",
+          "options": [
+            "Een CAN bestrijkt een cluster van gebouwen op korte afstand, terwijl een WAN grote geografische afstanden overbrugt.",
+            "Een CAN gebruikt uitsluitend draadloze verbindingen, terwijl een WAN uitsluitend bekabelde glasvezelverbindingen gebruikt.",
+            "Een CAN is altijd eigendom van een telecomprovider, terwijl een WAN uitsluitend privaat eigendom is.",
+            "Een CAN verbindt uitsluitend individuele servers, terwijl een WAN lokale netwerken (LAN's) overbodig maakt."
+          ],
+          "correct": 0,
+          "explanation": "Correct: Een CAN (Campus Area Network) beperkt zich tot bijvoorbeeld een universiteitsterrein of bedrijfspark (enkele kilometers). Een WAN verbindt netwerken over steden, landen of continenten. Fout B: Beide netwerken kunnen zowel bedraad als draadloos zijn. Fout C: Het is juist vaak andersom; een WAN verloopt vaak via infrastructuur van een ISP. Fout D: Beide netwerken verbinden allerlei typen apparaten en netwerken."
+        },
+        {
+          "question": "Wat is een cruciaal kenmerk van de access layer in een hiërarchisch enterprise netwerkontwerp?",
+          "options": [
+            "Access-switches routeren al het verkeer direct tussen verschillende vestigingen over het publieke internet.",
+            "Access-switches voeren complexe BGP-padselecties uit voor het snelle interne datacenterverkeer.",
+            "Access-switches zijn onderling in de regel niet direct verbonden, maar communiceren via de distribution layer.",
+            "Eindapparaten (zoals netwerkprinters en pc's) vormen zelf de access layer en vervangen fysieke switches."
+          ],
+          "correct": 2,
+          "explanation": "Correct: In een goed hiërarchisch model zijn access-switches verbonden met de distribution layer, niet direct met elkaar (om loops en complexiteit te voorkomen). Fout A & B: Routeren en complexe padselecties zijn de taak van de distribution en core layers. Fout D: Eindapparaten sluiten aan óp de access layer, maar zijn niet de laag zelf."
+        },
+        {
+          "question": "Wat is de primaire functie van de distribution layer binnen het Cisco hiërarchische netwerkmodel?",
+          "options": [
+            "Het bieden van directe netwerktoegang en Power over Ethernet (PoE) aan eindgebruikers.",
+            "Het controleren van routering, netwerkfiltering en Quality of Service (QoS) tussen de access- en core-laag.",
+            "Het functioneren als een fysiek geïsoleerde supersnelle backbone voor datacenters wereldwijd.",
+            "Het opslaan van actieve gebruikerssessies en applicatiedata voor lokale werkplekken."
+          ],
+          "correct": 1,
+          "explanation": "Correct: De distribution layer functioneert als de grenslaag voor routering, filtering, VLAN-routering en beleid (QoS). Fout A: Dit is de rol van de access layer. Fout C: Dit omschrijft de core layer (snelle backbone). Fout D: Dit is de rol van netwerkservers, niet van de infrastructuurlaag."
+        },
+        {
+          "question": "Hoeveel bruikbare hostadressen biedt een IPv4-subnet dat is geconfigureerd met een /29 prefix?",
+          "options": [
+            "4",
+            "6",
+            "8",
+            "14"
+          ],
+          "correct": 1,
+          "explanation": "Correct: Een /29 prefix betekent dat 29 bits voor het netwerk zijn en 3 bits voor hosts (32 - 29 = 3). Totaal adressen: 2^3 = 8. Bruikbare adressen: 8 - 2 (netwerk- en broadcastadres) = 6. Fout A, C en D: Dit zijn foute berekeningen (C is het totale aantal, D is bij een /28 subnet, A is incorrect wiskundig)."
+        },
+        {
+          "question": "Welk IPv4-adresbereik is volgens de RFC 1918-standaard gereserveerd voor private netwerken binnen een Klasse B-adres?",
+          "options": [
+            "10.0.0.0 tot en met 10.255.255.255",
+            "172.16.0.0 tot en met 172.31.255.255",
+            "192.168.0.0 tot en met 192.168.255.255",
+            "224.0.0.0 tot en met 239.255.255.255"
+          ],
+          "correct": 1,
+          "explanation": "Correct: Het private adresbereik voor Klasse B is 172.16.0.0 t/m 172.31.255.255. Fout A: Dit is het private bereik voor Klasse A. Fout C: Dit is het private bereik voor Klasse C. Fout D: Dit is de Klasse D reeks, gereserveerd voor multicast."
+        },
+        {
+          "question": "Een beheerder past VLSM toe op het netwerk 192.168.10.0/24 en moet een nieuw subnet aanmaken dat exact 60 hosts kan faciliteren. Welk subnetmasker is hiervoor vereist om verspilling te minimaliseren?",
+          "options": [
+            "255.255.255.128 (/25)",
+            "255.255.255.192 (/26)",
+            "255.255.255.224 (/27)",
+            "255.255.255.240 (/28)"
+          ],
+          "correct": 1,
+          "explanation": "Correct: Voor 60 hosts heb je 6 hostbits nodig (2^6 - 2 = 62 bruikbare adressen). 32 bits - 6 hostbits = een /26 prefix. Het bijbehorende subnetmasker is 255.255.255.192. Fout A: /25 levert 126 hosts (verspilling). Fout C: /27 levert slechts 30 hosts (te weinig). Fout D: /28 levert slechts 14 hosts (te weinig)."
+        },
+        {
+          "question": "Wat is de primaire betekenis van de waarde '1' in de binaire weergave van een IPv4-subnetmasker?",
+          "options": [
+            "Het duidt aan dat de corresponderende bit in het IP-adres behoort tot het hostgedeelte.",
+            "Het duidt aan dat de corresponderende bit in het IP-adres behoort tot het netwerkgedeelte.",
+            "Het geeft aan dat het betreffende datapakket uitsluitend via IPv6 gerouteerd mag worden.",
+            "Het identificeert het IP-adres als een routeerbaar publiek adres op het internet."
+          ],
+          "correct": 1,
+          "explanation": "Correct: In een subnetmasker geven de eentjes (1) het netwerkgedeelte (network portion) aan, en de nulletjes (0) het hostgedeelte (host portion). Fout A: Dit is precies omgekeerd (dit zijn de nullen). Fout C & D: Het subnetmasker vertelt niets over de IPv-versie of over publieke/private routeerbaarheid."
+        },
+        {
+          "question": "Welk IP-adres vertegenwoordigt het netwerkadres voor een host met het IP-adres 10.15.20.75 en het subnetmasker 255.255.255.224 (/27)?",
+          "options": [
+            "10.15.20.0",
+            "10.15.20.32",
+            "10.15.20.64",
+            "10.15.20.96"
+          ],
+          "correct": 2,
+          "explanation": "Correct: Een /27 subnet heeft een stapgrootte (block size) van 32 (256 - 224 = 32). De netwerken zijn .0, .32, .64, .96, etc. Het adres .75 valt in het blok dat start bij .64 en eindigt bij .95. Het netwerkadres is dus 10.15.20.64. Fout A, B en D: Vallen buiten het bereik waar het adres 75 zich in bevindt."
+        },
+        {
+          "question": "Welke techniek wordt in het IPv6-protocol ingezet als alternatief ter vervanging van het verouderde IPv4-broadcastmechanisme?",
+          "options": [
+            "Anycast",
+            "Link-State",
+            "Simulcast",
+            "Unicast"
+          ],
+          "correct": 0,
+          "explanation": "Correct: Volgens de lesstof (W2) kent IPv6 geen broadcasts meer. Anycast wordt geïntroduceerd, waarbij data naar het 'dichtstbijzijnde' knooppunt in een groep gaat. (Let op: Multicast vervangt in de praktijk ook veel broadcast-functionaliteiten, maar Anycast is specifiek de nieuwe dataflow-vervanger genoemd in de theorie). Fout B: Dit is een routeringsalgoritme. Fout C: Bestaat niet in netwerkprotocollen. Fout D: Unicast is 1-op-1, niet bedoeld ter vervanging van broadcasts."
+        },
+        {
+          "question": "Wat is het belangrijkste verschil in de manier waarop frames over een Trunk-poort reizen ten opzichte van een Access-poort?",
+          "options": [
+            "Frames op een Trunk-poort krijgen een 802.1Q-tag met het VLAN-ID om logische netwerkscheiding te behouden.",
+            "Frames op een Trunk-poort worden altijd onversleuteld verzonden om onnodig snelheidsverlies te voorkomen.",
+            "Trunk-poorten accepteren uitsluitend netwerkverkeer afkomstig van het native VLAN zonder uitzonderingen.",
+            "Trunk-poorten blokkeren automatisch alle inkomende broadcast- en multicast-pakketten om netwerkstormen te voorkomen."
+          ],
+          "correct": 0,
+          "explanation": "Correct: Een Trunk-poort draagt verkeer van meerdere VLAN's. Om bij de ontvangende switch te weten bij welk VLAN het frame hoort, wordt de 802.1Q tag (het VLAN-ID) toegevoegd. Een Access-poort verstuurt frames 'untagged'. Fout B: Encryptie speelt geen rol op dit L2-schakelniveau. Fout C: Trunks dragen juist verkeer van élk toegestaan VLAN. Fout D: Trunks laten broadcasts gewoon door (binnen het eigen VLAN)."
+        },
+        {
+          "question": "Welke preventieve actie onderneemt het Spanning Tree Protocol (STP) om fatale netwerklussen in een Layer 2-omgeving te voorkomen?",
+          "options": [
+            "Het blokkeert logisch specifieke redundante poorten zodat er slechts één actief pad naar de root bridge overblijft.",
+            "Het deelt het fysieke netwerk op in meerdere kleinere subnetten via het OSPF-routeringsprotocol.",
+            "Het stuurt overtollig inkomend netwerkverkeer terug naar de afzender via een ICMP-foutmelding.",
+            "Het verlaagt dynamisch de bandbreedte van alle redundante kabels om datapakketbotsingen te vermijden."
+          ],
+          "correct": 0,
+          "explanation": "Correct: STP berekent het netwerkpad en zet redundante poorten in een 'Blocking' status. Hierdoor wordt de logische lus doorbroken, terwijl de fysieke kabel als back-up behouden blijft. Fout B: STP is Layer 2, OSPF is Layer 3 (routering). Fout C: ICMP werkt op Layer 3 en regelt geen luspreventie op switch-niveau. Fout D: Bandbreedte wordt niet dynamisch verlaagd; de poort gaat volledig dicht voor regulier dataverkeer."
+        },
+        {
+          "question": "Een beheerder configureert een Ethernet-switch in de 'VTP Transparent' modus. Hoe verwerkt deze specifieke switch inkomende VTP-advertisements van een VTP Server?",
+          "options": [
+            "De switch negeert de advertisements volledig en weigert deze door te sturen naar naburige switches.",
+            "De switch past zijn eigen VLAN-database onmiddellijk aan op basis van het hoogste revisienummer.",
+            "De switch stuurt de advertisements door naar naburige switches, maar past zijn eigen VLAN-database niet aan.",
+            "De switch wordt automatisch en permanent gepromoveerd tot VTP Server in het netwerk."
+          ],
+          "correct": 2,
+          "explanation": "Correct: Een VTP Transparent switch doet zelf niet mee aan het VTP-domein (het houdt een lokale, handmatige database bij), maar fungeert wel als doorgeefluik voor VTP-pakketten naar andere switches in het netwerk. Fout A: Hij negeert ze voor zichzelf, maar stuurt ze wél door. Fout B: Dit is het gedrag van een VTP Client. Fout D: Promotie tot server gebeurt alleen via handmatige configuratie."
+        },
+        {
+          "question": "Waarop is de verkiezing van de 'Root Bridge' binnen het Spanning Tree Protocol gebaseerd?",
+          "options": [
+            "De switch met de hoogste Bridge ID, bestaande uit een hoge prioriteitswaarde en het MAC-adres.",
+            "De switch met de hoogste fysieke poortsnelheid in het netwerk, ongeacht de ingestelde prioriteit.",
+            "De switch met de laagste Bridge ID, bestaande uit de laagste prioriteitswaarde en/of het laagste MAC-adres.",
+            "De switch met het recentst geüpdatete firmware-versienummer binnen de Layer 2 topologie."
+          ],
+          "correct": 2,
+          "explanation": "Correct: In STP wint de laagste Bridge ID (BID). De BID bestaat uit de prioriteit (standaard 32768) en het MAC-adres. Als de prioriteit gelijk is, wint het laagste MAC-adres. Fout A: In STP wint laag, niet hoog. Fout B & D: Poortsnelheid en firmware spelen geen rol in de Root Bridge verkiezing."
+        },
+        {
+          "question": "Wat kenmerkt het fundamentele concept van een 'End-to-End VLAN' netwerkontwerp?",
+          "options": [
+            "Apparaten in hetzelfde VLAN moeten fysiek altijd aangesloten zijn op exact dezelfde switch in één ruimte.",
+            "Een VLAN is strikt gekoppeld aan fysieke en geografische grenzen en spant nooit over meerdere verdiepingen.",
+            "Een gebruiker behoudt zijn VLAN-lidmaatschap en IP-adres, ongeacht op welke switch in de campus hij inplugt.",
+            "Routering tussen verschillende VLAN's vindt plaats zonder de tussenkomst van een Layer 3-apparaat."
+          ],
+          "correct": 2,
+          "explanation": "Correct: Bij een end-to-end VLAN is het VLAN campusbreed beschikbaar op de access-switches. Hierdoor kan een gebruiker verhuizen en toch in hetzelfde logische netwerk blijven. Fout A & B: Dit beschrijven eigenschappen van een Local VLAN model, waar het netwerk lokaal aan de switch gebonden is. Fout D: Routering tussen VLAN's (inter-VLAN routing) vereist áltijd een Layer 3-apparaat (router of L3-switch)."
+        },
+        {
+          "question": "Wat was de hoofdfunctie van het CSMA/CD algoritme in de originele bekabelde half-duplex Ethernet netwerken?",
+          "options": [
+            "Het asymmetrisch versleutelen van datapakketten voordat ze het LAN verlaten.",
+            "Het detecteren van signaalbotsingen op de kabel en het herstarten van de transmissie na een willekeurige wachttijd.",
+            "Het routeren van onbekend netwerkverkeer naar een standaard gateway via een default route.",
+            "Het verdelen van breedbandverkeer in virtuele LANs via 802.1Q frame-tagging."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Carrier Sense Multiple Access with Collision Detection (CSMA/CD) was het mechanisme op gedeelde media (zoals hubs) om botsingen op te sporen en apparaten tijdelijk te laten pauzeren voordat ze het opnieuw proberen. Fout A: Dit is cryptografie (Security). Fout C: Dit is routering (Layer 3). Fout D: Dit is de werking van VLAN-trunks."
+        },
+        {
+          "question": "Welk specifiek probleem in de communicatie op draadloze netwerken wordt opgelost door het toepassen van CSMA/CA in plaats van CSMA/CD?",
+          "options": [
+            "Het hardwarematige onvermogen van een draadloze zender om op exact dezelfde frequentie tegelijkertijd te zenden én te luisteren.",
+            "Het overschrijden van de vaste, maximale transmissie-afstand van 100 meter tussen een client en het access point.",
+            "Het risico op Man-in-the-Middle (MitM) aanvallen doordat radiosignalen buiten het gebouw kunnen worden opgevangen.",
+            "Het te snel leeglopen van batterijen in draagbare apparaten doordat zij continu scannen naar beschikbare kanalen."
+          ],
+          "correct": 0,
+          "explanation": "Correct: Wifi-radio's werken half-duplex en kunnen niet zenden en ontvangen tegelijkertijd. Hierdoor is Collision Detection (CD) onmogelijk. Daarom gebruikt wifi Collision Avoidance (CA) met mechanismen zoals het inlassen van wachttijden of RTS/CTS. Fout B: De afstand hangt af van signaalsterkte, niet van het access-protocol. Fout C: MitM-aanvallen vereisen encryptie (WPA2), niet CA. Fout D: Dit is stroombeheer (power save mode), geen CSMA-issue."
+        },
+        {
+          "question": "Welke combinatie van kanalen op de 2.4 GHz frequentieband wordt wereldwijd aanbevolen om te garanderen dat er geen overlappende signaalinterferentie plaatsvindt?",
+          "options": [
+            "Kanalen 1, 2 en 3.",
+            "Kanalen 1, 6 en 11.",
+            "Kanalen 2, 4 en 6.",
+            "Kanalen 5, 10 en 15."
+          ],
+          "correct": 1,
+          "explanation": "Correct: In de 2.4 GHz band overlappen de kanaalfrequenties (elk kanaal is 22 MHz breed). Alleen kanalen 1, 6 en 11 liggen ver genoeg uit elkaar om elkaars transmissie niet te verstoren. Fout A, C, en D: Deze groepen hebben onderling zware interferentie omdat ze overlappen."
+        },
+        {
+          "question": "Wat is het belangrijkste cryptografische verschil tussen de WPA2-standaard en het sterk verouderde WEP-protocol?",
+          "options": [
+            "WPA2 blokkeert automatisch alle inkomende broadcasts, terwijl WEP alle netwerkstromen toestaat.",
+            "WPA2 gebruikt de robuuste en geavanceerde AES-encryptiestandaard, terwijl WEP een zwakke, vaste IV met RC4 gebruikt.",
+            "WPA2 vereist fysieke USB-tokens voor toegangsdomeinen, terwijl WEP uitsluitend werkt met webgebaseerde inlognamen.",
+            "WPA2 versleutelt alleen de TCP-header van het datapakket, terwijl WEP de volledige payload structureel verbergt."
+          ],
+          "correct": 1,
+          "explanation": "Correct: WPA2 implementeert sterke encryptie (AES in CCM-modus), wat wiskundig zeer veilig is. WEP gebruikte een zwakke 24-bit Initialization Vector (IV) en het RC4-algoritme, dat in minuten te kraken is met een brute-force aanval. Fout A, C en D: Dit zijn verzonnen technische verschillen die onwaar zijn in de context van wifi-standaarden."
+        },
+        {
+          "question": "Een netwerkontwerper monteert één enkel draadloos access point in het midden van de kantine, zodat studenten in alle richtingen eromheen gelijke verbinding hebben. Welk type antenne is het meest geschikt voor deze situatie?",
+          "options": [
+            "Een directionele (gerichte) antenne.",
+            "Een omnidirectionele (rondstralende) antenne.",
+            "Een parabolische schotelantenne.",
+            "Een yagi-antenne (beam)."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Een omnidirectionele antenne straalt het signaal uit in een 360-graden patroon (donutvorm), ideaal voor centrale plaatsing. Fout A, C en D: Dit zijn allemaal voorbeelden van antennes die het signaal bundelen en in één specifieke richting sturen om grote afstanden te overbruggen (point-to-point)."
+        },
+        {
+          "question": "Welke WLAN-structuur ontstaat wanneer een beheerder meerdere draadloze Access Points (BSS'en) via een fysiek kabelnetwerk verbindt om de gebruikers een naadloos en overlappend dekkingsgebied te bieden?",
+          "options": [
+            "Een Ad-Hoc peer-to-peer netwerk.",
+            "Een Extended Service Set (ESS).",
+            "Een Independent Basic Service Set (IBSS).",
+            "Een Personal Area Network (PAN)."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Meerdere onderling bekabelde BSS'en (Access Points) met dezelfde SSID vormen samen een Extended Service Set (ESS), waardoor naadloos 'roamen' mogelijk is. Fout A & C: IBSS en Ad-Hoc betekenen dat apparaten direct communiceren zonder access point. Fout D: Een PAN is een persoonlijk netwerk (zoals Bluetooth over 2 meter)."
+        },
+        {
+          "question": "Bij het ontwerpen van een betrouwbaar draadloos bedrijfsnetwerk voor VoIP (spraak) let de beheerder scherp op de signaalsterkte. Welke drempelwaarde (in dBm) wordt aangeraden als absolute minimumgrens voor vlotte spraak- en datadiensten?",
+          "options": [
+            "-100 dBm",
+            "-30 dBm",
+            "-67 dBm",
+            "-90 dBm"
+          ],
+          "correct": 2,
+          "explanation": "Correct: Een signaalsterkte van -67 dBm (decibel-milliwatt) is in de industrie de geaccepteerde minimumwaarde voor betrouwbare en ononderbroken services zoals Voice over IP. Fout A & D: -90 en -100 dBm betekenen dat het signaal vrijwel volledig afwezig of onbruikbaar is. Fout B: -30 dBm is extreem sterk (je staat fysiek direct naast het access point)."
+        },
+        {
+          "question": "Binnen welk operationeel niveau bevindt het Routing Information Protocol (RIP) zich, en welke primaire eigenschap hoort daarbij?",
+          "options": [
+            "Het is een Exterior Gateway Protocol (EGP) en maakt gebruik van complexe Link-State berekeningen via Dijkstras algoritme.",
+            "Het is een Interior Gateway Protocol (IGP) en categoriseert als een simpel Distance Vector protocol op basis van hop count.",
+            "Het is een Interior Gatewauzetutel (IGP) en optimaliseert routes exclusief op basis van de snelst beschikbare bandbreedte.",
+            "Het is een Layer 2 netwerkprotocol dat uitsluitend wordt gebruikt voor verbindingen over de seriële poorten van switches."
+          ],
+          "correct": 1,
+          "explanation": "Correct: RIP is een IGP ontworpen voor lokaal beheer (binnen een AS). Het is een Distance Vector protocol dat de beste route uitsluitend bepaalt aan de hand van het aantal routers op de route (hop count, max 15). Fout A: OSPF is een link-state protocol en BGP is een EGP. Fout C: EIGRP en OSPF kijken naar bandbreedte, RIP negeert bandbreedte volledig. Fout D: RIP is een Layer 3 routeringsprotocol, niet Layer 2."
+        },
+        {
+          "question": "Het Border Gateway Protocol (BGP) is het fundament van het internet. Wat kenmerkt BGP het sterkst in vergelijking met interne routingprotocollen zoals OSPF?",
+          "options": [
+            "BGP deelt grote netwerken op in zogenoemde Area 0-backbones voor snellere rekentijden.",
+            "BGP is ontworpen om veilige, interdomein routing (tussen verschillende Autonomous Systems) op te zetten.",
+            "BGP leert dynamisch alle naburige routers kennen via frequente multicast hello-pakketten.",
+            "BGP reageert het snelst van alle protocollen op kleine, lokale wijzigingen in fysieke kabelstoringen."
+          ],
+          "correct": 1,
+          "explanation": "Correct: BGP is een EGP, speciaal gemaakt voor policy-based routering tussen totaal verschillende organisatie-netwerken (ISP's of Autonomous Systems). Fout A: Dit beschrijft het concept van Multiarea OSPF. Fout C: BGP stuurt geen dynamische hello-pakketten; buren (peers) moeten expliciet met IP-adres geconfigureerd worden. Fout D: BGP is berucht om zijn zeer trage convergentie vergeleken met OSPF of EIGRP."
+        },
+        {
+          "question": "Als een router exact dezelfde bestemming leert via drie verschillende paden—via EIGRP, via OSPF en via een handmatige statische route—welke route zal de router dan daadwerkelijk in zijn actieve routing table plaatsen?",
+          "options": [
+            "De EIGRP-route, omdat deze de meest gedetailleerde metriek (bandwidth + delay) bezit.",
+            "De OSPF-route, omdat link-state berekeningen superieur worden geacht aan andere methoden.",
+            "De route die als eerste door het apparaat is ontdekt, op volgorde van binnenkomst.",
+            "De statische route, omdat deze de hoogste betrouwbaarheid (laagste Administrative Distance van 1) heeft."
+          ],
+          "correct": 3,
+          "explanation": "Correct: De Administrative Distance (AD) bepaalt welk protocol 'geloofwaardiger' is. Hoe lager het getal, hoe beter. Een handmatige statische route heeft AD 1, EIGRP heeft 90, en OSPF heeft 110. De router kiest de route met AD 1. Fout A, B & C: Metrieken binnen een protocol worden pas gebruikt nádat het protocol met de beste AD is gekozen."
+        },
+        {
+          "question": "Wat is een fundamenteel kenmerk van Link-State routingprotocollen (zoals OSPF) in contrast met Distance-Vector protocollen?",
+          "options": [
+            "Link-State protocollen adverteren elke 30 seconden hun volledige routingtabel naar het netwerk ter controle.",
+            "Link-State protocollen bouwen elk lokaal een complete abstracte topologiekaart van het volledige netwerk (via het SPF-algoritme).",
+            "Link-State protocollen kunnen uitsluitend opereren in netwerken waar maximaal 15 routers in één pad staan.",
+            "Link-State protocollen weten zelf de route niet, maar sturen verkeer naar de default gateway."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Bij een link-state protocol wisselt men LSA's uit. Hierdoor heeft elke router in het gebied een perfect inzicht in de complete infrastructuur, waarna hij zelf lokaal het kortste pad berekent. Fout A: Dit is het typische (trage) gedrag van Distance-Vector protocollen zoals RIPv1. Fout C: Max 15 hops is specifiek een limiet van RIP. Fout D: Onzin, dat is het gedrag van een eindapparaat zonder routering."
+        },
+        {
+          "question": "Wat is de exacte functie van de 'Split Horizon' beveiligingsregel binnen distance-vector routingprotocollen?",
+          "options": [
+            "Het elimineert routing loops door te verbieden dat netwerkinformatie wordt teruggezonden over dezelfde interface als waarop het werd ontvangen.",
+            "Het garandeert dat zwaar netwerkverkeer gelijkmatig over de twee best presterende kabels wordt verdeeld (load balancing).",
+            "Het snijdt frames die groter zijn dan de netwerk-MTU op in twee gelijke fragmenten.",
+            "Het verbreekt de communicatie wanneer de OSPF Area Border Router offline gaat."
+          ],
+          "correct": 0,
+          "explanation": "Correct: Split horizon voorkomt dat Router A zegt: 'Ik leer route X van Router B', en direct daarna tegen Router B zegt: 'Hé, ik weet hoe je bij route X komt' (wat een oneindige loop veroorzaakt). Fout B: Dit heet Equal Cost Multipathing (ECMP). Fout C: Dit is packet fragmentation op IP-niveau. Fout D: OSPF is link-state en gebruikt andere failover mechanismen, geen split horizon."
+        },
+        {
+          "question": "De wiskundige metriek (composite metric) die het EIGRP-protocol standaard berekent voor de optimale padselectie, is primair gebaseerd op welke twee netwerkfactoren?",
+          "options": [
+            "Bandbreedte (Bandwidth) en cumulatieve Vertraging (Delay).",
+            "Bandbreedte (Bandwidth) en Foutmarge (Reliability).",
+            "Hardware MAC-adressen en IP-adressen.",
+            "Pakketverlies (Packet Loss) en Aantal Routers (Hop Count)."
+          ],
+          "correct": 0,
+          "explanation": "Correct: De standaard K-waarden van EIGRP die actief zijn (K1 en K3) wegen de traagste bandbreedte op de route samen met de opgetelde delay van de interfaces. Fout B: Reliability (K4/K5) kan worden meegewogen, maar staat standaard uit om instabiliteit te voorkomen. Fout C & D: Hop count is voor RIP, en MAC/IP zijn adresseringen, geen route-metrieken."
+        },
+        {
+          "question": "Een boze ex-werknemer installeert een zelfgeschreven script dat tienduizenden netwerkverzoeken per minuut (TCP SYN flood) naar de centrale server van het bedrijf verstuurt. Daardoor crasht de webportal. Welke beveiligingsdoelstelling uit de CIA-triade wordt in dit incident expliciet geschonden?",
+          "options": [
+            "Availability (Beschikbaarheid)",
+            "Confidentiality (Vertrouwelijkheid)",
+            "Integrity (Integriteit)",
+            "Non-repudiation (Onweerlegbaarheid)"
+          ],
+          "correct": 0,
+          "explanation": "Correct: Een SYN flood is een Denial of Service (DoS) aanval. DoS-aanvallen putten de capaciteit van een apparaat uit, waardoor de data en dienst niet meer toegankelijk (beschikbaar) zijn voor legitieme gebruikers. Fout B: Er zijn geen data gestolen of afgeluisterd. Fout C: Er is geen inhoud van database-bestanden of transacties gewijzigd. Fout D: Er is geen weigering van afzenderschap in het geding."
+        },
+        {
+          "question": "Hoe onderscheidt asymmetrische encryptie zich operationeel van symmetrische encryptie?",
+          "options": [
+            "Asymmetrische encryptie gebruikt één identieke, vooraf gedeelde sleutel (PSK) om data aan beide kanten te verwerken.",
+            "Asymmetrische encryptie gebruikt een gekoppeld wiskundig paar van een publieke sleutel (om te versleutelen) en een private sleutel (om te ontsleutelen).",
+            "Asymmetrische encryptie is wiskundig veel sneller dan symmetrische encryptie en wordt daarom uitsluitend voor gigantische datastromen gebruikt.",
+            "Asymmetrische encryptie is verouderd en mag uitsluitend nog gebruikt worden in de beveiliging van lokale netwerkpoorten."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Asymmetrische algoritmen (zoals RSA) vertrouwen op een sleutelpaar (public key / private key), wat enorm veilig is voor het uitwisselen van identiteiten over het internet zonder de sleutel fysiek af te spreken. Fout A: Symmetrisch (zoals AES) deelt één sleutel in het geheim. Fout C: Asymmetrisch is juist zwaar en trager, waardoor het alleen voor kleine payload of sleuteluitwisseling (handshake) wordt ingezet. Fout D: Het is de moderne standaard voor online secure tunnels (HTTPS/IPsec)."
+        },
+        {
+          "question": "Wat is het doel van Fase 1 (ISAKMP) in het Internet Key Exchange (IKEv1) onderhandelingsproces voor een Site-to-Site VPN?",
+          "options": [
+            "Het bepalen of er in de tunnel uitsluitend IPv4 of IPv6 datapakketten verzonden gaan worden.",
+            "Het comprimeren van de bestanden en toepassen van de AH (Authentication Header) op de payload.",
+            "Het opzetten van een veilig, bidirectioneel geauthenticeerd controlekanaal tussen de VPN-peers.",
+            "Het verpakken en omvormen van lokaal broadcast-verkeer in veilige externe unicast-pakketten."
+          ],
+          "correct": 2,
+          "explanation": "Correct: IKE Phase 1 zet de veilige management-tunnel (ISAKMP SA) op. Binnen deze veilige tunnel kan Fase 2 vervolgens in het geheim bepalen hoe de eigenlijke bedrijfsdata versleuteld gaat worden. Fout A, B & D: Fase 1 doet geen compressie, encapsulatie van data of routeringsbesluiten; het bouwt enkel het cryptografische bestuurspad voor de gateways."
+        },
+        {
+          "question": "Binnen IPSec is er de keuze tussen Transport Mode en Tunnel Mode. Welke bewering over Tunnel Mode is correct?",
+          "options": [
+            "Tunnel Mode behoudt de originele IP-header intact en onversleuteld en beschermt slechts de payload.",
+            "Tunnel Mode kan uitsluitend worden opgezet indien beide routers tot hetzelfde Autonomous System (AS) behoren.",
+            "Tunnel Mode verpakt de originele IP-header samen met de data in de beveiliging, en plaatst daar bovenop een geheel nieuwe routerings-IP-header.",
+            "Tunnel Mode verplaatst de authenticatietaken volledig naar de externe RADIUS-server om bandbreedte te winnen."
+          ],
+          "correct": 2,
+          "explanation": "Correct: Bij Tunnel Mode (typisch voor Site-to-Site VPN's) wordt het originele IP-pakket (waarin staat welk device lokaal met welk device praat) compleet verborgen/versleuteld, en krijgt het een nieuwe IP-header om via het internet naar de gateway te navigeren. Fout A: Dat is de exacte omschrijving van Transport Mode (vaak voor app-to-app). Fout B & D: IPsec staat los van BGP-zones of het uitbesteden van cryptografische taken."
+        },
+        {
+          "question": "Waarom kiezen netwerkengineers er vaak voor om het Generic Routing Encapsulation (GRE) protocol ín de IPSec-tunnel te plaatsen (GRE over IPSec)?",
+          "options": [
+            "GRE is eigendom van Cisco en levert op Cisco-routers aanzienlijk snellere AES-encryptie dan standaard IPSec.",
+            "IPSec ondersteunt van nature uitsluitend unicast-verkeer; GRE biedt de mogelijkheid om dynamisch routeringsverkeer (multicast/broadcast) door de tunnel te sturen.",
+            "IPSec verbruikt extreem veel overhead per pakket, terwijl een pure GRE-header de datapakketten verkleint door datacompressie.",
+            "Zonder GRE zou de IPSec Security Association (SA) na exact 60 minuten automatisch gesloten worden wegens timeout-regels."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Bedrijven willen vaak dynamisch routeren (zoals OSPF via multicast) tussen filialen. Omdat IPSec blind is voor multicast en dit weigert, verpakt GRE dit multicast-verkeer in een simpele unicast IP-header, waarna IPSec het probleemloos wil versleutelen. Fout A: GRE levert zélf geen enkele encryptie (is onbeveiligd). Fout C: GRE levert geen datacompressie, het voegt minimaal 24 byte aan overhead toe. Fout D: SA timers staan los van GRE."
+        },
+        {
+          "question": "Bij de configuratie van IPSec in IKE Fase 2 wordt een Transform Set afgesproken met ESP. Welke specifieke beveiligingstaken vervult Encapsulating Security Payload (ESP)?",
+          "options": [
+            "ESP levert uitsluitend integriteit ter controle op wijzigingen, zonder de data wiskundig af te schermen voor passanten.",
+            "ESP levert volledige hardwarematige failover indien de primaire firewall van stroom voorziening wordt afgesneden.",
+            "ESP zorgt primair voor vertrouwelijkheid via datacompressie en anonimiteit van het LAN.",
+            "ESP zorgt voor zowel vertrouwelijkheid (encryptie van de data) als optioneel integriteit (hashing) en authenticatie."
+          ],
+          "correct": 3,
+          "explanation": "Correct: ESP (Protocol 50) is ontworpen om de data te versleutelen tegen afluisteren (Confidentiality) en kan dit combineren met HMAC-mechanismen voor integriteit. Fout A: Dit is exact de definitie van AH (Authentication Header, Protocol 51). Fout B & C: ESP is cryptografie, het verzorgt geen datacompressie of fysieke stroomback-up."
+        },
+        {
+          "question": "Een Intrusion Prevention System (IPS) fungeert als een actieve bewaker, terwijl een Intrusion Detection System (IDS) meer als een alarm functioneert. Welke implementatie-eis is verplicht voor een IPS?",
+          "options": [
+            "Een IPS functioneert uitsluitend op de host zelf (HIPS) in plaats van centraal in het netwerk.",
+            "Een IPS moet inline (direct in het fysieke doorvoerkanaal van het verkeer) geplaatst worden om pakketten daadwerkelijk te kunnen blokkeren.",
+            "Een IPS vereist dat het netwerkverkeer gespiegeld (port mirroring) wordt vanaf een switch, zodat het de reguliere verkeersstroom niet vertraagt.",
+            "Een IPS wordt uitsluitend via out-of-band management beheerd en kan nooit autonoom ingrijpen."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Om de datastroom stop te zetten (droppen/blokkeren), moet een IPS fysiek ín de lijn (inline) gemonteerd zijn. Fout C: Verkeer spiegelen op een SPAN-poort ('passive mode') is precies de ontwerpeis van een IDS, dat de doorvoersnelheid niet wil hinderen maar daardoor niet proactief kan ingrijpen. Fout A & D: Er zijn krachtige netwerk-brede NIPS apparaten die volautomatisch ingrijpen."
+        },
+        {
+          "question": "Binnen de architectuur van het Syslog-protocol, wat is het primaire kenmerk van een netwerkgebeurtenis met Severity Level 0?",
+          "options": [
+            "Het duidt op 'Debugging', nuttig voor gedetailleerde ontwikkelaarsanalyse zonder operationele impact.",
+            "Het duidt op 'Emergency', wat betekent dat het systeem onmiddellijk onbruikbaar is geworden (fatale crash).",
+            "Het is de aanduiding voor een 'Informational' melding, wat duidt op normale, gezonde netwerkoperaties.",
+            "Het vertegenwoordigt een 'Warning', wat aangeeft dat een drempelwaarde voor CPU-gebruik bijna is overschreden."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Bij Syslog geldt: hoe lager het numerieke niveau (0-7), hoe acuter het gevaar. Level 0 is Emergency (Systeem is down/onbruikbaar). Fout A: Debugging is level 7. Fout C: Informational is level 6. Fout D: Warning is level 4."
+        },
+        {
+          "question": "De beheerder stelt het Simple Network Management Protocol (SNMP) in. Wat is het structurele voordeel van SNMPv3 ten opzichte van de sterk verouderde versies SNMPv1 en SNMPv2c?",
+          "options": [
+            "SNMPv3 introduceert het 'community string' model, waardoor polling op basis van plaintext-wachtwoorden mogelijk werd.",
+            "SNMPv3 biedt volledige beveiliging via geavanceerde authenticatie op basis van gebruikersnamen en payload-encryptie (zoals AES).",
+            "SNMPv3 is specifiek geoptimaliseerd om extreem snelle glasvezelverbindingen (boven de 10 Gbps) zonder overhead te besturen.",
+            "SNMPv3 verplaatst de opslag van de MIB-database van de netwerk-apparaten naar één externe, centrale cloud-infrastructuur."
+          ],
+          "correct": 1,
+          "explanation": "Correct: Oude SNMP-versies vertrouwden op een inzichtelijk, onversleuteld 'community string' wachtwoord, wat een gigantisch lek vormde als het afgeluisterd werd. SNMPv3 fixt dit door sterke crypto en HMAC's te introduceren. Fout A: Dat was het probleem van v1/v2c, niet de innovatie van v3. Fout C & D: SNMP beïnvloedt doorvoersnelheid niet fysiek en de MIB-structuur blijft lokaal op het managed device bestaan."
+        },
+        {
+          "question": "Een Network Management System (NMS) praat regelmatig met netwerk-routers en -switches. In welk specifiek scenario stuurt het netwerkapparaat een zogenoemde 'SNMP Trap' naar het NMS?",
+          "options": [
+            "Wanneer de centrale beheerder een handmatig 'set-request' commando stuurt om een variabele te forceren.",
+            "Wanneer de centrale beheerder een routinematig 'get-request' commando naar het apparaat stuurt om de CPU te peilen.",
+            "Wanneer een onverwachte of kritieke gebeurtenis optreedt (zoals het wegvallen van een interfacelink), stuurt het apparaat autonoom een notificatie.",
+            "Wanneer het NMS de verbinding verliest en de OSPF-buurrelatie tussen de managementstations tijdelijk herstart moet worden."
+          ],
+          "correct": 2,
+          "explanation": "Correct: Normaal gesproken vraagt de server (NMS) om statusupdates via een 'poll' of 'get'. Een 'Trap' is daarentegen een noodbericht dat het netwerkapparaat zélf ongevraagd 'pusht' zodra hij een lokaal probleem opmerkt. Fout A & B: Dit zijn de handmatige NMS queries. Fout D: SNMP monitort of wijzigt variabelen, maar initieert geen OSPF-failovers of routeringsmechanismen."
+        },
+        {
+          "question": "Op de SNMP-agent (het beheerde apparaat) is informatie vastgelegd in een boomstructuur die de Management Information Base (MIB) heet. Hoe wordt een specifieke variabele in deze MIB exact gelokaliseerd?",
+          "options": [
+            "Door een uniek Object Identifier (OID) nummer, opgebouwd uit door punten gescheiden reeksen volgens hiërarchische RFC-standaarden.",
+            "Door het opvragen van het unieke MAC-adres van de interface waarop het bewuste management-kabeltje is aangesloten.",
+            "Door in te loggen via SSH en een string-matching algoritme door de actieve log-buffers te laten zoeken.",
+            "Door middel van het vastgelegde IPv6-anycast adres van de hardwarefabrikant."
+          ],
+          "correct": 0,
+          "explanation": "Correct: In SNMP wordt elke sensorwaarde of parameter geïdentificeerd door een Object Identifier (bijv. 1.3.6.1.4.1.9). De MIB organiseert deze OID's als de takken van een boom, uitgaande van ISO- en bedrijfsgebonden standaarden (zoals .9 voor Cisco). Fout B, C & D: SNMP gebruikt MIBs en OID's voor dataretrieval, geen MAC-adressen, grep-opdrachten over SSH of anycast IP-reeksen."
+        }
+      ]
     }
   ]
 }
