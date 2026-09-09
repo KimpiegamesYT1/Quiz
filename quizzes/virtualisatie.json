@@ -1,0 +1,341 @@
+{
+  "title": "Virtualisatie Quiz",
+  "categories": [
+    {
+      "id": "week1",
+      "name": "Week 1: Server Virtualisatie (deel 1)",
+      "questions": [
+        {
+          "question": "Welke omschrijving past het best bij de functie van een hypervisor?",
+          "options": [
+            "Een beheerconsole waarmee fysieke servers op afstand worden geconfigureerd.",
+            "Een laag die fysieke resources verdeelt over virtuele machines.",
+            "Een driverpakket dat de prestaties van een gast-besturingssysteem verbetert.",
+            "Een bestandssysteem waarop de bestanden van virtuele machines staan."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De hypervisor abstraheert CPU, geheugen, opslag en netwerk van de onderliggende hardware en verdeelt deze over de VM's.\n\nOnjuist (A): Beheerconsoles zoals de Host Client of Hyper-V Manager beheren de hypervisor, maar zijn het niet.\n\nOnjuist (C): Dit beschrijft VMware Tools.\n\nOnjuist (D): Dit beschrijft een datastore met VMFS."
+        },
+        {
+          "question": "Wat kenmerkt bare-metal virtualisatie (type 1)?",
+          "options": [
+            "De hypervisor draait als applicatie op een onderliggend besturingssysteem.",
+            "De hypervisor vereist altijd een grafische desktopomgeving op de host.",
+            "De hypervisor is direct op de hardware geïnstalleerd.",
+            "De hypervisor draait zelf binnen een virtuele machine."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Bij type 1 zit er geen host-OS tussen de hardware en de hypervisor; ESXi, Hyper-V en KVM zijn voorbeelden.\n\nOnjuist (A): Dat is juist de definitie van host-based virtualisatie (type 2).\n\nOnjuist (B): ESXi en de gratis Hyper-V-variant draaien juist zonder GUI.\n\nOnjuist (D): Een hypervisor in een VM is geneste virtualisatie, geen kenmerk van type 1."
+        },
+        {
+          "question": "Welke oplossing is een host-based (type 2) hypervisor?",
+          "options": [
+            "VMware ESXi",
+            "Microsoft Hyper-V",
+            "KVM",
+            "Oracle VirtualBox"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): VirtualBox draait als applicatie bovenop Windows, Linux of macOS en is daarmee type 2, net als VMware Workstation/Fusion Pro en QEMU.\n\nOnjuist (A, B, C): ESXi, Hyper-V en KVM zijn bare-metal hypervisors (type 1). Hyper-V lijkt op een Windows-applicatie, maar plaatst zichzelf bij activering onder het besturingssysteem."
+        },
+        {
+          "question": "Wat is kenmerkend voor full virtualisatie?",
+          "options": [
+            "Het gast-besturingssysteem blijft ongewijzigd en merkt de virtualisatie niet.",
+            "Het gast-besturingssysteem roept de hypervisor aan via speciaal aangepaste calls.",
+            "Het gast-besturingssysteem deelt de kernel van het onderliggende hostsysteem.",
+            "Het gast-besturingssysteem draait rechtstreeks op de hardware zonder tussenlaag."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Bij full virtualisatie wordt de hardware volledig nagebootst; de VM 'weet' niet dat hij gevirtualiseerd is, dus het OS hoeft niet aangepast te worden.\n\nOnjuist (B): Dat is paravirtualisatie.\n\nOnjuist (C): Het delen van de host-kernel gebeurt bij containers, niet bij servervirtualisatie.\n\nOnjuist (D): Er zit altijd een hypervisor tussen."
+        },
+        {
+          "question": "Wat is het onderscheidende kenmerk van paravirtualisatie?",
+          "options": [
+            "De hypervisor emuleert alle hardware volledig voor de VM.",
+            "De kernel van het gast-besturingssysteem is aangepast voor de hypervisor.",
+            "Elke VM krijgt een eigen fysieke netwerkkaart toegewezen.",
+            "Het gast-besturingssysteem wordt ongewijzigd overgezet vanaf fysieke serverhardware."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Bij paravirtualisatie (Xen, Xcp-ng, Hyper-V, KVM op Linux) is de gastkernel aangepast, zodat deze efficiënt met de hypervisor communiceert.\n\nOnjuist (A & D): Dit hoort bij full virtualisatie.\n\nOnjuist (C): Het toewijzen van fysieke hardware aan een VM is passthrough en staat los van para- of full virtualisatie."
+        },
+        {
+          "question": "Wat betekent het dat ESXi en Hyper-V hybride virtualisatie ondersteunen?",
+          "options": [
+            "Ze kunnen zowel Windows- als Linux-systemen als onderliggende host gebruiken.",
+            "Ze combineren server- en storagevirtualisatie in één product.",
+            "Ze kunnen zowel full virtualisatie als paravirtualisatie uitvoeren.",
+            "Ze draaien deels op eigen hardware en deels in de cloud."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een hybride VMM/hypervisor beheerst beide technieken en kiest per gast-besturingssysteem de best passende vorm.\n\nOnjuist (A): Type 1 hypervisors hebben helemaal geen host-OS als onderlaag.\n\nOnjuist (B): Storagevirtualisatie is een aparte vorm van virtualisatie.\n\nOnjuist (D): Dat beschrijft een hybride cloud, niet hybride virtualisatie."
+        },
+        {
+          "question": "Welk voordeel is een direct gevolg van de hardware-abstractie door een hypervisor?",
+          "options": [
+            "Het aantal benodigde IP-adressen in het netwerk neemt af.",
+            "Applicaties in een VM draaien altijd sneller dan op vergelijkbare fysieke hardware.",
+            "Back-ups van servers zijn niet langer noodzakelijk.",
+            "VM's zijn niet meer gebonden aan specifieke hardwaredrivers."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): De VM ziet gestandaardiseerde, virtuele hardware. Daardoor kan hij op andere fysieke hardware draaien zonder driverproblemen, wat uitrol en migratie sterk vereenvoudigt.\n\nOnjuist (A): Elke VM heeft nog steeds een eigen IP-adres nodig.\n\nOnjuist (B): Virtualisatie kost juist wat overhead; de winst zit in consolidatie en flexibiliteit.\n\nOnjuist (C): Back-ups blijven onverminderd noodzakelijk."
+        },
+        {
+          "question": "Waarvoor gebruik je de DCUI van een ESXi-host?",
+          "options": [
+            "Voor het aanmaken en beheren van content libraries.",
+            "Voor het migreren van virtuele machines tussen twee verschillende hosts.",
+            "Voor de basisconfiguratie van IP-adres en rootwachtwoord.",
+            "Voor het formatteren van een LUN met VMFS."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): De Direct Console User Interface is de tekstinterface op de console van de host, bedoeld voor de eerste basisinstellingen na installatie.\n\nOnjuist (A): Content libraries bestaan alleen op vCenter-niveau.\n\nOnjuist (B): Migratie regel je via een managementlaag, niet via de DCUI.\n\nOnjuist (D): Datastores maak je aan via de Host Client of vSphere Client."
+        },
+        {
+          "question": "Hoe beheer je een standalone ESXi-host waarvoor geen vCenter beschikbaar is?",
+          "options": [
+            "Via de Host Client in een browser op het IP-adres van de host.",
+            "Via de vSphere Client op het IP-adres van vCenter.",
+            "Via Hyper-V Manager vanaf een Windows-werkstation.",
+            "Via een subscribed content library die op een andere host is gepubliceerd."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Op de host draait een webserver; via https naar het host-IP open je de Host Client.\n\nOnjuist (B): Zonder vCenter is er geen vSphere Client-toegang.\n\nOnjuist (C): Hyper-V Manager beheert Hyper-V, geen ESXi.\n\nOnjuist (D): Een content library is een deelmechanisme voor bestanden, geen beheerinterface."
+        },
+        {
+          "question": "Welke tool is bedoeld voor geavanceerd, gecentraliseerd beheer van een Hyper-V-omgeving?",
+          "options": [
+            "Hyper-V Manager",
+            "SCVMM",
+            "DCUI",
+            "Remmina"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): SCVMM is de geavanceerde beheerlaag voor grotere Hyper-V-omgevingen, vergelijkbaar met de rol van vCenter bij VMware.\n\nOnjuist (A): Hyper-V Manager is de basisconsole voor losse hosts.\n\nOnjuist (C): De DCUI hoort bij ESXi.\n\nOnjuist (D): Remmina is een remote-desktop- en SSH-client."
+        },
+        {
+          "question": "Welke protocollen gebruikt een NAS om bestanden beschikbaar te stellen?",
+          "options": [
+            "iSCSI en Fibre Channel",
+            "VMFS en NTFS",
+            "HTTP en FTP",
+            "SMB/CIFS en NFS"
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Een NAS is file-based en biedt mappen en bestanden aan via SMB/CIFS of NFS.\n\nOnjuist (A): iSCSI en Fibre Channel horen bij block-based storage (SAN).\n\nOnjuist (B): Dit zijn bestandssystemen, geen netwerkprotocollen.\n\nOnjuist (C): HTTP en FTP zijn geen protocollen waarmee een host een datastore mount."
+        },
+        {
+          "question": "Wat kenmerkt een SAN?",
+          "options": [
+            "Het levert block-based opslag via een dedicated, snel opslagnetwerk.",
+            "Het deelt mappen en bestanden via het bestaande kantoornetwerk.",
+            "Het is vooral bedoeld voor kleinschalig gebruik met weinig gebruikers.",
+            "Het slaat gegevens op als objecten met bijbehorende metadata."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Een SAN is een apart, geoptimaliseerd opslagnetwerk (Fibre Channel of iSCSI) dat block storage met lage latentie levert en goed schaalt.\n\nOnjuist (B & C): Dit beschrijft een NAS.\n\nOnjuist (D): Dit beschrijft object storage."
+        },
+        {
+          "question": "Waarom moet block storage door ESXi eerst met VMFS geformatteerd worden?",
+          "options": [
+            "Omdat VMFS het NFS-protocol op de host vervangt.",
+            "Omdat block storage anders niet gerepliceerd kan worden.",
+            "Omdat block storage als ruwe ruimte wordt aangeboden.",
+            "Omdat een NAS-mount anders niet zichtbaar wordt in de interface."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een LUN is ongeformatteerde blokopslag. Pas na het aanmaken van een VMFS-bestandssysteem kan ESXi er VM-bestanden op wegschrijven.\n\nOnjuist (A): NFS blijft gewoon bestaan naast VMFS.\n\nOnjuist (B): Replicatie is een functie van het storagesysteem.\n\nOnjuist (D): Een NAS-mount is al geformatteerd en wordt niet met VMFS bewerkt."
+        },
+        {
+          "question": "Voor welke opslagvorm is géén VMkernel-poort nodig?",
+          "options": [
+            "iSCSI-storage via Ethernet",
+            "Lokale block storage in de host zelf",
+            "Een NAS-mount via het netwerk",
+            "Een NFS-datastore van een storage-appliance"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Lokale disks zitten direct aan de host; er komt geen netwerkverbinding aan te pas, dus ook geen kernelpoort.\n\nOnjuist (A, C, D): Al deze vormen lopen over het netwerk en vereisen een VMkernel-poort met een IP-adres in het juiste opslagsubnet."
+        },
+        {
+          "question": "Welke rol vervult een ESXi-host in een iSCSI-opstelling?",
+          "options": [
+            "Target, omdat de host de LUN's aanbiedt aan het netwerk.",
+            "Initiator, omdat de host de verbinding met de opslag opzet.",
+            "Portal, omdat de host de IQN's uitdeelt aan de opslagarray.",
+            "Router, omdat de host het opslagverkeer tussen subnetten routeert."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De server die opslag afneemt is de initiator; het dataverkeer loopt via de iSCSI-initiator van de host.\n\nOnjuist (A): De target is de opslagarray of server die de LUN's aanbiedt.\n\nOnjuist (C): Elk apparaat heeft zijn eigen IQN; die worden niet uitgedeeld door de host.\n\nOnjuist (D): Routeren is een taak van het netwerk, niet van de host."
+        },
+        {
+          "question": "Welke notatie is een correct opgebouwd IQN?",
+          "options": [
+            "iqn.2011-06.com.technicaldeepdive:server:lablinuxdb01",
+            "iqn.technicaldeepdive.com.2011-06:lablinuxdb01",
+            "iscsi://2011-06/com.technicaldeepdive/lablinuxdb01",
+            "iqn:2011.06:com-technicaldeepdive.lablinuxdb01"
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De opbouw is type.JJJJ-MM.omgekeerde-domeinnaam:vrije string.\n\nOnjuist (B): Domeinnaam en datum staan in de verkeerde volgorde en de domeinnaam is niet omgekeerd.\n\nOnjuist (C): iSCSI gebruikt geen URL-notatie.\n\nOnjuist (D): De scheidingstekens en de volgorde van de velden kloppen niet."
+        },
+        {
+          "question": "Wat is een LUN in een opslagomgeving?",
+          "options": [
+            "Een netwerkpoort waarmee de host op het opslagnetwerk aansluit.",
+            "Een naamgevingsstandaard voor iSCSI-apparaten.",
+            "Een logische eenheid block storage, aangeboden als ruwe schijf.",
+            "Een bestandssysteem dat automatisch op een NAS wordt aangemaakt."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Logical Unit Number: een blok opslag dat de host als ongeformatteerde schijf ziet en zelf met VMFS moet formatteren.\n\nOnjuist (A): Dat is een VMkernel-poort.\n\nOnjuist (B): Dat is het IQN.\n\nOnjuist (D): Een NAS levert een reeds geformatteerd volume dat je mount."
+        },
+        {
+          "question": "Wat doet een virtuele switch binnen een ESXi-host?",
+          "options": [
+            "Hij verdeelt de beschikbare CPU-tijd over de virtuele machines.",
+            "Hij routeert verkeer tussen verschillende IP-subnetten.",
+            "Hij vervangt alle fysieke switches in het datacenter.",
+            "Hij verbindt VM's onderling en met het fysieke netwerk."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Een vSwitch is software die VM's onderling laat communiceren en hun verkeer via een uplink naar het fysieke netwerk brengt.\n\nOnjuist (A): CPU-scheduling is een taak van de hypervisor zelf.\n\nOnjuist (B): Een standaard vSwitch werkt op laag 2 en routeert niet.\n\nOnjuist (C): Er blijven fysieke switches nodig; de uplinks sluiten daarop aan."
+        },
+        {
+          "question": "Wat is de functie van een port group op een vSwitch?",
+          "options": [
+            "Het bundelt meerdere fysieke uplinks tot één logische verbinding.",
+            "Het reserveert bandbreedte per virtuele machine.",
+            "Het groepeert virtuele poorten met dezelfde instellingen.",
+            "Het koppelt de host rechtstreeks aan een iSCSI-target."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): VM-poorten worden gegroepeerd in port groups; elke port group kan een eigen VLAN en eigen instellingen hebben.\n\nOnjuist (A): Dat is NIC teaming of link aggregation.\n\nOnjuist (B): Bandbreedtereservering gebeurt met traffic shaping of QoS.\n\nOnjuist (D): De iSCSI-verbinding loopt via een VMkernel-poort en de iSCSI-adapter."
+        },
+        {
+          "question": "Waarvoor is een VMkernel-poort bedoeld?",
+          "options": [
+            "Voor het netwerkverkeer van de host zelf.",
+            "Voor het internetverkeer van de virtuele machines.",
+            "Voor het opslaan van VM-bestanden op een datastore.",
+            "Voor het tunnelen van meerdere VLAN's over één trunkverbinding."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Kernelpoorten verbinden de hypervisor zelf met het netwerk, voor diensten als management, vMotion, fault tolerance, vSAN, iSCSI en NFS.\n\nOnjuist (B): VM-verkeer loopt via de port groups van het VM-netwerk.\n\nOnjuist (C): Opslag gebeurt op een datastore, niet op een netwerkpoort.\n\nOnjuist (D): Tagging en trunking zijn eigenschappen van de switchpoorten."
+        },
+        {
+          "question": "Wat gebeurt er bij thin provisioning van een virtuele disk?",
+          "options": [
+            "De volledige capaciteit wordt direct op de datastore gereserveerd.",
+            "De inhoud van de disk wordt gecomprimeerd opgeslagen.",
+            "De disk wordt automatisch verdeeld over meerdere beschikbare datastores.",
+            "Ruimte wordt pas toegewezen zodra die in gebruik wordt genomen."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Thin provisioning claimt de opslag pas bij gebruik, wat ruimte bespaart maar het risico geeft dat de datastore volloopt.\n\nOnjuist (A): Dat is thick provisioning.\n\nOnjuist (B): Compressie is een aparte storagefunctie.\n\nOnjuist (C): Een disk staat in principe op één datastore."
+        },
+        {
+          "question": "Waarom installeer je VMware Tools in een virtuele machine?",
+          "options": [
+            "Om de VM te kunnen omzetten naar een andere hypervisor.",
+            "Om de hypervisor toegang te geven tot de datastore.",
+            "Om betere drivers en prestaties in het gast-OS te krijgen.",
+            "Om het gast-besturingssysteem om te zetten naar paravirtualisatie."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): VMware Tools levert geoptimaliseerde drivers en verbetert de integratie tussen VM en hypervisor; ook de balloon driver hoort hierbij.\n\nOnjuist (A): Conversie tussen platformen doe je met aparte conversietools.\n\nOnjuist (B): De hypervisor beheert de datastore sowieso al.\n\nOnjuist (D): De kernel wordt niet herschreven door een toolspakket."
+        },
+        {
+          "question": "Hoe werkt memory ballooning?",
+          "options": [
+            "De hypervisor comprimeert de ongebruikte geheugenpagina's van de virtuele machine.",
+            "Een driver in de VM claimt geheugen dat de host kan hergebruiken.",
+            "De hypervisor verplaatst geheugen van de VM naar een andere host.",
+            "Het gast-besturingssysteem krijgt tijdelijk extra fysiek geheugen toegewezen."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De balloon driver in de VM vraagt geheugen op alsof het een gewone applicatie is. Het gast-OS geeft daarop de minst gebruikte pagina's vrij, die de hypervisor kan uitdelen aan andere VM's.\n\nOnjuist (A): Geheugencompressie is een aparte techniek.\n\nOnjuist (C): Geheugen verplaatsen tussen hosts hoort bij live migratie.\n\nOnjuist (D): Ballooning neemt geheugen weg bij de VM in plaats van toe te voegen."
+        },
+        {
+          "question": "Een beheerder wil ISO's en templates gebruiken die door een andere vCenter-omgeving beschikbaar zijn gesteld. Wat doet hij?",
+          "options": [
+            "Hij maakt een subscribed library aan met de URL van de publisher.",
+            "Hij kopieert de bestanden handmatig naar zijn lokale datastore.",
+            "Hij publiceert zijn eigen library en wacht op de automatische synchronisatie.",
+            "Hij mount de datastore van de andere omgeving via NFS."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Je maakt een library van het type subscribed, geeft de URL (eventueel met inloggegevens) van de published library en kiest de datastore waar de inhoud terechtkomt.\n\nOnjuist (B): Dat werkt, maar omzeilt versiebeheer en synchronisatie.\n\nOnjuist (C): Publiceren stelt je eigen inhoud beschikbaar; het haalt niets op.\n\nOnjuist (D): Een NFS-mount geeft opslagruimte, geen beheerde bibliotheek met versiebeheer en machtigingen."
+        },
+        {
+          "question": "Waarom is een content library niet bruikbaar op een losse ESXi-host zonder vCenter?",
+          "options": [
+            "Omdat een standalone host geen VMFS-datastore kan aanmaken.",
+            "Omdat de functionaliteit alleen op vCenter-niveau beschikbaar is.",
+            "Omdat een ESXi-host geen ISO-bestanden kan opslaan.",
+            "Omdat de host geen VMkernel-poort heeft voor synchronisatie."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Content libraries worden beheerd door vCenter; de hosts moeten daarvoor aan vCenter gekoppeld zijn.\n\nOnjuist (A): Een standalone host maakt prima datastores aan.\n\nOnjuist (C): ISO's op een datastore zetten kan gewoon.\n\nOnjuist (D): Elke host heeft minimaal een managementkernelpoort; dat is niet de beperkende factor."
+        },
+        {
+          "question": "Een host heeft 128 GB fysiek geheugen. De beheerder wil zes virtuele machines draaien met elk 32 GB toegewezen geheugen. Welke uitspraak is juist?",
+          "options": [
+            "Dit kan niet, want het toegewezen geheugen mag het fysieke geheugen nooit overschrijden.",
+            "Dit kan wel; de host kan het geheugen overcommitten.",
+            "Dit kan alleen wanneer elke VM een thick provisioned disk krijgt.",
+            "Dit kan alleen bij paravirtualisatie en niet bij full virtualisatie."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De som van het toegewezen geheugen mag het fysieke geheugen overstijgen, omdat VM's zelden alles tegelijk gebruiken. Bij schaarste haalt de hypervisor geheugen terug, onder meer via ballooning. Eén afzonderlijke VM kan echter nooit meer krijgen dan de host bezit.\n\nOnjuist (A): Overcommitment is juist een kernvoordeel van virtualisatie.\n\nOnjuist (C): Disk provisioning staat los van geheugentoewijzing.\n\nOnjuist (D): Overcommitment werkt bij beide vormen."
+        },
+        {
+          "question": "Een ontwikkelaar wil op haar eigen Windows-laptop drie testservers draaien, naast haar dagelijkse werkomgeving. Welke oplossing past hier het best bij?",
+          "options": [
+            "ESXi rechtstreeks op de laptop installeren als hoofdsysteem.",
+            "Een vCenter-server met een content library inrichten.",
+            "Een NAS aanschaffen met een iSCSI-target per testserver.",
+            "Een type 2 hypervisor zoals VMware Workstation Pro gebruiken."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Host-based virtualisatie is bedoeld voor ontwikkelaars en kleine testomgevingen: de VM's draaien naast het gewone besturingssysteem en de applicaties van de gebruiker.\n\nOnjuist (A): Een bare-metal hypervisor neemt de hele machine over; de laptop is dan niet meer bruikbaar als werkplek.\n\nOnjuist (B): vCenter is een beheerlaag voor productieomgevingen en lost dit probleem niet op.\n\nOnjuist (C): Opslag is hier niet het knelpunt."
+        },
+        {
+          "question": "Waarom ondersteunt Hyper-V van oudsher een beperkter aantal gast-besturingssystemen dan ESXi?",
+          "options": [
+            "Omdat Hyper-V uitsluitend op hardware van Microsoft kan draaien.",
+            "Omdat Hyper-V geen echte bare-metal hypervisor is, maar een Windows-rol.",
+            "Omdat Hyper-V leunt op paravirtualisatie met een aangepaste gastkernel.",
+            "Omdat Hyper-V geen eigen microkernel bevat."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Paravirtualisatie vereist een aangepaste kernel in de guest. Besturingssystemen zonder die ondersteuning, waaronder veel legacy-systemen, vallen daarmee af. ESXi bouwde zijn brede ondersteuning juist op full virtualisatie.\n\nOnjuist (A): Hyper-V draait op reguliere x86-serverhardware.\n\nOnjuist (B): Hyper-V is wel degelijk type 1; bij activering schuift het onder Windows.\n\nOnjuist (D): De architectuur met root- en child-partitions is niet de oorzaak van de beperking."
+        },
+        {
+          "question": "Op een datastore van 2 TB staan tien thin provisioned disks van elk 400 GB. Momenteel is 600 GB werkelijk in gebruik. Wat is hier het grootste risico?",
+          "options": [
+            "De datastore kan vollopen naarmate de disks verder groeien.",
+            "De virtuele machines kunnen niet starten omdat de datastore overboekt is.",
+            "De disks verliezen bij groei hun VMFS-formattering.",
+            "De hypervisor schakelt de disks automatisch om naar thick provisioning."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De disks zijn samen voor 4 TB uitgegeven op een datastore van 2 TB. Zolang ze niet vollopen gaat het goed, maar bij groei raakt de datastore vol en lopen alle VM's erop vast.\n\nOnjuist (B): Overboeken verhindert het starten niet; dat is juist het principe.\n\nOnjuist (C): Het bestandssysteem blijft intact.\n\nOnjuist (D): Omzetten naar thick gebeurt alleen handmatig."
+        },
+        {
+          "question": "Een beheerder heeft op een ESXi-host de software-iSCSI-adapter toegevoegd en het adres van de target ingevoerd, maar onder storage devices verschijnen geen LUN's. Wat is de meest waarschijnlijke oorzaak?",
+          "options": [
+            "De datastore is nog niet met VMFS geformatteerd.",
+            "In de virtuele machines ontbreken de VMware Tools.",
+            "Er ontbreekt een VMkernel-poort met een IP-adres in het opslagsubnet.",
+            "De port group van de virtuele machines staat in het verkeerde VLAN."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): iSCSI loopt over IP. Zonder kernelpoort in het juiste subnet, gekoppeld aan de juiste netwerkkaart, kan de host de target niet bereiken en blijft de lijst met devices leeg.\n\nOnjuist (A): Formatteren is de volgende stap; de LUN moet eerst zichtbaar zijn.\n\nOnjuist (B): VMware Tools staat los van de storageverbinding van de host.\n\nOnjuist (D): Een verkeerd VLAN op het VM-netwerk raakt het verkeer van de virtuele machines, niet dat van de hypervisor."
+        }
+      ]
+    }
+  ]
+}

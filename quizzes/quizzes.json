@@ -1,10 +1,19 @@
 [
     {
+        "id": "virtualisatie",
+        "title": "Virtualisatie",
+        "file": "quizzes/virtualisatie.json",
+        "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken en meer.",
+        "subtitle": "Jaar 2 · Kwartiel 1",
+        "wide": true
+    }
+    ,
+    {
         "id": "computernetwerken",
         "title": "Computernetwerken",
         "file": "quizzes/computernetwerken.json",
         "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
-        "subtitle": "kwartiel 3",
+        "subtitle": "Jaar 1 · Kwartiel 3",
         "wide": true
     }
     ,
@@ -13,7 +22,7 @@
         "title": "IT Fundamentals",
         "file": "quizzes/it-fundamentals.json",
         "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
-        "subtitle": "kwartiel 2"
+        "subtitle": "Jaar 1 · Kwartiel 2"
     }
     ,
     {
