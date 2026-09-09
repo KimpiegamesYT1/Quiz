@@ -3,7 +3,7 @@
   "categories": [
     {
       "id": "week1",
-      "name": "Week 1: Server Virtualisatie",
+      "name": "Week 1: Virtualisatie, hypervisors en opslag",
       "questions": [
         {
           "question": "Welke omschrijving past het best bij de functie van een hypervisor?",
@@ -339,7 +339,7 @@
     },
     {
       "id": "week2",
-      "name": "Week 2: Server Virtualisatie",
+      "name": "Week 2: Clustering",
       "questions": [
         {
           "question": "Wat is de belangrijkste reden om meerdere hypervisor-hosts te clusteren?",
