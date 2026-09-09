@@ -566,32 +566,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const DEFAULT_QUIZ_GROUP = 'Examens oefenen';
+
 async function loadQuizList() {
+    const list = document.getElementById('quiz-list');
     try {
         const response = await fetch('quizzes/quizzes.json');
         const quizzes = await response.json();
-        const list = document.getElementById('quiz-list');
 
+        // Enrich each entry with a few numbers from its own quiz file so the
+        // card can show what's inside. These details are optional — if a file
+        // fails to load the card just renders without the meta line.
+        await Promise.all(quizzes.map(async (quiz) => {
+            try {
+                const data = await (await fetch(quiz.file)).json();
+                const cats = (data.categories || []).filter(c => c.id !== 'all');
+                const topicCats = cats.filter(c => !c.id.toLowerCase().includes('examen'));
+                quiz._isIQ = data.mode === 'iq';
+                quiz._hasExam = cats.length > topicCats.length;
+                quiz._topicCount = topicCats.length;
+                quiz._questionCount = topicCats.reduce((n, c) => n + (c.questions ? c.questions.length : 0), 0)
+                    || (data.questions ? data.questions.length : 0);
+            } catch (_) { /* details are optional */ }
+        }));
+
+        // Group entries (default group, or an explicit `group` in the registry),
+        // then sort each group by year, then quarter, then title.
+        const groups = new Map();
         quizzes.forEach(quiz => {
-            const card = document.createElement('div');
-            card.className = 'quiz-card';
-            if (quiz.wide) {
-                card.classList.add('quiz-card-wide');
-            }
-            card.onclick = () => window.location.href = `quiz.html?id=${quiz.id}`;
-                        card.innerHTML = `
-                                <h3 style="display: flex; align-items: baseline; gap: 8px;">
-                                    <span style=\"color: #00d4ff;\">${quiz.title}</span>
-                                    ${quiz.subtitle ? `<span class='quiz-subtitle' style='font-size:0.65em; color:#b0b0b0; font-weight:400; line-height:1;'>${quiz.subtitle}</span>` : ''}
-                                </h3>
-                                <p>${quiz.description}</p>
-                        `;
-            list.appendChild(card);
+            const name = quiz.group || DEFAULT_QUIZ_GROUP;
+            if (!groups.has(name)) groups.set(name, []);
+            groups.get(name).push(quiz);
+        });
+
+        list.innerHTML = '';
+        groups.forEach((items, groupName) => {
+            items.sort((a, b) =>
+                (a.year || 99) - (b.year || 99) ||
+                (a.quarter || 99) - (b.quarter || 99) ||
+                a.title.localeCompare(b.title));
+
+            const heading = document.createElement('h2');
+            heading.className = 'quiz-group-title';
+            heading.textContent = groupName;
+            list.appendChild(heading);
+
+            const grid = document.createElement('div');
+            grid.className = 'quiz-grid';
+            items.forEach(quiz => grid.appendChild(buildQuizCard(quiz)));
+            list.appendChild(grid);
         });
     } catch (error) {
         console.error('Error loading quizzes:', error);
-        document.getElementById('quiz-list').innerHTML = '<p>Er is een fout opgetreden bij het laden van de quizzen.</p>';
+        list.innerHTML = '<p>Er is een fout opgetreden bij het laden van de quizzen.</p>';
     }
+}
+
+function buildQuizCard(quiz) {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.setAttribute('role', 'link');
+    card.tabIndex = 0;
+
+    const open = () => window.location.href = `quiz.html?id=${quiz.id}`;
+    card.onclick = open;
+    card.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    };
+
+    const meta = [];
+    if (!quiz._isIQ && quiz._topicCount) meta.push(`${quiz._topicCount} weken`);
+    if (quiz._questionCount) meta.push(`${quiz._questionCount} vragen`);
+    if (quiz._hasExam) meta.push('oefenexamen');
+
+    card.innerHTML = `
+        ${quiz.subtitle ? `<span class="quiz-badge">${quiz.subtitle}</span>` : ''}
+        <h3>${quiz.title}</h3>
+        <p>${quiz.description}</p>
+        ${meta.length ? `<div class="quiz-card-meta">${meta.join(' · ')}</div>` : ''}
+    `;
+    return card;
 }
 
 async function loadQuiz() {
@@ -744,7 +798,10 @@ function showQuestion() {
     });
 
     document.getElementById('next-btn').disabled = true;
-    document.getElementById('next-btn').textContent = isExamMode ? 'Volgende' : 'Controleer';
+    const isLastQuestion = currentQuestion === activeQuestions.length - 1;
+    document.getElementById('next-btn').textContent = isExamMode
+        ? (isLastQuestion ? 'Bekijk resultaat' : 'Volgende')
+        : 'Controleer';
     document.getElementById('feedback').classList.add('hidden');
     answered = false;
     updateProgress();
@@ -847,8 +904,8 @@ function showEndScreen() {
     }
 }
 
-function calculateGrade(correctAnswers) {
-    // Grade calculation based on the provided table
+function calculateGrade(correctAnswers, totalQuestions = 40) {
+    // Grade calculation based on the provided table (norm curve for a 40-question exam).
     const gradeTable = {
         0: 1.0, 1: 1.2, 2: 1.3, 3: 1.5, 4: 1.7, 5: 1.9, 6: 2.0, 7: 2.2,
         8: 2.4, 9: 2.6, 10: 2.7, 11: 2.9, 12: 3.1, 13: 3.3, 14: 3.4, 15: 3.6,
@@ -857,7 +914,10 @@ function calculateGrade(correctAnswers) {
         32: 7.4, 33: 7.8, 34: 8.1, 35: 8.4, 36: 8.7, 37: 9.0, 38: 9.4, 39: 9.7,
         40: 10.0
     };
-    return gradeTable[correctAnswers] || 1.0;
+    // Scale the score onto the 40-point norm table so an exam with a different
+    // number of questions still maps onto the same grading curve.
+    const scaled = Math.round((correctAnswers / totalQuestions) * 40);
+    return gradeTable[Math.max(0, Math.min(40, scaled))] || 1.0;
 }
 
 function showExamResults() {
@@ -873,7 +933,7 @@ function showExamResults() {
     document.getElementById('end-screen').classList.remove('hidden');
     
     const percentage = Math.round((score / activeQuestions.length) * 100);
-    const grade = calculateGrade(score);
+    const grade = calculateGrade(score, activeQuestions.length);
     const passed = grade >= 5.5;
     
     const scoreDiv = document.getElementById('score');
@@ -984,17 +1044,27 @@ function restartQuiz() {
     answers = [];
     activeQuestions = [];
     answered = false;
+
+    // loadQuiz() does not run again on replay, so recompute the mode from the
+    // loaded quiz instead of forcing it off — otherwise the IQ test would
+    // replay in practice mode. isExamMode is re-derived per category in startQuiz().
     isExamMode = false;
-    isIQMode = false;
-    
+    isIQMode = !!(currentQuiz && currentQuiz.mode === 'iq');
+
     // Clean up exam results if present
     const existingResults = document.getElementById('end-screen').querySelector('.exam-results');
     if (existingResults) {
         existingResults.remove();
     }
-    
+
     document.getElementById('end-screen').classList.add('hidden');
-    document.getElementById('start-screen').classList.remove('hidden');
+
+    // IQ quizzes skip the category screen — restart straight into the test.
+    if (isIQMode && currentQuiz.categories && currentQuiz.categories.length === 1) {
+        startQuiz(currentQuiz.categories[0].id);
+    } else {
+        document.getElementById('start-screen').classList.remove('hidden');
+    }
 }
 
 // ─── IQ MODE RESULTS ────────────────────────────────────────────────────────

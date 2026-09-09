@@ -431,52 +431,88 @@
 
     /* Quiz List Styles */
     .quiz-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         margin-top: 20px;
     }
 
-    @media (max-width: 768px) {
-        .quiz-list {
+    .quiz-group-title {
+        font-size: 1.15em;
+        font-weight: 600;
+        color: #e8e8e8;
+        margin: 24px 0 4px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .quiz-list .quiz-group-title:first-child {
+        margin-top: 4px;
+    }
+
+    .quiz-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+        gap: 16px;
+        margin-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .quiz-grid {
             grid-template-columns: 1fr;
         }
     }
 
     .quiz-card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         background: rgba(255,255,255,0.1);
         border-radius: 12px;
-        padding: 20px;
+        padding: 18px 20px;
         transition: transform 0.1s ease, box-shadow 0.1s ease;
         cursor: pointer;
         border: 2px solid transparent;
     }
 
-    .quiz-card:hover {
-        transform: translateY(-5px);
+    .quiz-card:hover,
+    .quiz-card:focus-visible {
+        transform: translateY(-4px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         border-color: #00d4ff;
+        outline: none;
+    }
+
+    .quiz-badge {
+        align-self: flex-start;
+        font-size: 0.72em;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #00d4ff;
+        background: rgba(0,212,255,0.12);
+        border: 1px solid rgba(0,212,255,0.25);
+        padding: 2px 9px;
+        border-radius: 999px;
     }
 
     .quiz-card h3 {
         color: #00d4ff;
-        margin-bottom: 10px;
+        margin: 0;
     }
 
     .quiz-card p {
         color: #ccc;
         font-size: 0.9em;
         line-height: 1.4;
+        margin: 0;
     }
 
-    .quiz-card-wide {
-        grid-column: span 2;
-    }
-
-    @media (max-width: 768px) {
-        .quiz-card-wide {
-            grid-column: span 1;
-        }
+    .quiz-card-meta {
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        font-size: 0.8em;
+        color: #9aa7b0;
     }
 
     /* Grade Display Styles */

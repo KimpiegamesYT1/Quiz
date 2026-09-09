@@ -1,35 +1,37 @@
 [
     {
-        "id": "virtualisatie",
-        "title": "Virtualisatie",
-        "file": "quizzes/virtualisatie.json",
-        "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken en meer.",
-        "subtitle": "Jaar 2 · Kwartiel 1",
-        "wide": true
-    }
-    ,
+        "id": "it-fundamentals",
+        "title": "IT Fundamentals",
+        "file": "quizzes/it-fundamentals.json",
+        "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
+        "subtitle": "Jaar 1 · Kwartiel 2",
+        "year": 1,
+        "quarter": 2
+    },
     {
         "id": "computernetwerken",
         "title": "Computernetwerken",
         "file": "quizzes/computernetwerken.json",
         "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
         "subtitle": "Jaar 1 · Kwartiel 3",
-        "wide": true
-    }
-    ,
+        "year": 1,
+        "quarter": 3
+    },
     {
-        "id": "it-fundamentals",
-        "title": "IT Fundamentals",
-        "file": "quizzes/it-fundamentals.json",
-        "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
-        "subtitle": "Jaar 1 · Kwartiel 2"
-    }
-    ,
+        "id": "virtualisatie",
+        "title": "Virtualisatie",
+        "file": "quizzes/virtualisatie.json",
+        "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken en meer.",
+        "subtitle": "Jaar 2 · Kwartiel 1",
+        "year": 2,
+        "quarter": 1
+    },
     {
         "id": "iq-test",
         "title": "HBO IQ Test",
         "file": "quizzes/iq-test.json",
         "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting.",
-        "subtitle": "IQ Test"
+        "subtitle": "IQ Test",
+        "group": "Overige tests"
     }
 ]

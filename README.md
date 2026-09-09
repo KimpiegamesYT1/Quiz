@@ -11,7 +11,7 @@ Live op: https://kimpiegamesyt1.github.io/Quiz/
 
 **Hoe werkt het?**
 
-1. Voeg een quiz toe aan `quizzes/quizzes.json`.
+1. Voeg een quiz toe aan `quizzes/quizzes.json`. Verplicht: `id`, `title`, `file`, `description`. Optioneel: `subtitle` (badge op de startpagina), `year` + `quarter` (volgorde binnen een groep) en `group` (kopje op de startpagina; zonder `group` valt de quiz onder "Examens oefenen").
 2. Maak een quizbestand aan in JSON-formaat (zie voorbeelden in de map quizzes/).
 
 **Oefentoets/examenmodus:**
