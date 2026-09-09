@@ -295,14 +295,6 @@
 
     /* ── Mobiel: compactere, rustiger vraag + opties ────────────────────────── */
     @media (max-width: 600px) {
-        body {
-            align-items: flex-start;
-        }
-
-        body:has(.home-btn) .container {
-            padding-top: 46px; /* ruimte onder de zwevende home-knop (alleen quiz.html) */
-        }
-
         .question-container {
             padding: 16px 14px;
         }
