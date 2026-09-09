@@ -602,8 +602,8 @@ async function loadQuizList() {
         list.innerHTML = '';
         groups.forEach((items, groupName) => {
             items.sort((a, b) =>
-                (a.year || 99) - (b.year || 99) ||
-                (a.quarter || 99) - (b.quarter || 99) ||
+                (b.year || 0) - (a.year || 0) ||        // hoogste jaar eerst
+                (a.quarter || 99) - (b.quarter || 99) || // daarbinnen kwartiel oplopend
                 a.title.localeCompare(b.title));
 
             const heading = document.createElement('h2');
@@ -634,13 +634,20 @@ function buildQuizCard(quiz) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     };
 
+    // Losse badges: jaar en kwartiel apart. Zonder jaar/kwartiel (bv. IQ-test)
+    // valt het terug op de subtitle uit de registry.
+    const badges = [];
+    if (quiz.year) badges.push(`Jaar ${quiz.year}`);
+    if (quiz.quarter) badges.push(`Kwartiel ${quiz.quarter}`);
+    if (!badges.length && quiz.subtitle) badges.push(quiz.subtitle);
+
     const meta = [];
     if (!quiz._isIQ && quiz._topicCount) meta.push(`${quiz._topicCount} weken`);
     if (quiz._questionCount) meta.push(`${quiz._questionCount} vragen`);
     if (quiz._hasExam) meta.push('oefenexamen');
 
     card.innerHTML = `
-        ${quiz.subtitle ? `<span class="quiz-badge">${quiz.subtitle}</span>` : ''}
+        ${badges.length ? `<div class="quiz-badges">${badges.map(b => `<span class="quiz-badge">${b}</span>`).join('')}</div>` : ''}
         <h3>${quiz.title}</h3>
         <p>${quiz.description}</p>
         ${meta.length ? `<div class="quiz-card-meta">${meta.join(' · ')}</div>` : ''}

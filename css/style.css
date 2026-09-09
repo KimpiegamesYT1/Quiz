@@ -73,6 +73,52 @@
         color: #00d4ff;
     }
 
+    /* Subtiele "terug naar home" knop linksboven (quiz.html) */
+    .home-btn {
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 50;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .home-btn:hover,
+    .home-btn:focus-visible {
+        background: rgba(0,212,255,0.15);
+        border-color: #00d4ff;
+        color: #00d4ff;
+        outline: none;
+    }
+
+    .home-btn svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+    }
+
+    @media (max-width: 600px) {
+        .home-btn {
+            width: 34px;
+            height: 34px;
+            top: 10px;
+            left: 10px;
+        }
+        .home-btn svg {
+            width: 17px;
+            height: 17px;
+        }
+    }
+
     .progress-container {
         background: rgba(255,255,255,0.1);
         border-radius: 25px;
@@ -427,6 +473,7 @@
         color: #fff;
         font-size: 0.9em;
         text-align: left;
+        white-space: pre-line; /* respecteer \n / lege regels in de uitleg */
     }
 
     /* Quiz List Styles */
@@ -483,16 +530,20 @@
         outline: none;
     }
 
+    .quiz-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
     .quiz-badge {
-        align-self: flex-start;
         font-size: 0.72em;
         font-weight: 600;
-        letter-spacing: 0.02em;
-        color: #00d4ff;
-        background: rgba(0,212,255,0.12);
-        border: 1px solid rgba(0,212,255,0.25);
-        padding: 2px 9px;
-        border-radius: 999px;
+        color: #aeb8c2;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.14);
+        padding: 3px 9px;
+        border-radius: 6px;
     }
 
     .quiz-card h3 {
@@ -636,6 +687,7 @@
         color: rgba(255,255,255,0.65);
         font-style: italic;
         font-size: 0.95em;
+        white-space: pre-line; /* respecteer \n / lege regels in de uitleg */
     }
 
     .exam-summary {
