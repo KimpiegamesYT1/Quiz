@@ -1,7 +1,9 @@
 
-# Dynamisch Quiz Platform
+# QuizIt — Dynamisch Quiz Platform
 
-Maak en speel eenvoudig verschillende quizzen via simpele JSON-bestanden. Voeg je eigen quiz toe door een quiz toe te voegen aan `quizzes/quizzes.json` en een quizbestand te maken.
+Oefenquizzes voor schoolvakken (o.a. Virtualisatie, Computernetwerken en IT Fundamentals), plus een indicatieve IQ-test. Volledig statisch (geen backend nodig): elke quiz is gewoon een JSON-bestand, dus je voegt zelf makkelijk een nieuw vak toe.
+
+Live op: https://kimpiegamesyt1.github.io/Quiz/
 
 **Ondersteunde quiztypes:**
 - Meerkeuzevragen (multiple choice)
@@ -17,5 +19,3 @@ Wil je een oefentoets (examenmodus) toevoegen? Maak een categorie aan met "exame
 
 **Bijdragen?**
 Heb je een idee of wil je een bug fixen? Pull requests zijn altijd welkom!
-    
-https://kimpiegamesyt1.github.io/Quiz/

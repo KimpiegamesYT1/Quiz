@@ -3,7 +3,7 @@
   "categories": [
     {
       "id": "week1",
-      "name": "Week 1: Server Virtualisatie (deel 1)",
+      "name": "Week 1: Server Virtualisatie",
       "questions": [
         {
           "question": "Welke omschrijving past het best bij de functie van een hypervisor?",
@@ -334,6 +334,342 @@
           ],
           "correct": 2,
           "explanation": "Juist (C): iSCSI loopt over IP. Zonder kernelpoort in het juiste subnet, gekoppeld aan de juiste netwerkkaart, kan de host de target niet bereiken en blijft de lijst met devices leeg.\n\nOnjuist (A): Formatteren is de volgende stap; de LUN moet eerst zichtbaar zijn.\n\nOnjuist (B): VMware Tools staat los van de storageverbinding van de host.\n\nOnjuist (D): Een verkeerd VLAN op het VM-netwerk raakt het verkeer van de virtuele machines, niet dat van de hypervisor."
+        }
+      ]
+    },
+    {
+      "id": "week2",
+      "name": "Week 2: Server Virtualisatie",
+      "questions": [
+        {
+          "question": "Wat is de belangrijkste reden om meerdere hypervisor-hosts te clusteren?",
+          "options": [
+            "Om de licentiekosten per host te verlagen.",
+            "Om het single point of failure van één host op te heffen.",
+            "Om meer virtuele machines op één host te kunnen draaien.",
+            "Om de opslagcapaciteit van de onderliggende datastores te vergroten."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Met één host geldt 'één is geen': bij onderhoud, uitval of overbelasting liggen alle VM's eruit. Een cluster haalt die SPOF weg.\n\nOnjuist (A): Clusteren vraagt juist extra hosts en vaak zwaardere licenties.\n\nOnjuist (C): Het aantal VM's per host wordt begrensd door de resources van die host.\n\nOnjuist (D): Capaciteit komt van het storagesysteem, niet van clustering."
+        },
+        {
+          "question": "Wat is VMware vCenter Server?",
+          "options": [
+            "Een hypervisor die rechtstreeks op de hardware draait.",
+            "Een beheerclient die je lokaal op je werkplek installeert.",
+            "Een centraal beheerplatform voor hosts, VM's en opslag.",
+            "Een back-upoplossing voor virtuele machines."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): vCenter beheert en bewaakt de hele virtuele omgeving vanuit één interface en maakt functies als vMotion, HA, FT en DRS mogelijk.\n\nOnjuist (A): De hypervisor is ESXi; vCenter draait daar bovenop.\n\nOnjuist (B): vCenter is een server; de vSphere Client is de webinterface ernaartoe.\n\nOnjuist (D): Back-up is een taak voor producten als Veeam."
+        },
+        {
+          "question": "Welke uitspraak over vCenter Server klopt?",
+          "options": [
+            "vCenter draait zelf als VM op een van de hosts.",
+            "vCenter vervangt de hypervisor op elke beheerde host.",
+            "vCenter moet altijd op losse fysieke serverhardware worden geplaatst.",
+            "vCenter is uitsluitend beschikbaar als Windows-installatie."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): vCenter wordt uitgerold als appliance (een virtuele machine) die op een van de ESXi-hosts draait.\n\nOnjuist (B): Elke host houdt zijn eigen hypervisor; vCenter is een beheerlaag erboven.\n\nOnjuist (C): Juist het tegenovergestelde is de standaard.\n\nOnjuist (D): De appliance is Linux-gebaseerd."
+        },
+        {
+          "question": "Waarmee log je in op de vSphere Client van vCenter?",
+          "options": [
+            "Met het account root",
+            "Met administrator@vsphere.local",
+            "Met het account admin@esxi.local",
+            "Met het IQN van de aangesloten beheerhost"
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): vCenter kent een eigen SSO-domein; het standaard beheeraccount is administrator@vsphere.local.\n\nOnjuist (A): root is het lokale account van een ESXi-host zelf.\n\nOnjuist (C): Dit account bestaat niet.\n\nOnjuist (D): Een IQN is een iSCSI-naam, geen account."
+        },
+        {
+          "question": "Wat is een golden image?",
+          "options": [
+            "Een back-up van een draaiende VM op een tweede datastore.",
+            "Een installatiemedium met alleen het besturingssysteem erop.",
+            "Een geconfigureerde VM die als basis voor nieuwe VM's dient.",
+            "Een snapshot die elke nacht automatisch wordt weggeschreven."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een golden image is een uitgeharde, van patches en software voorziene VM die als standaard vertrekpunt dient voor klonen en templates.\n\nOnjuist (A): Een back-up is bedoeld voor herstel, niet voor uitrol.\n\nOnjuist (B): Een kale ISO mist juist alle configuratie en software.\n\nOnjuist (D): Snapshots zijn tijdelijke herstelpunten."
+        },
+        {
+          "question": "Aan welke voorwaarde moet een VM voldoen voordat je hem naar een template converteert?",
+          "options": [
+            "De VM moet uitgeschakeld zijn.",
+            "De VM moet op lokale opslag staan.",
+            "De VM moet in een HA-cluster zijn opgenomen.",
+            "De VM moet minimaal één snapshot bevatten."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Converteren naar een template kan alleen bij een uitgeschakelde VM.\n\nOnjuist (B): De locatie van de opslag maakt niet uit; templates staan vaak juist op gedeelde opslag.\n\nOnjuist (C): Een cluster is geen voorwaarde.\n\nOnjuist (D): Snapshots zijn hierbij niet vereist."
+        },
+        {
+          "question": "Wat doet VMware vMotion?",
+          "options": [
+            "Het kopieert de bestanden van een VM naar een andere datastore.",
+            "Het verplaatst een draaiende VM live naar een andere host.",
+            "Het herstart VM's nadat een host is uitgevallen.",
+            "Het spiegelt een VM continu naar een tweede host."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De volledige toestand van de VM, inclusief geheugen, gaat over naar de doelhost zonder dat de dienst onderbroken wordt.\n\nOnjuist (A): Dat is Storage vMotion.\n\nOnjuist (C): Dat is HA.\n\nOnjuist (D): Dat is Fault Tolerance."
+        },
+        {
+          "question": "Wat doet Storage vMotion?",
+          "options": [
+            "Het verplaatst de bestanden van een draaiende VM naar een andere datastore.",
+            "Het verplaatst een draaiende virtuele machine naar een andere host in het cluster.",
+            "Het maakt een tweede, identieke kopie van de datastore aan.",
+            "Het breidt een bestaande datastore uit met een extra LUN."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De VM blijft draaien terwijl zijn bestanden naar een andere datastore verhuizen.\n\nOnjuist (B): Dat is gewone vMotion.\n\nOnjuist (C): Kopieën maken hoort bij replicatie of back-up.\n\nOnjuist (D): Uitbreiden is een storagehandeling en geen migratie."
+        },
+        {
+          "question": "Wat gebeurt er in een HA-cluster op het moment dat een host uitvalt?",
+          "options": [
+            "De VM's worden zonder onderbreking overgezet naar een andere host.",
+            "De VM's worden op de overgebleven hosts opnieuw opgestart.",
+            "De VM's blijven draaien op de uitgevallen host.",
+            "De VM's worden automatisch teruggezet uit de laatste back-up."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): HA detecteert de uitval en start de betrokken VM's op gezonde hosts in het cluster. Er is dus wel degelijk een korte onderbreking.\n\nOnjuist (A): Naadloos overzetten kan alleen vooraf, met vMotion, of doorlopend met FT.\n\nOnjuist (C): Een uitgevallen host draait niets meer.\n\nOnjuist (D): HA raakt de back-up niet aan."
+        },
+        {
+          "question": "Hoe beschermt Fault Tolerance een virtuele machine?",
+          "options": [
+            "De VM wordt na uitval opnieuw gestart op een andere host.",
+            "De VM wordt elke vijf minuten naar een tweede host gerepliceerd.",
+            "De VM wordt over twee datastores verdeeld voor redundantie.",
+            "Een exacte kopie draait synchroon mee op een tweede host."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): De secondary VM loopt volledig in de pas met de primary en neemt bij uitval direct over, zonder dataverlies of downtime.\n\nOnjuist (A): Herstarten is precies wat HA doet.\n\nOnjuist (B): Periodieke replicatie hoort bij back-up- en DR-producten.\n\nOnjuist (C): FT dupliceert de VM, niet de opslaglaag."
+        },
+        {
+          "question": "Wat is de functie van DRS in een vSphere-cluster?",
+          "options": [
+            "Het herstart virtuele machines na een storing.",
+            "Het maakt automatisch back-ups van virtuele machines.",
+            "Het beheert de VLAN's op de virtuele switches.",
+            "Het verdeelt de belasting automatisch over de hosts."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): DRS bewaakt het resourcegebruik en verplaatst VM's zodat overbelaste hosts ontlast worden en elke VM goede prestaties houdt.\n\nOnjuist (A): Herstarten na uitval is de taak van HA.\n\nOnjuist (B): Back-up is een aparte productcategorie.\n\nOnjuist (C): Netwerkconfiguratie loopt via de (distributed) switch."
+        },
+        {
+          "question": "Welk probleem lost een vSphere Distributed Switch op?",
+          "options": [
+            "Het gelijk houden van de netwerkconfiguratie op meerdere hosts.",
+            "Het routeren van verkeer tussen VLAN's binnen het cluster.",
+            "Het volledig vervangen van de fysieke switches in het datacenter.",
+            "Het verhogen van de snelheid van de uplinks naar het netwerk."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Met losse vSwitches per host moet je port groups op elke host identiek benoemen en instellen; een vDS beheert dat centraal voor het hele cluster.\n\nOnjuist (B): Routeren blijft een taak van een laag 3-apparaat.\n\nOnjuist (C): Uplinks blijven aangesloten op fysieke switches.\n\nOnjuist (D): Snelheid hangt af van de hardware."
+        },
+        {
+          "question": "Welke uitspraak over SCVMM is juist?",
+          "options": [
+            "Het beheert uitsluitend Hyper-V-hosts binnen één fysiek datacenter.",
+            "Het kan zowel Hyper-V- als VMware-omgevingen beheren.",
+            "Het is de tekstgebaseerde console op een Hyper-V-host.",
+            "Het is de Microsoft-tegenhanger van VMware Tools."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): System Center Virtual Machine Manager beheert virtuele omgevingen op basis van Hyper-V én VMware, en integreert met SCCM, SCOM en Azure.\n\nOnjuist (A): SCVMM beheert ook externe hosts en hybride cloudomgevingen.\n\nOnjuist (C): SCVMM is een volwaardig beheerplatform, geen console op de host.\n\nOnjuist (D): VMware Tools is een driverpakket binnen een VM."
+        },
+        {
+          "question": "Welke Microsoft-techniek komt functioneel overeen met VMware vMotion?",
+          "options": [
+            "Hyper-V Manager",
+            "SCVMM",
+            "Live Migration",
+            "Failover Clustering"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Live Migration verplaatst een draaiende VM tussen Hyper-V-hosts zonder onderbreking.\n\nOnjuist (A & B): Dit zijn beheerinterfaces, geen migratietechnieken.\n\nOnjuist (D): Failover Clustering lijkt functioneel op HA: het herstart workloads na uitval."
+        },
+        {
+          "question": "Wat betekent het dat Veeam agentless back-ups maakt?",
+          "options": [
+            "Er hoeft geen software in de virtuele machines geïnstalleerd te worden.",
+            "De back-up wordt gemaakt zonder gebruik van het netwerk.",
+            "De back-up verloopt buiten vCenter om, rechtstreeks via de betrokken host.",
+            "Er is geen aparte back-upserver of back-upopslag nodig."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): De back-up wordt op hypervisorniveau gemaakt, wat het beheer vereenvoudigt en de belasting binnen de VM's beperkt.\n\nOnjuist (B): Er is wel degelijk netwerk nodig om de data weg te schrijven.\n\nOnjuist (C): Veeam integreert juist met vSphere en vCenter.\n\nOnjuist (D): Een back-upinfrastructuur blijft noodzakelijk."
+        },
+        {
+          "question": "Welke twee voorwaarden zijn nodig om vMotion te kunnen gebruiken?",
+          "options": [
+            "Lokale opslag per host en een distributed switch.",
+            "Een HA-cluster en een licentie voor Fault Tolerance.",
+            "Identieke datastorenamen en een aparte back-upserver.",
+            "Gedeelde opslag en een vMotion-netwerk tussen de hosts."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): De VM-bestanden moeten voor beide hosts bereikbaar zijn, en het geheugen wordt over een aparte vMotion-kernelpoort naar de doelhost gekopieerd.\n\nOnjuist (A): Bij lokale opslag ziet de doelhost de VM-bestanden niet.\n\nOnjuist (B): HA en FT zijn andere functies met eigen doelen.\n\nOnjuist (C): Namen van datastores zijn niet bepalend."
+        },
+        {
+          "question": "Over welk netwerk controleren hosts in een HA-cluster of hun collega's nog beschikbaar zijn?",
+          "options": [
+            "Het vMotion-netwerk",
+            "Het opslagnetwerk voor iSCSI",
+            "Het managementnetwerk",
+            "Het VM-netwerk van de port groups"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): De hosts sturen elkaar heartbeats over het managementnetwerk. Blijft een reactie te lang uit, dan start het failoverproces.\n\nOnjuist (A): Het vMotion-netwerk dient voor geheugenoverdracht bij live migratie.\n\nOnjuist (B): Het opslagnetwerk verbindt de host met zijn datastores.\n\nOnjuist (D): Het VM-netwerk draagt het verkeer van de virtuele machines."
+        },
+        {
+          "question": "Is een vMotion-netwerk noodzakelijk om HA te laten werken?",
+          "options": [
+            "Ja, want HA kopieert het geheugen van de VM naar de andere host.",
+            "Nee, want HA start VM's opnieuw op en verplaatst geen geheugen.",
+            "Ja, want HA verplaatst de VM's vlak voordat de host uitvalt.",
+            "Nee, want HA werkt zonder enige netwerkverbinding tussen hosts."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): HA herstart uitgevallen VM's vanaf de gedeelde opslag; er wordt geen geheugen overgedragen, dus een vMotion-netwerk is niet vereist.\n\nOnjuist (A & C): Geheugenoverdracht en preventief verplaatsen horen bij vMotion en DRS.\n\nOnjuist (D): Het managementnetwerk is wel degelijk nodig voor de heartbeats."
+        },
+        {
+          "question": "Waarom heeft DRS wél een vMotion-netwerk nodig?",
+          "options": [
+            "Omdat DRS de datastores tussen de hosts synchroon houdt.",
+            "Omdat DRS draaiende VM's live verplaatst met vMotion.",
+            "Omdat DRS de heartbeats tussen de hosts verstuurt.",
+            "Omdat DRS de netwerkconfiguratie over de hosts verdeelt."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): DRS balanceert de belasting door VM's tijdens bedrijf te migreren en gebruikt daarvoor de vMotion-techniek.\n\nOnjuist (A): Opslagsynchronisatie is een taak van het storagesysteem.\n\nOnjuist (C): Heartbeats horen bij HA en lopen over het managementnetwerk.\n\nOnjuist (D): Uniforme netwerkconfiguratie regel je met een vDS."
+        },
+        {
+          "question": "Welke voorwaarde geldt voor het gebruik van een vSphere Distributed Switch?",
+          "options": [
+            "Elke host moet een eigen vCenter Server-instantie draaien.",
+            "Alle virtuele machines moeten in hetzelfde VLAN zitten.",
+            "De hosts mogen uitsluitend lokale opslag gebruiken.",
+            "Er is een vSphere Enterprise Plus-licentie vereist."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): De vDS is een geavanceerde functie die onder Enterprise Plus valt en centraal via vCenter wordt beheerd.\n\nOnjuist (A): De hosts vallen juist onder één gedeelde vCenter.\n\nOnjuist (B): Een vDS ondersteunt juist VLAN-segmentatie.\n\nOnjuist (C): Het type opslag staat hier los van."
+        },
+        {
+          "question": "In welke situatie zet je Storage vMotion in?",
+          "options": [
+            "Wanneer een host onderhoud nodig heeft en gepatcht moet worden.",
+            "Wanneer een host uitvalt en de VM's opnieuw moeten starten.",
+            "Wanneer een datastore vol dreigt te raken.",
+            "Wanneer een VM meer geheugen nodig heeft dan de host bezit."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Storage vMotion verplaatst VM-bestanden live naar een andere datastore, bijvoorbeeld bij ruimtegebrek of andere storage-eisen.\n\nOnjuist (A): Bij onderhoud verplaats je de VM's met vMotion naar een andere host.\n\nOnjuist (B): Herstarten na uitval is de taak van HA.\n\nOnjuist (D): Geen enkele VM kan meer geheugen krijgen dan de host heeft."
+        },
+        {
+          "question": "Wat is het verschil tussen een golden image en een template?",
+          "options": [
+            "De template is de kopie van het golden image die je uitrolt.",
+            "Het golden image bevat geen besturingssysteem, de template wel.",
+            "Een template kan uitsluitend op lokale opslag worden bewaard.",
+            "Een golden image wordt automatisch bijgewerkt, een template niet."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Het golden image is de zorgvuldig ingerichte basis-VM; de template is daarvan de uitrolbare kopie, die per situatie aangepast kan worden.\n\nOnjuist (B): Beide bevatten een volledig geconfigureerd besturingssysteem.\n\nOnjuist (C): Templates staan doorgaans juist op gedeelde opslag.\n\nOnjuist (D): Bijwerken gebeurt in beide gevallen handmatig."
+        },
+        {
+          "question": "Waarop is de werking van Fault Tolerance gebaseerd?",
+          "options": [
+            "Op periodieke snapshots van de primary VM.",
+            "Op replicatie van de datastore naar een tweede storage array.",
+            "Op vLockstep, waarbij elke instructie wordt gespiegeld.",
+            "Op ballooning tussen de primary en de secondary host."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): vLockstep houdt de primary en secondary VM instructie voor instructie in exact dezelfde staat. Dat kost wel extra CPU, geheugen en netwerkcapaciteit.\n\nOnjuist (A): Snapshots zijn momentopnamen, geen continue spiegeling.\n\nOnjuist (B): FT werkt op VM-niveau, niet op opslagniveau.\n\nOnjuist (D): Ballooning is een geheugentechniek van de hypervisor."
+        },
+        {
+          "question": "Wat is het belangrijkste verschil tussen HA en FT?",
+          "options": [
+            "HA werkt binnen een cluster, FT uitsluitend tussen datacenters.",
+            "HA vereist gedeelde opslag, terwijl FT met lokale opslag werkt.",
+            "HA beschermt tegen storingen in de VM, FT tegen hostuitval.",
+            "Bij HA worden VM's herstart, bij FT is er geen onderbreking."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): HA accepteert een korte onderbreking omdat de VM's opnieuw starten; FT levert continue beschikbaarheid, maar tegen aanzienlijk meer resourcegebruik.\n\nOnjuist (A): Beide functies werken binnen één cluster.\n\nOnjuist (B): Beide leunen op gedeelde opslag.\n\nOnjuist (C): Beide zijn primair gericht op hostuitval."
+        },
+        {
+          "question": "Welke uitspraak over het back-uppen van een virtuele omgeving is juist?",
+          "options": [
+            "Back-ups kunnen alleen vanuit het gast-besturingssysteem worden gemaakt.",
+            "Een back-up kan rechtstreeks vanaf de datastore worden gemaakt.",
+            "Een goede back-upstrategie maakt een HA-cluster overbodig.",
+            "Back-uptools kunnen geen individuele bestanden terugzetten."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Doordat een VM uit bestanden op een datastore bestaat, kan de back-up daar rechtstreeks worden opgehaald, zonder agent in de VM.\n\nOnjuist (A): Dat is juist de klassieke, agent-gebaseerde aanpak.\n\nOnjuist (C): Back-up beschermt tegen dataverlies, HA tegen uitval; ze vervangen elkaar niet.\n\nOnjuist (D): Herstel op bestandsniveau is een standaardfunctie."
+        },
+        {
+          "question": "Een host moet overdag gepatcht worden terwijl de virtuele machines beschikbaar blijven. Wat doet de beheerder?",
+          "options": [
+            "De draaiende VM's met vMotion naar andere hosts verplaatsen.",
+            "De VM's uitschakelen en na het patchen weer opstarten.",
+            "HA inschakelen zodat de VM's vanzelf naar een andere host gaan.",
+            "Van elke VM een template maken en die op een andere host uitrollen."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Met vMotion verhuizen de draaiende VM's zonder onderbreking, waarna de host leeg is en veilig onderhouden kan worden.\n\nOnjuist (B): Dat levert precies de downtime op die vermeden moet worden.\n\nOnjuist (C): HA komt pas in actie ná uitval en verplaatst niets preventief.\n\nOnjuist (D): Een template levert een nieuwe VM op, niet dezelfde draaiende werklast."
+        },
+        {
+          "question": "Een datastore zit bijna vol. Een productie-VM moet naar een grotere datastore verhuizen zonder dat gebruikers er iets van merken. Welke techniek gebruikt de beheerder?",
+          "options": [
+            "vMotion",
+            "Fault Tolerance",
+            "Storage vMotion",
+            "Een cold migration"
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Storage vMotion verplaatst de bestanden van een draaiende VM naar een andere datastore.\n\nOnjuist (A): vMotion verplaatst de VM naar een andere host, terwijl de opslag het knelpunt is.\n\nOnjuist (B): FT is een beschikbaarheidsfunctie en verplaatst geen opslag.\n\nOnjuist (D): Bij een cold migration moet de VM uit, dus is er wel downtime."
+        },
+        {
+          "question": "Een medische applicatie mag bij het uitvallen van een host geen seconde onbereikbaar zijn. De beheerder accepteert dat dit extra resources kost. Welke functie past hierbij?",
+          "options": [
+            "HA, omdat de VM binnen enkele minuten opnieuw start.",
+            "DRS, omdat de belasting automatisch verdeeld wordt.",
+            "Storage vMotion, omdat de VM-bestanden gespiegeld worden.",
+            "FT, omdat een synchrone kopie de rol direct overneemt."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Alleen Fault Tolerance levert zero downtime; de secondary VM draait al mee en neemt naadloos over. De prijs is een fors hoger resourcegebruik.\n\nOnjuist (A): Herstarten betekent een korte maar reële onderbreking.\n\nOnjuist (B): DRS optimaliseert prestaties, geen beschikbaarheid.\n\nOnjuist (C): Storage vMotion spiegelt niets en beschermt niet tegen hostuitval."
+        },
+        {
+          "question": "Een VM staat op de lokale datastore van host A en moet naar host B. Er is geen gedeelde opslag beschikbaar. Wat is de juiste aanpak?",
+          "options": [
+            "vMotion gebruiken; gedeelde opslag is daarbij optioneel.",
+            "Een HA-cluster maken zodat de VM automatisch overgaat.",
+            "De VM met Fault Tolerance naar host B spiegelen.",
+            "De VM uitschakelen en offline naar host B migreren."
+          ],
+          "correct": 3,
+          "explanation": "Juist (D): Zonder gedeelde opslag kan de doelhost de VM-bestanden niet bereiken. Een koude migratie, waarbij de VM uit staat en de bestanden worden overgezet, is dan de weg.\n\nOnjuist (A): Gedeelde opslag is nu juist een harde voorwaarde voor vMotion.\n\nOnjuist (B & C): Ook HA en FT gaan uit van gedeelde opslag en zijn bovendien bedoeld voor uitval, niet voor een geplande verhuizing."
+        },
+        {
+          "question": "Het migreren van een VM naar een andere host mislukt, omdat de port groups op de doelhost anders heten. Welke oplossing voorkomt dit probleem structureel?",
+          "options": [
+            "Op elke host handmatig dezelfde port groups aanmaken.",
+            "Alle virtuele machines in hetzelfde VLAN plaatsen.",
+            "Een vSphere Distributed Switch voor het cluster inrichten.",
+            "Het vMotion-netwerk op een snellere netwerkkaart aansluiten."
+          ],
+          "correct": 2,
+          "explanation": "Juist (C): Een vDS beheert de netwerkconfiguratie centraal, zodat elke host in het cluster identieke port groups heeft en migraties niet stuklopen op naamsverschillen.\n\nOnjuist (A): Dat werkt, maar is foutgevoelig en precies het probleem dat een vDS oplost.\n\nOnjuist (B): Alles in één VLAN zetten gaat ten koste van segmentatie en lost de naamgeving niet op.\n\nOnjuist (D): Snelheid is hier niet de oorzaak van de fout."
         }
       ]
     }
