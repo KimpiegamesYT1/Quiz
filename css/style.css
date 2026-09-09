@@ -534,6 +534,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
+        margin-top: auto;
+        padding-top: 4px;
     }
 
     .quiz-badge {
@@ -558,13 +560,6 @@
         margin: 0;
     }
 
-    .quiz-card-meta {
-        margin-top: auto;
-        padding-top: 10px;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        font-size: 0.8em;
-        color: #9aa7b0;
-    }
 
     /* Grade Display Styles */
 

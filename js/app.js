@@ -574,22 +574,6 @@ async function loadQuizList() {
         const response = await fetch('quizzes/quizzes.json');
         const quizzes = await response.json();
 
-        // Enrich each entry with a few numbers from its own quiz file so the
-        // card can show what's inside. These details are optional — if a file
-        // fails to load the card just renders without the meta line.
-        await Promise.all(quizzes.map(async (quiz) => {
-            try {
-                const data = await (await fetch(quiz.file)).json();
-                const cats = (data.categories || []).filter(c => c.id !== 'all');
-                const topicCats = cats.filter(c => !c.id.toLowerCase().includes('examen'));
-                quiz._isIQ = data.mode === 'iq';
-                quiz._hasExam = cats.length > topicCats.length;
-                quiz._topicCount = topicCats.length;
-                quiz._questionCount = topicCats.reduce((n, c) => n + (c.questions ? c.questions.length : 0), 0)
-                    || (data.questions ? data.questions.length : 0);
-            } catch (_) { /* details are optional */ }
-        }));
-
         // Group entries (default group, or an explicit `group` in the registry),
         // then sort each group by year, then quarter, then title.
         const groups = new Map();
@@ -634,23 +618,17 @@ function buildQuizCard(quiz) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     };
 
-    // Losse badges: jaar en kwartiel apart. Zonder jaar/kwartiel (bv. IQ-test)
-    // valt het terug op de subtitle uit de registry.
+    // Losse badges: jaar en kwartiel apart, onder de beschrijving. Zonder
+    // jaar/kwartiel (bv. IQ-test) valt het terug op de subtitle uit de registry.
     const badges = [];
     if (quiz.year) badges.push(`Jaar ${quiz.year}`);
     if (quiz.quarter) badges.push(`Kwartiel ${quiz.quarter}`);
     if (!badges.length && quiz.subtitle) badges.push(quiz.subtitle);
 
-    const meta = [];
-    if (!quiz._isIQ && quiz._topicCount) meta.push(`${quiz._topicCount} weken`);
-    if (quiz._questionCount) meta.push(`${quiz._questionCount} vragen`);
-    if (quiz._hasExam) meta.push('oefenexamen');
-
     card.innerHTML = `
-        ${badges.length ? `<div class="quiz-badges">${badges.map(b => `<span class="quiz-badge">${b}</span>`).join('')}</div>` : ''}
         <h3>${quiz.title}</h3>
         <p>${quiz.description}</p>
-        ${meta.length ? `<div class="quiz-card-meta">${meta.join(' · ')}</div>` : ''}
+        ${badges.length ? `<div class="quiz-badges">${badges.map(b => `<span class="quiz-badge">${b}</span>`).join('')}</div>` : ''}
     `;
     return card;
 }
