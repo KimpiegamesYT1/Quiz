@@ -3,7 +3,7 @@
   "categories": [
     {
       "id": "week1",
-      "name": "Week 1: Virtualisatie, hypervisors en opslag",
+      "name": "Week 1: Virtualisatie",
       "questions": [
         {
           "question": "Welke omschrijving past het best bij de functie van een hypervisor?",
