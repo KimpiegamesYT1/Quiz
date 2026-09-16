@@ -21,7 +21,7 @@
         "id": "virtualisatie",
         "title": "Virtualisatie",
         "file": "quizzes/virtualisatie.json",
-        "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken en meer.",
+        "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken, desktopvirtualisatie, RDS, Citrix en meer.",
         "subtitle": "Jaar 2 · Kwartiel 1",
         "year": 2,
         "quarter": 1

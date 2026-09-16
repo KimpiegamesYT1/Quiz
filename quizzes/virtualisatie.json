@@ -672,6 +672,342 @@
           "explanation": "Juist (C): Een vDS beheert de netwerkconfiguratie centraal, zodat elke host in het cluster identieke port groups heeft en migraties niet stuklopen op naamsverschillen.\n\nOnjuist (A): Dat werkt, maar is foutgevoelig en precies het probleem dat een vDS oplost.\n\nOnjuist (B): Alles in één VLAN zetten gaat ten koste van segmentatie en lost de naamgeving niet op.\n\nOnjuist (D): Snelheid is hier niet de oorzaak van de fout."
         }
       ]
+    },
+    {
+      "id": "week3",
+      "name": "Week 3: Desktop Virtualisatie",
+      "questions": [
+        {
+          "question": "Wat is het kenmerkende verschil tussen desktopvirtualisatie en servervirtualisatie in de gebruikersbeleving?",
+          "options": [
+            "Bij desktopvirtualisatie bevinden gebruiker en besturingssysteem zich niet op dezelfde fysieke locatie.",
+            "Bij desktopvirtualisatie deelt de gebruiker altijd de applicaties met anderen.",
+            "Bij desktopvirtualisatie draait er geen hypervisor tussen hardware en OS.",
+            "Bij desktopvirtualisatie is er geen kernel meer nodig in het besturingssysteem in deze specifieke situatie."
+          ],
+          "correct": 0,
+          "explanation": "Juist (A): Bij een normale Windows-pc zijn gebruiker en OS op dezelfde locatie; bij desktopvirtualisatie werkt de gebruiker remote met een OS dat elders draait.\n\nOnjuist (B): Ook servervirtualisatie gebruikt een hypervisor; dat is niet het onderscheid.\n\nOnjuist (C): Delen van applicaties is kenmerkend voor Shared Remote Virtual Desktop, niet voor desktopvirtualisatie in het algemeen.\n\nOnjuist (D): De kernel blijft gewoon aanwezig, alleen fysiek elders."
+        },
+        {
+          "question": "Wat is een Shared Remote Virtual Desktop (SRVD)?",
+          "options": [
+            "Een gepoolde virtuele machine die na gebruik wordt teruggezet.",
+            "Een sessie waarbij meerdere gebruikers tegelijk hetzelfde OS en dezelfde applicaties delen.",
+            "Een fysieke werkplek die via een KVM-switch wordt gedeeld.",
+            "Een virtuele machine met een volledig eigen, persoonlijke kopie van het OS in deze specifieke situatie."
+          ],
+          "correct": 1,
+          "explanation": "Juist (A): Bij SRVD (session virtualisatie) loggen meerdere gebruikers in op dezelfde session host en delen ze het besturingssysteem en de geïnstalleerde applicaties.\n\nOnjuist (B): Een eigen kopie van het OS hoort bij Personal Remote Virtual Desktop (VDI).\n\nOnjuist (C): Een KVM-switch heeft niets met remote virtual desktops te maken.\n\nOnjuist (D): Terugzetten na gebruik is kenmerkend voor pooled VDI, niet voor sessies."
+        },
+        {
+          "question": "Wat is een Personal Remote Virtual Desktop (PRVD), ook wel VDI genoemd?",
+          "options": [
+            "Een applicatie die lokaal op het eindapparaat wordt geïnstalleerd.",
+            "Een webpagina waarmee applicaties direct in de browser draaien.",
+            "Een gebruiker met een eigen virtuele of fysieke machine in het datacenter.",
+            "Een sessie op een gedeelde session host samen met andere gebruikers in deze specifieke situatie."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Bij PRVD/VDI krijgt de gebruiker een eigen (virtuele of fysieke) machine met een eigen kopie van OS en applicaties in het datacenter.\n\nOnjuist (A): Dat beschrijft juist SRVD.\n\nOnjuist (C): Lokale installatie is geen vorm van desktopvirtualisatie.\n\nOnjuist (D): Dit lijkt op applicatievirtualisatie via een browser, niet op VDI."
+        },
+        {
+          "question": "Wat is het verschil tussen een pooled VM en een personal VM binnen VDI?",
+          "options": [
+            "Een pooled VM gebruikt RDP, een personal VM altijd ICA.",
+            "Een pooled VM staat op een SAN, een personal VM alleen op lokale opslag.",
+            "Een pooled VM draait altijd op een fysieke machine, een personal VM niet.",
+            "Een pooled VM is gebaseerd op één gedeeld image"
+          ],
+          "correct": 3,
+          "explanation": "Juist (B): Pooled VM's delen één image en de gebruiker mag geen apps installeren; personal VM's hebben elk hun eigen image, waardoor de gebruiker wel zelf software kan installeren.\n\nOnjuist (A): Beide typen kunnen op virtuele machines draaien.\n\nOnjuist (C): Het protocol hangt af van de leverancier, niet van pooled versus personal.\n\nOnjuist (D): De onderliggende opslag is geen definiërend kenmerk van dit onderscheid."
+        },
+        {
+          "question": "Welke leverancier wordt geassocieerd met het RDP-protocol voor session virtualisatie?",
+          "options": [
+            "Microsoft",
+            "VMware in deze specifieke situatie.",
+            "Citrix",
+            "Docker"
+          ],
+          "correct": 0,
+          "explanation": "Juist (B): Microsoft Remote Desktop Services gebruikt het Remote Desktop Protocol (RDP).\n\nOnjuist (A): Citrix gebruikt het ICA-protocol.\n\nOnjuist (C): VMware Horizon gebruikt PCoIP.\n\nOnjuist (D): Docker is een containertechnologie en heeft geen remote-desktopprotocol."
+        },
+        {
+          "question": "Welk protocol gebruikt Citrix Virtual Apps and Desktops?",
+          "options": [
+            "RDP",
+            "ICA",
+            "PCoIP",
+            "SMB"
+          ],
+          "correct": 1,
+          "explanation": "Juist (C): Citrix gebruikt het ICA-protocol (Independent Computing Architecture), bekend om zijn sterke prestaties.\n\nOnjuist (A): RDP is het protocol van Microsoft.\n\nOnjuist (B): PCoIP hoort bij VMware Horizon.\n\nOnjuist (D): SMB is een bestandsdelingsprotocol, geen remote-desktopprotocol."
+        },
+        {
+          "question": "Welke uitspraak over de herkomst van Microsofts session-technologie klopt?",
+          "options": [
+            "Citrix kocht de RDS-techniek van Microsoft voor MetaFrame.",
+            "Microsoft en Citrix ontwikkelden RDS gezamenlijk vanaf Windows 2000 in deze specifieke situatie.",
+            "Microsoft kocht de MultiWin-techniek van Citrix voor Windows NT 4.0 Terminal Services.",
+            "Microsoft ontwikkelde MultiWin zelf voor Windows NT 3.51."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Citrix ontwikkelde MultiWin op basis van Windows NT 3.51; Microsoft kocht deze techniek en bracht deze uit als Terminal Services in NT 4.0.\n\nOnjuist (A): MultiWin kwam van Citrix, niet van Microsoft zelf.\n\nOnjuist (C): De richting was andersom.\n\nOnjuist (D): Het was geen gezamenlijke ontwikkeling; Citrix bouwde er juist MetaFrame bovenop."
+        },
+        {
+          "question": "Sinds welke Windows Server-versie heet de techniek 'Remote Desktop Services' in plaats van 'Terminal Services'?",
+          "options": [
+            "Windows 2003 in deze specifieke situatie.",
+            "Windows 2012",
+            "Windows 2000",
+            "Windows 2008"
+          ],
+          "correct": 3,
+          "explanation": "Juist (C): Met Windows Server 2008/2008R2 werd de naam gewijzigd naar Remote Desktop Services, met nieuwe rollen en VDI-ondersteuning.\n\nOnjuist (A & B): Deze versies heetten nog Terminal Services.\n\nOnjuist (D): 2012 gebruikte de RDS-naam al, maar dat is niet het eerste jaar waarin de naam veranderde."
+        },
+        {
+          "question": "Wat is een sessie-ID bij Remote Desktop Services?",
+          "options": [
+            "Een uniek kenmerk waarmee de server processen van verschillende sessies onderscheidt.",
+            "De naam van de gepubliceerde applicatie op de session host in deze specifieke situatie.",
+            "Het wachtwoord waarmee de gebruiker inlogt op de server.",
+            "Het IP-adres waarmee de client verbinding maakt."
+          ],
+          "correct": 0,
+          "explanation": "Juist (B): Elke sessie krijgt een unieke sessie-ID zodat de server processen van verschillende gebruikerssessies op dezelfde machine uit elkaar kan houden.\n\nOnjuist (A): Het IP-adres is geen sessie-ID.\n\nOnjuist (C): De applicatienaam is geen identificatie van de sessie zelf.\n\nOnjuist (D): Een wachtwoord dient voor authenticatie, niet voor sessie-identificatie."
+        },
+        {
+          "question": "Wat doet client-side caching binnen RDP?",
+          "options": [
+            "Het slaat wachtwoorden lokaal op zodat opnieuw inloggen niet nodig is.",
+            "Het onthoudt al gedownloade beelden",
+            "Het versleutelt het RDP-verkeer tussen client en server.",
+            "Het comprimeert bestanden die via drive redirection worden gedeeld."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Doordat de client al gedownloade schermbeelden onthoudt, hoeft bij elke refresh alleen het gewijzigde deel van het scherm te worden verstuurd, wat de belasting vermindert.\n\nOnjuist (A): Encryptie is een aparte beveiligingsfunctie.\n\nOnjuist (C): Dat heeft niets met caching van beeldschermdata te maken.\n\nOnjuist (D): Drive redirection is een apart virtueel kanaal."
+        },
+        {
+          "question": "Wat zijn virtual channels binnen RDP?",
+          "options": [
+            "Aparte fysieke netwerkkabels voor elk RDP-onderdeel.",
+            "VLAN's die het RDP-verkeer scheiden van ander netwerkverkeer in deze specifieke situatie.",
+            "Toegewezen paden binnen het protocol voor specifieke soorten data",
+            "Redundante verbindingen tussen twee session hosts."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Virtual channels zijn toegewezen paden binnen RDP voor specifieke datatypen, zoals printjobs, klembordsynchronisatie en drive redirection.\n\nOnjuist (A): Het zijn logische paden binnen het protocol, geen fysieke kabels.\n\nOnjuist (C): VLAN's zijn een netwerktechniek op laag 2, geen onderdeel van RDP.\n\nOnjuist (D): Redundantie tussen hosts wordt geregeld door de connection broker, niet door virtual channels."
+        },
+        {
+          "question": "Wat is het verschil tussen een statisch en een dynamisch virtueel kanaal in RDP?",
+          "options": [
+            "Dynamische kanalen zijn beperkt tot maximaal 31 stuks per sessie.",
+            "Statische kanalen zijn alleen beschikbaar bij RemoteApp-toepassingen.",
+            "Een statisch kanaal kan tijdens de sessie worden aangemaakt, een dynamisch kanaal niet.",
+            "Een dynamisch kanaal kan tijdens de sessie worden aangemaakt en weer gesloten."
+          ],
+          "correct": 3,
+          "explanation": "Juist (B): Sinds Windows Server 2008 kan een applicatie een dynamic virtual channel (DVC) aanmaken nadat de sessie al gestart is, en deze ook weer afsluiten vóór het einde van de sessie.\n\nOnjuist (A): Dat is precies andersom; statische kanalen worden bij sessiestart aangemaakt en pas bij het einde verbroken.\n\nOnjuist (C): Virtual channels zijn niet beperkt tot RemoteApp.\n\nOnjuist (D): De limiet van 31 geldt voor statische kanalen, niet voor dynamische."
+        },
+        {
+          "question": "Welke rol accepteert inkomende RDP-verbindingen van buiten het netwerk en stuurt ze door naar de Connection Broker?",
+          "options": [
+            "Remote Desktop Gateway",
+            "Remote Desktop Session Host",
+            "Remote Desktop Licensing",
+            "Remote Desktop Web Access"
+          ],
+          "correct": 0,
+          "explanation": "Juist (C): De Remote Desktop Gateway accepteert RDP-verbindingen (vaak over internet) en verbindt door naar de Connection Broker.\n\nOnjuist (A): De session host levert de daadwerkelijke sessies, maar accepteert geen externe verbindingen rechtstreeks vanaf internet.\n\nOnjuist (B): De licensing server bewaakt CAL's, niet verbindingen.\n\nOnjuist (D): Web Access biedt toegang via een webpagina, maar verbindt zelf ook door naar de broker."
+        },
+        {
+          "question": "Wat is de rol van de Remote Desktop Connection Broker?",
+          "options": [
+            "Hij houdt de licenties voor client access bij.",
+            "Hij verdeelt verbindingen over de beschikbare session hosts.",
+            "Hij biedt toegang tot applicaties via een webpagina.",
+            "Hij levert de daadwerkelijke desktopsessies aan de gebruiker."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): De Connection Broker verdeelt binnenkomende verbindingen (vanaf Web Access of Gateway) over de beschikbare session hosts en checkt bij de licensing server of de verbinding is toegestaan.\n\nOnjuist (A): De sessies zelf worden geleverd door de session host.\n\nOnjuist (C): Dat is de taak van de licensing server.\n\nOnjuist (D): Dat is de taak van Web Access."
+        },
+        {
+          "question": "Waarvoor is een per-device CAL het meest geschikt?",
+          "options": [
+            "Wanneer één gebruiker vanaf meerdere apparaten verbinding maakt in deze specifieke situatie.",
+            "Wanneer alle sessies via RemoteApp worden gepubliceerd.",
+            "Wanneer meerdere gebruikers hetzelfde apparaat gebruiken om te verbinden.",
+            "Wanneer er geen licensing server beschikbaar is."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Een per-device CAL is gekoppeld aan het apparaat; dat is voordelig als meerdere gebruikers hetzelfde apparaat delen om te verbinden.\n\nOnjuist (A): Voor een gebruiker met meerdere apparaten is juist een per-user CAL logischer.\n\nOnjuist (C): Het licentietype staat los van hoe applicaties gepubliceerd worden.\n\nOnjuist (D): Zonder licensing server kunnen er helemaal geen verbindingen worden opgezet."
+        },
+        {
+          "question": "Waarom is het verstandig om een tweede Remote Desktop Licensing-server te hebben?",
+          "options": [
+            "Omdat CAL's automatisch tussen servers gedeeld moeten worden.",
+            "Omdat de Connection Broker altijd twee licensing servers vereist.",
+            "Omdat er zonder tweede server geen sessie-ID's uitgegeven kunnen worden in deze specifieke situatie.",
+            "Omdat verbindingen stoppen te werken als de enige licensing server uitvalt."
+          ],
+          "correct": 3,
+          "explanation": "Juist (C): Zonder werkende licensing server kunnen er geen nieuwe remote desktop-verbindingen worden opgezet; een tweede server voorkomt deze single point of failure.\n\nOnjuist (A): Licenties worden niet automatisch gesynchroniseerd tussen servers.\n\nOnjuist (B): Sessie-ID's worden door de session host uitgegeven, niet door de licensing server.\n\nOnjuist (D): Eén licensing server is in principe voldoende om te functioneren."
+        },
+        {
+          "question": "Waarom werkt het niet als een beheerder gebruikers toevoegt aan de domeingroep 'Remote Desktop Users' in plaats van de lokale groep?",
+          "options": [
+            "Omdat toegang tot een RDSH-server via de lokale groep op die server geregeld wordt.",
+            "Omdat domeingroepen geen toegang geven tot RemoteApp-programma's in deze specifieke situatie.",
+            "Omdat de domeingroep automatisch na 24 uur wordt geleegd.",
+            "Omdat de domeingroep alleen voor beheerdersaccounts bedoeld is."
+          ],
+          "correct": 0,
+          "explanation": "Juist (B): Toegang tot een specifieke RD Session Host wordt bepaald door lidmaatschap van de lokale 'Remote Desktop Users'-groep op die server, niet door de gelijknamige domeingroep.\n\nOnjuist (A): De domeingroep is niet exclusief voor beheerders.\n\nOnjuist (C): Dat verband bestaat niet.\n\nOnjuist (D): Er is geen automatische periodieke lediging."
+        },
+        {
+          "question": "Wat is een RemoteApp-programma?",
+          "options": [
+            "Een applicatie die via een dynamisch virtueel kanaal wordt gestreamd naar de browser.",
+            "Een applicatie die op de session host draait",
+            "Een applicatie die lokaal op de client wordt geïnstalleerd via de app store.",
+            "Een applicatie die uitsluitend via een pooled VDI-omgeving beschikbaar is."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): RemoteApp-programma's draaien fysiek op de RD Session Host, maar worden bij de gebruiker weergegeven alsof ze op diens eigen bureaublad draaien.\n\nOnjuist (A): De applicatie draait juist niet lokaal.\n\nOnjuist (C): RemoteApp hoort bij session-gebaseerde RDS, niet specifiek bij pooled VDI.\n\nOnjuist (D): RemoteApp gebruikt een reguliere RDP-sessie, geen los streamingkanaal."
+        },
+        {
+          "question": "Waar dient de Remote Desktop Web Access-server voor?",
+          "options": [
+            "Het uitvoeren van applicaties rechtstreeks op de client in deze specifieke situatie.",
+            "Het bijhouden van client access licenses.",
+            "Het toegang geven tot applicaties via een webpagina in de browser.",
+            "Het herstarten van vastgelopen session hosts."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Web Access is zelf een webserver waarmee gebruikers applicaties vanaf een webpagina kunnen starten; deze verbindt door naar de Connection Broker.\n\nOnjuist (A): Herstarten van hosts is geen taak van Web Access.\n\nOnjuist (C): Dat is de taak van de licensing server.\n\nOnjuist (D): De applicatie draait op de session host, niet lokaal op de client."
+        },
+        {
+          "question": "Wat maakte RemoteFX vGPU mogelijk?",
+          "options": [
+            "Het automatisch aanpassen van de beeldkwaliteit aan de netwerksnelheid.",
+            "Het omleiden van USB-apparaten naar een virtuele machine.",
+            "Het comprimeren van RDP-verkeer zonder kwaliteitsverlies.",
+            "Het verdelen van een fysieke GPU over meerdere virtuele machines."
+          ],
+          "correct": 3,
+          "explanation": "Juist (A): RemoteFX vGPU presenteert een gevirtualiseerde instantie van een fysieke GPU aan meerdere VM's, wat hardwareversnelling voor grafische toepassingen mogelijk maakt.\n\nOnjuist (B): Dat beschrijft de RemoteFX Codec.\n\nOnjuist (C): Dat is RemoteFX USB Redirection.\n\nOnjuist (D): Dat is RemoteFX Adaptive Graphics."
+        },
+        {
+          "question": "Waarvoor dient Citrix StoreFront binnen de vijflagenarchitectuur?",
+          "options": [
+            "Het authenticeren van gebruikers en aanbieden van hun applicaties en desktops.",
+            "Het monitoren en troubleshooten van de omgeving door de helpdesk.",
+            "Het installeren op elke machine die aan gebruikers beschikbaar wordt gesteld in deze specifieke situatie.",
+            "Het communiceren met de hypervisor om workloads te starten en stoppen."
+          ],
+          "correct": 0,
+          "explanation": "Juist (B): StoreFront authenticeert gebruikers en fungeert als de 'enterprise app store' met self-service toegang tot desktops en applicaties, en houdt abonnementen bij.\n\nOnjuist (A): Dat is de taak van Director.\n\nOnjuist (C): Dat is de taak van de Delivery Controller.\n\nOnjuist (D): Dat beschrijft de Virtual Delivery Agent (VDA)."
+        },
+        {
+          "question": "Welke Citrix-component wordt geïnstalleerd op elke machine die aan gebruikers beschikbaar wordt gesteld?",
+          "options": [
+            "Delivery Controller in deze specifieke situatie.",
+            "Virtual Delivery Agent",
+            "Studio",
+            "Director"
+          ],
+          "correct": 1,
+          "explanation": "Juist (D): De VDA draait op elke fysieke of virtuele machine die je beschikbaar stelt en registreert deze bij de Controller.\n\nOnjuist (A): Director is een monitoringtool voor IT-support.\n\nOnjuist (B): Studio is de beheerconsole voor de hele omgeving.\n\nOnjuist (C): De Delivery Controller is het centrale beheercomponent van de Site, niet iets dat op elke eindmachine draait."
+        },
+        {
+          "question": "Wat is de rol van de Citrix Delivery Controller?",
+          "options": [
+            "Hij toont realtime sessiegegevens aan de helpdesk.",
+            "Hij biedt gebruikers self-service toegang tot hun applicaties.",
+            "Hij communiceert met de hypervisor en verdeelt gebruikersverbindingen.",
+            "Hij draait op elk eindapparaat om verbinding te maken met een sessie in deze specifieke situatie."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): De Delivery Controller praat met de hypervisor om workloads te distribueren, authenticeert gebruikers, brokert verbindingen en balanceert de belasting.\n\nOnjuist (A): Dat is de rol van StoreFront.\n\nOnjuist (C): Dat is de rol van Director.\n\nOnjuist (D): Dat is de rol van Receiver, niet van de Delivery Controller."
+        },
+        {
+          "question": "Wat is het functionele equivalent van de Microsoft Connection Broker binnen Citrix?",
+          "options": [
+            "Director",
+            "Receiver",
+            "StoreFront in deze specifieke situatie.",
+            "Delivery Controller"
+          ],
+          "correct": 3,
+          "explanation": "Juist (C): De Delivery Controller vervult binnen Citrix dezelfde brokerfunctie als de Connection Broker bij Microsoft RDS: hij kiest de juiste sessie of desktop en balanceert verbindingen.\n\nOnjuist (A): Receiver is de client op het eindapparaat.\n\nOnjuist (B): StoreFront is de zelfbedieningswinkel voor gebruikers.\n\nOnjuist (D): Director is de monitoringtool, geen broker."
+        },
+        {
+          "question": "Welke Microsoft-rol is het functionele equivalent van de Remote Desktop Session Host, maar dan voor volledige virtuele machines in plaats van sessies?",
+          "options": [
+            "Remote Desktop Virtualization Host",
+            "Remote Desktop Web Access",
+            "Remote Desktop Connection Broker in deze specifieke situatie.",
+            "Remote Desktop Licensing"
+          ],
+          "correct": 0,
+          "explanation": "Juist (C): De Remote Desktop Virtualization Host (RDVH) levert, gebaseerd op Hyper-V, de daadwerkelijke virtuele machines voor desktop-gebaseerde RDS, terwijl RDSH sessies levert voor session-gebaseerde RDS.\n\nOnjuist (A, B, D): Deze rollen worden zowel bij session- als bij desktop-gebaseerde RDS gebruikt en zijn niet het VM-leverende component."
+        },
+        {
+          "question": "Wat is een concreet voordeel van desktopvirtualisatie ten opzichte van een gewone fysieke werkplek?",
+          "options": [
+            "Zware CAD/CAM-applicaties werken er standaard beter op.",
+            "Locked resources zoals Microsoft Access geven minder problemen.",
+            "Er is geen netwerkverbinding meer nodig om te werken.",
+            "Er kunnen meer gelijktijdige gebruikers per server terecht dan bij sessies."
+          ],
+          "correct": 1,
+          "explanation": "Juist (C): Omdat elke gebruiker een eigen (virtuele) machine heeft, spelen problemen met bestanden die door meerdere gebruikers tegelijk vergrendeld worden minder snel op dan bij een gedeelde sessieomgeving.\n\nOnjuist (A): Zware grafische toepassingen werken juist standaard minder goed; daar zijn aanvullende oplossingen als GRID of RemoteFX voor nodig.\n\nOnjuist (B): Een netwerkverbinding is juist altijd noodzakelijk.\n\nOnjuist (D): Per server kunnen minder gelijktijdige gebruikers terecht dan bij session virtualisatie."
+        },
+        {
+          "question": "Waarom is desktopvirtualisatie standaard minder geschikt voor zware grafische toepassingen zoals CAD/CAM?",
+          "options": [
+            "Omdat CAD/CAM-applicaties niet via RDP of ICA gestreamd kunnen worden.",
+            "Omdat virtuele machines geen grafische kaart kunnen aanspreken.",
+            "Omdat er zonder aanvullende technieken geen hardwareversnelling beschikbaar is.",
+            "Omdat elke virtuele machine verplicht een eigen fysieke GPU nodig heeft in deze specifieke situatie."
+          ],
+          "correct": 2,
+          "explanation": "Juist (B): Zonder oplossingen als nVIDIA GRID of Microsoft RemoteFX ontbreekt hardwareversnelling, wat zware grafische toepassingen traag maakt.\n\nOnjuist (A): Met vGPU-technieken kunnen VM's wel degelijk een GPU benaderen.\n\nOnjuist (C): Het protocol zelf is niet het probleem; de grafische performance is dat.\n\nOnjuist (D): Een gedeelde vGPU is juist de oplossing, geen verplichte eigen fysieke kaart."
+        },
+        {
+          "question": "Waarom is Session Virtualization vaak goedkoper dan Personal VDI voor taakgerichte medewerkers, zoals een callcenter?",
+          "options": [
+            "Omdat sessies geen netwerkverbinding vereisen.",
+            "Omdat session virtualisatie geen licensing server nodig heeft in deze specifieke situatie.",
+            "Omdat pooled VM's altijd duurder zijn dan personal VM's.",
+            "Omdat sessies meerdere gebruikers per server laten delen in plaats van een eigen VM per gebruiker."
+          ],
+          "correct": 3,
+          "explanation": "Juist (A): Meerdere gebruikers delen bij session virtualisatie dezelfde server, wat efficiënter is met hardware dan een aparte VM per gebruiker, zoals bij VDI.\n\nOnjuist (B): Ook RDS vereist een licensing server.\n\nOnjuist (C): Ook sessies hebben altijd netwerkverbinding nodig.\n\nOnjuist (D): De kostenvergelijking gaat over sessies versus VM's, niet over pooled versus personal VM's onderling."
+        },
+        {
+          "question": "Een organisatie wil kenniswerkers de mogelijkheid geven om zelf applicaties te installeren en hun werkomgeving te personaliseren, ook na een herstart. Welke oplossing past het best?",
+          "options": [
+            "Personal VDI met een eigen image per gebruiker.",
+            "Session Virtualization via een RDSH-farm.",
+            "RemoteApp-publicatie van losse applicaties.",
+            "Een pooled VDI-omgeving op basis van één gedeeld image."
+          ],
+          "correct": 0,
+          "explanation": "Juist (C): Personal VM's hebben elk hun eigen image, waardoor de gebruiker zelf software kan installeren en wijzigingen na een herstart bewaard blijven.\n\nOnjuist (A): Bij pooled VDI wordt de VM na gebruik gereset naar het gedeelde image en gaan persoonlijke wijzigingen verloren.\n\nOnjuist (B): Bij sessies kan de gebruiker sowieso geen eigen applicaties installeren.\n\nOnjuist (D): RemoteApp levert losse applicaties, geen persoonlijke, aanpasbare werkomgeving."
+        },
+        {
+          "question": "Een organisatie kiest voor een pooled VDI-omgeving voor callcentermedewerkers. Wat is een reëel nadeel dat hierbij hoort?",
+          "options": [
+            "Elke gebruiker moet een eigen, persoonlijk image beheren.",
+            "Updates van het gast-besturingssysteem raken meteen alle gebruikers en zijn lastig te plannen.",
+            "Gebruikers kunnen nooit meer inloggen na een disconnect.",
+            "Er is geen Connection Broker nodig om verbinding te maken in deze specifieke situatie."
+          ],
+          "correct": 1,
+          "explanation": "Juist (B): Omdat alle gebruikers hetzelfde gedeelde image gebruiken, zijn updates aan het gast-OS lastig te plannen en raken ze in één keer alle gebruikers.\n\nOnjuist (A): Bij PRVD kunnen kenniswerkers juist opnieuw verbinden na een disconnect; dat is zelfs een reden om voor personal VDI te kiezen.\n\nOnjuist (C): Ook bij pooled VDI maakt de gebruiker verbinding via een broker die een VM uit de pool toewijst.\n\nOnjuist (D): Bij pooled VDI delen gebruikers juist één image; ze beheren geen eigen image."
+        }
+      ]
     }
   ]
 }
