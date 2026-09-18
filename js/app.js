@@ -318,7 +318,6 @@ function showQuestion() {
         : 'Controleer';
     document.getElementById('feedback').classList.add('hidden');
     answered = false;
-    updateProgress();
 }
 
 function selectOption(index) {
@@ -389,10 +388,6 @@ function nextQuestion() {
             showEndScreen();
         }
     }
-}
-
-function updateProgress() {
-    // Progress bar removed
 }
 
 function showEndScreen() {
