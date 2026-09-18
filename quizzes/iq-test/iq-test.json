@@ -172,7 +172,7 @@
     {
       "question": "Welke afbeelding hoort rechtsonder in de matrix?",
       "section": "Deel 3: Figuurreeksen & Patronen",
-      "image": "quizzes/Assets/vraag%2013.png",
+      "image": "quizzes/Assets/vraag13.png",
       "options": [
         "3 zwarte vakjes links",
         "3 zwarte vakjes rechts",
@@ -201,7 +201,7 @@
     {
       "question": "Welk vakje ontbreekt als volgende in de reeks?",
       "section": "Deel 3: Figuurreeksen & Patronen",
-      "image": "quizzes/Assets/vraag%2015.png",
+      "image": "quizzes/Assets/vraag15.png",
       "options": [
         "5 verticale lijnen",
         "3 diagonale lijnen (/)",
