@@ -34,6 +34,9 @@ Dit draait zowel de data-validatietests (klopt elke quiz/vraag qua structuur?) a
 end-to-end browsertests (werken alle quizmodi, lazy loading, toetsenbord en lightbox nog?).
 Draait ook automatisch via GitHub Actions bij elke push/PR naar `main`.
 
+**Licentie:**
+[MIT](LICENSE) — vrij te gebruiken, aan te passen en te hergebruiken.
+
 ---
 
 **Disclaimer:** dit project is volledig gebouwd met behulp van AI (Claude Code/Claude AI).
