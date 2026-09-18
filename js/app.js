@@ -138,11 +138,10 @@ async function loadQuiz() {
         isIQMode = data.mode === 'iq';
         quizBaseDir = quizInfo.file.substring(0, quizInfo.file.lastIndexOf('/') + 1);
 
-        // Zet subtitel indien aanwezig
-        const subtitle = quizInfo.subtitle || 'kwartiel 2';
+        // Zet subtitel indien aanwezig, anders blijft de div verborgen (default in quiz.html)
         const subtitleDiv = document.getElementById('quiz-subtitle');
-        if (subtitleDiv) {
-            subtitleDiv.textContent = subtitle;
+        if (subtitleDiv && quizInfo.subtitle) {
+            subtitleDiv.textContent = quizInfo.subtitle;
             subtitleDiv.style.display = 'block';
         }
         

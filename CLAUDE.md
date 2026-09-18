@@ -61,5 +61,4 @@ npm test
 ## Content notes
 
 - All user-facing strings and quiz content are in Dutch.
-- `data_training/` holds source study material (e.g. exam weighting/topic breakdowns) used as reference when authoring quiz questions for a subject — it is not loaded by the app at runtime.
 - `quizzes/Assets/` holds images referenced by questions via their `image` field.
