@@ -56,7 +56,6 @@ npm test
 
 - Keyboard support: A–E select an option, Enter advances (`Controleer`/`Volgende`), wired via a single `keydown` listener guarded on the quiz screen being visible.
 - Lightbox for question images (`openLightbox`/`closeLightbox`), closable via Escape.
-- Easter egg: typing "pacman" anywhere on the site opens a self-contained canvas-based Pac-Man clone (`openPacmanGame`/`initPacmanGame`), entirely implemented inline in `app.js`. Treat this as isolated/self-contained code — it does not interact with quiz state.
 - `quiz.html` loads `js/app.js` with a cache-busting query string (`?v=...`); bump that version string when shipping changes to `app.js` so GitHub Pages doesn't serve a stale cached copy.
 
 ## Content notes
