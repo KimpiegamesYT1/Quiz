@@ -1,0 +1,444 @@
+{
+  "questions": [
+    {
+      "question": "Wat beschrijft de fysieke topologie van een netwerk?",
+      "options": [
+        "De logische IP-adressering",
+        "De virtuele VLAN-scheiding",
+        "De werkelijke bekabelingsindeling",
+        "Het gekozen routingprotocol"
+      ],
+      "correct": 2,
+      "explanation": "De fysieke topologie beschrijft hoe apparaten daadwerkelijk met kabels of draadloze media zijn verbonden. De overige opties beschrijven logische eigenschappen (Laag 3 of VLAN's)."
+    },
+    {
+      "question": "Wat is een geografisch kenmerk van een WAN?",
+      "options": [
+        "Het beperkt zich tot één enkel gebouw.",
+        "Het bestrijkt afstanden van enkele meters.",
+        "Het overbrugt steden, landen of continenten.",
+        "Het verbindt apparaten binnen één kantoorruimte."
+      ],
+      "correct": 2,
+      "explanation": "Een Wide Area Network (WAN) overbrugt grote geografische afstanden. B is een PAN, A en D beschrijven een LAN."
+    },
+    {
+      "question": "Vier kantoorpanden zijn onderling verbonden. Elk pand heeft een directe fysieke kabel naar alle andere drie panden. Welke topologie is dit?",
+      "options": [
+        "Bus",
+        "Full mesh",
+        "Hub-and-spoke",
+        "Ring"
+      ],
+      "correct": 1,
+      "explanation": "Bij een full mesh is ieder knooppunt direct verbonden met alle andere knooppunten. Dit biedt hoge redundantie."
+    },
+    {
+      "question": "Alle pc's in een kantoorruimte verliezen netwerktoegang nadat één lokale switch uitvalt. De rest van het bedrijf werkt nog. Welke fysieke topologie is hier gebruikt?",
+      "options": [
+        "Bus",
+        "Full mesh",
+        "Ring",
+        "Ster"
+      ],
+      "correct": 3,
+      "explanation": "In een ster-topologie zijn apparaten afhankelijk van één centraal punt (de switch). Valt deze uit, dan valt de hele groep uit."
+    },
+    {
+      "question": "Waarom wordt in een klein netwerk vaak gekozen voor een two-tier (collapsed core) ontwerp in plaats van een three-tier ontwerp?",
+      "options": [
+        "Het bespaart kosten doordat een aparte core-laag overbodig is.",
+        "Het biedt een veel hogere mate van redundantie.",
+        "Het elimineert de noodzaak voor een access-laag.",
+        "Het voorkomt datacollisies volledig in het netwerk."
+      ],
+      "correct": 0,
+      "explanation": "Bij een collapsed core worden de distributie- en core-laag samengevoegd. Dit is goedkoper voor kleine netwerken die geen complexe backbone nodig hebben."
+    },
+    {
+      "question": "In welke laag van het Cisco hiërarchische model worden firewalls, routing-policies en IPS-apparatuur geplaatst?",
+      "options": [
+        "Access layer",
+        "Core layer",
+        "Distribution layer",
+        "Physical layer"
+      ],
+      "correct": 2,
+      "explanation": "De distribution layer vormt de grens voor beveiliging, filtering en routing tussen de access layer en de core layer."
+    },
+    {
+      "question": "Een organisatie wil dat medewerkers hun IP-adres en VLAN behouden, ongeacht in welk gebouw op de campus zij inpluggen. Welk VLAN-model past hierbij?",
+      "options": [
+        "Collapsed Core VLAN",
+        "End-to-End VLAN",
+        "Local VLAN",
+        "Routed Access VLAN"
+      ],
+      "correct": 1,
+      "explanation": "Bij een End-to-End VLAN strekt het netwerk zich campusbreed uit, waardoor gebruikers hun netwerkidentiteit behouden bij fysieke verplaatsing."
+    },
+    {
+      "question": "Een afdeling heeft 60 hostadressen nodig. Welk subnetmasker minimaliseert de verspilling van IP-adressen?",
+      "options": [
+        "255.255.255.128 (/25)",
+        "255.255.255.192 (/26)",
+        "255.255.255.224 (/27)",
+        "255.255.255.240 (/28)"
+      ],
+      "correct": 1,
+      "explanation": "Een /26 prefix laat 6 hostbits over. Dit levert maximaal 62 bruikbare adressen op (2^6 - 2), wat perfect past voor 60 hosts."
+    },
+    {
+      "question": "Wat is de functie van de IEEE 802.1Q standaard?",
+      "options": [
+        "Het detecteren van netwerklussen",
+        "Het routeren van onbekend verkeer",
+        "Het toevoegen van een VLAN-tag aan Ethernet-frames",
+        "Het toewijzen van dynamische IP-adressen"
+      ],
+      "correct": 2,
+      "explanation": "802.1Q is het protocol dat een tag in de Ethernet-header plaatst zodat trunk-verbindingen weten bij welk VLAN het frame hoort."
+    },
+    {
+      "question": "In welke STP-status vult een switch zijn MAC-adrestabel, maar stuurt hij nog geen dataframes door?",
+      "options": [
+        "Blocking",
+        "Forwarding",
+        "Learning",
+        "Listening"
+      ],
+      "correct": 2,
+      "explanation": "Tijdens de 'Learning' fase leert de switch de aangesloten MAC-adressen kennen om de tabel te vullen, voordat hij daadwerkelijk overgaat tot 'Forwarding'."
+    },
+    {
+      "question": "Hoe verwerkt een trunk-poort frames afkomstig uit het native VLAN?",
+      "options": [
+        "Ze worden direct gedropt.",
+        "Ze worden naar de router gestuurd.",
+        "Ze worden ongetagd verstuurd.",
+        "Ze worden versleuteld verstuurd."
+      ],
+      "correct": 2,
+      "explanation": "Het Native VLAN is speciaal ontworpen om frames zonder 802.1Q-tag (untagged) over een trunk-poort te versturen."
+    },
+    {
+      "question": "Welk protocol gebruikt IEEE 802.11 (wifi) om het draadloze medium te delen en botsingen te vermijden?",
+      "options": [
+        "CSMA/CA",
+        "CSMA/CD",
+        "OSPF",
+        "STP"
+      ],
+      "correct": 0,
+      "explanation": "Wifi gebruikt Carrier Sense Multiple Access met Collision Avoidance (CA) omdat draadloze radio's niet tegelijk kunnen zenden en ontvangen om botsingen te detecteren (zoals CD doet op de kabel)."
+    },
+    {
+      "question": "Welke combinatie van kanalen in de 2.4 GHz-band voorkomt overlappende interferentie?",
+      "options": [
+        "1, 2 en 3",
+        "1, 6 en 11",
+        "2, 4 en 6",
+        "5, 10 en 15"
+      ],
+      "correct": 1,
+      "explanation": "In de 2.4 GHz-band zijn kanalen breed. Alleen de kanalen 1, 6 en 11 overlappen elkaar niet qua frequentiespectrum."
+    },
+    {
+      "question": "Wat vormen meerdere fysiek verbonden Access Points samen wanneer zij hetzelfde SSID uitzenden?",
+      "options": [
+        "Extended Service Set (ESS)",
+        "Independent Basic Service Set (IBSS)",
+        "Personal Area Network (PAN)",
+        "Wireless Local Area Network (WLAN)"
+      ],
+      "correct": 0,
+      "explanation": "Een ESS (Extended Service Set) verbindt meerdere access points (BSS'en) in hetzelfde netwerk zodat clients naadloos kunnen roamen."
+    },
+    {
+      "question": "Wat is een Rogue Access Point?",
+      "options": [
+        "Een defect access point dat constant herstart.",
+        "Een geautoriseerd access point voor gasten.",
+        "Een modern access point op de 5 GHz band.",
+        "Een ongeautoriseerd access point op het bedrijfsnetwerk."
+      ],
+      "correct": 3,
+      "explanation": "Een Rogue Access Point is zonder toestemming van IT aangesloten op het netwerk en vormt een groot beveiligingsrisico."
+    },
+    {
+      "question": "Twee pc's op dezelfde switch bevinden zich in VLAN 10 en VLAN 20. Zij kunnen niet communiceren. Welke component ontbreekt er in dit netwerk?",
+      "options": [
+        "Een firewall",
+        "Een Layer 3 router",
+        "Een VTP server",
+        "Een wireless access point"
+      ],
+      "correct": 1,
+      "explanation": "VLAN's scheiden netwerken logisch. Om verkeer van het ene VLAN naar het andere te sturen (Inter-VLAN routing) is een Layer 3-apparaat zoals een router nodig."
+    },
+    {
+      "question": "Wat gebeurt er als je twee switches via twee kabels met elkaar verbindt zonder het Spanning Tree Protocol in te schakelen?",
+      "options": [
+        "De bandbreedte wordt succesvol verdubbeld.",
+        "De switches schakelen over naar half-duplex.",
+        "Er ontstaat een broadcast storm door een layer 2 lus.",
+        "VLAN-tags worden automatisch verwijderd."
+      ],
+      "correct": 2,
+      "explanation": "Zonder STP ontstaat er een lus (loop). Broadcasts blijven eindeloos rondcirkelen waardoor het netwerk crasht (broadcast storm)."
+    },
+    {
+      "question": "Een nieuwe switch wordt in 'VTP Client' modus toegevoegd aan een VTP-domein. Wat gebeurt er op deze switch?",
+      "options": [
+        "Hij blokkeert al het netwerkverkeer tijdelijk.",
+        "Hij maakt lokaal automatisch nieuwe VLAN's aan.",
+        "Hij negeert VTP-berichten van andere switches.",
+        "Hij neemt de VLAN-database van de VTP Server over."
+      ],
+      "correct": 3,
+      "explanation": "Een VTP Client neemt VLAN's over van de server, maar je kunt er zelf geen VLAN's op aanmaken of verwijderen."
+    },
+    {
+      "question": "Twee switches in een netwerk met STP hebben dezelfde prioriteitswaarde (32768). Hoe wordt de Root Bridge gekozen?",
+      "options": [
+        "De switch met de hoogste poortsnelheid wint.",
+        "De switch met het hoogste MAC-adres wint.",
+        "De switch met het laagste MAC-adres wint.",
+        "De switch met het nieuwste besturingssysteem wint."
+      ],
+      "correct": 2,
+      "explanation": "In STP wint altijd de laagste Bridge ID (BID). Bij een gelijke prioriteit bepaalt het laagste MAC-adres wie er wint."
+    },
+    {
+      "question": "Om naadloze roaming tussen Access Points te garanderen, moeten de dekkingsgebieden elkaar deels overlappen. Welk percentage wordt hiervoor aanbevolen?",
+      "options": [
+        "0% tot 5%",
+        "10% tot 15%",
+        "40% tot 50%",
+        "75% tot 90%"
+      ],
+      "correct": 1,
+      "explanation": "Een overlap van 10% tot 15% is perfect. Het is voldoende om te schakelen zonder dat de zenders elkaar ernstig storen."
+    },
+    {
+      "question": "Welke minimale signaalsterkte (in dBm) wordt aangeraden voor betrouwbare data- en spraakdiensten over wifi?",
+      "options": [
+        "-30 dBm",
+        "-67 dBm",
+        "-90 dBm",
+        "-100 dBm"
+      ],
+      "correct": 1,
+      "explanation": "Een sterkte van -67 dBm is de industriestandaard voor een stabiele verbinding voor real-time diensten zoals VoIP."
+    },
+    {
+      "question": "Wat is de primaire cryptografische zwakte van het verouderde WEP-protocol?",
+      "options": [
+        "Het ontbreken van een RADIUS-server koppeling.",
+        "Het snel hergebruiken van de korte 24-bit Initialization Vector.",
+        "Het toepassen van uitsluitend asymmetrische encryptie.",
+        "Het verplicht openzetten van de SSID-broadcast."
+      ],
+      "correct": 1,
+      "explanation": "WEP gebruikt een kleine 24-bit IV. Bij veel verkeer herhaalt deze code zich, waardoor een aanvaller de sleutel snel wiskundig kan achterhalen."
+    },
+    {
+      "question": "Wat is de maximale hop count van het RIP routingprotocol voordat een bestemming als onbereikbaar wordt beschouwd?",
+      "options": [
+        "15",
+        "16",
+        "255",
+        "32768"
+      ],
+      "correct": 0,
+      "explanation": "RIP heeft een harde grens van 15 hops. Een afstand van 16 hops of meer wordt als oneindig en onbereikbaar beschouwd."
+    },
+    {
+      "question": "Welk routingprotocol is specifiek ontworpen voor routing tussen verschillende Autonomous Systems op het internet?",
+      "options": [
+        "BGP",
+        "EIGRP",
+        "OSPF",
+        "RIP"
+      ],
+      "correct": 0,
+      "explanation": "BGP (Border Gateway Protocol) is een Exterior Gateway Protocol, ontworpen om grote, onafhankelijke netwerken (zoals ISP's) met elkaar te verbinden."
+    },
+    {
+      "question": "Welke waarde gebruikt een router om te bepalen welk routingprotocol de voorkeur krijgt bij identieke routes?",
+      "options": [
+        "Administrative Distance",
+        "Bandbreedte",
+        "Hop Count",
+        "Link Cost"
+      ],
+      "correct": 0,
+      "explanation": "De Administrative Distance (AD) geeft de 'betrouwbaarheid' van een protocol aan. De laagste AD wint (bijv. Statisch=1, OSPF=110)."
+    },
+    {
+      "question": "Wat is een kenmerkende eigenschap van een Link-State routingprotocol zoals OSPF?",
+      "options": [
+        "Het bouwt een volledige topologiekaart van het netwerk op.",
+        "Het kiest paden uitsluitend op basis van hop count.",
+        "Het routeert verkeer primair over het externe internet.",
+        "Het stuurt elke 30 seconden de volledige routingtabel door."
+      ],
+      "correct": 0,
+      "explanation": "Link-state protocollen verspreiden LSA's zodat elke router inzicht heeft in het complete netwerk, waarna de kortste route lokaal wordt berekend."
+    },
+    {
+      "question": "Welke twee parameters gebruikt de 'composite metric' van EIGRP standaard om de beste route te berekenen?",
+      "options": [
+        "Bandwidth en Delay",
+        "Hop Count en Cost",
+        "Packet Loss en Jitter",
+        "Reliability en Load"
+      ],
+      "correct": 0,
+      "explanation": "EIGRP weegt standaard de traagste bandbreedte op de route af samen met de cumulatieve vertraging (delay) van de lijn."
+    },
+    {
+      "question": "Een router kent een bestemming via EIGRP (AD 90) en OSPF (AD 110). Ook is er een statische route (AD 1). Welke route komt in de routing table?",
+      "options": [
+        "De EIGRP-route",
+        "De OSPF-route",
+        "De route met de hoogste bandbreedte",
+        "De statische route"
+      ],
+      "correct": 3,
+      "explanation": "De router kijkt bij concurrerende protocollen naar de Administrative Distance (AD). De laagste waarde is het betrouwbaarst en wint."
+    },
+    {
+      "question": "Een OSPF-netwerk is opgesplitst in Area 0, Area 1 en Area 2. Hoe moet verkeer tussen Area 1 en Area 2 ontworpen zijn?",
+      "options": [
+        "Verkeer mag Area 0 nooit kruisen.",
+        "Verkeer moet altijd via de backbone (Area 0) lopen.",
+        "Verkeer moet via BGP worden gerouteerd.",
+        "Verkeer vereist een VPN-tunnel tussen beide area's."
+      ],
+      "correct": 1,
+      "explanation": "Area 0 is de backbone van een OSPF netwerk. Alle reguliere areas moeten direct op Area 0 aansluiten en communiceren via Area 0."
+    },
+    {
+      "question": "Wat is het broadcast-adres van het subnet 172.16.48.0/20?",
+      "options": [
+        "172.16.48.255",
+        "172.16.63.255",
+        "172.16.255.255",
+        "172.31.255.255"
+      ],
+      "correct": 1,
+      "explanation": "Een /20 subnet heeft blokken van 16 in het derde octet. Het netwerk begint op 48.0 en loopt tot 63.255. Dit laatste adres is de broadcast."
+    },
+    {
+      "question": "Welk subnetmasker (in CIDR-notatie) verspilt de minste IP-adressen voor een point-to-point verbinding tussen twee routers?",
+      "options": [
+        "/24",
+        "/28",
+        "/30",
+        "/32"
+      ],
+      "correct": 2,
+      "explanation": "Een /30 subnet biedt exact 2 bruikbare IP-adressen. Precies genoeg voor één kabel tussen twee routers, zonder adressen te verspillen."
+    },
+    {
+      "question": "Hoe voorkomt de regel 'split horizon' het ontstaan van routing loops in distance-vector protocollen?",
+      "options": [
+        "Door de poortsnelheid bij congestie dynamisch te verlagen.",
+        "Door een route niet te adverteren via de interface waarop deze is binnengekomen.",
+        "Door frames die de maximale MTU overschrijden direct te droppen.",
+        "Door overtollige paden logisch in blocking-modus te plaatsen."
+      ],
+      "correct": 1,
+      "explanation": "Split horizon voorkomt dat een router een geleerde route weer terugstuurt naar de router waarvan hij hem net heeft ontvangen."
+    },
+    {
+      "question": "Welk protocol binnen de IPsec-suite verzorgt de daadwerkelijke versleuteling (vertrouwelijkheid) van data?",
+      "options": [
+        "AES",
+        "AH",
+        "ESP",
+        "ISAKMP"
+      ],
+      "correct": 2,
+      "explanation": "ESP (Encapsulating Security Payload) verzorgt encryptie en voorkomt dat data afgeluisterd kan worden. AH biedt enkel integriteit."
+    },
+    {
+      "question": "Welke eigenschap van de CIA-triade wordt primair beschermd door hashing-algoritmen zoals SHA-1 of MD5?",
+      "options": [
+        "Authenticatie",
+        "Beschikbaarheid",
+        "Integriteit",
+        "Vertrouwelijkheid"
+      ],
+      "correct": 2,
+      "explanation": "Een hash garandeert de integriteit van data. Verandert het bestand onderweg, dan verandert de hash. Zo weert de ontvanger dat de data is gemanipuleerd."
+    },
+    {
+      "question": "Een webserver crasht nadat deze wordt overspoeld met onvoltooide TCP SYN-verzoeken. Welk onderdeel van de CIA-triade is hierbij geschonden?",
+      "options": [
+        "Authenticatie",
+        "Beschikbaarheid",
+        "Integriteit",
+        "Vertrouwelijkheid"
+      ],
+      "correct": 1,
+      "explanation": "Een DDoS-aanval put een dienst uit. Er wordt niets gestolen of gewijzigd, de dienst is alleen niet langer beschikbaar voor legitieme gebruikers."
+    },
+    {
+      "question": "Waarom wordt het GRE-protocol in VPN's vaak gecombineerd met IPsec (GRE over IPsec)?",
+      "options": [
+        "Omdat GRE datacompressie toevoegt die IPsec mist.",
+        "Omdat GRE snellere hardware-encryptie biedt dan IPsec.",
+        "Omdat IPsec geen multicast ondersteunt en GRE wel, waardoor routingprotocollen kunnen werken.",
+        "Omdat IPsec alleen werkt op locale netwerken en GRE over het internet."
+      ],
+      "correct": 2,
+      "explanation": "Routingprotocollen gebruiken multicasts. IPsec weigert multicast-verkeer. Door het in te pakken in een GRE-tunnel, kan IPsec het verkeer succesvol versleutelen."
+    },
+    {
+      "question": "Wat is het belangrijkste operationele verschil tussen een Intrusion Detection System (IDS) en een Intrusion Prevention System (IPS)?",
+      "options": [
+        "Een IDS beveiligt host-pc's, een IPS beveiligt uitsluitend routers.",
+        "Een IPS is uitsluitend hardwarematig, een IDS is uitsluitend software.",
+        "Een IPS werkt inline en kan blokkeren, een IDS is passief en waarschuwt.",
+        "Een IPS werkt inline en kan blokkeren, een IDS is passief en blokkeert ook."
+      ],
+      "correct": 2,
+      "explanation": "Een IPS zit in de kabel ('inline') en kan verkeer actief stoppen. Een IDS kijkt vanaf de zijlijn ('passief' of 'mirror') mee en slaat alleen alarm."
+    },
+    {
+      "question": "Wat is de betekenis van Severity Level 0 in het Syslog-protocol?",
+      "options": [
+        "Debugging: Diagnostische informatie",
+        "Emergency: Het systeem is onbruikbaar",
+        "Informational: Normale gebeurtenis",
+        "Warning: Een drempel is bijna bereikt"
+      ],
+      "correct": 1,
+      "explanation": "In Syslog geldt: hoe lager het getal, hoe acuter het alarm. Level 0 is 'Emergency' en vereist onmiddellijk ingrijpen bij een crash."
+    },
+    {
+      "question": "Een beheerder wil direct gewaarschuwd worden als een routerinterface uitvalt, zonder te hoeven wachten op een polling-verzoek van de server. Welk mechanisme biedt dit?",
+      "options": [
+        "ICMP Ping",
+        "OSPF Hello",
+        "SNMP Get-Request",
+        "SNMP Trap"
+      ],
+      "correct": 3,
+      "explanation": "Een SNMP Trap stelt een netwerkapparaat in staat om ongevraagd (asynchroon) een foutmelding naar de beheerserver te sturen."
+    },
+    {
+      "question": "Tijdens een audit blijkt dat SNMPv2c-wachtwoorden onversleuteld over het netwerk gaan. Wat is de oplossing die de nieuwe versie, SNMPv3, hiervoor biedt?",
+      "options": [
+        "Authenticatie via TCP-certificaten in plaats van UDP.",
+        "Encryptie via Out-Of-Band management poorten.",
+        "Sterke username-authenticatie en AES-encryptie.",
+        "Uitschakelen van set-requests om wijzigingen te blokkeren."
+      ],
+      "correct": 2,
+      "explanation": "SNMPv3 verhelpt de onveilige plaintext 'community strings' door geavanceerde inlogmechanismen met sterke hashing en AES-encryptie toe te voegen."
+    }
+  ]
+}

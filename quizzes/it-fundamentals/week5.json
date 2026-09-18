@@ -1,0 +1,257 @@
+{
+  "questions": [
+    {
+      "question": "Een programmeur voor de NES moest zelf de PPU, APU en geheugen beheren. Waarom was dit nodig?",
+      "options": [
+        "De NES had een beperkte versie van Windows",
+        "De NES draaide op een UNIX-variant",
+        "De NES had geen besturingssysteem",
+        "De NES gebruikte alleen high-level talen"
+      ],
+      "correct": 2,
+      "explanation": "De NES had geen OS. Ontwikkelaars werkten direct met de 6502 CPU via assembly en moesten zelf alle hardware aansturen: PPU (graphics), APU (audio), geheugen en input."
+    },
+    {
+      "question": "Welke component van een OS beheert CPU-scheduling, geheugen en hardware devices?",
+      "options": [
+        "De kernel",
+        "De shell",
+        "De file manager",
+        "De bootloader"
+      ],
+      "correct": 0,
+      "explanation": "De kernel is de kern van het OS en beheert alle kritieke systeembronnen. Het vormt de brug tussen applicaties en hardware."
+    },
+    {
+      "question": "Een applicatie in user mode wil data naar een bestand schrijven. Wat moet er gebeuren?",
+      "options": [
+        "De applicatie schrijft direct naar de schijf",
+        "De applicatie vraagt de GPU om hulp",
+        "De applicatie doet een system call naar de kernel",
+        "De applicatie start een nieuw proces"
+      ],
+      "correct": 2,
+      "explanation": "User mode applicaties hebben geen directe hardware toegang. Ze moeten via system calls services aanvragen bij de kernel, die in kernel mode de daadwerkelijke I/O uitvoert."
+    },
+    {
+      "question": "Je ziet een Blue Screen of Death (BSOD) op Windows. Wat is de meest waarschijnlijke oorzaak?",
+      "options": [
+        "Een user mode applicatie is gecrasht",
+        "De GPU is te warm geworden",
+        "Code in kernel mode heeft een kritieke fout veroorzaakt",
+        "Er is een netwerk timeout opgetreden"
+      ],
+      "correct": 2,
+      "explanation": "BSOD treedt op bij crashes in kernel mode. Kernel code heeft volledige systeemtoegang; een fout daar destabiliseert het hele systeem, wat een herstart vereist."
+    },
+    {
+      "question": "Wat is het UNIX/Linux equivalent van een Windows BSOD?",
+      "options": [
+        "System freeze",
+        "Core dump",
+        "Kernel panic",
+        "Segmentation fault"
+      ],
+      "correct": 2,
+      "explanation": "Kernel panic is het Linux/UNIX equivalent van BSOD. Beide duiden op een onherstelbare fout in kernel mode die een herstart vereist."
+    },
+    {
+      "question": "Een CPU-core met Hyper-Threading kan hoeveel threads tegelijk verwerken?",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "8"
+      ],
+      "correct": 1,
+      "explanation": "SMT/Hyper-Threading laat één fysieke core twee threads tegelijk uitvoeren door resources te delen. Zonder SMT is het 1 thread per core."
+    },
+    {
+      "question": "Threads binnen hetzelfde proces delen welke resource NIET met elkaar?",
+      "options": [
+        "Heap geheugen",
+        "Globale variabelen",
+        "Stack geheugen",
+        "Open file handles"
+      ],
+      "correct": 2,
+      "explanation": "Elke thread heeft zijn eigen stack voor lokale variabelen en functie-aanroepen. Heap, globale variabelen en file handles worden gedeeld binnen het proces."
+    },
+    {
+      "question": "Je systeem heeft 2 GB RAM maar draait applicaties die samen 6 GB nodig hebben. Hoe is dit mogelijk?",
+      "options": [
+        "De applicaties crashen automatisch",
+        "Virtual memory gebruikt schijfruimte als uitbreiding",
+        "De CPU comprimeert het geheugen",
+        "Dit is niet mogelijk"
+      ],
+      "correct": 1,
+      "explanation": "Virtual memory combineert RAM met swap space op de schijf. Minder gebruikte pagina's worden naar schijf verplaatst, waardoor meer virtueel geheugen beschikbaar is dan fysiek RAM."
+    },
+    {
+      "question": "Hoeveel geheugen kan een 32-bit OS maximaal adresseren?",
+      "options": [
+        "2 GB",
+        "4 GB",
+        "8 GB",
+        "16 GB"
+      ],
+      "correct": 1,
+      "explanation": "32 bits = 2^32 = 4.294.967.296 adressen = 4 GB. Dit is een harde limiet van de adresbus-breedte, ongeacht hoeveel fysiek RAM is geïnstalleerd."
+    },
+    {
+      "question": "Je wilt een 8 GB bestand opslaan op een USB-stick. Welk bestandssysteem kan dit NIET aan?",
+      "options": [
+        "NTFS",
+        "exFAT",
+        "FAT32",
+        "ext4"
+      ],
+      "correct": 2,
+      "explanation": "FAT32 heeft een maximum bestandsgrootte van 4 GB. NTFS, exFAT en ext4 ondersteunen veel grotere bestanden."
+    },
+    {
+      "question": "Op welk besturingssysteem is ext4 het standaard bestandssysteem?",
+      "options": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "FreeBSD"
+      ],
+      "correct": 2,
+      "explanation": "ext4 (Fourth Extended Filesystem) is de standaard op de meeste Linux distributies. Windows gebruikt NTFS, macOS gebruikt APFS."
+    },
+    {
+      "question": "In welk OS worden 'File.txt' en 'file.txt' als HETZELFDE bestand behandeld?",
+      "options": [
+        "Ubuntu Linux",
+        "Debian Linux",
+        "Windows",
+        "macOS (standaard HFS+/APFS)"
+      ],
+      "correct": 2,
+      "explanation": "Windows is case-insensitive: File.txt en file.txt zijn hetzelfde. Linux is case-sensitive. macOS is standaard case-insensitive maar kan case-sensitive worden geconfigureerd."
+    },
+    {
+      "question": "Het pad '/home/user/documents' gebruikt welk type scheidingsteken?",
+      "options": [
+        "Windows-stijl backslash",
+        "Linux/UNIX-stijl forward slash",
+        "Beide zijn correct",
+        "Dit is geen geldig pad"
+      ],
+      "correct": 1,
+      "explanation": "Forward slashes (/) zijn standaard in Linux/UNIX. Windows gebruikt backslashes (\\). Het pad begint met / wat de root directory aangeeft, typisch voor Linux."
+    },
+    {
+      "question": "Welke shell is standaard in de meeste Linux distributies?",
+      "options": [
+        "Zsh",
+        "Fish",
+        "Bash",
+        "PowerShell"
+      ],
+      "correct": 2,
+      "explanation": "Bash (Bourne Again Shell) is de standaard op de meeste Linux distributies. Zsh is populair op macOS, PowerShell op Windows."
+    },
+    {
+      "question": "Een systeembeheerder wil 100 bestanden hernoemen met een script. Welk type interface is het meest geschikt?",
+      "options": [
+        "Grafische file manager",
+        "Command-line interface (CLI)",
+        "Touch screen interface",
+        "Voice interface"
+      ],
+      "correct": 1,
+      "explanation": "CLI is ideaal voor scripting en batch-operaties. Een eenvoudig bash-script met een loop kan 100+ bestanden in seconden hernoemen."
+    },
+    {
+      "question": "Wat vertaalt generieke OS-instructies naar hardware-specifieke commando's?",
+      "options": [
+        "De compiler",
+        "De shell",
+        "Device drivers",
+        "De bootloader"
+      ],
+      "correct": 2,
+      "explanation": "Device drivers zijn de vertaallaag tussen kernel en hardware. Ze maken het mogelijk dat het OS werkt met diverse hardware zonder specifieke code voor elk apparaat."
+    },
+    {
+      "question": "Waarom kunnen twee processen niet elkaars geheugen direct lezen?",
+      "options": [
+        "De CPU is te langzaam",
+        "Het OS isoleert processen met gescheiden adresruimtes",
+        "Processen draaien op verschillende CPU's",
+        "Dit is wel mogelijk in moderne OS's"
+      ],
+      "correct": 1,
+      "explanation": "Elk proces krijgt zijn eigen virtuele adresruimte. Het OS en MMU zorgen voor isolatie, wat voorkomt dat processen elkaars geheugen kunnen beschadigen."
+    },
+    {
+      "question": "Welke OS-familie volgt de POSIX-standaard?",
+      "options": [
+        "Windows NT",
+        "MS-DOS",
+        "UNIX-like systemen",
+        "Alleen macOS"
+      ],
+      "correct": 2,
+      "explanation": "POSIX (Portable Operating System Interface) is een standaard voor UNIX-like systemen. Linux, macOS, BSD en andere UNIX-varianten volgen deze standaard."
+    },
+    {
+      "question": "Een user mode applicatie probeert direct naar een I/O-poort te schrijven. Wat gebeurt er?",
+      "options": [
+        "De operatie slaagt",
+        "Het OS blokkeert dit en genereert een exception",
+        "De CPU negeert het verzoek",
+        "Het systeem herstart automatisch"
+      ],
+      "correct": 1,
+      "explanation": "User mode code heeft geen directe hardware toegang. De CPU's protection ring mechanisme voorkomt dit; het OS genereert een exception (fout)."
+    },
+    {
+      "question": "Wat onderscheidt Windows van UNIX-like systemen qua architectuur?",
+      "options": [
+        "Windows is open-source",
+        "Windows heeft geen kernel",
+        "Windows gebruikt een proprietary architectuur en eigen standaarden",
+        "Windows draait alleen op ARM processors"
+      ],
+      "correct": 2,
+      "explanation": "Windows gebruikt een proprietary architectuur (Windows NT) met eigen standaarden, terwijl UNIX-like systemen POSIX volgen en vaak open-source zijn."
+    },
+    {
+      "question": "[EXTRA] Een 24-bit adresbus kan hoeveel geheugen adresseren?",
+      "options": [
+        "8 MB",
+        "16 MB",
+        "32 MB",
+        "64 MB"
+      ],
+      "correct": 1,
+      "explanation": "24 bits = 2^24 = 16.777.216 adressen = 16 MB. Dit was de limiet van vroege Intel processors zoals de 80286 in protected mode."
+    },
+    {
+      "question": "[EXTRA] Een proces doet een system call. Welke stappen vinden plaats in de juiste volgorde?",
+      "options": [
+        "Mode switch → Trap instruction → Kernel handler → Return",
+        "Trap instruction → Mode switch → Kernel handler → Return",
+        "Kernel handler → Mode switch → Trap → Return",
+        "Return → Trap → Mode switch → Handler"
+      ],
+      "correct": 1,
+      "explanation": "De trap instruction triggert de CPU om naar kernel mode te switchen. Dan wordt de juiste kernel handler aangeroepen, die het verzoek afhandelt en terugkeert naar user mode."
+    },
+    {
+      "question": "[EXTRA] Systeem A: 8 GB RAM, 50 processen. Systeem B: 4 GB RAM, 50 processen. Beide draaien soepel. Welke techniek maakt dit mogelijk?",
+      "options": [
+        "Beide systemen gebruiken RAM-compressie",
+        "Virtual memory met demand paging",
+        "De processen zijn identiek klein",
+        "Time-sharing van geheugen per proces"
+      ],
+      "correct": 1,
+      "explanation": "Virtual memory met demand paging laadt alleen benodigde pagina's in RAM. Niet-actieve pagina's blijven op schijf, waardoor veel processen kunnen draaien met beperkt fysiek geheugen."
+    }
+  ]
+}

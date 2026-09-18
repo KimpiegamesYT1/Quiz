@@ -1,0 +1,12 @@
+{
+  "title": "HBO IQ Test",
+  "mode": "iq",
+  "totalPoints": 70,
+  "categories": [
+    {
+      "id": "iq-test",
+      "name": "Start IQ Test",
+      "file": "iq-test.json"
+    }
+  ]
+}

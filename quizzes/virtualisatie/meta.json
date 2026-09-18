@@ -1,0 +1,20 @@
+{
+  "title": "Virtualisatie Quiz",
+  "categories": [
+    {
+      "id": "week1",
+      "name": "Week 1: Virtualisatie",
+      "file": "week1.json"
+    },
+    {
+      "id": "week2",
+      "name": "Week 2: Clustering",
+      "file": "week2.json"
+    },
+    {
+      "id": "week3",
+      "name": "Week 3: Desktop Virtualisatie",
+      "file": "week3.json"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
     {
         "id": "it-fundamentals",
         "title": "IT Fundamentals",
-        "file": "quizzes/it-fundamentals.json",
+        "file": "quizzes/it-fundamentals/meta.json",
         "description": "Oefen voor je IT Fundamentals examen met vragen over binaire getallen, netwerken, OS, databases en meer.",
         "subtitle": "Jaar 1 · Kwartiel 2",
         "year": 1,
@@ -11,7 +11,7 @@
     {
         "id": "computernetwerken",
         "title": "Computernetwerken",
-        "file": "quizzes/computernetwerken.json",
+        "file": "quizzes/computernetwerken/meta.json",
         "description": "Oefen voor je Computernetwerken examen met IP-adressen, protocollen, routing, switching en meer.",
         "subtitle": "Jaar 1 · Kwartiel 3",
         "year": 1,
@@ -20,7 +20,7 @@
     {
         "id": "virtualisatie",
         "title": "Virtualisatie",
-        "file": "quizzes/virtualisatie.json",
+        "file": "quizzes/virtualisatie/meta.json",
         "description": "Oefen voor je Virtualisatie examen met hypervisors, storage, netwerken, desktopvirtualisatie, RDS, Citrix en meer.",
         "subtitle": "Jaar 2 · Kwartiel 1",
         "year": 2,
@@ -29,7 +29,7 @@
     {
         "id": "iq-test",
         "title": "HBO IQ Test",
-        "file": "quizzes/iq-test.json",
+        "file": "quizzes/iq-test/meta.json",
         "description": "Beantwoord 30 vragen over verbaal begrip, logica, cijfers en ruimtelijk inzicht en ontvang je IQ-schatting.",
         "subtitle": "IQ Test",
         "group": "Overige tests"

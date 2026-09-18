@@ -1,0 +1,257 @@
+{
+  "questions": [
+    {
+      "question": "Welke HTTP-methode gebruik je om een nieuwe resource aan te maken op de server?",
+      "options": [
+        "GET",
+        "DELETE",
+        "POST",
+        "HEAD"
+      ],
+      "correct": 2,
+      "explanation": "POST creëert nieuwe resources. GET haalt op, PUT update/vervangt, DELETE verwijdert, HEAD haalt alleen headers op."
+    },
+    {
+      "question": "HTTP statuscode 500 betekent:",
+      "options": [
+        "Resource niet gevonden",
+        "Geen toegang (unauthorized)",
+        "Internal server error",
+        "Redirect naar andere URL"
+      ],
+      "correct": 2,
+      "explanation": "5xx codes zijn server errors. 500 = general server error. 404 = not found (4xx client error). 401 = unauthorized. 3xx = redirects."
+    },
+    {
+      "question": "Een URL bevat ?page=2&sort=date. Dit deel heet:",
+      "options": [
+        "Fragment",
+        "Path",
+        "Query string",
+        "Port"
+      ],
+      "correct": 2,
+      "explanation": "Query strings beginnen met ? en bevatten key=value paren gescheiden door &. Fragments beginnen met #. Path is het deel na de host."
+    },
+    {
+      "question": "Electron apps zijn relatief groot omdat ze bundelen:",
+      "options": [
+        "Alleen de applicatiecode",
+        "Een complete browser engine en Node.js runtime",
+        "Alleen JavaScript libraries",
+        "Alleen CSS frameworks"
+      ],
+      "correct": 1,
+      "explanation": "Electron bundelt Chromium (hele browser) + Node.js. Dit maakt apps groot (100+ MB) maar zorgt voor cross-platform compatibiliteit."
+    },
+    {
+      "question": "WebAssembly is geschikt voor:",
+      "options": [
+        "Alleen tekstverwerking",
+        "Performance-intensieve taken zoals games en image processing",
+        "Alleen database queries",
+        "Alleen styling van webpagina's"
+      ],
+      "correct": 1,
+      "explanation": "WASM draait op near-native speed. Ideaal voor CPU-intensieve taken: games, video editing, CAD, wetenschappelijke berekeningen in de browser."
+    },
+    {
+      "question": "Native apps hebben directe toegang tot device hardware. Welk voorbeeld past NIET?",
+      "options": [
+        "Camera API",
+        "GPS locatie",
+        "Browser cookies",
+        "Push notifications"
+      ],
+      "correct": 2,
+      "explanation": "Browser cookies zijn een web-concept, geen hardware feature. Camera, GPS en push notifications zijn device-level features waar native apps directe toegang toe hebben."
+    },
+    {
+      "question": "VMware ESXi en Microsoft Hyper-V zijn voorbeelden van:",
+      "options": [
+        "Type 2 hypervisors",
+        "Container runtimes",
+        "Type 1 (bare-metal) hypervisors",
+        "Cloud platforms"
+      ],
+      "correct": 2,
+      "explanation": "Type 1 hypervisors draaien direct op hardware zonder host OS. ESXi en Hyper-V zijn enterprise-grade bare-metal hypervisors. VirtualBox is Type 2 (op host OS)."
+    },
+    {
+      "question": "Wat deelt een container met de host?",
+      "options": [
+        "Niets, complete isolatie",
+        "Alleen netwerk",
+        "De kernel van het OS",
+        "Alleen opslag"
+      ],
+      "correct": 2,
+      "explanation": "Containers delen de host kernel maar hebben geïsoleerde userspace (libraries, bins, configs). Dit maakt ze lichter dan VMs die een volledige OS nodig hebben."
+    },
+    {
+      "question": "Docker is een:",
+      "options": [
+        "Hypervisor",
+        "Container runtime",
+        "Cloud provider",
+        "Operating system"
+      ],
+      "correct": 1,
+      "explanation": "Docker is een container runtime/platform. Het bouwt, distribueert en draait containers. Het is geen hypervisor (die VM's beheert) of cloud provider."
+    },
+    {
+      "question": "Kubernetes wordt gebruikt voor:",
+      "options": [
+        "Het schrijven van containers",
+        "Database management",
+        "Orchestratie van containers op schaal",
+        "Frontend development"
+      ],
+      "correct": 2,
+      "explanation": "Kubernetes (K8s) automatiseert deployment, scaling, en management van gecontaineriseerde applicaties over clusters van machines."
+    },
+    {
+      "question": "Een emulator voor een gameconsolee vertaalt:",
+      "options": [
+        "Alleen grafische bestanden",
+        "Instructies van één ISA naar een andere",
+        "Alleen audio signalen",
+        "Netwerk protocollen"
+      ],
+      "correct": 1,
+      "explanation": "Emulatie vertaalt instructies tussen verschillende Instruction Set Architectures. Bijv. NES 6502 instructies → x86/ARM instructies van je PC."
+    },
+    {
+      "question": "Legacy software van Windows XP draaien op moderne hardware doe je met:",
+      "options": [
+        "Een nieuwe compiler",
+        "Virtualisatie of emulatie",
+        "Een patch voor Windows 11",
+        "Alleen cloud services"
+      ],
+      "correct": 1,
+      "explanation": "VMs of emulatie kunnen oude OS's draaien op moderne hardware. Je kunt Windows XP virtualiseren in VirtualBox of VMware om legacy software te gebruiken."
+    },
+    {
+      "question": "Bij IaaS beheer je zelf:",
+      "options": [
+        "Niets, alles is gemanaged",
+        "Alleen de data",
+        "OS, middleware, applicaties en data",
+        "Alleen de applicaties"
+      ],
+      "correct": 2,
+      "explanation": "IaaS geeft je virtuele infrastructuur (servers, netwerk, storage). Jij beheert OS, middleware, runtime, apps en data. Provider beheert hardware en virtualisatie."
+    },
+    {
+      "question": "Heroku en Google App Engine zijn voorbeelden van:",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "On-Premises"
+      ],
+      "correct": 1,
+      "explanation": "PaaS biedt een platform voor app development. Je uploadt code, platform regelt servers, scaling, etc. AWS EC2 = IaaS, Gmail = SaaS."
+    },
+    {
+      "question": "Microsoft 365 en Salesforce zijn voorbeelden van:",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "correct": 2,
+      "explanation": "SaaS = kant-en-klare software via browser. Je beheert alleen je data en instellingen. Microsoft 365, Salesforce, Dropbox, Gmail zijn SaaS."
+    },
+    {
+      "question": "AWS Lambda en Azure Functions zijn voorbeelden van:",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "correct": 3,
+      "explanation": "FaaS (Function as a Service) = serverless. Je schrijft functies die op events reageren. Betaal per executie, geen servers beheren."
+    },
+    {
+      "question": "Een nadeel van cloud computing is:",
+      "options": [
+        "Geen schaalbaarheid",
+        "Afhankelijkheid van internetconnectie",
+        "Moet zelf hardware onderhouden",
+        "Geen automatische updates"
+      ],
+      "correct": 1,
+      "explanation": "Cloud vereist betrouwbaar internet. Andere nadelen: vendor lock-in, security concerns, maandelijkse kosten. Voordelen: schaalbaarheid, geen hardware onderhoud."
+    },
+    {
+      "question": "De grootste cloud providers zijn:",
+      "options": [
+        "Google, Facebook, Twitter",
+        "Dell, HP, Lenovo",
+        "AWS, Azure, Google Cloud",
+        "Docker, Kubernetes, Podman"
+      ],
+      "correct": 2,
+      "explanation": "AWS (Amazon), Azure (Microsoft) en GCP (Google) domineren de cloud markt. Ze bieden IaaS, PaaS, SaaS en diverse managed services."
+    },
+    {
+      "question": "Een qubit verschilt van een klassieke bit omdat het:",
+      "options": [
+        "Alleen 0 kan zijn",
+        "Alleen 1 kan zijn",
+        "Meerdere staten tegelijk kan representeren (superposition)",
+        "Sneller kan schakelen"
+      ],
+      "correct": 2,
+      "explanation": "Qubits kunnen dankzij quantum superposition 0, 1, of beide tegelijk zijn. Dit maakt parallelle berekeningen mogelijk die klassiek onmogelijk zijn."
+    },
+    {
+      "question": "Quantum computers zijn nog niet praktisch vanwege:",
+      "options": [
+        "Te hoge kosten van elektriciteit",
+        "Gebrek aan programmeurs",
+        "Qubit instabiliteit en decoherence",
+        "Te kleine schermen"
+      ],
+      "correct": 2,
+      "explanation": "Qubits zijn extreem gevoelig voor omgeving (temperatuur, trillingen). Decoherence laat quantum states vervallen, wat fouten veroorzaakt. Ze moeten bijna op absoluut nul draaien."
+    },
+    {
+      "question": "[EXTRA] URL: https://api.example.com:8443/v2/users?active=true#profile. Wat is de port?",
+      "options": [
+        "443",
+        "80",
+        "8443",
+        "Niet gespecificeerd"
+      ],
+      "correct": 2,
+      "explanation": "De port staat na de host en voor het path: :8443. Standaard HTTPS is 443, maar hier is expliciet 8443 opgegeven."
+    },
+    {
+      "question": "[EXTRA] Je wilt een Node.js microservice die onafhankelijk schaalt deployen. De beste keuze is:",
+      "options": [
+        "Een VM met volledige Linux installatie",
+        "Een container met Docker/Kubernetes",
+        "Bare-metal server",
+        "Lokale laptop"
+      ],
+      "correct": 1,
+      "explanation": "Containers zijn ideaal voor microservices: lichtgewicht, snel te starten, consistent tussen dev/prod, makkelijk te schalen met Kubernetes."
+    },
+    {
+      "question": "[EXTRA] Rangschik van MEESTE naar MINSTE abstractie: On-Prem, IaaS, PaaS, FaaS, SaaS",
+      "options": [
+        "SaaS → FaaS → PaaS → IaaS → On-Prem",
+        "On-Prem → IaaS → PaaS → FaaS → SaaS",
+        "FaaS → SaaS → PaaS → IaaS → On-Prem",
+        "PaaS → IaaS → FaaS → SaaS → On-Prem"
+      ],
+      "correct": 0,
+      "explanation": "Meeste abstractie = minste beheer. SaaS: alleen gebruiken. FaaS: alleen code. PaaS: code + config. IaaS: OS + omhoog. On-Prem: alles zelf."
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "question": "Welk fundamenteel probleem lost het CSMA/CA-mechanisme op in draadloze netwerken?",
+      "options": [
+        "Het gebrek aan bandbreedte voor video-streaming.",
+        "Het onvermogen om tegelijk te zenden en te luisteren.",
+        "De beperkte reikwijdte van het 5 GHz frequentiespectrum.",
+        "De gevoeligheid voor interferentie van magnetrons."
+      ],
+      "correct": 1,
+      "explanation": "Wifi is Half Duplex; de radio kan niet zenden en ontvangen tegelijk. Collision Detection (CD) is dus onmogelijk. CSMA/CA (Collision Avoidance) lost dit op door willekeurig te wachten als het kanaal bezet is."
+    },
+    {
+      "question": "Welke set kanalen in de 2.4 GHz-band vertoont geen frequentie-overlap?",
+      "options": [
+        "Kanalen 1, 2 en 3",
+        "Kanalen 2, 4 en 6",
+        "Kanalen 5, 10 en 15",
+        "Kanalen 1, 6 en 11"
+      ],
+      "correct": 3,
+      "explanation": "Kanalen 1, 6 en 11 overlappen elkaar niet in het 2.4 GHz spectrum (elk kanaal heeft ruimte nodig). Bij de andere opties is er sprake van frequentie-overlap, wat storing veroorzaakt."
+    },
+    {
+      "question": "Wat is een onderscheidend kenmerk van een Infrastructure Mode (BSS) netwerk?",
+      "options": [
+        "Apparaten communiceren direct met elkaar (peer-to-peer).",
+        "Apparaten gebruiken Bluetooth voor de data-overdracht.",
+        "Apparaten verbinden alleen via een bedrade switch.",
+        "Apparaten communiceren uitsluitend via een Access Point."
+      ],
+      "correct": 3,
+      "explanation": "In Infrastructure Mode (BSS) verloopt al het verkeer centraal via het Access Point, in tegenstelling tot Ad-hoc. Ad-hoc is peer-to-peer, Bluetooth en bedrade switches zijn niet specifiek voor BSS."
+    },
+    {
+      "question": "Welk type antenne biedt een 360-graden dekking rondom het Access Point?",
+      "options": [
+        "Yagi-antenne",
+        "Parabolische antenne",
+        "Dipool-antenne",
+        "Omnidirectionele antenne"
+      ],
+      "correct": 3,
+      "explanation": "Omnidirectionele antennes zenden in een 'donut'-vorm (360 graden horizontaal), ideaal voor centrale plaatsing. Yagi, parabolisch en dipool zijn directioneel (bundelen signaal)."
+    },
+    {
+      "question": "Waardoor wordt de beveiligingsstandaard WEP als onveilig beschouwd?",
+      "options": [
+        "Het protocol maakt gebruik van een statisch 128-bit hash-algoritme.",
+        "De encryptiesleutels vernieuwen zich zonder centrale authenticatie.",
+        "De Initialization Vector is te kort en herhaalt zich snel.",
+        "Het asymmetrische encryptiemodel vereist te veel rekenkracht."
+      ],
+      "correct": 2,
+      "explanation": "De 24-bit IV is te kort. Bij druk verkeer wordt deze hergebruikt, waardoor hackers in het versleutelde verkeer patronen kunnen herkennen en zo de sleutel kunnen berekenen. WEP maakt gebruik van de RC4-stream cipher (een symmetrisch model, geen hash) en het eigenlijke probleem is niet het vernieuwen of de rekenkracht, maar puur het snelle hergebruik van de IV."
+    },
+    {
+      "question": "Wat is de primaire functie van het RTS/CTS-mechanisme?",
+      "options": [
+        "Het verhogen van de datasnelheid.",
+        "Het versleutelen van het signaal.",
+        "Het besparen van batterijspanning.",
+        "Het voorkomen van databotsingen."
+      ],
+      "correct": 3,
+      "explanation": "RTS (Request to Send) en CTS (Clear to Send) reserveren het medium tijdelijk, wat botsingen voorkomt bij het 'Hidden Node' probleem. Snelheidsverhoging, encryptie en batterijbesparing zijn geen functies van RTS/CTS."
+    },
+    {
+      "question": "Welke signaalsterkte wordt minimaal aanbevolen voor betrouwbare voice- en datatoepassingen?",
+      "options": [
+        "-30 dBm",
+        "-67 dBm",
+        "-90 dBm",
+        "-100 dBm"
+      ],
+      "correct": 1,
+      "explanation": "-67 dBm is de industriestandaard voor de grens van goede dekking, zeker voor real-time toepassingen zoals VoIP. -30 dBm is heel sterk (onnodig), -90 dBm is onbruikbaar zwak."
+    },
+    {
+      "question": "Wat wordt verstaan onder een 'Rogue Access Point'?",
+      "options": [
+        "Een AP dat is geconfigureerd voor gasttoegang.",
+        "Een AP dat werkt op de 5 GHz frequentieband.",
+        "Een ongeautoriseerd AP dat is aangesloten op het LAN.",
+        "Een AP dat defect is en geen signaal meer uitzendt."
+      ],
+      "correct": 2,
+      "explanation": "Een Rogue AP is niet beheerd door IT en vormt een beveiligingslek (bijv. een werknemer die zelf een routertje meeneemt). Gasttoegang en 5 GHz zijn legitieme scenario's, een defect AP is iets anders."
+    },
+    {
+      "question": "Hoeveel overlap tussen Access Points wordt aanbevolen voor goede roaming?",
+      "options": [
+        "0% tot 5%",
+        "40% tot 50%",
+        "80% tot 90%",
+        "10% tot 15%"
+      ],
+      "correct": 3,
+      "explanation": "10-15% overlap zorgt ervoor dat een client het volgende AP ziet voordat de verbinding met het oude AP verbroken wordt. Te weinig overlap geeft disconnects, te veel overlap geeft interferentie."
+    },
+    {
+      "question": "Waarom biedt MAC-filtering geen waterdichte beveiliging?",
+      "options": [
+        "MAC-adressen kunnen eenvoudig worden nagebootst (spoofing).",
+        "MAC-adressen veranderen elke keer dat een apparaat herstart.",
+        "MAC-filtering vertraagt de netwerkverbinding aanzienlijk.",
+        "MAC-filtering werkt niet op moderne 5 GHz netwerken."
+      ],
+      "correct": 0,
+      "explanation": "MAC-adressen worden onversleuteld verzonden. Een hacker kan een toegestaan adres kopiëren (spoofen) naar zijn eigen netwerkkaart. MAC-adressen veranderen niet automatisch, filtering vertraagt het netwerk niet significant, en het werkt wel op 5 GHz."
+    },
+    {
+      "question": "Welk encryptie-algoritme wordt gebruikt door WPA2 voor data-integriteit?",
+      "options": [
+        "AES",
+        "DES",
+        "RC4",
+        "TKIP"
+      ],
+      "correct": 0,
+      "explanation": "AES (Advanced Encryption Standard) is het sterke encryptie-algoritme dat bij WPA2 hoort. TKIP hoort bij WPA(1), RC4 bij WEP, DES is een oud algemeen encryptie-algoritme."
+    },
+    {
+      "question": "Wat is een kenmerk van een Ad Hoc (IBSS) netwerkconfiguratie?",
+      "options": [
+        "Het vereist een centrale router voor IP-toewijzing.",
+        "Het verbindt clients direct zonder tussenkomst van een AP.",
+        "Het biedt toegang tot het internet via een modem.",
+        "Het ondersteunt roaming tussen meerdere verdiepingen."
+      ],
+      "correct": 1,
+      "explanation": "Ad Hoc (IBSS) is een peer-to-peer netwerk zonder centraal Access Point. Centrale routers, internetverbinding en roaming beschrijven andere netwerktypes."
+    },
+    {
+      "question": "Welk voordeel biedt de 5 GHz-band ten opzichte van de 2.4 GHz-band?",
+      "options": [
+        "Een groter bereik door muren heen.",
+        "Een betere ondersteuning voor oude apparatuur.",
+        "Meer beschikbare kanalen zonder overlap.",
+        "Lagere energiekosten voor de zender."
+      ],
+      "correct": 2,
+      "explanation": "5 GHz biedt veel meer kanalen (zoals 36, 40, 44) die elkaar niet storen. Fysiek gezien reikt een 5 GHz-signaal minder ver door objecten, ondersteunt oudere apparatuur vaak alleen 2.4 GHz, en het verschil in energiekosten is voor gebruik onbeduidend."
+    },
+    {
+      "question": "Wat is het doel van de techniek 'War Driving'?",
+      "options": [
+        "Het lanceren van georganiseerde DoS-aanvallen op netwerken.",
+        "Het in kaart brengen van draadloze netwerken.",
+        "Het forceren van onveilige connecties via een Rogue AP.",
+        "Het onderscheppen van bekabeld verkeer door af te tappen."
+      ],
+      "correct": 1,
+      "explanation": "War Driving is het rondrijden met apparatuur om open of zwakke wifi-netwerken te lokaliseren en in kaart te brengen. De andere opties beschrijven actieve aanvalstechnieken die wezenlijk anders zijn."
+    },
+    {
+      "question": "Waarom is het verbergen van de SSID een zwakke beveiligingsmaatregel?",
+      "options": [
+        "De SSID staat nog steeds in andere management frames.",
+        "De SSID is nodig om encryptie correct toe te passen.",
+        "De router stopt met het accepteren van nieuwe clients.",
+        "De bandbreedte van het netwerk wordt gehalveerd."
+      ],
+      "correct": 0,
+      "explanation": "De SSID zit ook in andere pakketten (management frames). Zodra een legitieme gebruiker verbindt, kan een hacker de naam alsnog zien. De andere antwoorden zijn technisch onjuist."
+    },
+    {
+      "question": "Wat onderscheidt een Wireless Router van een Wireless Access Point?",
+      "options": [
+        "Het routeren van verkeer tussen verschillende netwerken (IP-subnets).",
+        "Het bieden van draadloze connectiviteit aan clients.",
+        "Het gebruik van antennes voor signaaltransmissie.",
+        "Het ondersteunen van WPA2-beveiliging."
+      ],
+      "correct": 0,
+      "explanation": "Een router verbindt netwerken (Layer 3, bijv. LAN naar WAN). Een AP is een Layer 2 bridge (Wired naar Wireless binnen hetzelfde subnet). Draadloze connectiviteit, antennes en WPA2 gelden voor beide apparaten."
+    },
+    {
+      "question": "Wat is het effect van 'Frequency-hopping spread spectrum' (FHSS)?",
+      "options": [
+        "Het zendt uit op één frequentie met maximaal vermogen.",
+        "Het wisselt snel van frequentie om interferentie te vermijden.",
+        "Het gebruikt alle frequenties tegelijk voor hogere snelheid.",
+        "Het converteert analoge signalen naar digitale signalen."
+      ],
+      "correct": 1,
+      "explanation": "FHSS springt continu tussen frequenties, wat het lastiger maakt om het signaal te storen of af te luisteren. De andere opties beschrijven andere modulatietechnieken."
+    },
+    {
+      "question": "Welke rol speelt de RADIUS-server in een 802.1x implementatie?",
+      "options": [
+        "Het versleutelen van het draadloze dataverkeer.",
+        "Het toewijzen van IP-adressen aan de clients.",
+        "Het valideren van de inloggegevens van de gebruiker.",
+        "Het versterken van het signaal van het Access Point."
+      ],
+      "correct": 2,
+      "explanation": "De RADIUS-server controleert de gebruikersnaam en het wachtwoord in een Enterprise-omgeving (802.1x). Encryptie doet het AP/Client, IP-adressen worden toegewezen door de DHCP-server."
+    },
+    {
+      "question": "Welk apparaat veroorzaakt vaak interferentie op de 2.4 GHz frequentieband?",
+      "options": [
+        "Een magnetron.",
+        "Een rookmelder.",
+        "Een led-lamp.",
+        "Een FM-radio."
+      ],
+      "correct": 0,
+      "explanation": "Magnetrons werken ook op ±2.45 GHz en lekken vaak straling, wat het wifi-signaal wegdrukt. Rookmelders, led-lampen en FM-radio's werken op andere frequenties of storen niet."
+    },
+    {
+      "question": "Wat betekent de term 'Half Duplex' voor een wifi-verbinding?",
+      "options": [
+        "Data wordt slechts in één richting verstuurd.",
+        "Data wordt met halve snelheid verstuurd.",
+        "Zenden en ontvangen kan niet tegelijkertijd.",
+        "Zenden en ontvangen gebeurt op aparte kanalen."
+      ],
+      "correct": 2,
+      "explanation": "Half Duplex betekent dat communicatie twee kanten op kan, maar niet tegelijkertijd (zoals een walkietalkie). Eén richting is Simplex. Halve snelheid en aparte kanalen zijn onjuiste definities."
+    },
+    {
+      "question": "Welk protocol werd tijdelijk ingevoerd om WEP te vervangen vóór de komst van WPA2?",
+      "options": [
+        "TKIP",
+        "CCMP",
+        "IPsec",
+        "HTTPS"
+      ],
+      "correct": 0,
+      "explanation": "TKIP (Temporal Key Integrity Protocol) was de tussenoplossing in WPA om de zwakke WEP-encryptie iets te verbeteren zonder nieuwe hardware. CCMP hoort bij WPA2, IPsec en HTTPS zijn andere protocollen."
+    },
+    {
+      "question": "Wat wordt gevisualiseerd met een 'Heat Map' in netwerkbeheer?",
+      "options": [
+        "De drukte op specifieke switchpoorten.",
+        "De fysieke locatie van netwerkkabels.",
+        "De dekking van het draadloze signaal.",
+        "De concentratie van broadcast-verkeer."
+      ],
+      "correct": 2,
+      "explanation": "Een Heat Map toont met kleuren waar het signaal sterk of zwak is op een plattegrond. Switchpoort-drukte, kabellocaties en broadcast-verkeer hebben andere analysetools nodig."
+    },
+    {
+      "question": "Wat vormt samen een Extended Service Set (ESS)?",
+      "options": [
+        "Eén AP met meerdere antennes.",
+        "Een AP en een draadloze router.",
+        "Een netwerk zonder Access Points.",
+        "Meerdere AP's met dezelfde SSID."
+      ],
+      "correct": 3,
+      "explanation": "ESS bestaat uit meerdere BSS'en (Access Points) die verbonden zijn via een kabel en samen één logisch netwerk vormen met dezelfde SSID. Eén AP met meerdere antennes is een BSS."
+    },
+    {
+      "question": "Welke eigenschap hoort bij een directionele antenne?",
+      "options": [
+        "Het signaal wordt in een bolvorm verspreid.",
+        "Het signaal wordt gebundeld in één richting.",
+        "Het signaal wordt gelijkmatig verdeeld over de ruimte.",
+        "Het signaal bereikt eenvoudig meerdere verdiepingen."
+      ],
+      "correct": 1,
+      "explanation": "Directionele antennes (zoals Yagi) bundelen energie in een straal om grotere afstanden te overbruggen. Bolvorm en gelijkmatige verdeling horen bij omnidirectioneel."
+    },
+    {
+      "question": "Wat gebeurt er met de bandbreedte in een 'Shared Medium' zoals wifi?",
+      "options": [
+        "De bandbreedte neemt toe bij meer gebruikers.",
+        "De bandbreedte blijft constant voor elke gebruiker.",
+        "De bandbreedte wordt verdeeld over de actieve gebruikers.",
+        "De bandbreedte wordt bepaald door de afstand tot de router."
+      ],
+      "correct": 2,
+      "explanation": "Wifi is een gedeeld medium. De totale capaciteit van het Access Point wordt verdeeld over alle actieve gebruikers. Meer gebruikers = minder bandbreedte per gebruiker. Afstand is een factor maar bepaalt niet de verdeling."
+    },
+    {
+      "question": "Welk nadeel heeft het gebruik van de 5 GHz frequentieband?",
+      "options": [
+        "Er is meer interferentie van andere apparaten.",
+        "Het signaal wordt sterker gedempt door obstakels.",
+        "De maximale datasnelheid is lager dan bij 2.4 GHz.",
+        "Er zijn minder kanalen beschikbaar voor gebruik."
+      ],
+      "correct": 1,
+      "explanation": "Hogere frequenties (5 GHz) worden over het algemeen sterker geabsorbeerd door muren en obstakels dan lagere frequenties (2.4 GHz). Het voordeel is dat 5 GHz door de hogere capaciteit en meer beschikbare kanalen veel sneller is en minder last heeft van interferentie."
+    },
+    {
+      "question": "Welke componenten zijn vereist voor WPA2-Enterprise?",
+      "options": [
+        "Supplicant, Authenticator, Authentication Server.",
+        "Client, Router, Internet Service Provider.",
+        "Laptop, Switch, Firewall.",
+        "Access Point, WEP-Key, MAC-adres."
+      ],
+      "correct": 0,
+      "explanation": "802.1x vereist een Client (Supplicant), een toegangspunt (Authenticator) en een database (Authentication Server / RADIUS). De andere opties zijn generieke netwerktermen zonder de juiste rolverdeling."
+    },
+    {
+      "question": "Wat is het effect van Multipath Distortion (signaalweerkaatsing)?",
+      "options": [
+        "Het verhoogt altijd de signaalsterkte.",
+        "Het kan leiden tot data-corruptie.",
+        "Het verandert de frequentie van het signaal.",
+        "Het schakelt de encryptie uit."
+      ],
+      "correct": 1,
+      "explanation": "Multipath (weerkaatsing) zorgt dat signalen op verschillende tijden aankomen, wat data onleesbaar kan maken (hoewel MIMO dit positief gebruikt). Signaalsterkte verhogen is niet gegarandeerd, frequentieverandering en encryptie uitschakelen zijn technisch onjuist."
+    },
+    {
+      "question": "Wat is de functie van een 'Distribution System' in een draadloos netwerk?",
+      "options": [
+        "Het verbinden van AP's met het bedrade netwerk.",
+        "Het verdelen van IP-adressen aan clients.",
+        "Het scannen van frequenties op interferentie.",
+        "Het versleutelen van wachtwoorden."
+      ],
+      "correct": 0,
+      "explanation": "Het Distribution System (meestal Ethernet) verbindt de draadloze cellen met elkaar zodat communicatie mogelijk is. IP-adressen worden door DHCP verdeeld, frequentiescanning en wachtwoordencryptie zijn andere functies."
+    },
+    {
+      "question": "Welke IEEE-standaard beschrijft de werking van Wi-Fi 6?",
+      "options": [
+        "802.11ac",
+        "802.11g",
+        "802.11n",
+        "802.11ax"
+      ],
+      "correct": 3,
+      "explanation": "802.11ax is de technische naam voor Wi-Fi 6. 802.11ac is Wi-Fi 5, 802.11n is Wi-Fi 4, 802.11g is een oudere standaard."
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 let currentQuiz = null;
 let questions = [];
 let categories = {};
+let quizBaseDir = '';
 let currentQuestion = 0;
 let score = 0;
 let answers = [];
@@ -655,6 +656,7 @@ async function loadQuiz() {
 
         currentQuiz = data;
         isIQMode = data.mode === 'iq';
+        quizBaseDir = quizInfo.file.substring(0, quizInfo.file.lastIndexOf('/') + 1);
 
         // Zet subtitel indien aanwezig
         const subtitle = quizInfo.subtitle || 'kwartiel 2';
@@ -698,7 +700,7 @@ async function loadQuiz() {
             const btn = document.createElement('button');
             btn.className = 'category-btn';
             btn.textContent = cat.name;
-            btn.onclick = () => startQuiz(cat.id);
+            btn.onclick = () => startQuiz(cat.id, btn);
             menu.appendChild(btn);
         });
 
@@ -707,7 +709,7 @@ async function loadQuiz() {
 
         // IQ mode: skip category menu and start immediately
         if (isIQMode && data.categories.length === 1) {
-            startQuiz(data.categories[0].id);
+            await startQuiz(data.categories[0].id);
             return;
         }
 
@@ -717,23 +719,71 @@ async function loadQuiz() {
     }
 }
 
-function startQuiz(category) {
-    const cat = categories[category];
-    
+// Resolves a category's questions, fetching its file on first use and
+// caching the result on the category object so a replay doesn't re-fetch.
+async function loadCategoryQuestions(catId) {
+    const cat = categories[catId];
+
+    if (cat.questions) {
+        return cat.questions;
+    }
+
+    if (cat.file) {
+        const response = await fetch(quizBaseDir + cat.file);
+        const data = await response.json();
+        cat.questions = data.questions;
+        return cat.questions;
+    }
+
+    if (catId === 'all') {
+        const allQuestions = [];
+        for (const otherCat of Object.values(categories)) {
+            if (otherCat.id === 'all') continue;
+            allQuestions.push(...await loadCategoryQuestions(otherCat.id));
+        }
+        cat.questions = allQuestions;
+        return allQuestions;
+    }
+
+    // Old flat structure: questions live in the root `questions` array
+    return questions.slice(cat.start, cat.end);
+}
+
+async function startQuiz(category, buttonEl) {
+    if (buttonEl) {
+        buttonEl.disabled = true;
+        buttonEl.dataset.originalText = buttonEl.textContent;
+        buttonEl.textContent = 'Laden...';
+    }
+
+    let categoryQuestions;
+    try {
+        categoryQuestions = await loadCategoryQuestions(category);
+    } catch (error) {
+        console.error('Error loading category:', error);
+        alert('Er is een fout opgetreden bij het laden van deze categorie.');
+        if (buttonEl) {
+            buttonEl.disabled = false;
+            buttonEl.textContent = buttonEl.dataset.originalText;
+        }
+        return;
+    }
+
+    if (buttonEl) {
+        buttonEl.disabled = false;
+        buttonEl.textContent = buttonEl.dataset.originalText;
+    }
+
     // Check if this is exam mode (IQ mode or category id contains 'examen')
     isExamMode = isIQMode || category.toLowerCase().includes('examen');
-    
-    if (cat.questions) {
-        activeQuestions = cat.questions;
-    } else {
-        activeQuestions = questions.slice(cat.start, cat.end);
-    }
+
+    activeQuestions = categoryQuestions;
 
     currentQuestion = 0;
     score = 0;
     answers = [];
     answered = false;
-    
+
     document.getElementById('start-screen').classList.add('hidden');
     document.getElementById('quiz-screen').classList.remove('hidden');
     quizStarted = true;

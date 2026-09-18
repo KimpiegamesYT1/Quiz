@@ -1,0 +1,257 @@
+{
+  "questions": [
+    {
+      "question": "Het TCP/IP model dat in het boek wordt gebruikt heeft hoeveel lagen?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "Het originele TCP/IP model heeft 4 lagen: Link Layer, Internet Layer, Transport Layer en Application Layer. Het OSI model heeft 7 lagen."
+    },
+    {
+      "question": "Op welke laag van het TCP/IP model werkt een router primair?",
+      "options": [
+        "Application Layer",
+        "Transport Layer",
+        "Internet Layer",
+        "Link Layer"
+      ],
+      "correct": 2,
+      "explanation": "Routers werken op de Internet Layer (laag 2 in TCP/IP, laag 3 in OSI). Ze routeren pakketten tussen netwerken op basis van IP-adressen."
+    },
+    {
+      "question": "Je streamt een live video. Welk protocol is waarschijnlijk in gebruik voor de video data?",
+      "options": [
+        "TCP - voor betrouwbare levering",
+        "UDP - voor snelheid zonder hertransmissie",
+        "FTP - voor bestandsoverdracht",
+        "SMTP - voor media streaming"
+      ],
+      "correct": 1,
+      "explanation": "Live streaming gebruikt UDP omdat snelheid belangrijker is dan perfectie. Een verloren frame wordt niet opnieuw verzonden; de stream gaat gewoon door."
+    },
+    {
+      "question": "Welk IP-adres is GEEN geldig privé adres?",
+      "options": [
+        "10.0.0.1",
+        "172.16.0.1",
+        "172.32.0.1",
+        "192.168.1.1"
+      ],
+      "correct": 2,
+      "explanation": "172.32.0.1 is publiek. Privé ranges: 10.0.0.0/8, 172.16.0.0-172.31.255.255 (/12), 192.168.0.0/16. 172.32.x.x valt buiten de 172.16-172.31 range."
+    },
+    {
+      "question": "Een subnet mask van 255.255.255.0 komt overeen met welke CIDR-notatie?",
+      "options": [
+        "/16",
+        "/24",
+        "/28",
+        "/32"
+      ],
+      "correct": 1,
+      "explanation": "255.255.255.0 = 24 bits aan (11111111.11111111.11111111.00000000) = /24. Tel de 1-bits in de binaire representatie."
+    },
+    {
+      "question": "Een /26 subnet biedt hoeveel bruikbare host-adressen?",
+      "options": [
+        "64",
+        "62",
+        "32",
+        "30"
+      ],
+      "correct": 1,
+      "explanation": "/26 = 6 host-bits = 2^6 = 64 adressen. Minus network (eerste) en broadcast (laatste) = 62 bruikbare hosts."
+    },
+    {
+      "question": "IP-adres 192.168.10.67 met subnet /26. Wat is het network address?",
+      "options": [
+        "192.168.10.0",
+        "192.168.10.64",
+        "192.168.10.128",
+        "192.168.10.32"
+      ],
+      "correct": 1,
+      "explanation": "/26 = subnets van 64 adressen. 67 ÷ 64 = 1.04..., dus subnet 1. 1 × 64 = 64. Network address is 192.168.10.64 (range: .64-.127)."
+    },
+    {
+      "question": "HTTPS gebruikt standaard welke poort?",
+      "options": [
+        "80",
+        "8080",
+        "443",
+        "22"
+      ],
+      "correct": 2,
+      "explanation": "HTTPS gebruikt poort 443. HTTP gebruikt 80. SSH gebruikt 22. 8080 is een alternatieve HTTP-poort."
+    },
+    {
+      "question": "Een webserver draait op 192.168.1.50:8080. Wat is de socket?",
+      "options": [
+        "192.168.1.50",
+        "8080",
+        "192.168.1.50:8080",
+        "http://192.168.1.50"
+      ],
+      "correct": 2,
+      "explanation": "Een socket is de combinatie van IP-adres en poort: 192.168.1.50:8080. Dit identificeert een specifiek communicatie-eindpunt uniek."
+    },
+    {
+      "question": "Bij DHCP stuurt de client eerst een broadcast. Hoe heet dit bericht?",
+      "options": [
+        "DHCP Offer",
+        "DHCP Request",
+        "DHCP Discover",
+        "DHCP Acknowledge"
+      ],
+      "correct": 2,
+      "explanation": "DORA: Discover (client broadcast) → Offer (server antwoord) → Request (client kiest) → Acknowledgment (server bevestigt)."
+    },
+    {
+      "question": "Een DNS A-record koppelt wat aan wat?",
+      "options": [
+        "IP-adres aan MAC-adres",
+        "Domeinnaam aan mailserver",
+        "Domeinnaam aan IPv4-adres",
+        "Alias aan canonical name"
+      ],
+      "correct": 2,
+      "explanation": "A-record = Address record: koppelt domeinnaam aan IPv4. MX = mailserver, CNAME = alias, AAAA = IPv6."
+    },
+    {
+      "question": "Welk type DNS-record gebruik je voor een mailserver?",
+      "options": [
+        "A record",
+        "CNAME record",
+        "MX record",
+        "TXT record"
+      ],
+      "correct": 2,
+      "explanation": "MX (Mail Exchange) records specificeren welke server e-mail voor een domein afhandelt en met welke prioriteit."
+    },
+    {
+      "question": "In welk decennium werd ARPANET, de voorloper van het internet, gelanceerd?",
+      "options": [
+        "Jaren 50",
+        "Jaren 60",
+        "Jaren 70",
+        "Jaren 80"
+      ],
+      "correct": 1,
+      "explanation": "ARPANET's eerste succesvolle bericht werd verzonden in 1969. Het werd ontwikkeld door ARPA (later DARPA) van het U.S. Department of Defense."
+    },
+    {
+      "question": "Tim Berners-Lee ontwikkelde het World Wide Web in welk jaar?",
+      "options": [
+        "1969",
+        "1983",
+        "1989",
+        "1995"
+      ],
+      "correct": 2,
+      "explanation": "Tim Berners-Lee creëerde het WWW in 1989 bij CERN. 1969 = ARPANET. 1983 = TCP/IP adoptie. 1995 = commercieel internet explodeerde."
+    },
+    {
+      "question": "E-mail, FTP en VoIP zijn voorbeelden van wat?",
+      "options": [
+        "Onderdelen van het WWW",
+        "Internetdiensten die los staan van het WWW",
+        "Alleen beschikbaar via webbrowsers",
+        "Protocollen die alleen lokaal werken"
+      ],
+      "correct": 1,
+      "explanation": "Het internet is meer dan het WWW. E-mail (SMTP/IMAP), FTP en VoIP zijn aparte diensten die het internet gebruiken maar niet het web."
+    },
+    {
+      "question": "Welk protocol voegt encryptie toe aan HTTP?",
+      "options": [
+        "FTP",
+        "SSH",
+        "TLS/SSL",
+        "SMTP"
+      ],
+      "correct": 2,
+      "explanation": "HTTPS = HTTP + TLS/SSL. TLS (Transport Layer Security, opvolger van SSL) versleutelt de verbinding tussen browser en server."
+    },
+    {
+      "question": "HTML definieert de ___ van een webpagina, CSS de ___, JavaScript de ___.",
+      "options": [
+        "stijl, structuur, interactiviteit",
+        "structuur, stijl, interactiviteit",
+        "interactiviteit, structuur, stijl",
+        "structuur, interactiviteit, stijl"
+      ],
+      "correct": 1,
+      "explanation": "HTML = structuur/content (koppen, paragrafen). CSS = stijl/layout (kleuren, fonts). JavaScript = interactiviteit/gedrag (form validatie, animaties)."
+    },
+    {
+      "question": "Apache en Nginx zijn voorbeelden van:",
+      "options": [
+        "Databases",
+        "Webservers",
+        "Browsers",
+        "Operating systems"
+      ],
+      "correct": 1,
+      "explanation": "Apache HTTP Server en Nginx zijn de meest gebruikte webservers, vooral op Linux. Ze serveren webcontent aan clients."
+    },
+    {
+      "question": "python3 -m http.server 8000 start een webserver op welke URL?",
+      "options": [
+        "http://localhost:80",
+        "http://127.0.0.1:8000",
+        "https://localhost:8000",
+        "http://0.0.0.0:80"
+      ],
+      "correct": 1,
+      "explanation": "De Python http.server module start standaard op poort 8000. localhost en 127.0.0.1 zijn equivalent. Het gebruikt HTTP, niet HTTPS."
+    },
+    {
+      "question": "Load balancing verdeelt verkeer over meerdere servers. Welk algoritme geeft elke server om de beurt een request?",
+      "options": [
+        "Least Connections",
+        "Random",
+        "Round Robin",
+        "Weighted"
+      ],
+      "correct": 2,
+      "explanation": "Round Robin verdeelt requests sequentieel: server 1, dan 2, dan 3, dan weer 1, etc. Simpel maar effectief voor gelijke servers."
+    },
+    {
+      "question": "[EXTRA] Je hebt 192.168.1.0/24 en moet 6 subnets maken voor kantoren. Welk subnet mask gebruik je minimaal?",
+      "options": [
+        "/26 (4 subnets)",
+        "/27 (8 subnets)",
+        "/28 (16 subnets)",
+        "/29 (32 subnets)"
+      ],
+      "correct": 1,
+      "explanation": "Je hebt minimaal 6 subnets nodig. /27 geeft 8 subnets (2^3), wat voldoende is. /26 geeft maar 4. Elke extra bit verdubbelt het aantal subnets."
+    },
+    {
+      "question": "[EXTRA] Bij DNS-resolutie voor sub.example.com, welke volgorde is correct?",
+      "options": [
+        "Local cache → Root → .com TLD → example.com authoritative",
+        "Root → Local cache → .com TLD → example.com authoritative",
+        "example.com authoritative → .com TLD → Root → Local cache",
+        ".com TLD → Root → Local cache → example.com authoritative"
+      ],
+      "correct": 0,
+      "explanation": "Eerst wordt local cache gecheckt. Bij cache miss: Root nameserver → .com TLD nameserver → example.com authoritative nameserver die het IP teruggeeft."
+    },
+    {
+      "question": "[EXTRA] Een server heeft IP 10.50.100.200/22. Wat is het broadcast address van dit subnet?",
+      "options": [
+        "10.50.100.255",
+        "10.50.103.255",
+        "10.50.255.255",
+        "10.50.101.255"
+      ],
+      "correct": 1,
+      "explanation": "/22 = 10 host-bits. Network: 10.50.100.0 (100 binair: 01100100, eerste 6 bits). Subnet range: 10.50.100.0 - 10.50.103.255. Broadcast = laatste adres."
+    }
+  ]
+}

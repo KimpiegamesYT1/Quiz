@@ -1,0 +1,45 @@
+{
+  "title": "IT Fundamentals Quiz",
+  "categories": [
+    {
+      "id": "week1",
+      "name": "Week 1: Bits & Bytes",
+      "file": "week1.json"
+    },
+    {
+      "id": "week2",
+      "name": "Week 2: Logic & Circuits",
+      "file": "week2.json"
+    },
+    {
+      "id": "week3",
+      "name": "Week 3: Hardware & Architectuur",
+      "file": "week3.json"
+    },
+    {
+      "id": "week4",
+      "name": "Week 4: Software & Programming",
+      "file": "week4.json"
+    },
+    {
+      "id": "week5",
+      "name": "Week 5: Operating Systems",
+      "file": "week5.json"
+    },
+    {
+      "id": "week6",
+      "name": "Week 6: Networking",
+      "file": "week6.json"
+    },
+    {
+      "id": "week7",
+      "name": "Week 7: Modern Computing",
+      "file": "week7.json"
+    },
+    {
+      "id": "examen",
+      "name": "Oefen Examen (40 vragen)",
+      "file": "examen.json"
+    }
+  ]
+}
