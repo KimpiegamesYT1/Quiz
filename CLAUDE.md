@@ -8,13 +8,29 @@ QuizIt — a static, dependency-free quiz platform in Dutch. No build step, no p
 
 ## Running locally
 
-There is no build/lint/test tooling. Serve the folder with any static file server and open in a browser, e.g.:
+There is no build/lint tooling for the site itself. Serve the folder with any static file server and open in a browser, e.g.:
 
 ```bash
 python3 -m http.server 8000
 ```
 
 Then visit `http://localhost:8000/index.html`. Opening the HTML files via `file://` will break the `fetch()` calls to the JSON quiz files (CORS), so a local server is required.
+
+## Testing
+
+A Node.js/Playwright test toolchain exists under `tests/` for verifying the site — this is
+dev-only tooling and doesn't affect how the site is served or deployed (GitHub Pages still
+serves the plain files directly, no build output involved):
+
+```bash
+npm install
+npx playwright install chromium
+npm test
+```
+
+- `npm run test:data` — dependency-free `node:test` checks in [tests/data/quiz-content.test.js](tests/data/quiz-content.test.js) that walk every quiz in `quizzes/quizzes.json` and validate its `meta.json`, category files, and every question object (required fields, `correct` index in range, referenced `image` exists on disk). Runs once per question in every quiz, so new quizzes/questions are covered automatically without new test code.
+- `npm run test:e2e` — [Playwright](playwright.config.js) tests under `tests/e2e/` that drive a real Chromium against `python3 -m http.server` (started automatically via Playwright's `webServer` option) and cover practice mode, exam mode, IQ mode, lazy per-category loading/caching, keyboard shortcuts, and the lightbox.
+- CI: [.github/workflows/tests.yml](.github/workflows/tests.yml) runs both on every push/PR to `main`.
 
 ## Architecture
 

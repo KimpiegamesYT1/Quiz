@@ -19,3 +19,21 @@ Wil je een oefentoets (examenmodus) toevoegen? Maak een categorie aan met "exame
 
 **Bijdragen?**
 Heb je een idee of wil je een bug fixen? Pull requests zijn altijd welkom!
+
+**Testen:**
+De site zelf blijft dependency-vrij, maar er is een test-toolchain (Node.js) voor
+contributors die willen controleren dat alles nog werkt:
+
+```bash
+npm install
+npx playwright install chromium
+npm test
+```
+
+Dit draait zowel de data-validatietests (klopt elke quiz/vraag qua structuur?) als de
+end-to-end browsertests (werken alle quizmodi, lazy loading, toetsenbord en lightbox nog?).
+Draait ook automatisch via GitHub Actions bij elke push/PR naar `main`.
+
+---
+
+**Disclaimer:** dit project is volledig gebouwd met behulp van AI (Claude Code/Claude AI).
