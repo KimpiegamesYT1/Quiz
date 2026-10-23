@@ -1,0 +1,444 @@
+{
+  "questions": [
+    {
+      "question": "Een gemeente heeft 40 fysieke servers. De meeste gebruiken minder dan 15% van hun CPU, en bij elke hardwarevervanging moet een server opnieuw worden ingericht vanwege andere drivers. Welk voordeel van servervirtualisatie sluit het best aan op deze situatie?",
+      "options": [
+        "Licenties voor de besturingssystemen van de servers zijn niet meer nodig",
+        "Back-ups en clustering zijn na de virtualisatie niet meer nodig",
+        "Consolidatie op minder hosts, met hardware-onafhankelijke VM's",
+        "Elke VM krijgt een eigen fysieke processor, zodat de prestaties stijgen"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Servervirtualisatie consolideert onderbenutte servers op minder hosts (hogere bezettingsgraad) en VM's zien gestandaardiseerde virtuele hardware, zodat ze los van de fysieke drivers kunnen worden verplaatst.\n\nOnjuist (A): Ook een gast-OS in een VM moet gelicenseerd zijn.\n\nOnjuist (B): Ook een virtuele omgeving heeft back-ups en (bij één host) een SPOF.\n\nOnjuist (D): VM's delen juist de fysieke processors; daar zit de besparing."
+    },
+    {
+      "question": "Paravirtualisatie levert doorgaans betere prestaties dan full virtualisatie, terwijl full virtualisatie meer gast-besturingssystemen ondersteunt. Wat verklaart dit verschil?",
+      "options": [
+        "De aangepaste gastkernel praat direct met de hypervisor, maar niet elk OS is aan te passen.",
+        "Paravirtualisatie gebruikt een type 2 hypervisor, full virtualisatie een type 1 hypervisor.",
+        "Bij paravirtualisatie wordt alle hardware volledig geëmuleerd, wat sneller is maar meer drivers vraagt.",
+        "Bij full virtualisatie draait de hypervisor binnen de gast, bij paravirtualisatie op de hardware."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een aangepaste (paravirtualized) gastkernel communiceert efficiënt met de hypervisor, maar vereist een OS dat aangepast kan worden. Full virtualisatie emuleert de hardware volledig, zodat een ongewijzigd OS werkt, tegen meer overhead.\n\nOnjuist (B): Het type hypervisor staat los van full versus paravirtualisatie.\n\nOnjuist (C): Volledige emulatie is juist kenmerkend voor full virtualisatie.\n\nOnjuist (D): In beide gevallen draait de hypervisor onder de gast, niet erin."
+    },
+    {
+      "question": "Een bedrijf moet een oude applicatie blijven draaien op een verouderd besturingssysteem waarvan de kernel niet kan worden aangepast. De fysieke server is aan vervanging toe. Welke vorm van virtualisatie maakt het mogelijk dit OS op nieuwe hardware te draaien?",
+      "options": [
+        "Session virtualisatie",
+        "Containerisatie",
+        "Full virtualisatie",
+        "Paravirtualisatie"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Bij full virtualisatie merkt het gast-OS niet dat het gevirtualiseerd is, dus een ongewijzigd (legacy) OS kan gewoon draaien.\n\nOnjuist (A): Session virtualisatie (RDS) deelt een modern server-OS tussen gebruikers en draait geen ander OS.\n\nOnjuist (B): Een container deelt de kernel van de host en kan geen eigen, verouderd OS met eigen kernel draaien.\n\nOnjuist (D): Paravirtualisatie vereist een aangepaste gastkernel, en die is hier niet beschikbaar."
+    },
+    {
+      "question": "Een ESXi-host heeft 64 GB fysiek geheugen. Er draaien VM's met samen 96 GB toegewezen geheugen. Op een drukke dag dreigt het fysieke geheugen op te raken, terwijl enkele VM's nauwelijks iets doen. Wat doet ballooning in deze situatie?",
+      "options": [
+        "De VM's met het meeste toegewezen geheugen worden gepauzeerd tot er ruimte is.",
+        "Een driver in rustige VM's claimt geheugen dat de host aan drukke VM's geeft.",
+        "De hypervisor verlaagt het toegewezen geheugen van alle VM's blijvend met een derde.",
+        "De host verplaatst VM's automatisch met vMotion naar een host met meer geheugen."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Bij overcommitment haalt de hypervisor geheugen terug via de balloon driver (VMware Tools) in de VM: die vraagt geheugen op, het gast-OS geeft de minst gebruikte pagina's vrij en de host deelt dat uit aan VM's die het nodig hebben.\n\nOnjuist (A): Ballooning pauzeert geen VM's, maar haalt ongebruikt geheugen uit draaiende VM's terug.\n\nOnjuist (C): Ballooning is tijdelijk en dynamisch; het toegewezen geheugen wordt niet blijvend aangepast.\n\nOnjuist (D): Dat is DRS in een cluster; dit gaat over een losse host en over ballooning."
+    },
+    {
+      "question": "Een vSphere-cluster heeft drie ESXi-hosts, vCenter, gedeelde iSCSI-opslag en een vMotion-netwerk. Host 2 moet overdag nieuwe firmware krijgen, en een database-VM moet van een oude naar een nieuwe datastore. Gebruikers mogen niets merken. Welke combinatie van technieken past?",
+      "options": [
+        "HA om host 2 leeg te maken, vMotion voor de database-VM",
+        "vMotion voor host 2, Storage vMotion voor de database-VM",
+        "Storage vMotion voor host 2, koude migratie voor de database-VM",
+        "Fault Tolerance voor host 2, DRS voor de database-VM"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): vMotion verplaatst draaiende VM's live naar andere hosts, zodat host 2 leeg is voor onderhoud. Storage vMotion verplaatst de bestanden van een draaiende VM naar een andere datastore.\n\nOnjuist (A): HA herstart VM's pas na uitval (met onderbreking), en vMotion wisselt van host, niet van datastore.\n\nOnjuist (C): Storage vMotion verplaatst geen VM's van host, en een koude migratie geeft downtime.\n\nOnjuist (D): FT beschermt tegen uitval en DRS verdeelt belasting; geen van beide verhuist een datastore."
+    },
+    {
+      "question": "Een host in een vSphere-cluster valt 's nachts uit. De VM's die erop draaiden zijn ongeveer twee minuten onbereikbaar en draaien daarna weer op een andere host. Welke functie heeft hier haar werk gedaan?",
+      "options": [
+        "DRS",
+        "Fault Tolerance",
+        "vSphere HA",
+        "vMotion"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): HA detecteert de uitval (via heartbeats over het managementnetwerk) en herstart de VM's op de overgebleven hosts. Daarom is er een korte onderbreking.\n\nOnjuist (A): DRS verdeelt belasting over draaiende hosts, maar herstart geen VM's na uitval.\n\nOnjuist (B): Bij FT draait er al een synchrone kopie mee en is er géén onderbreking.\n\nOnjuist (D): vMotion verplaatst een draaiende VM; bij een uitgevallen host is er niets meer om live te verplaatsen."
+    },
+    {
+      "question": "Waarom kiest een organisatie voor haar datacenter doorgaans een type 1 hypervisor en niet een type 2 hypervisor?",
+      "options": [
+        "Een type 1 hypervisor draait als applicatie naast de werkplek.",
+        "Een type 1 hypervisor ondersteunt geen full virtualisatie.",
+        "Er zit geen host-OS tussen hypervisor en hardware: minder overhead.",
+        "Alleen een type 1 hypervisor kan meerdere VM's tegelijk laten draaien."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een type 1 (bare-metal) hypervisor draait direct op de hardware. Zonder host-OS ertussen is er minder overhead en minder dat kan uitvallen of aangevallen worden.\n\nOnjuist (A): Dat beschrijft juist een type 2 (host-based) hypervisor.\n\nOnjuist (B): Type 1 hypervisors zoals ESXi ondersteunen juist full virtualisatie.\n\nOnjuist (D): Ook een type 2 hypervisor (bijv. VirtualBox) draait meerdere VM's tegelijk."
+    },
+    {
+      "question": "Een organisatie groeit van één losse ESXi-host, beheerd via de Host Client, naar vier hosts. Ze wil vMotion, HA en DRS gaan gebruiken en alles vanuit één plek beheren. Wat is daarvoor, naast gedeelde opslag en netwerken, nodig?",
+      "options": [
+        "De DCUI op de console van elke afzonderlijke host",
+        "vCenter Server, dat alle hosts en VM's centraal beheert",
+        "Een type 2 hypervisor op de werkplek van de beheerder",
+        "De Host Client, geopend op elke afzonderlijke host"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): vMotion, HA en DRS zijn clusterfuncties die vCenter Server mogelijk maakt. vCenter beheert en bewaakt hosts, VM's en opslag vanuit één interface. De Host Client en de DCUI beheren alleen één losse host.\n\nOnjuist (A): De DCUI is alleen voor de basisconfiguratie (IP-adres, rootwachtwoord) van één host.\n\nOnjuist (C): Een type 2 hypervisor draait VM's op een werkplek en beheert geen ESXi-cluster.\n\nOnjuist (D): De Host Client beheert één host tegelijk en biedt geen clusterfuncties."
+    },
+    {
+      "question": "Een ziekenhuis heeft 300 baliemedewerkers die alleen het patiëntendossier en Office gebruiken, en 20 radiologen die met zware 3D-beeldsoftware en eigen tools werken. Welke combinatie van desktopvirtualisatie past het best?",
+      "options": [
+        "Personal VDI voor de balie, SRVD voor de radiologen",
+        "SRVD voor iedereen, met USB redirection voor de radiologen",
+        "SRVD voor de balie, personal VDI met vGPU voor de radiologen",
+        "Pooled VDI voor iedereen, omdat één image het beheer vereenvoudigt"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Taakgerichte medewerkers met dezelfde apps passen goed op gedeelde sessies (SRVD): goedkoop en veel gebruikers per server. Radiologen hebben een eigen machine nodig (eigen tools) én hardwareversnelling via vGPU (bijv. GRID of RemoteFX).\n\nOnjuist (A): Dit is omgekeerd: zware grafische software en eigen tools passen slecht op gedeelde sessies.\n\nOnjuist (B): USB redirection lost het gebrek aan grafische hardwareversnelling niet op.\n\nOnjuist (D): Radiologen kunnen dan geen eigen tools installeren en missen hardwareversnelling."
+    },
+    {
+      "question": "Waarom kunnen er bij Shared Remote Virtual Desktop (SRVD) meer gebruikers op één server werken dan bij Personal Remote Virtual Desktop (PRVD)?",
+      "options": [
+        "Gebruikers delen één OS-instantie i.p.v. elk een eigen OS.",
+        "SRVD heeft geen licensing server en CAL's nodig.",
+        "Bij SRVD draaien de applicaties lokaal op het eindapparaat.",
+        "SRVD gebruikt ICA, dat minder bandbreedte vraagt dan RDP."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Bij SRVD delen alle gebruikers het besturingssysteem en de applicaties van de session host. Bij PRVD draait per gebruiker een volledig OS, wat veel meer resources kost.\n\nOnjuist (B): Ook SRVD met RDS vereist een licensing server en CAL's.\n\nOnjuist (C): Bij SRVD draaien de applicaties juist op de session host.\n\nOnjuist (D): Het protocol bepaalt niet hoeveel gebruikers op een server passen; RDS met SRVD gebruikt zelfs RDP."
+    },
+    {
+      "question": "Een thuiswerker maakt via internet een RDP-verbinding om een RemoteApp te starten. Langs welke RDS-rollen loopt deze verbinding, in de juiste volgorde?",
+      "options": [
+        "Licensing → Gateway → Session Host",
+        "Connection Broker → Gateway → Session Host",
+        "Session Host → Gateway → Connection Broker",
+        "Gateway → Connection Broker → Session Host"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De RD Gateway neemt RDP-verkeer van buiten het netwerk aan en stuurt het door naar de Connection Broker. Die kiest een geschikte session host, waar de RemoteApp draait.\n\nOnjuist (A): De licensing server wordt door de broker geraadpleegd en ligt niet in het verbindingspad.\n\nOnjuist (B): De Gateway is de toegangspoort van buitenaf en komt dus vóór de broker.\n\nOnjuist (C): De session host is het eindpunt, niet het begin van de verbinding."
+    },
+    {
+      "question": "Een callcenter werkt in drie ploegen: 90 medewerkers delen samen 30 werkplekken, en ze werken nooit thuis. Welke keuze voor RDS-licenties (CAL's) is het voordeligst?",
+      "options": [
+        "Per-device CAL's, omdat er minder apparaten dan gebruikers zijn",
+        "Per-user CAL's, omdat er meer gebruikers dan apparaten zijn",
+        "Geen CAL's, omdat RemoteApp-programma's licentievrij zijn",
+        "Per-user CAL's, omdat CAL's niet aan apparaten gekoppeld kunnen worden"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een per-device CAL hoort bij het apparaat. Met 30 apparaten en 90 gebruikers zijn 30 device-CAL's voordeliger dan 90 user-CAL's.\n\nOnjuist (B): Juist dan zijn per-user CAL's duurder: je hebt er 90 nodig in plaats van 30.\n\nOnjuist (C): Ook voor RemoteApp zijn CAL's nodig.\n\nOnjuist (D): Per-device CAL's bestaan wel degelijk."
+    },
+    {
+      "question": "Een hogeschool heeft practicumlokalen waar 500 studenten wisselend inloggen. Na elke sessie moet de werkplek weer schoon zijn, en studenten hoeven zelf geen software te installeren. Welke vorm past het best?",
+      "options": [
+        "Pooled VDI, omdat elke VM na gebruik naar het image terugkeert",
+        "Personal VDI, omdat elke student dan een eigen image krijgt",
+        "Pooled VDI, omdat gebruikers dan zelf software kunnen installeren",
+        "Personal VDI, omdat updates dan per student te plannen zijn"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Bij pooled VDI delen VM's één image en worden ze na gebruik gereset. Dat past bij wisselende gebruikers die een schone, identieke werkplek nodig hebben.\n\nOnjuist (B): 500 eigen images zijn onnodig duur en zwaar in beheer, en blijven niet schoon.\n\nOnjuist (C): Bij pooled VDI kunnen gebruikers juist geen blijvende software installeren.\n\nOnjuist (D): Dat is hier geen eis en maakt het beheer juist complexer."
+    },
+    {
+      "question": "Welk paar van een Citrix-component en een Microsoft RDS-rol vervult dezelfde functie?",
+      "options": [
+        "Virtual Delivery Agent en RD Licensing Server",
+        "Delivery Controller en Connection Broker",
+        "Director en Remote Desktop Gateway",
+        "StoreFront en Remote Desktop Session Host"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Beide verdelen gebruikersverbindingen over de beschikbare sessies of desktops (brokeren) en balanceren de belasting.\n\nOnjuist (A): De VDA draait op elke beschikbare machine; Licensing beheert CAL's.\n\nOnjuist (C): Director is een monitoringtool; de Gateway neemt externe verbindingen aan.\n\nOnjuist (D): StoreFront is de self-service portal (vergelijkbaar met Web Access); de Session Host levert sessies."
+    },
+    {
+      "question": "Bij een administratiekantoor werken twintig medewerkers op één session host met een gedeelde Access-database. Die loopt geregeld vast doordat bestanden door meerdere gebruikers tegelijk vergrendeld zijn. Welke overstap verhelpt dit het meest structureel?",
+      "options": [
+        "Dynamische virtuele kanalen inschakelen voor de sessies",
+        "Overstappen op VDI, met een eigen machine per gebruiker",
+        "Een extra RD Gateway plaatsen voor de interne gebruikers",
+        "Een tweede licensing server toevoegen aan de RDS-omgeving"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Locked resources zoals Access geven minder problemen bij desktopvirtualisatie (VDI), omdat elke gebruiker een eigen (virtuele) machine heeft in plaats van een gedeelde sessie.\n\nOnjuist (A): Virtuele kanalen gaan over datatypen binnen RDP, niet over bestandsvergrendeling.\n\nOnjuist (C): De Gateway gaat over externe toegang en heeft niets met vergrendelde bestanden te maken.\n\nOnjuist (D): Een tweede licensing server lost een SPOF bij licenties op, niet vergrendelde bestanden."
+    },
+    {
+      "question": "Waarom voelt een RDP-sessie ook over een minder snelle verbinding nog redelijk vlot aan?",
+      "options": [
+        "De session host comprimeert elke sessie met RemoteFX vGPU.",
+        "Dynamische kanalen verdubbelen de beschikbare bandbreedte van de sessie.",
+        "De applicatie wordt bij het starten in zijn geheel naar de client gekopieerd.",
+        "Door client-side caching worden alleen de gewijzigde schermdelen verstuurd."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De client onthoudt eerder ontvangen schermbeelden, zodat bij een refresh alleen het gewijzigde deel verstuurd hoeft te worden. Dat vermindert de belasting van de verbinding.\n\nOnjuist (A): RemoteFX vGPU deelt een GPU tussen VM's en is geen compressietechniek.\n\nOnjuist (B): Virtuele kanalen verdelen datatypen, maar vergroten de bandbreedte niet.\n\nOnjuist (C): De applicatie blijft op de session host draaien; alleen beeld en invoer gaan over de lijn."
+    },
+    {
+      "question": "Een ontwikkelteam hoort steeds 'bij mij werkt het wel': de test- en productieservers hebben andere versies van Node.js en bibliotheken dan de laptops van de ontwikkelaars. Wat lost containerisatie hier op?",
+      "options": [
+        "Applicatie en afhankelijkheden zitten samen in één image dat overal gelijk draait.",
+        "Containers nemen de bibliotheken van de host over, waardoor versies vanzelf gelijk lopen.",
+        "Containers emuleren de hardware, waardoor het OS van de server niet meer uitmaakt.",
+        "Containers worden automatisch bijgewerkt naar de nieuwste versie van Node.js."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een image bevat code, runtime, bibliotheken en instellingen. De inhoud blijft gelijk, dus de applicatie gedraagt zich op elke host hetzelfde (portability).\n\nOnjuist (B): Containers gebruiken juist hun eigen bibliotheken uit het image, los van de host.\n\nOnjuist (C): Containers emuleren geen hardware en delen de kernel van de host.\n\nOnjuist (D): De inhoud van een container verandert juist niet vanzelf; dat is het voordeel."
+    },
+    {
+      "question": "Een beveiligingsadviseur stelt dat virtuele machines sterker van elkaar geïsoleerd zijn dan containers. Waarop is deze stelling gebaseerd?",
+      "options": [
+        "Containers draaien altijd met beheerrechten rechtstreeks op de hypervisor.",
+        "Containers hebben geen eigen bestandssysteem en lezen elkaars bestanden.",
+        "Containers kunnen geen gescheiden netwerken gebruiken en zien al het verkeer.",
+        "Containers delen de hostkernel; een kernelprobleem raakt alle containers."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Elke VM heeft een eigen gast-OS met eigen kernel boven op de hypervisor. Containers zijn processen op één gedeelde kernel: een fout of lek in die kernel treft alle containers op de host.\n\nOnjuist (A): Containers draaien op een host-OS met een container engine, niet op een hypervisor.\n\nOnjuist (B): Elke container heeft juist een eigen, gescheiden bestandssysteem.\n\nOnjuist (C): Met (user-defined) netwerken kun je containers juist van elkaar isoleren."
+    },
+    {
+      "question": "Een beheerder vervangt een PostgreSQL-container elke nacht door een nieuwere imageversie: oude container verwijderen, nieuwe starten. Na de eerste nacht is alle data verdwenen. Wat had de beheerder moeten doen?",
+      "options": [
+        "Na elke wijziging van de data docker commit uitvoeren",
+        "De container starten met de optie restart: always",
+        "De datamap van de database op een Docker volume zetten",
+        "De container voortaan stoppen in plaats van verwijderen"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Data in de beschrijfbare containerlaag verdwijnt als de container wordt verwijderd. Op een (named) volume blijft de data bestaan en kan de nieuwe container hetzelfde volume koppelen.\n\nOnjuist (A): Data in een image stoppen is onwerkbaar voor een database en wordt niet automatisch meegenomen naar de nieuwe imageversie.\n\nOnjuist (B): Herstarten bewaart data alleen zolang de container bestaat, niet na verwijderen.\n\nOnjuist (D): Dan blijft de data wel, maar kun je de container niet vervangen door een nieuwe imageversie."
+    },
+    {
+      "question": "In een docker-compose.yml staan de services web, api en db. Alleen web mag van buitenaf bereikbaar zijn (poort 443), en api moet db kunnen bereiken via de naam `db`. Welke opzet is juist?",
+      "options": [
+        "De services gebruiken het default bridge network met IP-adressen.",
+        "db krijgt ports: 5432:5432, zodat api de database kan bereiken.",
+        "Alleen web krijgt ports; alle drie in een user-defined netwerk.",
+        "Alle drie krijgen ports, zodat de services elkaar kunnen vinden."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Met ports publiceer je alleen web naar de host. In een user-defined netwerk vinden api en db elkaar op servicenaam via DNS, zonder dat db van buitenaf bereikbaar is.\n\nOnjuist (A): Op het default bridge network werkt naamresolutie (DNS) niet.\n\nOnjuist (B): api bereikt db al via het interne netwerk; de database openzetten naar buiten is onveilig.\n\nOnjuist (D): Poorten publiceren is niet nodig voor onderling verkeer en maakt api en db onnodig van buitenaf bereikbaar."
+    },
+    {
+      "question": "Waarom kost het starten van tien containers vanuit hetzelfde image nauwelijks extra schijfruimte?",
+      "options": [
+        "Docker comprimeert elke gestarte container automatisch tot de grootte van één image-laag.",
+        "Containers slaan niets op schijf op en houden alle wijzigingen alleen in het geheugen.",
+        "De tien containers delen samen één beschrijfbare laag bovenop het gedeelde image.",
+        "Image-lagen zijn read-only en gedeeld; elke container heeft alleen een eigen schrijflaag."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Alle lagen van het image zijn read-only en worden door alle containers gedeeld. Alleen de bovenste, beschrijfbare laag is per container, en die bevat alleen de wijzigingen.\n\nOnjuist (A): Er wordt niets gecomprimeerd; het delen van read-only lagen bespaart de ruimte.\n\nOnjuist (B): Wijzigingen worden wel op schijf geschreven, in de beschrijfbare containerlaag.\n\nOnjuist (C): De beschrijfbare laag kan NIET gedeeld worden; elke container heeft er één."
+    },
+    {
+      "question": "In een draaiende container zijn handmatig configuratiewijzigingen aangebracht. Deze container moet, inclusief die wijzigingen, naar een server zonder internet en zonder registry. Welke werkwijze werkt?",
+      "options": [
+        "docker commit, dan docker save en op de server docker load",
+        "docker push naar Docker Hub en daarna op de server docker pull",
+        "docker save van het oorspronkelijke image en op de server docker load",
+        "docker volume create op de server en daarna docker run met -v"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): docker commit legt de huidige staat van de container (inclusief beschrijfbare laag) vast in een nieuw image. docker save zet dat image met lagen en tags in een tar, en docker load zet het op de server terug.\n\nOnjuist (B): De server heeft geen internet, dus push en pull via Docker Hub werken niet.\n\nOnjuist (C): Het oorspronkelijke image bevat de handmatige wijzigingen in de container niet.\n\nOnjuist (D): Een leeg volume bevat de configuratie uit de container niet."
+    },
+    {
+      "question": "Wat kan Kubernetes wél en Docker Compose niet?",
+      "options": [
+        "De startvolgorde van afhankelijke containers in de applicatie vastleggen",
+        "Containers over meerdere hosts verdelen en bij uitval elders herstarten",
+        "Meerdere samenwerkende containers in één YAML-bestand definiëren",
+        "Netwerken en volumes voor de containers van een applicatie aanmaken"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Docker Compose beheert samenwerkende containers op één Docker-host. Kubernetes orchestreert containers over een cluster van nodes, met self-healing, schaling en load balancing.\n\nOnjuist (A): Compose regelt dat met depends_on.\n\nOnjuist (C): Dat is precies wat Docker Compose doet.\n\nOnjuist (D): Ook Compose maakt netwerken en volumes aan."
+    },
+    {
+      "question": "Een image heet `localhost:9105/webshop:2.1`. Wat betekenen de drie onderdelen van deze naam?",
+      "options": [
+        "Repository localhost:9105, image webshop, registry 2.1",
+        "Registry localhost:9105, repository webshop, tag 2.1",
+        "Container webshop op hostpoort 9105, imageversie 2.1",
+        "Host localhost met poortmapping 9105:2.1 naar webshop"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een registry-hostnaam (met poort) vooraan bepaalt waar het image staat. Daarna volgt de repository (alle versies van webshop) en na de dubbele punt de tag (versie 2.1).\n\nOnjuist (A): De volgorde van registry en repository klopt niet, en 2.1 is een tag.\n\nOnjuist (C): De naam beschrijft een image en zijn locatie, geen draaiende container met poort.\n\nOnjuist (D): Een poortmapping geef je met -p op, niet in de naam van een image."
+    },
+    {
+      "question": "Een webshop draait in Kubernetes als Deployment met 4 replica's, verdeeld over 3 worker nodes. Worker 2, waarop 2 van de pods draaien, valt uit. Wat gebeurt er?",
+      "options": [
+        "Kubernetes wacht tot worker 2 terug is en start de pods daar opnieuw.",
+        "De Deployment schaalt blijvend terug naar 2 replica's, want er is minder capaciteit.",
+        "Kubernetes ziet 2 i.p.v. 4 pods en plant 2 nieuwe op de andere nodes in.",
+        "De 2 pods worden live, met hun IP-adres, naar de andere nodes gemigreerd."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De Controller vergelijkt de huidige toestand (2 pods) met de gewenste toestand (4 replica's) en laat nieuwe pods maken. De Scheduler plaatst die op geschikte, gezonde nodes. De nieuwe pods krijgen nieuwe IP-adressen.\n\nOnjuist (A): Kubernetes herstelt de gewenste toestand direct op de nodes die nog beschikbaar zijn.\n\nOnjuist (B): Het gewenste aantal replica's blijft 4; Kubernetes stuurt daar juist naartoe.\n\nOnjuist (D): Pods worden niet live gemigreerd zoals bij vMotion; er komen nieuwe pods met nieuwe IP-adressen."
+    },
+    {
+      "question": "Wat wordt bedoeld met de 'desired state' in Kubernetes?",
+      "options": [
+        "De maximale capaciteit aan CPU en geheugen die een node kan leveren",
+        "De toestand van het cluster direct na het uitvoeren van kubeadm init",
+        "De laatst gemaakte back-up van etcd, die bij uitval wordt teruggezet",
+        "De vastgelegde gewenste situatie, waar Kubernetes steeds naartoe stuurt"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Je beschrijft declaratief (in YAML) hoe het cluster eruit moet zien, bijvoorbeeld 3 replica's. De Controller vergelijkt dat voortdurend met de werkelijkheid en lost verschillen op.\n\nOnjuist (A): Dat is de capaciteit van een node, niet de gewenste toestand van workloads.\n\nOnjuist (B): kubeadm init zet alleen een basiscluster op; de gewenste toestand beschrijf je zelf.\n\nOnjuist (C): etcd bewaart de clustertoestand, maar desired state is geen back-up."
+    },
+    {
+      "question": "Een interne API moet bereikbaar zijn voor de frontend-pods in het cluster, maar nooit van buitenaf. De API-pods worden regelmatig vervangen. Hoe stel je de API beschikbaar?",
+      "options": [
+        "Een Service van het type NodePort op elke worker node",
+        "Een Service van het type ExternalName naar de pod-IP's",
+        "Een ClusterIP-Service met een selector op de API-pods",
+        "De actuele IP-adressen van de pods in een ConfigMap"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een Service geeft een vaste naam en vast IP-adres voor wisselende pods (via een selector op labels). Het type ClusterIP maakt de Service alleen binnen het cluster bereikbaar.\n\nOnjuist (A): NodePort maakt de API juist van buiten het cluster bereikbaar.\n\nOnjuist (B): ExternalName geeft een CNAME naar een externe naam en wijst niet naar pods.\n\nOnjuist (D): Pod-IP's veranderen bij vervanging, dus die lijst raakt meteen verouderd."
+    },
+    {
+      "question": "Na het uitrollen van versie 2.0 via een Deployment krijgen gebruikers foutmeldingen. Wat is de snelste weg terug naar de werkende versie?",
+      "options": [
+        "De worker nodes herstarten, zodat het vorige image wordt geladen",
+        "Een nieuwe Service maken die verwijst naar versie 1.0",
+        "De pods handmatig verwijderen, zodat versie 1.0 vanzelf start",
+        "Een rollback van de Deployment naar de vorige versie"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een Deployment ondersteunt rollbacks: bij problemen na een update draai je snel terug naar een eerdere, stabiele versie. Dat gaat weer geleidelijk, zonder onderbreking.\n\nOnjuist (A): Een herstart verandert de gewenste toestand niet; de pods komen terug als 2.0.\n\nOnjuist (B): Er draaien geen pods van versie 1.0 meer waar een Service naar kan wijzen.\n\nOnjuist (C): De Deployment maakt dan nieuwe pods van de huidige gewenste versie, dus 2.0."
+    },
+    {
+      "question": "Bij servervirtualisatie (week 2) en container orchestration (week 6) komen vergelijkbare concepten terug. Welke koppeling klopt?",
+      "options": [
+        "vMotion en een Kubernetes-ReplicaSet",
+        "Een ESXi-host en een Kubernetes-pod",
+        "vSphere HA en een Kubernetes-Service",
+        "vCenter en de Kubernetes control plane"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Net als vCenter voor ESXi-hosts beheert de Kubernetes master (control plane) centraal het cluster: plaatsing, beschikbaarheid en schaal.\n\nOnjuist (A): vMotion verplaatst een draaiende VM; een ReplicaSet houdt een aantal pods draaiende.\n\nOnjuist (B): Een ESXi-host is vergelijkbaar met een worker node; een pod is de kleinste workload-eenheid.\n\nOnjuist (C): HA lijkt op self-healing; een Service geeft een stabiel netwerkadres."
+    },
+    {
+      "question": "Een databasepod gebruikt een emptyDir-volume. Na een herplaatsing naar een andere node is alle data verdwenen. Welke oplossing zorgt ervoor dat de data blijft bestaan, ongeacht op welke node de pod draait?",
+      "options": [
+        "Meer replica's in de Deployment, zodat er altijd een kopie is",
+        "Een hostPath-volume op de node waar de pod nu draait",
+        "Een PVC, gekoppeld aan een PV op netwerkopslag (bijv. NFS)",
+        "Een ConfigMap waarin de databasebestanden worden opgeslagen"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een emptyDir leeft zo lang als de pod. Met een PersistentVolumeClaim vraag je opslag aan die aan een PersistentVolume op netwerkopslag wordt gekoppeld, zodat de pod de data op elke node kan mounten.\n\nOnjuist (A): Extra replica's met een emptyDir hebben elk hun eigen tijdelijke, lege volume.\n\nOnjuist (B): hostPath-data staat op één node; na herplaatsing naar een andere node is die niet beschikbaar.\n\nOnjuist (D): Een ConfigMap is bedoeld voor configuratie, niet voor databasebestanden."
+    },
+    {
+      "question": "Een WordPress-site met MariaDB wordt in Kubernetes vaak als twee aparte pods opgezet in plaats van als twee containers in één pod. Wat is daarvan het voordeel?",
+      "options": [
+        "Een pod mag volgens Kubernetes maar één container bevatten.",
+        "Ze kunnen los van elkaar geschaald en vervangen worden.",
+        "Containers in één pod kunnen niet via localhost met elkaar praten.",
+        "Alleen pods in aparte namespaces kunnen een Service gebruiken."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Containers in één pod delen hun levenscyclus: ze worden samen gestart, geschaald en vervangen. In aparte pods kun je bijvoorbeeld WordPress opschalen zonder extra databases te starten, en verbind je ze met een Service.\n\nOnjuist (A): Een pod kan één of (meestal) meerdere containers bevatten.\n\nOnjuist (C): Containers in één pod delen juist het netwerk en bereiken elkaar via localhost.\n\nOnjuist (D): Services werken gewoon binnen dezelfde namespace."
+    },
+    {
+      "question": "`kubectl get pods` geeft geen antwoord meer, maar de containers op de worker nodes blijven gewoon draaien en bezoekers merken niets. Welk component is waarschijnlijk niet bereikbaar?",
+      "options": [
+        "De API Server",
+        "kube-proxy",
+        "De container runtime",
+        "De kubelet op de worker nodes"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): kubectl praat altijd via de API Server, de enige ingang tot de control plane. Bestaande pods draaien door op de nodes (kubelet en container runtime), ook als de API Server tijdelijk weg is.\n\nOnjuist (B): Zonder kube-proxy zou het verkeer naar pods niet goed gerouteerd worden, en zouden bezoekers dat merken.\n\nOnjuist (C): Zonder container runtime zouden de containers niet meer draaien.\n\nOnjuist (D): Zonder kubelet zouden pods op die nodes niet meer beheerd en bewaakt worden; kubectl praat bovendien niet met de kubelet."
+    },
+    {
+      "question": "Welke combinatie van opslagvorm en typisch gebruik klopt?",
+      "options": [
+        "File (NFS) voor een S3-applicatie, block (SAN) voor foto's die op tags doorzocht worden",
+        "Block (SAN/iSCSI) voor een VMFS-datastore, object (S3) voor miljoenen foto's",
+        "Block (SAN) voor gedeelde mappen via SMB, file (NAS) voor een VMFS-datastore",
+        "Object (S3) voor een VMFS-datastore, block (SAN) voor foto's via een API"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Block storage levert ruwe LUN's die ESXi met VMFS formatteert. Object storage is via een API bereikbaar en schaalt goed naar grote hoeveelheden ongestructureerde data zoals foto's.\n\nOnjuist (A): Een S3-applicatie verwacht een S3-API, en block storage kent geen metadata of tags per object.\n\nOnjuist (C): SMB-shares zijn file storage, en VMFS komt op block storage.\n\nOnjuist (D): VMFS heeft block storage nodig en block storage heeft geen S3-API."
+    },
+    {
+      "question": "Een webbureau bouwt een app die foto's en video's van gebruikers bewaart. Nu draait de app op Amazon S3, later mogelijk on-premises. De bestanden moeten op tags doorzoekbaar zijn. Welke oplossing past het best?",
+      "options": [
+        "Een NAS met SMB-shares en een mappenstructuur per tag",
+        "Een iSCSI-LUN met VMFS die aan de webserver gekoppeld is",
+        "Docker volumes op de webserver waarop de app draait",
+        "MinIO, want het is S3-compatibel en bewaart metadata"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): MinIO is S3-compatibel, dus de app kan zonder grote aanpassingen on-premises draaien. Object storage bewaart uitgebreide metadata, waarmee objecten getagd en doorzocht kunnen worden.\n\nOnjuist (A): Een NAS biedt geen S3-API, en een object kan maar in één map tegelijk staan.\n\nOnjuist (B): Block storage biedt geen S3-API en geen metadata per object.\n\nOnjuist (C): Een volume op één server is niet S3-compatibel en schaalt niet mee."
+    },
+    {
+      "question": "Waarom schaalt object storage beter naar miljarden items dan een klassiek bestandssysteem?",
+      "options": [
+        "Objecten staan plat, met unieke sleutels in plaats van mappen.",
+        "Object storage slaat geen metadata op en is daardoor veel lichter.",
+        "Object storage gebruikt kleinere blokken dan een SAN met VMFS.",
+        "Object storage draait altijd in de cloud met onbeperkte capaciteit."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Object storage gebruikt een platte structuur waarin elk object een unieke sleutel heeft. Daardoor kan het miljarden objecten bevatten zonder dat de prestaties daaronder lijden.\n\nOnjuist (B): Object storage slaat juist uitgebreide metadata op.\n\nOnjuist (C): Object storage werkt niet met blokken, maar met objecten en sleutels.\n\nOnjuist (D): Object storage kan ook on-premises draaien, bijvoorbeeld met MinIO."
+    },
+    {
+      "question": "Een organisatie gebruikt MinIO voor back-ups en wil zich beschermen tegen (1) uitval van schijven en (2) ransomware die back-ups probeert te versleutelen of te verwijderen. Welke combinatie van functies past?",
+      "options": [
+        "Erasure coding tegen schijfuitval, object locking tegen ransomware",
+        "Lifecycle management tegen schijfuitval, versiebeheer uit tegen ransomware",
+        "Object locking tegen schijfuitval, erasure coding tegen ransomware",
+        "Bitrot-detectie tegen schijfuitval, bucket replicatie tegen ransomware"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Erasure coding maakt data na schijfuitval reconstrueerbaar. Object locking voorkomt dat objecten een tijd lang verwijderd of overschreven worden, ook door ransomware.\n\nOnjuist (B): Lifecycle management beschermt niet tegen uitval, en zonder versiebeheer ben je kwetsbaarder.\n\nOnjuist (C): Dit is omgekeerd: locking herstelt geen data en erasure coding houdt geen aanvaller tegen.\n\nOnjuist (D): Replicatie kopieert ook versleutelde of verwijderde objecten naar de tweede locatie."
+    },
+    {
+      "question": "Een organisatie wil gedeelde opslag voor een vSphere-cluster, zodat vMotion en HA werken, met lage latentie voor de VM-bestanden. Welke opslagkeuze past?",
+      "options": [
+        "Eén MinIO-bucket per host, voor de bestanden van de VM's",
+        "Object storage via de S3 API, gekoppeld als datastore",
+        "Lokale schijven in elke host, met elk een eigen datastore",
+        "Een SAN via iSCSI, met de LUN's als VMFS-datastore"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Voor vMotion en HA moeten alle hosts bij de VM-bestanden kunnen. Een SAN levert snelle block storage die ESXi met VMFS formatteert als gedeelde datastore.\n\nOnjuist (A): Een bucket is object storage en geen datastore voor VM-bestanden.\n\nOnjuist (B): ESXi gebruikt geen S3-API als datastore; object storage is daar niet voor bedoeld.\n\nOnjuist (C): Lokale datastores zijn niet gedeeld, dus vMotion (zonder extra stappen) en HA werken niet."
+    },
+    {
+      "question": "Hoe hangen een MinIO-tenant en een Kubernetes-namespace met elkaar samen?",
+      "options": [
+        "Elke tenant heeft een eigen namespace met de pods van die tenant.",
+        "Een tenant is een namespace zonder pods, met alleen buckets erin.",
+        "Alle tenants delen de namespace waarin de MinIO Operator zelf draait.",
+        "Een namespace bevat altijd precies één bucket van één MinIO-tenant."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Bij het aanmaken van een tenant met de MinIO Operator moet de tenant een eigen namespace hebben. Daarin maakt de Operator de pods die de tenantconfiguratie nodig heeft.\n\nOnjuist (B): Een tenant heeft juist eigen pods die de opslag verzorgen.\n\nOnjuist (C): In de namespace van de Operator draaien alleen de Operator- en Console-pod.\n\nOnjuist (D): Een tenant kan meerdere buckets hebben; namespaces bevatten geen buckets."
+    },
+    {
+      "question": "Een startup bewaart de productie-back-ups in een stand-alone MinIO-server met één schijf. Wat is het grootste risico van deze opzet?",
+      "options": [
+        "Een stand-alone MinIO-server ondersteunt de S3 API niet volledig.",
+        "Een stand-alone MinIO-server kost licentiegeld per terabyte.",
+        "Een stand-alone MinIO-server kan geen nieuwe buckets aanmaken.",
+        "Geen fouttolerantie: bij uitval van server of schijf is de data weg."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een stand-alone server is bedoeld voor ontwikkeling en evaluatie. Zonder meerdere knooppunten en erasure coding is er geen bescherming tegen uitval van server of schijf.\n\nOnjuist (A): Ook stand-alone is MinIO compatibel met de S3 API.\n\nOnjuist (B): MinIO is open-source en heeft geen licentiekosten.\n\nOnjuist (C): Buckets aanmaken kan ook op een stand-alone server."
+    },
+    {
+      "question": "Waarom is object storage minder geschikt als opslag voor de datafiles van een draaiende database?",
+      "options": [
+        "Object storage is alleen te benaderen via een webbrowser en de console.",
+        "Objecten worden als geheel vervangen; dat past slecht bij kleine wijzigingen.",
+        "Object storage ondersteunt geen versleuteling van opgeslagen data.",
+        "Object storage kan geen afzonderlijke bestanden groter dan 1 GB opslaan."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een object is een onveranderlijk gegevensitem. Object storage is ideaal voor data die vooral wordt opgeslagen en gelezen, maar minder geschikt als gegevens vaak bijgewerkt worden, zoals bij een database.\n\nOnjuist (A): Object storage is via API's (zoals S3) en tools zoals mc te benaderen.\n\nOnjuist (C): MinIO biedt juist versleuteling en toegangsbeheer.\n\nOnjuist (D): Object storage kan juist zeer grote bestanden en enorme hoeveelheden data opslaan."
+    }
+  ]
+}

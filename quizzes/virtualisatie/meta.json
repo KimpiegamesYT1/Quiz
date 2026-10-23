@@ -35,6 +35,11 @@
       "id": "week7",
       "name": "Week 7: Object Storage (MinIO)",
       "file": "week7.json"
+    },
+    {
+      "id": "examen",
+      "name": "Oefen Examen (40 vragen)",
+      "file": "examen.json"
     }
   ]
 }
