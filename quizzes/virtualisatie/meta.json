@@ -27,6 +27,11 @@
       "file": "week5.json"
     },
     {
+      "id": "week6",
+      "name": "Week 6: Kubernetes (container orchestration)",
+      "file": "week6.json"
+    },
+    {
       "id": "week7",
       "name": "Week 7: Object Storage (MinIO)",
       "file": "week7.json"

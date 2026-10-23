@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "question": "Welk probleem van een losse Docker-host met containers lost Kubernetes op?",
+      "options": [
+        "Een losse Docker-host is niet schaalbaar of hoog beschikbaar.",
+        "Een losse Docker-host ondersteunt geen Linux-containers.",
+        "Een losse Docker-host kan geen images uit een registry ophalen.",
+        "Een losse Docker-host kan geen persistente volumes gebruiken."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een enkele Docker-host met containers is niet schaalbaar en niet hoog beschikbaar. Kubernetes verdeelt containers over meerdere nodes, herstart ze elders bij uitval en verdeelt de belasting.\n\nOnjuist (B): Linux-containers zijn juist de standaard op een Docker-host.\n\nOnjuist (C): Ook een losse Docker-host kan gewoon images pullen.\n\nOnjuist (D): Docker volumes en bind mounts werken gewoon op een losse host (week 5)."
+    },
+    {
+      "question": "Een container in een pod crasht midden in de nacht. Wat doet Kubernetes dankzij self-healing?",
+      "options": [
+        "Het start automatisch een nieuwe container.",
+        "Het rolt het image terug naar een oude versie.",
+        "Het zet de hele node in onderhoudsmodus.",
+        "Het wacht tot een beheerder de pod herstart."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Self-healing: als een container uitvalt, wordt er automatisch een nieuwe gestart. Valt een node uit, dan wordt de workload elders opnieuw gestart.\n\nOnjuist (B): Een rollback is een bewuste actie bij een Deployment, geen reactie op een crash.\n\nOnjuist (C): Eén crashende container is geen reden om een hele node uit te schakelen.\n\nOnjuist (D): Juist dat handmatige werk neemt Kubernetes over."
+    },
+    {
+      "question": "Een webshop krijgt tijdens Black Friday veel meer bezoekers dan normaal. Welke Kubernetes-functionaliteit vangt dat automatisch op?",
+      "options": [
+        "Storage orchestration",
+        "Auto scaling",
+        "Multi platform",
+        "Self healing"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Met auto scaling worden bij toenemende belasting automatisch extra pods bijgeschaald (en later weer afgeschaald).\n\nOnjuist (A): Storage orchestration regelt het automatisch koppelen van opslag.\n\nOnjuist (C): Multi platform betekent dat nodes over verschillende clouds of on-premises verdeeld kunnen zijn.\n\nOnjuist (D): Self healing vervangt uitgevallen containers, maar voegt geen capaciteit toe."
+    },
+    {
+      "question": "Welk component van de control plane is het enige waarmee gebruikers en andere componenten direct communiceren?",
+      "options": [
+        "Scheduler",
+        "Controller",
+        "etcd",
+        "API Server"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De API Server is de front-end van de control plane. Interne systeemcomponenten en externe gebruikers (bijv. via kubectl) communiceren allemaal via deze API.\n\nOnjuist (A): De Scheduler ontvangt nieuwe verzoeken via de API Server en wijst ze toe aan nodes.\n\nOnjuist (B): De Controller haalt de gewenste toestand op via de API Server.\n\nOnjuist (C): etcd is de database met de clustertoestand; die wordt via de API Server benaderd."
+    },
+    {
+      "question": "Je maakt een nieuwe pod aan, maar op geen enkele node zijn genoeg resources vrij. Wat gebeurt er?",
+      "options": [
+        "De Controller verwijdert de pod direct en meldt een fout.",
+        "De Scheduler laat de pod wachten (pending) op een geschikte node.",
+        "De Scheduler plaatst de pod dan toch op de minst belaste node.",
+        "De kubelet start de pod dan op de master node."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): De Scheduler beoordeelt de nodes en plaatst pods op de best passende node. Is er geen geschikte node, dan blijft de pod in de status pending tot er een beschikbaar komt.\n\nOnjuist (A): De pod wordt niet verwijderd, maar wacht als pending.\n\nOnjuist (C): De Scheduler plaatst een pod alleen op een node die geschikt is.\n\nOnjuist (D): De kubelet voert alleen taken uit die aan zijn node zijn toegewezen."
+    },
+    {
+      "question": "Wat is etcd in een Kubernetes-cluster?",
+      "options": [
+        "De agent die op elke node de taken van de API Server uitvoert",
+        "Een key-value store met de configuratie en status van het cluster",
+        "Het component dat nieuwe pods aan geschikte nodes toewijst",
+        "Het component dat op elke node routing en load balancing regelt"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): etcd is de key-value store waarin Kubernetes alle clusterdata bewaart: de volledige configuratie en toestand. De master raadpleegt etcd voor de status van nodes, pods en containers.\n\nOnjuist (A): Dat is de kubelet.\n\nOnjuist (C): Dat is de Scheduler.\n\nOnjuist (D): Dat is kube-proxy."
+    },
+    {
+      "question": "Wat is de taak van de Controller in de control plane?",
+      "options": [
+        "Alle clusterdata als key-value store in een database bewaren",
+        "Images uit een registry halen en containers starten",
+        "Nieuwe pods toewijzen aan de best passende worker node",
+        "Verschillen tussen gewenste en huidige toestand herstellen"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De Controller haalt de gewenste toestand (desired state) op via de API Server, vergelijkt die met de huidige toestand van de nodes en lost eventuele verschillen op.\n\nOnjuist (A): Dat doet etcd.\n\nOnjuist (B): Dat doet de container runtime op de worker node.\n\nOnjuist (C): Dat doet de Scheduler."
+    },
+    {
+      "question": "Welk component draait op elke node, voert de taken van de API Server uit en rapporteert de status van pods terug?",
+      "options": [
+        "Scheduler",
+        "kubelet",
+        "kube-proxy",
+        "etcd"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): De kubelet is de belangrijkste Kubernetes-agent op elke node. Hij maakt CPU, RAM en opslag van de node onderdeel van het cluster, voert taken uit en rapporteert terug aan de master.\n\nOnjuist (A): De Scheduler draait op de control plane en wijst pods toe aan nodes.\n\nOnjuist (C): kube-proxy regelt netwerkroutering en load balancing op de node.\n\nOnjuist (D): etcd is de database van de control plane."
+    },
+    {
+      "question": "Verkeer naar de pods op een worker node wordt niet goed gerouteerd en verdeeld. Welk node-component is hiervoor verantwoordelijk?",
+      "options": [
+        "kubelet",
+        "kube-proxy",
+        "Container runtime",
+        "Controller"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): kube-proxy zorgt dat elke node een IP-adres krijgt en beheert iptables-regels voor routering en load balancing van verkeer.\n\nOnjuist (A): De kubelet voert taken uit en bewaakt pods, maar regelt de netwerkroutering niet.\n\nOnjuist (C): De container runtime haalt images op en start en stopt containers.\n\nOnjuist (D): De Controller zit in de control plane en bewaakt de gewenste toestand."
+    },
+    {
+      "question": "Waarvoor is kubeadm bedoeld?",
+      "options": [
+        "Het dagelijks beheren van pods via de command line",
+        "Het leveren van de machines voor de master- en worker-nodes",
+        "Het snel opzetten van een minimaal werkend cluster",
+        "Het draaien van een lokaal testcluster op één laptop"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): kubeadm voert de stappen uit om snel een minimaal levensvatbaar cluster op te starten. Het gaat alleen om bootstrapping, niet om het leveren van de machines zelf.\n\nOnjuist (A): Daarvoor gebruik je kubectl.\n\nOnjuist (B): kubeadm levert juist géén machines; die moeten er al zijn.\n\nOnjuist (D): Daarvoor is bijvoorbeeld Minikube bedoeld."
+    },
+    {
+      "question": "Met welke tool geef je via de API Server opdrachten aan het cluster, zoals `get pods` of `apply -f`?",
+      "options": [
+        "kubectl",
+        "minikube",
+        "kubelet",
+        "kubeadm"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): kubectl is de command-line tool (kubectl <command> <type> <name>) waarmee je via de API Server objecten opvraagt, aanmaakt en beheert.\n\nOnjuist (B): Met minikube start en stop je een lokaal cluster; objecten beheer je met kubectl.\n\nOnjuist (C): De kubelet is de agent op elke node, geen tool voor de beheerder.\n\nOnjuist (D): kubeadm is bedoeld om een cluster op te zetten, niet voor dagelijks beheer van objecten."
+    },
+    {
+      "question": "Wat is een pod in Kubernetes?",
+      "options": [
+        "Een fysieke of virtuele machine waarop de containers van het cluster draaien",
+        "Een vast IP-adres en een vaste DNS-naam voor een groep containers",
+        "De kleinste eenheid, met één of meer containers die resources delen",
+        "Een object dat ervoor zorgt dat een vast aantal replica's actief blijft"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een pod is de kleinste eenheid die je kunt maken en beheren. Hij bevat één of meer containers met een gedeelde levenscyclus, die netwerk en eventueel volumes delen.\n\nOnjuist (A): Dat is een (worker) node.\n\nOnjuist (B): Dat biedt een Service.\n\nOnjuist (D): Dat is een ReplicaSet."
+    },
+    {
+      "question": "WordPress en MariaDB draaien als twee containers in dezelfde pod. Hoe bereikt WordPress de database?",
+      "options": [
+        "Via localhost, omdat ze hetzelfde netwerk delen",
+        "Via het IP-adres van de node waarop de pod draait",
+        "Via een Service van het type NodePort in het cluster",
+        "Via een overlay network tussen de twee containers"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Alle containers in één pod delen dezelfde netwerk-namespace: hetzelfde IP-adres en dezelfde poorten. Ze bereiken elkaar via localhost.\n\nOnjuist (B): Dat is niet nodig; binnen de pod is localhost voldoende.\n\nOnjuist (C): Een NodePort is voor toegang van buiten het cluster, niet binnen één pod.\n\nOnjuist (D): Containers in één pod delen al hetzelfde netwerk; een overlay is niet nodig."
+    },
+    {
+      "question": "Een pod die door een Deployment wordt beheerd, crasht. Wat gebeurt er volgens de les?",
+      "options": [
+        "De Deployment verlaagt blijvend het aantal replica's.",
+        "Er komt een nieuwe pod, met een nieuw IP-adres.",
+        "De pod blijft weg tot iemand hem handmatig start.",
+        "Dezelfde pod wordt met hetzelfde IP-adres herstart."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Pods zijn vluchtig (ephemeral): een gestorven pod wordt niet herstart, maar een controller (zoals een Deployment of ReplicaSet) maakt een nieuwe. Die krijgt een nieuw IP-adres.\n\nOnjuist (A): De Deployment houdt juist het gewenste aantal replica's in stand.\n\nOnjuist (C): De controller zorgt automatisch voor het gewenste aantal pods.\n\nOnjuist (D): Een gestorven pod komt niet terug; er komt een nieuwe met een ander IP-adres."
+    },
+    {
+      "question": "Een applicatie heeft een databasewachtwoord en een paar gewone instellingen nodig. Hoe sla je die in Kubernetes op?",
+      "options": [
+        "Wachtwoord in een Secret, instellingen in een ConfigMap",
+        "Allebei in het containerimage, zodat ze altijd meegaan",
+        "Allebei in een ConfigMap, want die is ook beveiligd",
+        "Het wachtwoord in een ConfigMap, instellingen in een Secret"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een Secret is bedoeld voor vertrouwelijke gegevens zoals wachtwoorden en tokens. Een ConfigMap bevat gewone configuratie en scheidt die van het containerimage.\n\nOnjuist (B): Configuratie en geheimen horen juist los van het image.\n\nOnjuist (C): Een ConfigMap is bedoeld voor niet-vertrouwelijke configuratie.\n\nOnjuist (D): Dit is precies omgekeerd."
+    },
+    {
+      "question": "Wat doet een ReplicaSet?",
+      "options": [
+        "Het geeft een groep pods een stabiel IP-adres.",
+        "Het slaat de configuratie van een applicatie op.",
+        "Het koppelt persistente opslag aan elke pod.",
+        "Het houdt een vast aantal pod-replica's draaiende."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een ReplicaSet zorgt dat het gewenste aantal replica's van een pod op elk moment actief is. Faalt een pod, dan wordt die vervangen.\n\nOnjuist (A): Een stabiel IP-adres en DNS-naam biedt een Service.\n\nOnjuist (B): Configuratie sla je op in een ConfigMap.\n\nOnjuist (C): Opslag regel je met PV's en PVC's."
+    },
+    {
+      "question": "Hoe verhoudt een Deployment zich tot een ReplicaSet?",
+      "options": [
+        "Een Deployment is een ouder begrip dat door ReplicaSets is vervangen.",
+        "Het zijn twee namen voor precies hetzelfde Kubernetes-object.",
+        "Een ReplicaSet beheert Deployments en voegt o.a. rolling updates toe.",
+        "Een Deployment beheert ReplicaSets en voegt rolling updates toe."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een Deployment is een concept op hoger niveau: het beheert ReplicaSets en biedt declaratieve updates, rolling updates en rollbacks.\n\nOnjuist (A): De Deployment is juist het hogere, nieuwere concept.\n\nOnjuist (B): Het zijn verschillende objecten, met de Deployment boven de ReplicaSet.\n\nOnjuist (C): Het is andersom: de Deployment beheert de ReplicaSets."
+    },
+    {
+      "question": "Een nieuwe versie van een webapplicatie moet zonder onderbreking worden uitgerold. Wat doet een Deployment hierbij?",
+      "options": [
+        "Het vervangt oude replica's geleidelijk door nieuwe.",
+        "Het start de nieuwe versie op een tweede cluster.",
+        "Het stopt alle oude pods en start daarna de nieuwe.",
+        "Het bouwt het image opnieuw op elke worker node."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Met een rolling update rolt een Deployment de nieuwe versie geleidelijk uit: oude replica's worden stap voor stap vervangen, zodat de service blijft werken. Gaat het mis, dan kan een rollback.\n\nOnjuist (B): Een rolling update gebeurt binnen hetzelfde cluster.\n\nOnjuist (C): Dan is de applicatie tijdelijk onbereikbaar; dat voorkomt een rolling update juist.\n\nOnjuist (D): Images worden niet op nodes gebouwd, maar uit een registry gehaald."
+    },
+    {
+      "question": "Pods van een Deployment krijgen na vervanging steeds een ander IP-adres. Hoe zorg je dat andere applicaties ze toch betrouwbaar bereiken?",
+      "options": [
+        "Met een Service, met een vaste naam en vast IP",
+        "Met een vast IP-adres in de specificatie van elke pod",
+        "Met een ConfigMap waarin de actuele IP-adressen staan",
+        "Met een ReplicaSet die de IP-adressen van pods vastlegt"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een Service is een stabiele netwerkabstractie voor een set pods: naam en IP-adres veranderen niet tijdens de hele levensduur van de Service.\n\nOnjuist (B): Pods zijn vluchtig; daar leg je geen vast adres in vast.\n\nOnjuist (C): Die lijst is direct verouderd zodra een pod vervangen wordt.\n\nOnjuist (D): Een ReplicaSet bewaakt het aantal pods, niet hun adressen."
+    },
+    {
+      "question": "Hoe bepaalt een Service welke pods erbij horen?",
+      "options": [
+        "Via de namen van de nodes waarop de pods draaien",
+        "Via de IP-adressen die de pods bij de start krijgen",
+        "Via de volgorde waarin de pods zijn gestart",
+        "Via een selector op de labels van de pods"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De selector van een Service geeft aan welke pods gekoppeld worden, bijvoorbeeld alle pods met het label run: my-nginx.\n\nOnjuist (A): De node is niet bepalend; pods kunnen op verschillende nodes staan.\n\nOnjuist (B): Die adressen veranderen; daarom koppelt een Service op labels.\n\nOnjuist (C): De startvolgorde speelt geen rol bij het koppelen."
+    },
+    {
+      "question": "Wat doet het service-type ClusterIP, de standaard?",
+      "options": [
+        "Het geeft een CNAME-record terug naar een externe DNS-naam.",
+        "Het maakt een externe load balancer met een vast IP-adres aan.",
+        "Het maakt de service alleen binnen het cluster bereikbaar.",
+        "Het maakt de service bereikbaar op een vaste poort van elke node."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): ClusterIP geeft de service een intern IP-adres in het cluster, waardoor hij alleen van binnen het cluster bereikbaar is.\n\nOnjuist (A): Dat is ExternalName.\n\nOnjuist (B): Dat is LoadBalancer.\n\nOnjuist (D): Dat is NodePort."
+    },
+    {
+      "question": "In het CMS-voorbeeld moet WordPress van buiten het cluster bereikbaar zijn en MariaDB alleen intern. Welke combinatie van service-types past?",
+      "options": [
+        "WordPress via NodePort, MariaDB via ClusterIP",
+        "WordPress en MariaDB allebei via ExternalName",
+        "WordPress en MariaDB allebei via ClusterIP",
+        "WordPress via ClusterIP, MariaDB via NodePort"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): NodePort maakt WordPress bereikbaar via <NodeIP>:<NodePort>. ClusterIP houdt MariaDB alleen intern bereikbaar, zodat de database niet van buitenaf open staat.\n\nOnjuist (B): ExternalName verwijst naar een externe DNS-naam en stelt geen pods beschikbaar.\n\nOnjuist (C): Dan is WordPress niet van buiten het cluster bereikbaar.\n\nOnjuist (D): Dan is juist de database van buitenaf bereikbaar en WordPress niet."
+    },
+    {
+      "question": "Een applicatie draait op Kubernetes bij een cloudprovider en moet een vast extern IP-adres met load balancing krijgen. Welk service-type gebruik je?",
+      "options": [
+        "ClusterIP",
+        "NodePort",
+        "LoadBalancer",
+        "ExternalName"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): LoadBalancer maakt (als de cloud dat ondersteunt) een externe load balancer aan en geeft de service een vast extern IP-adres. Het is een uitbreiding op NodePort.\n\nOnjuist (A): ClusterIP is alleen intern bereikbaar.\n\nOnjuist (B): NodePort opent een poort op elke node, maar levert geen externe load balancer met vast IP.\n\nOnjuist (D): ExternalName geeft alleen een CNAME-record terug, zonder proxy of load balancing."
+    },
+    {
+      "question": "Een pod slaat zijn data op in een hostPath-volume. Wat is daarvan het nadeel?",
+      "options": [
+        "De data kan alleen via een PVC worden aangevraagd.",
+        "De data staat op één node, zonder delen of replicatie.",
+        "De data wordt altijd naar een cloudprovider gekopieerd.",
+        "De data verdwijnt automatisch zodra de pod eindigt."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een hostPath-volume koppelt een map van de node zelf in de pod. Dat is eenvoudig, maar de data kan niet tussen nodes gedeeld worden en wordt niet automatisch gerepliceerd.\n\nOnjuist (A): hostPath wordt rechtstreeks in de pod gekoppeld, zonder PVC.\n\nOnjuist (C): hostPath gebruikt alleen de lokale schijf van de node.\n\nOnjuist (D): Dat geldt voor een emptyDir-volume, niet voor hostPath."
+    },
+    {
+      "question": "Wat is het verschil tussen een PersistentVolume (PV) en een PersistentVolumeClaim (PVC)?",
+      "options": [
+        "Een PV is een aanvraag voor opslag; een PVC is de opslag zelf.",
+        "Een PV hoort bij één pod; een PVC wordt door alle nodes gedeeld.",
+        "Een PV is beschikbare opslag; een PVC is een aanvraag voor opslag.",
+        "Een PV is tijdelijk; een PVC blijft na het einde van de pod bestaan."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een PV is een volume dat buiten de pod is gedefinieerd (bijv. 10 GB in /mnt/data). Een PVC vraagt opslag aan (bijv. minstens 8 GB); als een PV voldoet, worden ze gekoppeld en kan een pod de PVC mounten.\n\nOnjuist (A): Dit is precies omgekeerd.\n\nOnjuist (B): Een PV staat juist los van de pod; de PVC wordt door een pod gebruikt.\n\nOnjuist (D): Beide zijn bedoeld voor persistente opslag; tijdelijk is emptyDir."
+    },
+    {
+      "question": "Wat is Minikube?",
+      "options": [
+        "Een bedrijfsplatform met eigen registry en eigen SDN",
+        "Een container runtime die Docker op de nodes vervangt",
+        "Een productiegerede Kubernetes voor IoT- en edge-apparaten",
+        "Een lichtgewicht Kubernetes op één host, om mee te testen"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Minikube is een lichtgewicht Kubernetes-installatie op één host (Windows, Linux, macOS), bedoeld voor ontwikkelen en testen. Het gebruikt een bestaande container runtime en dezelfde YAML-bestanden.\n\nOnjuist (A): Dat beschrijft Red Hat OpenShift.\n\nOnjuist (B): Minikube is geen container runtime; het gebruikt een bestaande, zoals Docker of containerd.\n\nOnjuist (C): Dat beschrijft K3s."
+    },
+    {
+      "question": "Een team wil de applicaties die het met Minikube heeft getest, ook in productie op Minikube draaien. Wat is het bezwaar?",
+      "options": [
+        "Minikube gebruikt andere YAML-bestanden dan een gewoon cluster.",
+        "Minikube draait alleen op macOS en niet op servers.",
+        "Het draait op één host, dus zonder hoge beschikbaarheid.",
+        "Minikube heeft een eigen runtime die nergens anders werkt."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Minikube is NIET bedoeld voor productie: het draait op één (fysieke of virtuele) host en biedt dus geen hoge beschikbaarheid en geen schaalbaarheid.\n\nOnjuist (A): Minikube gebruikt juist dezelfde YAML-configuratiebestanden.\n\nOnjuist (B): Minikube is beschikbaar voor Windows, Linux en macOS.\n\nOnjuist (D): Minikube gebruikt een bestaande container runtime zoals Docker."
+    },
+    {
+      "question": "Een bedrijf wil Kubernetes in productie draaien op Raspberry Pi's in een fabriekshal. Welke distributie past daar het best bij?",
+      "options": [
+        "Minikube",
+        "K3s",
+        "KIND",
+        "OpenShift"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): K3s is een lichtgewicht, productiegerede Kubernetes-distributie voor omgevingen met weinig resources, zoals edge, IoT en Raspberry Pi's (minder dan 100 MB, vaak 512 MB RAM en 1 CPU-kern).\n\nOnjuist (A): Minikube is bedoeld voor ontwikkelen en testen, niet voor productie.\n\nOnjuist (C): KIND (Kubernetes in Docker) is vooral bedoeld voor lokaal testen.\n\nOnjuist (D): OpenShift is een zwaar bedrijfsplatform, niet bedoeld voor kleine apparaten."
+    },
+    {
+      "question": "Wat onderscheidt Red Hat OpenShift van 'kale' Kubernetes?",
+      "options": [
+        "Het is vooral bedoeld om Kubernetes lokaal op één laptop te testen.",
+        "Het gebruikt geen Kubernetes, maar een eigen orchestrator voor containers.",
+        "Het is een compleet bedrijfsplatform rond Kubernetes, met eigen registry.",
+        "Het werkt uitsluitend met Docker als container runtime op de nodes."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): OpenShift gebruikt een gecertificeerde Kubernetes-distributie als kern en voegt o.a. een ingebouwde registry (vaak Quay) en een eigen SDN-oplossing toe. Als Kubernetes de motor is, is OpenShift de complete auto.\n\nOnjuist (A): Dat is het doel van Minikube; OpenShift richt zich op de zakelijke markt.\n\nOnjuist (B): OpenShift gebruikt juist Kubernetes als kern.\n\nOnjuist (D): OpenShift heeft juist de voorkeur voor CRI-O in plaats van Docker."
+    },
+    {
+      "question": "Een organisatie heeft legacy-applicaties die (nog) niet in containers kunnen, maar wil alles via Kubernetes beheren. Wat past daarbij?",
+      "options": [
+        "Minikube",
+        "Docker Compose",
+        "K3s",
+        "KubeVirt"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): KubeVirt is een open-source extensie voor Kubernetes waarmee je naast containers ook virtuele machines beheert. Elke VM krijgt een pod en draait op KVM.\n\nOnjuist (A): Minikube is een lokaal testcluster en draait geen VM's als workload.\n\nOnjuist (B): Docker Compose beheert containers op één host, geen VM's en geen Kubernetes.\n\nOnjuist (C): K3s is een lichtgewicht Kubernetes-distributie, geen oplossing voor VM's."
+    }
+  ]
+}
