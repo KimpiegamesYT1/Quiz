@@ -1,0 +1,444 @@
+{
+  "questions": [
+    {
+      "question": "Een ESXi-host heeft 128 GB fysiek geheugen. De beheerder wil één database-VM 160 GB geheugen toewijzen; de andere VM's op de host gebruiken nauwelijks geheugen. Kan dat?",
+      "options": [
+        "Ja, mits thin provisioning is ingeschakeld op de datastore van de VM.",
+        "Ja; ballooning haalt het tekort weg bij de andere, rustige VM's op de host.",
+        "Nee; één VM kan nooit meer geheugen krijgen dan de host bezit.",
+        "Nee; geheugen overcommitten kan alleen binnen een vCenter-cluster met DRS."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De som van het toegewezen geheugen mag het fysieke geheugen overstijgen (overcommit), omdat VM's zelden alles tegelijk gebruiken. Eén afzonderlijke VM kan echter nooit meer geheugen krijgen dan de host fysiek heeft.\n\nOnjuist (A): Thin provisioning gaat over schijfruimte, niet over werkgeheugen.\n\nOnjuist (B): Ballooning herverdeelt fysiek geheugen tussen VM's, maar kan nooit meer opleveren dan de host fysiek heeft.\n\nOnjuist (D): Overcommit kan ook op een losse host; het probleem is dat één VM het fysieke geheugen overstijgt."
+    },
+    {
+      "question": "Stelling: “Voor vSphere HA is een vMotion-netwerk noodzakelijk, omdat de hosts via dat netwerk controleren of hun collega's nog beschikbaar zijn.”",
+      "options": [
+        "Deze stelling is half juist. HA heeft het vMotion-netwerk nodig, maar de heartbeats lopen over het managementnetwerk.",
+        "Deze stelling is onjuist. HA heeft geen vMotion-netwerk nodig; de heartbeats lopen over het managementnetwerk.",
+        "Deze stelling is juist. Zonder vMotion-netwerk kan HA het geheugen van de VM's niet overzetten.",
+        "Deze stelling is onjuist. HA heeft geen vMotion-netwerk nodig; de heartbeats lopen over het FT-loggingnetwerk."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): HA herstart VM's vanaf de gedeelde opslag en zet geen geheugen over, dus een vMotion-netwerk is niet nodig. De hosts controleren elkaar met heartbeats over het managementnetwerk.\n\nOnjuist (A): Het eerste deel klopt niet: HA heeft geen vMotion-netwerk nodig. De stelling is dus geheel onjuist.\n\nOnjuist (C): HA zet geen geheugen over; de VM's worden opnieuw opgestart.\n\nOnjuist (D): De heartbeats lopen over het managementnetwerk, niet over het FT-netwerk."
+    },
+    {
+      "question": "In een vSphere-cluster met HA en DRS valt het vMotion-netwerk uit; het managementnetwerk en de gedeelde opslag werken nog. Wat is het gevolg?",
+      "options": [
+        "HA en DRS werken allebei niet meer.",
+        "DRS werkt nog, maar HA kan geen VM's meer herstarten.",
+        "HA en DRS werken allebei nog, via het managementnetwerk.",
+        "HA werkt nog, maar DRS kan geen VM's meer verplaatsen."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): HA gebruikt het managementnetwerk (heartbeats) en herstart VM's vanaf gedeelde opslag; daarvoor is geen vMotion nodig. DRS balanceert door draaiende VM's live te verplaatsen met vMotion, en dat lukt nu niet meer.\n\nOnjuist (A): HA is niet afhankelijk van het vMotion-netwerk.\n\nOnjuist (B): Het is andersom: DRS heeft vMotion nodig, HA niet.\n\nOnjuist (C): DRS kan niet via het managementnetwerk VM's live verplaatsen; daarvoor is vMotion nodig."
+    },
+    {
+      "question": "Een beheerder somt op waarvoor een VMkernel-poort op een ESXi-host wordt gebruikt. Welke opsomming bevat een onderdeel dat daar NIET bij hoort?",
+      "options": [
+        "Management, vMotion, Fault Tolerance, iSCSI",
+        "vMotion, Fault Tolerance, NFS, iSCSI, vSAN",
+        "Management, vMotion, vSAN, VM-netwerkverkeer",
+        "Management, vSAN, NFS, Fault Tolerance"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): VMkernel-poorten verbinden de hypervisor zelf met het netwerk, voor management, vMotion, Fault Tolerance, vSAN, iSCSI en NFS. Het netwerkverkeer van VM's loopt via port groups voor VM's, niet via een VMkernel-poort.\n\nOnjuist (A): Dit zijn allemaal diensten die een VMkernel-poort gebruiken.\n\nOnjuist (B): Dit zijn allemaal diensten die een VMkernel-poort gebruiken.\n\nOnjuist (D): Dit zijn allemaal diensten die een VMkernel-poort gebruiken."
+    },
+    {
+      "question": "Stelling: “Een draaiende VM kun je zonder downtime direct naar een template converteren.”",
+      "options": [
+        "Deze stelling is juist. vCenter maakt daarvoor eerst een snapshot.",
+        "Deze stelling is onjuist. Alleen een golden image kan dat.",
+        "Deze stelling is onjuist. De VM moet eerst worden uitgeschakeld.",
+        "Deze stelling is half juist. Dat kan alleen op gedeelde opslag."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Converteren naar een template kan alleen bij een uitgeschakelde VM.\n\nOnjuist (A): Er is geen snapshotroute; converteren vereist een uitgeschakelde VM.\n\nOnjuist (B): Een golden image is ook gewoon een VM; ook die moet uit staan.\n\nOnjuist (D): Het type opslag maakt niet uit; de VM moet uit staan."
+    },
+    {
+      "question": "Een beheerder heeft één losse ESXi-host zonder vCenter en wil ISO's en templates gebruiken die een andere organisatie in een published content library aanbiedt. Wat is het probleem?",
+      "options": [
+        "De publisher moet de host eerst in zijn eigen vCenter opnemen.",
+        "Content libraries zijn alleen beschikbaar via vCenter.",
+        "De inhoud moet eerst via Storage vMotion naar de host.",
+        "Een subscribed library kan alleen templates bevatten."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Content libraries worden beheerd door vCenter; de hosts moeten daarvoor aan vCenter gekoppeld zijn. Een subscribed library (met de URL van de publisher) maak je dus in vCenter aan.\n\nOnjuist (A): De subscriber heeft een eigen vCenter nodig; de host hoeft niet bij de publisher te horen.\n\nOnjuist (C): Storage vMotion verplaatst VM-bestanden tussen datastores en heeft hier niets mee te maken.\n\nOnjuist (D): Een content library kan zowel ISO's als templates bevatten."
+    },
+    {
+      "question": "Een iSCSI-adres (IQN) is opgebouwd als type.JJJJ-MM.omgekeerde-domeinnaam:vrije-tekst. Welke IQN is NIET correct opgebouwd?",
+      "options": [
+        "iqn.2024-01.nl.saxion:storage:lun1",
+        "iqn.2019-11.org.example:target1",
+        "iqn.2011-06.com.technicaldeepdive:server:lab01",
+        "iqn.06-2011.com.saxion:storage01"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Na 'iqn.' volgt de datum als JJJJ-MM. In iqn.06-2011 staan maand en jaar omgedraaid, dus deze IQN is niet correct opgebouwd.\n\nOnjuist (A): Correct: datum JJJJ-MM, omgekeerde domeinnaam (nl.saxion) en vrije tekst.\n\nOnjuist (B): Correct: datum JJJJ-MM, omgekeerde domeinnaam en vrije tekst.\n\nOnjuist (C): Correct: datum JJJJ-MM, omgekeerde domeinnaam en daarna vrije tekst."
+    },
+    {
+      "question": "Een organisatie wil een legacy-OS virtualiseren dat geen paravirtualisatie ondersteunt, en twijfelt tussen ESXi en Hyper-V. Wat zegt de les over hoe beide van oudsher met gast-OS'en omgaan?",
+      "options": [
+        "ESXi bouwde zijn brede OS-ondersteuning op full virtualisatie; Hyper-V leunt op paravirtualisatie.",
+        "Ze zijn allebei hybride en ondersteunen daarom van oudsher precies dezelfde gast-OS'en.",
+        "Hyper-V bouwde zijn brede OS-ondersteuning op full virtualisatie; ESXi leunt op paravirtualisatie.",
+        "Hyper-V past de kernel van elk gast-OS automatisch aan, waardoor elk OS werkt."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Hyper-V ondersteunt van oudsher minder gast-OS'en, omdat het leunt op paravirtualisatie met een aangepaste gastkernel. ESXi bouwde zijn brede ondersteuning juist op full virtualisatie, waarbij het gast-OS ongewijzigd blijft.\n\nOnjuist (B): Beide zijn hybride, maar Hyper-V ondersteunt van oudsher een beperkter aantal gast-OS'en.\n\nOnjuist (C): Dit is precies omgekeerd.\n\nOnjuist (D): Een gastkernel wordt niet automatisch aangepast; een OS zonder ondersteuning valt af."
+    },
+    {
+      "question": "Stelling: “SCVMM kan naast Hyper-V ook VMware-omgevingen beheren, en integreert met SCCM, SCOM en Azure.”",
+      "options": [
+        "Deze stelling is half juist. VMware klopt, maar met Azure integreert het niet.",
+        "Deze stelling is juist. SCVMM is de beheerlaag voor zowel Hyper-V als VMware.",
+        "Deze stelling is half juist. Azure klopt, maar VMware kan het niet beheren.",
+        "Deze stelling is onjuist. SCVMM kan alleen Hyper-V-omgevingen beheren."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): System Center Virtual Machine Manager beheert virtuele omgevingen op basis van Hyper-V én VMware, en integreert met SCCM, SCOM en Azure.\n\nOnjuist (A): SCVMM integreert ook met Azure.\n\nOnjuist (C): SCVMM kan wel degelijk VMware-omgevingen beheren.\n\nOnjuist (D): SCVMM kan ook VMware-omgevingen beheren."
+    },
+    {
+      "question": "Waarop is VMware Fault Tolerance gebaseerd, en wat is de prijs daarvan?",
+      "options": [
+        "vLockstep, waarbij elke instructie wordt gespiegeld, ten koste van extra CPU, geheugen en netwerk",
+        "Een vMotion bij elke wijziging van de VM, ten koste van veel extra verkeer op het vMotion-netwerk",
+        "Snapshots die elke seconde worden gemaakt, ten koste van extra opslagruimte op de datastore",
+        "HA-heartbeats die elke milliseconde worden verstuurd, ten koste van extra managementverkeer"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): FT houdt de primary en secondary VM met vLockstep instructie voor instructie in dezelfde staat. Dat geeft zero downtime, maar kost extra CPU, geheugen en netwerkcapaciteit.\n\nOnjuist (B): FT verplaatst de VM niet; er draait een tweede, synchrone kopie mee.\n\nOnjuist (C): FT werkt niet met snapshots, maar met vLockstep.\n\nOnjuist (D): Heartbeats horen bij HA; FT is gebaseerd op vLockstep."
+    },
+    {
+      "question": "Migraties tussen hosts mislukken, omdat port groups op de hosts verschillend heten. De organisatie heeft een standaard vSphere-licentie. Wat is het addertje onder het gras bij de structurele oplossing?",
+      "options": [
+        "Storage vMotion lost het op, zonder dat er een extra licentie nodig is.",
+        "Een vSphere Distributed Switch lost het op, maar vereist Enterprise Plus.",
+        "Een vSphere Distributed Switch lost het op en zit in elke licentie.",
+        "Een vSphere Distributed Switch lost het op, maar werkt zonder vCenter."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een vDS beheert de netwerkconfiguratie centraal via vCenter, zodat alle hosts identieke port groups hebben. Het is een geavanceerde functie die onder de Enterprise Plus-licentie valt.\n\nOnjuist (A): Storage vMotion verplaatst opslag en lost geen verschillen in port groups op.\n\nOnjuist (C): De vDS valt onder Enterprise Plus, niet onder elke licentie.\n\nOnjuist (D): Een vDS wordt juist centraal via vCenter beheerd."
+    },
+    {
+      "question": "ESXi en Hyper-V worden 'hybride' genoemd. Wat betekent dat?",
+      "options": [
+        "Ze combineren hosts on-premises met de public cloud.",
+        "Ze passen per gast-OS full- of paravirtualisatie toe.",
+        "Ze kunnen VM's en containers in één cluster draaien.",
+        "Ze zijn tegelijk een type 1 en een type 2 hypervisor."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een hybride hypervisor beheerst zowel full virtualisatie als paravirtualisatie en kiest per gast-besturingssysteem de best passende vorm.\n\nOnjuist (A): Dat is een hybride cloud; dat is hier niet bedoeld.\n\nOnjuist (C): 'Hybride' gaat niet over containers, maar over full- en paravirtualisatie.\n\nOnjuist (D): Beide zijn type 1 (bare-metal); 'hybride' gaat over de virtualisatietechniek."
+    },
+    {
+      "question": "Stelling: “Microsoft ontwikkelde Terminal Services zelf, en Citrix kocht deze techniek later om er MetaFrame op te bouwen.”",
+      "options": [
+        "Deze stelling is juist. Zo ontstond MetaFrame op basis van Windows NT 4.0.",
+        "Deze stelling is onjuist. Ze ontwikkelden het samen vanaf Windows 2000.",
+        "Deze stelling is onjuist. Citrix ontwikkelde MultiWin; Microsoft kocht dat.",
+        "Deze stelling is half juist. Microsoft ontwikkelde het, Citrix bouwde MetaFrame erop."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Citrix ontwikkelde MultiWin op basis van Windows NT 3.51. Microsoft kocht deze techniek en bracht die uit als Terminal Services in NT 4.0; Citrix bouwde er vervolgens MetaFrame bovenop.\n\nOnjuist (A): De richting klopt niet: Microsoft kocht de techniek van Citrix.\n\nOnjuist (B): Het was geen gezamenlijke ontwikkeling, en het begon al bij NT 3.51/4.0.\n\nOnjuist (D): Het eerste deel klopt niet: de techniek (MultiWin) kwam van Citrix."
+    },
+    {
+      "question": "Wat is het verschil tussen statische en dynamische virtuele kanalen in RDP?",
+      "options": [
+        "Statisch: max. 31, open tot sessie-einde. Dynamisch: sinds Server 2008, tijdens de sessie te openen en sluiten.",
+        "Statisch en dynamisch: allebei maximaal 31. Dynamisch bestaat sinds Server 2003 en is alleen voor printers.",
+        "Dynamisch: maximaal 31, open tot het einde van de sessie. Statisch: tijdens de sessie te openen en te sluiten.",
+        "Statisch: maximaal 31, open tot het einde van de sessie. Dynamisch: alleen beschikbaar voor RemoteApp-programma's."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Statische kanalen worden bij de start van de sessie gemaakt en pas aan het einde verbroken; daarvan zijn er maximaal 31. Sinds Windows Server 2008 kan een applicatie een dynamisch kanaal (DVC) tijdens de sessie aanmaken en weer sluiten.\n\nOnjuist (B): De limiet van 31 geldt alleen voor statische kanalen; DVC's bestaan sinds Server 2008.\n\nOnjuist (C): De kenmerken zijn omgedraaid.\n\nOnjuist (D): Dynamische kanalen zijn niet beperkt tot RemoteApp."
+    },
+    {
+      "question": "Een RDS-farm heeft twee session hosts, RDSH01 en RDSH02. Een beheerder voegt een gebruiker toe aan de lokale groep 'Remote Desktop Users' op RDSH01. De gebruiker komt soms wel binnen en soms niet. Wat is de oorzaak?",
+      "options": [
+        "De sessie-ID van de gebruiker op RDSH01 verloopt na een bepaalde tijd.",
+        "De gateway accepteert alleen leden van de domeingroep 'Remote Desktop Users'.",
+        "De broker kiest soms RDSH02, waar de gebruiker niet in de lokale groep staat.",
+        "De licensing server geeft maar af en toe een CAL uit aan deze gebruiker."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Toegang tot een session host wordt geregeld via de lokale groep 'Remote Desktop Users' op die server. De Connection Broker verdeelt verbindingen over beide hosts; op RDSH02 ontbreekt het lidmaatschap.\n\nOnjuist (A): Een sessie-ID onderscheidt processen per sessie en regelt geen toegang.\n\nOnjuist (B): Toegang tot de session host loopt via de lokale groep, niet via de gelijknamige domeingroep.\n\nOnjuist (D): CAL's worden niet willekeurig uitgegeven; het gedrag hangt af van de host waar de gebruiker uitkomt."
+    },
+    {
+      "question": "Welke combinatie van een RemoteFX-onderdeel en zijn functie klopt?",
+      "options": [
+        "Codec: één fysieke GPU over meerdere virtuele machines verdelen",
+        "vGPU: USB-apparaten van de client naar de virtuele machine omleiden",
+        "USB Redirection: RDP-verkeer comprimeren zonder kwaliteitsverlies",
+        "Adaptive Graphics: de beeldkwaliteit aanpassen aan de netwerkverbinding"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): RemoteFX Adaptive Graphics past de beeldkwaliteit aan de netwerksnelheid aan. vGPU deelt een fysieke GPU over VM's, de Codec comprimeert het beeld en USB Redirection leidt USB-apparaten om.\n\nOnjuist (A): Dat is RemoteFX vGPU; de Codec comprimeert RDP-verkeer.\n\nOnjuist (B): Dat is RemoteFX USB Redirection; vGPU deelt een fysieke GPU over VM's.\n\nOnjuist (C): Dat beschrijft de RemoteFX Codec."
+    },
+    {
+      "question": "Een organisatie heeft een RDS-omgeving met Session Host, Connection Broker, Web Access en Licensing, en wil daarnaast personal VDI aanbieden. Welke rol ontbreekt, en waarop is die gebaseerd?",
+      "options": [
+        "RD Gateway, gebaseerd op Hyper-V",
+        "Een extra RD Session Host, gebaseerd op Hyper-V",
+        "RD Virtualization Host, gebaseerd op Hyper-V",
+        "RD Virtualization Host, gebaseerd op ESXi"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De Remote Desktop Virtualization Host (RDVH) levert de virtuele machines voor desktop-gebaseerde RDS en is gebaseerd op Hyper-V.\n\nOnjuist (A): De Gateway neemt externe verbindingen aan en levert geen VM's.\n\nOnjuist (B): Een session host levert sessies, geen volledige VM's per gebruiker.\n\nOnjuist (D): De RDVH is een Microsoft-rol en gebaseerd op Hyper-V, niet op ESXi."
+    },
+    {
+      "question": "Stelling: “Sinds Windows Server 2012 heet Terminal Services ‘Remote Desktop Services’.”",
+      "options": [
+        "Deze stelling is alleen waar als '2012' wordt vervangen door '2008'.",
+        "Deze stelling is alleen waar als '2012' wordt vervangen door '2003'.",
+        "Deze stelling is alleen waar als '2012' wordt vervangen door '2016'.",
+        "Deze stelling is alleen waar als '2012' wordt vervangen door '2000'."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Met Windows Server 2008/2008 R2 werd de naam gewijzigd in Remote Desktop Services, met nieuwe rollen en VDI-ondersteuning. In 2012 werd de RDS-naam al gebruikt, maar de naamswijziging was eerder.\n\nOnjuist (B): In 2003 heette het nog Terminal Services.\n\nOnjuist (C): In 2016 heette het al lang Remote Desktop Services; de naam veranderde in 2008.\n\nOnjuist (D): In 2000 heette het nog Terminal Services."
+    },
+    {
+      "question": "Een adviesbureau heeft 40 medewerkers die elk werken vanaf een eigen laptop, een thuis-pc en een tablet, allemaal via RDS. Welke keuze voor CAL's is het voordeligst?",
+      "options": [
+        "Per-device CAL's, omdat thuisapparaten niet meetellen",
+        "Per-user CAL's: 40 gebruikers tegenover 120 apparaten",
+        "Geen CAL's, omdat ze verbinden via de RD Gateway",
+        "Per-device CAL's, omdat de licentie aan het apparaat hangt"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een per-user CAL hoort bij de gebruiker, ongeacht vanaf hoeveel apparaten die werkt. 40 user-CAL's zijn hier veel voordeliger dan 120 device-CAL's.\n\nOnjuist (A): Ook thuisapparaten die verbinden, tellen mee.\n\nOnjuist (C): Ook via de Gateway zijn CAL's nodig.\n\nOnjuist (D): Dan zijn er 120 CAL's nodig in plaats van 40."
+    },
+    {
+      "question": "`docker exec -ti mijncontainer \"echo a && echo b\"` geeft een foutmelding. Welk commando voert beide echo's wél uit binnen de container?",
+      "options": [
+        "docker exec -ti mijncontainer echo a && echo b",
+        "docker run -ti mijncontainer \"echo a && echo b\"",
+        "docker exec -ti --chain mijncontainer \"echo a && echo b\"",
+        "docker exec -ti mijncontainer sh -c \"echo a && echo b\""
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Bij docker exec moet het commando een uitvoerbaar bestand zijn; een geketend of gequote commando werkt niet. Met sh -c laat je een shell in de container de keten uitvoeren.\n\nOnjuist (A): Hier voert de shell op de host '&& echo b' uit: echo b draait dus op de host, niet in de container.\n\nOnjuist (B): docker run maakt een nieuwe container van een image; mijncontainer is een bestaande container.\n\nOnjuist (C): Een optie --chain bestaat niet bij docker exec."
+    },
+    {
+      "question": "Stelling: “Een proces dat je met docker exec in een container start, wordt automatisch opnieuw gestart als de container herstart.”",
+      "options": [
+        "Deze stelling is onjuist. Het draait alleen zolang PID 1 draait.",
+        "Deze stelling is onjuist. Het blijft draaien, ook als de container stopt.",
+        "Deze stelling is half juist. Dat gebeurt alleen bij restart: always.",
+        "Deze stelling is juist. Het exec-proces wordt onderdeel van het image."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een met docker exec gestart commando draait alleen zolang het hoofdproces van de container (PID 1) draait, en wordt niet opnieuw gestart als de container herstart.\n\nOnjuist (B): Het exec-proces stopt juist als PID 1 stopt.\n\nOnjuist (C): Ook met restart: always wordt alleen het hoofdproces herstart, niet een exec-proces.\n\nOnjuist (D): Een exec-proces wordt geen onderdeel van het image en wordt niet herstart."
+    },
+    {
+      "question": "Een image heeft twee tags, `webshop:1.0` en `webshop:latest`, met hetzelfde image-ID. Er draait geen container op. Wat doet `docker rmi webshop:1.0`?",
+      "options": [
+        "Het image wordt volledig verwijderd, inclusief de tag latest.",
+        "Er volgt een fout: een image met meerdere tags is niet te verwijderen.",
+        "Beide tags verdwijnen, maar de lagen blijven als <none> bestaan.",
+        "Alleen de tag 1.0 verdwijnt; het image blijft via latest bestaan."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Heeft een image meerdere tags, dan verwijdert docker rmi met een tag als parameter alleen die tag. Pas als het de enige tag is, worden ook het image en de lagen verwijderd.\n\nOnjuist (A): Er blijft nog een tag naar hetzelfde image verwijzen; alleen 1.0 verdwijnt.\n\nOnjuist (B): Het verwijderen (un-taggen) van één tag lukt gewoon.\n\nOnjuist (C): De tag latest blijft gewoon staan."
+    },
+    {
+      "question": "Een compose-project heeft een named volume db_data, een anoniem volume en een extern netwerk 'proxy'. Je voert `docker compose down` uit, zonder opties. Wat bestaat daarna nog?",
+      "options": [
+        "Niets meer; down ruimt alles op wat up heeft gemaakt",
+        "db_data, het anonieme volume en het netwerk proxy",
+        "Alleen het netwerk proxy; beide volumes zijn verwijderd",
+        "Alleen db_data; het anonieme volume en proxy zijn weg"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): docker compose down verwijdert standaard alleen de containers, de netwerken uit de networks-sectie en het default netwerk. Volumes blijven bewaard; ook anonieme volumes worden standaard niet verwijderd (maar ook niet automatisch gekoppeld bij een volgende up). Externe netwerken en volumes worden nooit verwijderd.\n\nOnjuist (A): down verwijdert geen volumes (zonder -v) en nooit externe resources.\n\nOnjuist (C): Volumes worden door down standaard niet verwijderd.\n\nOnjuist (D): Anonieme volumes worden standaard niet verwijderd, en externe netwerken nooit."
+    },
+    {
+      "question": "Stelling: “Op het default bridge network kunnen containers elkaar op containernaam bereiken, maar niet vanaf een andere host.”",
+      "options": [
+        "Deze stelling is half juist. Op naam bereiken kan er juist niet.",
+        "Deze stelling is onjuist. Het default bridge werkt over meerdere hosts.",
+        "Deze stelling is juist. Docker regelt daarvoor DNS binnen de host.",
+        "Deze stelling is onjuist. Containers bereiken elkaar er helemaal niet."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Het default bridge network bestaat alleen binnen de host (dat deel klopt), maar kent geen DNS: containers bereiken elkaar alleen op IP-adres. Op naam bereiken kan pas in een user-defined bridge network.\n\nOnjuist (B): Een bridge network bestaat alleen binnen de host; voor meerdere hosts is overlay nodig.\n\nOnjuist (C): Het default bridge network kent juist geen DNS.\n\nOnjuist (D): Op IP-adres kunnen containers elkaar er wel bereiken."
+    },
+    {
+      "question": "Een Dockerfile bevat `EXPOSE 80`. Je start het image met `docker run -d webimage`, zonder verdere opties. Is de webserver vanaf een andere computer bereikbaar?",
+      "options": [
+        "Ja; EXPOSE publiceert poort 80 automatisch op de host.",
+        "Nee; daarvoor moet je EXPOSE 80:80 schrijven.",
+        "Ja, maar alleen via de standaardpoort 8080 van de host.",
+        "Nee; EXPOSE publiceert niets, het documenteert de poort."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): EXPOSE legt vast op welke poort(en) de container luistert. Standaard worden poorten niet gepubliceerd; pas met -p (bijv. -p 8080:80) is de applicatie van buiten de Docker-host bereikbaar.\n\nOnjuist (A): EXPOSE publiceert niets; daarvoor is -p nodig.\n\nOnjuist (B): EXPOSE kent geen host:container-notatie; publiceren doe je met -p.\n\nOnjuist (C): Zonder -p wordt er geen enkele hostpoort gekoppeld."
+    },
+    {
+      "question": "Een MySQL-container met volume db_data draait al maanden. Je wijzigt MYSQL_ROOT_PASSWORD in docker-compose.yml en voert `docker compose up` uit. Inloggen met het nieuwe wachtwoord mislukt. Waarom?",
+      "options": [
+        "Die variabelen werken niet als de datamap al een database bevat.",
+        "MYSQL_ROOT_PASSWORD is optioneel en wordt altijd genegeerd.",
+        "Het nieuwe wachtwoord werkt pas na een herstart van de host.",
+        "Compose neemt wijzigingen alleen over met --force-recreate."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): De omgevingsvariabelen van het mysql-image hebben alleen effect bij het initialiseren. Start je een container met een datamap die al een database bevat, dan blijft de bestaande database onaangeroerd en geldt het oude wachtwoord.\n\nOnjuist (B): MYSQL_ROOT_PASSWORD is juist verplicht; het werkt alleen niet bij een bestaande database.\n\nOnjuist (C): Ook na een herstart blijft de bestaande database het oude wachtwoord gebruiken.\n\nOnjuist (D): compose up neemt gewijzigde configuratie juist over door de container opnieuw te maken."
+    },
+    {
+      "question": "Welke uitspraak over de service-types van Kubernetes klopt?",
+      "options": [
+        "ClusterIP is een superset van NodePort, NodePort van LoadBalancer; ExternalName werkt via NAT op elke node.",
+        "LoadBalancer en NodePort staan los van ClusterIP; ExternalName vereist een externe load balancer van de cloud.",
+        "NodePort is een superset van LoadBalancer, LoadBalancer van ClusterIP; ExternalName proxyt naar de externe naam.",
+        "LoadBalancer is een superset van NodePort, NodePort van ClusterIP; ExternalName geeft een CNAME, zonder proxy."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): ClusterIP is intern; NodePort voegt een poort op elke node toe (superset van ClusterIP); LoadBalancer voegt een externe load balancer toe (superset van NodePort). ExternalName geeft een CNAME-record terug en zet geen enkele vorm van proxy op.\n\nOnjuist (A): De volgorde is omgedraaid; NAT op elke node hoort bij NodePort.\n\nOnjuist (B): Beide bouwen op ClusterIP voort, en ExternalName heeft geen load balancer nodig.\n\nOnjuist (C): De volgorde klopt niet, en ExternalName zet juist geen proxy op."
+    },
+    {
+      "question": "Stelling: “kubeadm levert de machines voor de master en de worker nodes, en zet daarop een Kubernetes-cluster op.”",
+      "options": [
+        "Deze stelling is half juist. Cluster opzetten wel, machines leveren niet.",
+        "Deze stelling is juist. kubeadm regelt zowel de machines als het cluster.",
+        "Deze stelling is onjuist. kubeadm is de agent die op elke node draait.",
+        "Deze stelling is onjuist. kubeadm is alleen voor productie, niet om te testen."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): kubeadm voert de stappen uit om snel een minimaal werkend cluster op te starten (bootstrapping). Het leveren van de onderliggende machines hoort daar uitdrukkelijk niet bij.\n\nOnjuist (B): kubeadm geeft alleen om bootstrapping, niet om het leveren van machines.\n\nOnjuist (C): Dat is de kubelet.\n\nOnjuist (D): kubeadm wordt juist ook voor testen en als eenvoudig startpunt gebruikt."
+    },
+    {
+      "question": "Een Deployment vraagt 5 replica's die elk veel geheugen nodig hebben. Op de worker nodes is ruimte voor 3. Wat zie je?",
+      "options": [
+        "Geen enkele pod start; de hele Deployment faalt.",
+        "Alle 5 draaien; de Scheduler overcommit het geheugen.",
+        "3 pods draaien; 2 blijven pending tot er ruimte is.",
+        "De 2 overige pods worden op de master node gestart."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De Scheduler plaatst pods alleen op geschikte nodes. Voor de pods waarvoor geen geschikte node is, blijft de status pending tot zo'n node beschikbaar komt.\n\nOnjuist (A): Pods die passen, worden gewoon gestart.\n\nOnjuist (B): De Scheduler plaatst geen pods op nodes die er niet geschikt voor zijn.\n\nOnjuist (D): De Scheduler zet ze niet uit nood op de master; ze blijven pending."
+    },
+    {
+      "question": "Een student voert `minikube config set driver docker` uit, daarna `minikube delete` en dan `minikube start`. Het cluster start niet met de Docker-driver. Waarom niet?",
+      "options": [
+        "minikube start negeert de config en kiest altijd zelf een driver.",
+        "De Docker-driver werkt alleen in combinatie met --nodes=2.",
+        "minikube delete heeft Docker Desktop van de laptop verwijderd.",
+        "minikube delete heeft alle instellingen verwijderd, ook de driver."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Na minikube delete zijn alle instellingen weg, ook de driverinstelling. De tip uit de les: geef minikube config set driver docker opnieuw voor elke minikube start.\n\nOnjuist (A): minikube start gebruikt de config wel; die was alleen gewist.\n\nOnjuist (B): De Docker-driver werkt ook met één node.\n\nOnjuist (C): minikube delete verwijdert het cluster en de instellingen, niet Docker zelf."
+    },
+    {
+      "question": "Waar draaien volgens de les bij Minikube de componenten van de master en van de worker node?",
+      "options": [
+        "Master en worker elk op een aparte fysieke machine.",
+        "Master op de host; worker in een VM (of geneste Docker).",
+        "Master in een VM op de host; worker direct op de host zelf.",
+        "Master in de cloud; de worker draait op de eigen laptop."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Bij Minikube draaien de master-componenten op de host en de worker-node-componenten in een virtuele machine (of als geneste Docker) op die host. Standaard is er één worker node.\n\nOnjuist (A): Minikube draait alles op één host.\n\nOnjuist (C): Het is omgekeerd: de worker draait in de VM (of geneste Docker).\n\nOnjuist (D): Minikube draait volledig lokaal op één host."
+    },
+    {
+      "question": "Stelling: “MicroK8s heeft een ingebouwde registry en kan het control plane hoog beschikbaar maken, mits er minimaal drie knooppunten zijn.”",
+      "options": [
+        "Deze stelling is onjuist. MicroK8s heeft geen ingebouwde registry.",
+        "Deze stelling is half juist. De registry klopt, maar HA kan al vanaf twee knooppunten.",
+        "Deze stelling is onjuist. MicroK8s ondersteunt geen hoge beschikbaarheid.",
+        "Deze stelling is juist. Voor HA zijn bij MicroK8s minimaal drie knooppunten nodig."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): MicroK8s bevat een ingebouwde Docker-registry en add-ons (DNS, dashboard, storage). Om het control plane hoog beschikbaar te maken zijn minimaal drie knooppunten nodig.\n\nOnjuist (A): MicroK8s heeft wel degelijk een ingebouwde registry.\n\nOnjuist (B): Voor HA zijn minimaal drie knooppunten nodig, dus de stelling klopt helemaal.\n\nOnjuist (C): MicroK8s ondersteunt HA vanaf drie knooppunten."
+    },
+    {
+      "question": "Welke container runtime heeft Red Hat OpenShift de voorkeur, en waarop is de ingebouwde registry vaak gebaseerd?",
+      "options": [
+        "containerd, met een registry die op Harbor is gebaseerd",
+        "CRI-O, met een registry vaak gebaseerd op Red Hat Quay",
+        "Docker, met een registry die op Docker Hub is gebaseerd",
+        "CRI-O, met een registry die op Docker Hub is gebaseerd"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): OpenShift heeft de voorkeur voor CRI-O in plaats van Docker, en bevat een ingebouwde, veilige container registry die vaak op Red Hat Quay is gebaseerd. Ook heeft het een eigen SDN-oplossing.\n\nOnjuist (A): De les noemt CRI-O en Red Hat Quay.\n\nOnjuist (C): OpenShift heeft juist de voorkeur voor CRI-O in plaats van Docker.\n\nOnjuist (D): De runtime klopt, maar de registry is vaak op Red Hat Quay gebaseerd."
+    },
+    {
+      "question": "Je wilt met de MinIO Client alle versies van objecten, inclusief versie-informatie, naar een andere MinIO-omgeving kopiëren. Wat zegt de documentatie?",
+      "options": [
+        "mc cp kopieert alle versies, maar laat de metadata van de objecten weg.",
+        "mc cp kopieert één versie zonder versie-info; daarvoor is mc replicate add nodig.",
+        "mc mirror kopieert standaard alle versies en alle versie-informatie mee.",
+        "mc cp --recursive kopieert alle versies inclusief versie-informatie en metadata."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): mc cp kopieert alleen de laatste of de opgegeven versie van een object, zonder versie-informatie of wijzigingsdatum. Om alle versies, versie-informatie en metadata te kopiëren, gebruik je mc replicate add of mc admin replicate.\n\nOnjuist (A): mc cp kopieert juist maar één versie per object.\n\nOnjuist (C): mc mirror synchroniseert data, maar de documentatie wijst hiervoor naar replicate.\n\nOnjuist (D): --recursive kopieert alle objecten, maar nog steeds zonder alle versies en versie-informatie."
+    },
+    {
+      "question": "Een beheerder wil eerst zien welke objecten `mc rm --recursive myminio/mydata` zou verwijderen, zonder echt iets te verwijderen. Welke optie gebruikt de beheerder?",
+      "options": [
+        "--force",
+        "--versions",
+        "--with-locks",
+        "--dry-run"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Met --dry-run controleer je dat de operatie alleen de bedoelde objecten raakt, zonder ze te verwijderen.\n\nOnjuist (A): --force dwingt een actie juist af, in plaats van haar te simuleren.\n\nOnjuist (B): --versions toont of raakt objectversies, maar voorkomt het verwijderen niet.\n\nOnjuist (C): --with-locks hoort bij mc mb, om een bucket met object locking te maken."
+    },
+    {
+      "question": "Stelling: “Als je bij het installeren van MinIO geen rootgegevens opgeeft, log je in op de console met admin / admin.”",
+      "options": [
+        "Deze stelling is alleen waar als 'admin / admin' wordt vervangen door 'minioadmin / minioadmin'.",
+        "Deze stelling is alleen waar als 'admin / admin' wordt vervangen door 'root / root'.",
+        "Deze stelling is alleen waar als 'admin / admin' wordt vervangen door 'minio / minio123'.",
+        "Deze stelling is alleen waar als 'admin / admin' wordt vervangen door 'minio1234 / minio1234'."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Volgens de MinIO-documentatie zijn RootUser en RootPass standaard minioadmin / minioadmin. In de Docker-opdracht stelde je ze zelf in met MINIO_ROOT_USER en MINIO_ROOT_PASSWORD (minio1234).\n\nOnjuist (B): De standaardwaarden zijn minioadmin / minioadmin.\n\nOnjuist (C): De standaardwaarden zijn minioadmin / minioadmin.\n\nOnjuist (D): minio1234 werd in de opdracht zelf ingesteld; het is niet de standaard."
+    },
+    {
+      "question": "Welke vergelijking tussen MinIO en andere object storage-oplossingen klopt volgens de les?",
+      "options": [
+        "Ceph is eenvoudiger te installeren en te beheren dan MinIO en presteert beter.",
+        "Swift presteert beter dan MinIO, maar MinIO is beter geïntegreerd in OpenStack.",
+        "MinIO presteert beter dan Swift, maar Swift is beter geïntegreerd in OpenStack.",
+        "Amazon S3 biedt meer controle over de infrastructuur dan MinIO, bij dezelfde API."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): MinIO heeft hogere prestaties en een eenvoudigere installatie dan Swift; Swift biedt meer geïntegreerde functionaliteit binnen OpenStack. MinIO is ook eenvoudiger dan Ceph, en geeft meer controle over de infrastructuur dan Amazon S3.\n\nOnjuist (A): Volgens de les is MinIO eenvoudiger dan Ceph en presteert MinIO beter.\n\nOnjuist (B): Het is andersom: MinIO presteert beter, Swift is beter geïntegreerd.\n\nOnjuist (D): Het is andersom: MinIO geeft meer controle over de infrastructuur."
+    },
+    {
+      "question": "Stelling: “MinIO Inc. werd in 2014 opgericht, en MinIO werd in 2016 als open-sourceproject geïntroduceerd.”",
+      "options": [
+        "Deze stelling is juist. Daarna volgden erkenningen van Gartner en het WEF.",
+        "Deze stelling is onjuist. Het werd in 2016 opgericht en is sinds 2014 open source.",
+        "Deze stelling is half juist. 2014 klopt, maar open source werd het pas in 2020.",
+        "Deze stelling is onjuist. MinIO is door Amazon ontwikkeld als alternatief voor S3."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): MinIO Inc. werd in november 2014 opgericht. In 2016 werd MinIO als open-sourceproject geïntroduceerd; in 2017 volgde 'Cool Vendor' van Gartner, in 2018 'Technology Pioneer' van het World Economic Forum en in 2020 een Series A-financiering van 20 miljoen dollar.\n\nOnjuist (B): De jaartallen zijn omgedraaid.\n\nOnjuist (C): In 2020 was de Series A-financiering; open source werd het al in 2016.\n\nOnjuist (D): MinIO komt van MinIO Inc., een startup uit Silicon Valley, niet van Amazon."
+    },
+    {
+      "question": "`mc ls --recursive --versions myminio/mydata` toont bij één object de klasse WARM. Wat betekent dat?",
+      "options": [
+        "Het object is met object locking vergrendeld.",
+        "Het object wordt nog naar een tweede bucket gerepliceerd.",
+        "Het object staat op een remote tier met die naam.",
+        "Het object is recent gelezen en staat in de cache."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): In de uitvoer van mc ls betekent STANDARD dat het object op de MinIO-deployment zelf staat, en WARM dat het op de remote tier met die naam staat.\n\nOnjuist (A): Object locking is een aparte eigenschap en wordt niet zo aangegeven.\n\nOnjuist (B): WARM verwijst naar de opslaglocatie (tier), niet naar replicatie.\n\nOnjuist (D): WARM zegt niets over leesgedrag of caching."
+    },
+    {
+      "question": "Welke pods gebruikt de MinIO Operator binnen zijn eigen namespace?",
+      "options": [
+        "Eén pod per tenant, allemaal in de namespace van de Operator",
+        "Drie: Operator, Console en een pod met de metadata-database",
+        "Twee: een Operator-pod en een Console-pod voor de GUI",
+        "Twee: één pod voor de buckets en één pod voor de objecten"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Binnen de namespace van de Operator draaien twee pods: de Operator-pod (tenants uitrollen, beheren, wijzigen en onderhouden) en de Console-pod voor de grafische Operator Console. Elke tenant krijgt een eigen namespace met eigen pods.\n\nOnjuist (A): Tenants krijgen elk een eigen namespace, buiten die van de Operator.\n\nOnjuist (B): De les noemt twee pods: Operator en Console.\n\nOnjuist (D): Buckets en objecten draaien niet in aparte Operator-pods."
+    }
+  ]
+}
