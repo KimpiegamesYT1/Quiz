@@ -12,6 +12,45 @@ let answered = false;
 let isExamMode = false; // Track if we're in exam mode
 let isIQMode = false;   // true when quiz has mode:'iq' — no per-question feedback, points-based IQ result
 
+// ─── UPDATES & CACHE ────────────────────────────────────────────────────────
+// GitHub Pages laat browsers bestanden ~10 minuten cachen. Quizdata wordt daarom
+// altijd opnieuw gevalideerd (een refresh toont dus meteen de nieuwste vragen), en
+// de pagina meldt het als er een nieuwere app.js online staat dan de geladen versie.
+
+const APP_VERSION = ((document.currentScript && document.currentScript.src.match(/[?&]v=([^&]+)/)) || [])[1] || null;
+const UPDATE_CHECK_INTERVAL = 5 * 60 * 1000;
+
+function fetchFresh(url) {
+    return fetch(url, { cache: 'no-cache' });
+}
+
+async function checkForUpdate() {
+    if (!APP_VERSION || document.getElementById('update-banner')) return;
+    try {
+        const response = await fetchFresh(location.pathname);
+        if (!response.ok) return;
+        const match = (await response.text()).match(/js\/app\.js\?v=([^"'&]+)/);
+        if (match && match[1] !== APP_VERSION) showUpdateBanner();
+    } catch (e) {
+        // Offline of geen verbinding: gewoon doorgaan met de huidige versie.
+    }
+}
+
+function showUpdateBanner() {
+    const banner = document.createElement('div');
+    banner.id = 'update-banner';
+    banner.className = 'update-banner';
+    banner.setAttribute('role', 'status');
+    banner.innerHTML = `
+        <span>Er is een nieuwe versie van QuizIt beschikbaar.</span>
+        <button type="button" class="update-btn">Verversen</button>
+        <button type="button" class="update-close" aria-label="Melding sluiten">×</button>
+    `;
+    banner.querySelector('.update-btn').addEventListener('click', () => location.reload());
+    banner.querySelector('.update-close').addEventListener('click', () => banner.remove());
+    document.body.prepend(banner);
+}
+
 // ─── QUIZ KEYBOARD SUPPORT ──────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (document.getElementById('quiz-title')) {
         loadQuiz();
     }
+
+    checkForUpdate();
+    setInterval(checkForUpdate, UPDATE_CHECK_INTERVAL);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') checkForUpdate();
+    });
 
     // Keyboard support: A/B/C/D to select, Enter for next
     document.addEventListener('keydown', function(e) {
@@ -52,7 +97,7 @@ const DEFAULT_QUIZ_GROUP = 'Examens oefenen';
 async function loadQuizList() {
     const list = document.getElementById('quiz-list');
     try {
-        const response = await fetch('quizzes/quizzes.json');
+        const response = await fetchFresh('quizzes/quizzes.json');
         const quizzes = await response.json();
 
         // Group entries (default group, or an explicit `group` in the registry),
@@ -124,14 +169,14 @@ async function loadQuiz() {
     }
 
     try {
-        const listResponse = await fetch('quizzes/quizzes.json');
+        const listResponse = await fetchFresh('quizzes/quizzes.json');
         const quizzes = await listResponse.json();
         const quizInfo = quizzes.find(q => q.id === quizId);
         if (!quizInfo) {
             throw new Error('Quiz not found');
         }
 
-        const response = await fetch(quizInfo.file);
+        const response = await fetchFresh(quizInfo.file);
         const data = await response.json();
 
         currentQuiz = data;
@@ -208,7 +253,7 @@ async function loadCategoryQuestions(catId) {
     }
 
     if (cat.file) {
-        const response = await fetch(quizBaseDir + cat.file);
+        const response = await fetchFresh(quizBaseDir + cat.file);
         const data = await response.json();
         cat.questions = data.questions;
         return cat.questions;

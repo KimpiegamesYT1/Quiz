@@ -56,7 +56,8 @@ npm test
 
 - Keyboard support: A–E select an option, Enter advances (`Controleer`/`Volgende`), wired via a single `keydown` listener guarded on the quiz screen being visible.
 - Lightbox for question images (`openLightbox`/`closeLightbox`), closable via Escape.
-- `quiz.html` loads `js/app.js` with a cache-busting query string (`?v=...`); bump that version string when shipping changes to `app.js` so GitHub Pages doesn't serve a stale cached copy.
+- `quiz.html` and `index.html` load `js/app.js` and `css/style.css` with a cache-busting query string (`?v=...`); bump that version string (in both files) when shipping changes to `app.js` or the CSS so GitHub Pages doesn't serve a stale cached copy. The bump also triggers the update banner: `checkForUpdate()` in `js/app.js` re-fetches the current page (on load, when the tab becomes visible, and every 5 minutes) and shows a "nieuwe versie" toast with a reload button when the online `app.js?v=` differs from the loaded one.
+- All quiz JSON is fetched through `fetchFresh()` (`cache: 'no-cache'`), so a normal refresh always revalidates quiz content instead of using GitHub Pages' ~10-minute browser cache.
 
 ## Content notes
 
