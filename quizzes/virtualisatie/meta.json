@@ -15,6 +15,21 @@
       "id": "week3",
       "name": "Week 3: Desktop Virtualisatie",
       "file": "week3.json"
+    },
+    {
+      "id": "week4",
+      "name": "Week 4: Containers (Docker)",
+      "file": "week4.json"
+    },
+    {
+      "id": "week5",
+      "name": "Week 5: Docker Compose, opslag en netwerken",
+      "file": "week5.json"
+    },
+    {
+      "id": "week7",
+      "name": "Week 7: Object Storage (MinIO)",
+      "file": "week7.json"
     }
   ]
 }

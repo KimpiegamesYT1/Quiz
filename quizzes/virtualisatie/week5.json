@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "question": "Welke Dockerfile-instructies leveren een nieuwe laag in het image op?",
+      "options": [
+        "ENV, EXPOSE en WORKDIR",
+        "FROM, LABEL en CMD",
+        "RUN, COPY en ADD",
+        "CMD, ENTRYPOINT en LABEL"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Instructies die het bestandssysteem wijzigen maken een nieuwe laag: RUN, COPY en ADD. Elke laag bevat alleen de verschillen met de laag ervoor.\n\nOnjuist (A): Deze instructies leggen instellingen vast, maar voegen geen bestanden toe aan het image.\n\nOnjuist (B): FROM kiest het basisimage; LABEL en CMD voegen alleen metadata toe en wijzigen het bestandssysteem niet.\n\nOnjuist (D): Deze instructies bepalen wat er bij het starten gebeurt of voegen metadata toe; ze maken geen bestandslaag."
+    },
+    {
+      "question": "Een Dockerfile downloadt in een RUN-regel een bestand van 500 MB en verwijdert het in een volgende RUN-regel weer. Wat betekent dit voor de grootte van het image?",
+      "options": [
+        "Het bestand telt alleen mee zolang er een container van het image draait.",
+        "Het bestand telt nog mee, omdat het in de eerdere laag blijft bestaan.",
+        "Het bestand telt niet mee, omdat het in de laatste laag is verwijderd.",
+        "Het bestand telt niet mee, omdat Docker lege lagen bij de build samenvoegt."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Elke laag is een verzameling verschillen met de vorige laag. Het verwijderen levert een nieuwe laag op, maar het bestand zit nog in de eerdere laag en telt mee in de totale grootte.\n\nOnjuist (A): De grootte van een image staat los van draaiende containers.\n\nOnjuist (C): De eerdere laag blijft ongewijzigd bestaan; verwijderen in een latere laag verkleint het image niet.\n\nOnjuist (D): Docker voegt lagen niet zo samen dat het verwijderde bestand verdwijnt."
+    },
+    {
+      "question": "Container A en container B zijn gestart vanuit hetzelfde image. In container A wordt een bestand aangemaakt. Ziet container B dit bestand?",
+      "options": [
+        "Nee, omdat het image bij het schrijven wordt gekopieerd.",
+        "Ja, omdat beide containers hetzelfde image delen.",
+        "Ja, maar pas nadat container B opnieuw is gestart.",
+        "Nee, elke container heeft een eigen beschrijfbare laag."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Alle wijzigingen komen in de eigen beschrijfbare containerlaag. Die laag kan NIET gedeeld worden met andere containers, dus B ziet het bestand niet.\n\nOnjuist (A): Het image wordt niet gekopieerd; elke container krijgt alleen een eigen bovenste laag.\n\nOnjuist (B): Het image is alleen-lezen; schrijfacties komen in de laag van de container zelf.\n\nOnjuist (C): Ook na een herstart ziet B de laag van A niet."
+    },
+    {
+      "question": "Een MySQL-container slaat zijn database op in de beschrijfbare containerlaag. Een beheerder verwijdert de container met `docker rm`. Wat gebeurt er met de database?",
+      "options": [
+        "De data blijft bestaan tot iemand docker volume prune uitvoert.",
+        "De data wordt automatisch naar een anoniem volume verplaatst.",
+        "De data is weg, want de beschrijfbare laag wordt mee verwijderd.",
+        "De data blijft bewaard in het image waar de container op draaide."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Wanneer een container verwijderd wordt, verdwijnt ook de beschrijfbare laag. In de container zelf is persistente opslag niet mogelijk; daarvoor gebruik je volumes of bind mounts.\n\nOnjuist (A): Er was geen volume; de data stond in de containerlaag en is direct weg.\n\nOnjuist (B): Docker verplaatst data niet automatisch naar een volume bij verwijderen.\n\nOnjuist (D): Het image blijft ongewijzigd; de data heeft er nooit in gestaan."
+    },
+    {
+      "question": "Wat is het verschil tussen een Docker volume en een bind mount?",
+      "options": [
+        "Een volume werkt alleen voor Windows-containers; een bind mount alleen voor Linux.",
+        "Een volume staat altijd bij een cloudprovider; een bind mount altijd op de lokale schijf.",
+        "Een volume is alleen-lezen; een bind mount is voor een container altijd beschrijfbaar.",
+        "Een volume beheert Docker zelf; een bind mount koppelt een willekeurige hostmap."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Volumes worden volledig door Docker beheerd en staan in het bestandssysteem van de host. Een bind mount koppelt een willekeurige map van het host-OS en is afhankelijk van de mappenstructuur en het OS van de host.\n\nOnjuist (A): Volumes werken juist op zowel Linux- als Windows-containers.\n\nOnjuist (B): Een volume staat standaard op de Docker-host zelf; alleen met een volume driver kan het extern staan.\n\nOnjuist (C): Volumes zijn gewoon beschrijfbaar; beide kunnen eventueel alleen-lezen worden gekoppeld."
+    },
+    {
+      "question": "Wat is een voordeel van Docker volumes ten opzichte van bind mounts?",
+      "options": [
+        "Ze blijven werken zonder draaiende Docker-daemon.",
+        "Ze zijn makkelijker te back-uppen en te migreren.",
+        "Ze kunnen maar door één container tegelijk worden gebruikt.",
+        "Ze worden bij docker commit mee in het image opgeslagen."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Volumes zijn makkelijker te back-uppen en te migreren, te beheren met de Docker CLI/API, veiliger te delen en presteren op Docker Desktop beter dan bind mounts.\n\nOnjuist (A): Volumes worden juist door Docker beheerd; zonder daemon kun je ze niet koppelen.\n\nOnjuist (C): Volumes kunnen juist (veiliger) door meerdere containers gedeeld worden.\n\nOnjuist (D): Data in volumes wordt niet meegenomen in een image bij docker commit."
+    },
+    {
+      "question": "Een ontwikkelaar op Windows met Docker Desktop merkt dat een bind mount met veel kleine bestanden traag is. Wat is volgens de les een betere keuze?",
+      "options": [
+        "De data met docker commit in het image opslaan",
+        "Host networking, voor snellere toegang tot de schijf",
+        "Een Docker volume in plaats van de bind mount",
+        "De bind mount eerst opschonen met docker volume prune"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Volumes op Docker Desktop hebben veel hogere prestaties dan bind mounts vanaf Mac- en Windows-hosts.\n\nOnjuist (A): Data in een image is niet persistent te wijzigen en dit is geen opslagoplossing.\n\nOnjuist (B): Host networking gaat over het netwerk, niet over opslagprestaties (en werkt niet op Docker Desktop).\n\nOnjuist (D): docker volume prune verwijdert ongebruikte volumes en doet niets aan bind mounts."
+    },
+    {
+      "question": "Waarom is persistente opslag in de container zelf NIET mogelijk?",
+      "options": [
+        "Containers hebben geen enkele toegang tot de schijf van de host.",
+        "De kernel wist de containerlaag bij elke herstart van de container.",
+        "De beschrijfbare laag wordt alleen-lezen zodra de container draait.",
+        "De beschrijfbare laag verdwijnt zodra de container wordt verwijderd."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Alle wijzigingen staan in de beschrijfbare containerlaag. Bij het verwijderen van de container verdwijnt die laag, en daarmee de data. Daarom gebruik je volumes of bind mounts.\n\nOnjuist (A): Met volumes en bind mounts gebruiken containers juist opslag op de host.\n\nOnjuist (B): Bij stoppen en starten blijft de containerlaag gewoon bewaard.\n\nOnjuist (C): De containerlaag is juist beschrijfbaar zolang de container bestaat."
+    },
+    {
+      "question": "Een beheerder voert `docker volume prune` uit om ruimte vrij te maken. Welke volumes worden verwijderd?",
+      "options": [
+        "Alle volumes die niet aan een container gekoppeld zijn",
+        "Alleen het volume dat als laatste is aangemaakt",
+        "Alle volumes op de host, ook die in gebruik zijn",
+        "Alleen anonieme volumes die al langer dan 24 uur bestaan"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): docker volume prune verwijdert alle volumes die niet aan een container gekoppeld zijn. Volumes die in gebruik zijn blijven staan.\n\nOnjuist (B): prune verwijdert alle ongebruikte volumes, niet één specifiek volume.\n\nOnjuist (C): Volumes die aan een container gekoppeld zijn worden niet verwijderd.\n\nOnjuist (D): prune kijkt niet naar leeftijd en standaard niet alleen naar anonieme volumes."
+    },
+    {
+      "question": "Wat is een unnamed (anoniem) volume?",
+      "options": [
+        "Een volume dat niet aan een container gekoppeld kan worden",
+        "Een bind mount naar een map op de host zonder naam",
+        "Een volume waarvoor Docker zelf een unieke naam genereert",
+        "Een volume dat bij het stoppen van de container verdwijnt"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Bij een named volume geef je zelf een naam op. Geef je geen naam op, dan genereert Docker een unieke naam: een unnamed volume.\n\nOnjuist (A): Ook een anoniem volume wordt aan een container gekoppeld.\n\nOnjuist (B): Een bind mount is een ander mechanisme; het gaat hier om een volume.\n\nOnjuist (D): Een volume blijft bestaan, ook als de container stopt."
+    },
+    {
+      "question": "Waarvoor gebruik je een volume driver?",
+      "options": [
+        "Om een volume op netwerkopslag of in de cloud te plaatsen",
+        "Om een volume binnen één container alleen-lezen te maken",
+        "Om een bind mount om te zetten naar een laag van het image",
+        "Om de grootte van de beschrijfbare containerlaag te beperken"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Met volume drivers kun je volumes op externe hosts, netwerkopslag of bij cloudproviders opslaan (of versleutelen). Dat is nodig om een volume beschikbaar te maken voor containers op meerdere hosts.\n\nOnjuist (B): Alleen-lezen koppelen regel je bij het mounten, niet met een volume driver.\n\nOnjuist (C): Een volume driver maakt geen image-lagen.\n\nOnjuist (D): Een volume driver heeft niets met de containerlaag te maken."
+    },
+    {
+      "question": "Een collega start een container met `-v myvol2:/app`, jij met `--mount source=myvol2,target=/app`. Wat is het verschil in resultaat?",
+      "options": [
+        "Er is geen verschil; beide koppelen volume myvol2 aan /app.",
+        "--mount maakt een kopie van het volume, -v koppelt het origineel.",
+        "-v maakt een bind mount, --mount koppelt een Docker volume.",
+        "-v koppelt de map /app van de host aan het volume myvol2."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): -v en --mount geven hetzelfde resultaat: volume myvol2 wordt gekoppeld aan de map /app in de container. --mount is alleen explicieter in de schrijfwijze.\n\nOnjuist (B): Geen van beide maakt een kopie; beide koppelen hetzelfde volume.\n\nOnjuist (C): Met een naam als myvol2 koppelt -v ook een volume; geen bind mount.\n\nOnjuist (D): /app is de map in de container, niet op de host."
+    },
+    {
+      "question": "Wat is een kenmerk van het default bridge network in Docker?",
+      "options": [
+        "Containers op verschillende hosts bereiken elkaar er direct mee.",
+        "Het heft alle netwerkisolatie tussen host en container op.",
+        "Het verkeer wordt standaard met AES versleuteld.",
+        "Containers bereiken elkaar alleen op IP-adres, niet op naam."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Het default bridge network is legacy en niet aangeraden voor productie: het kent geen DNS, werkt alleen binnen de host en lijkt op NAT.\n\nOnjuist (A): Een bridge network bestaat alleen binnen één host; voor meerdere hosts is een overlay network nodig.\n\nOnjuist (B): Dat is het kenmerk van host networking.\n\nOnjuist (C): Standaard AES-versleuteling hoort bij het overlay network."
+    },
+    {
+      "question": "De containers web en db draaien op dezelfde host. web moet db kunnen bereiken via de naam `db`, en andere containers mogen er niet bij. Welk netwerk past hierbij?",
+      "options": [
+        "Het host network van de Docker-host",
+        "Een user-defined bridge network",
+        "Het default bridge network",
+        "Een overlay network"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): In een user-defined bridge network kunnen containers elkaar op naam bereiken (DNS) en zijn ze geïsoleerd van containers die niet aan dat netwerk gekoppeld zijn.\n\nOnjuist (A): Host networking heft juist de isolatie op en biedt geen afgeschermd netwerk.\n\nOnjuist (C): Het default bridge network kent geen DNS; containers kunnen elkaar alleen op IP-adres bereiken.\n\nOnjuist (D): Een overlay network is bedoeld voor containers op verschillende hosts."
+    },
+    {
+      "question": "Wanneer gebruik je een overlay network?",
+      "options": [
+        "Als containers op verschillende hosts moeten communiceren",
+        "Als containers op één host elkaar op naam moeten vinden",
+        "Als een container helemaal geen netwerkverbinding mag hebben",
+        "Als een container zonder NAT het netwerk van de host gebruikt"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een overlay network verbindt containers op verschillende hosts in een cluster, met VXLAN. Daar komt Kubernetes later op terug.\n\nOnjuist (B): Daarvoor is een user-defined bridge network voldoende.\n\nOnjuist (C): Daarvoor gebruik je geen overlay network.\n\nOnjuist (D): Dat is host networking."
+    },
+    {
+      "question": "Een collega wil met host networking de netwerkprestaties verbeteren, maar werkt met Docker Desktop for Windows. Wat is volgens de les het probleem?",
+      "options": [
+        "De host network driver werkt alleen op Linux-hosts.",
+        "Host networking vereist altijd een overlay network.",
+        "Host networking werkt alleen voor Windows-containers.",
+        "Host networking staat maar één container per host toe."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Host networking kan nuttig zijn voor prestaties (geen NAT), maar werkt alleen op Linux-hosts en wordt niet ondersteund op Docker Desktop for Mac en Windows.\n\nOnjuist (B): Host networking heeft geen overlay network nodig.\n\nOnjuist (C): Het is juist andersom: de driver werkt alleen op Linux-hosts.\n\nOnjuist (D): Er kunnen meerdere containers host networking gebruiken (zolang poorten niet botsen)."
+    },
+    {
+      "question": "Waarom wordt voor productie een user-defined bridge network aangeraden boven het default bridge network?",
+      "options": [
+        "Containers op meerdere hosts kunnen er via VXLAN mee communiceren.",
+        "Er is geen NAT meer nodig, omdat het netwerk van de host gebruikt wordt.",
+        "Het verkeer tussen containers wordt standaard met AES versleuteld.",
+        "Containers vinden elkaar op naam en zijn afgeschermd van andere containers."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een user-defined bridge biedt DNS (containers bereiken elkaar op naam) en isolatie: alleen gekoppelde containers kunnen erbij. Koppelen en ontkoppelen kan ook terwijl de container draait.\n\nOnjuist (A): Een bridge network bestaat alleen binnen de host; VXLAN hoort bij overlay networks.\n\nOnjuist (B): Dat beschrijft host networking.\n\nOnjuist (C): Standaard AES-versleuteling hoort bij het overlay network."
+    },
+    {
+      "question": "Een container met een webapplicatie op poort 5000 is gestart zonder de optie `-p`. Vanaf waar is de applicatie bereikbaar?",
+      "options": [
+        "Vanaf het externe netwerk, via een willekeurige hostpoort",
+        "Alleen binnen de Docker-host, niet vanaf het netwerk",
+        "Nergens, ook niet vanuit andere containers op dezelfde host",
+        "Vanaf het externe netwerk, via poort 5000 van de host"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Standaard worden poorten van containers niet gepubliceerd. Ze zijn dan alleen binnen de Docker-host bereikbaar; met -p koppel je ze aan een poort van de host.\n\nOnjuist (A): Docker kiest zonder -p (of -P) geen hostpoort.\n\nOnjuist (C): Binnen de Docker-host (bijv. via het bridge network) is de applicatie wel bereikbaar.\n\nOnjuist (D): Zonder -p wordt poort 5000 niet op de host gepubliceerd."
+    },
+    {
+      "question": "Wat is het verschil tussen `docker save` en `docker export`?",
+      "options": [
+        "save uploadt een image naar een registry; export schrijft het naar een lokale tar.",
+        "save bewaart een image met lagen; export het bestandssysteem van een container.",
+        "save bewaart het bestandssysteem van een container; export een image met tags.",
+        "save maakt een backup van volumes; export maakt een backup van netwerken."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): docker save zet één of meer images, inclusief alle bovenliggende lagen, tags en versies, in een tar-bestand (terug te zetten met docker load). docker export zet het bestandssysteem van een container in een tar (in te lezen met docker import).\n\nOnjuist (A): Uploaden naar een registry doe je met docker push.\n\nOnjuist (C): Dit is precies omgekeerd.\n\nOnjuist (D): Geen van beide commando's maakt een backup van volumes of netwerken."
+    },
+    {
+      "question": "Een image moet naar een server zonder internet en zonder registry. Hoe breng je het image inclusief lagen en tags over?",
+      "options": [
+        "Met docker save, en op de server docker load",
+        "Met docker volume create, en daarna docker run",
+        "Met docker commit, en op de server docker start",
+        "Met docker push, en op de server docker pull"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): docker save maakt een tar met alle lagen en tags; docker load zet het image met tags weer terug. Zo is geen registry nodig.\n\nOnjuist (B): Een volume is bedoeld voor data, niet voor het overbrengen van images.\n\nOnjuist (C): docker commit maakt een image van een container, maar brengt niets over naar een andere server.\n\nOnjuist (D): Push en pull vereisen een registry, en die is er niet."
+    },
+    {
+      "question": "Wat doet `docker commit <containerid> <image:versie>`?",
+      "options": [
+        "Het maakt een tar-backup van alle volumes van de container.",
+        "Het uploadt de container onder die versie naar een registry.",
+        "Het maakt een nieuw image van de huidige staat van een container.",
+        "Het slaat de wijzigingen op in het bestaande image van de container."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Met docker commit maak je een nieuw image uit een container, inclusief de wijzigingen in de beschrijfbare laag.\n\nOnjuist (A): Data in volumes wordt niet meegenomen; het gaat om de containerlaag.\n\nOnjuist (B): Uploaden gebeurt met docker push, en dat gaat om images, niet om containers.\n\nOnjuist (D): Het oorspronkelijke image blijft ongewijzigd; er komt een nieuw image bij."
+    },
+    {
+      "question": "Voor een backup draai je `docker run --rm --volumes-from dbstore -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata`. Wat doet `--volumes-from dbstore` hier?",
+      "options": [
+        "Het stopt dbstore tijdelijk, zodat de volumes vrijkomen.",
+        "Het koppelt de volumes van dbstore ook aan de backupcontainer.",
+        "Het kopieert de volumes van dbstore naar een nieuw image.",
+        "Het verwijdert de volumes van dbstore na afloop van de backup."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): --volumes-from koppelt dezelfde volumes als container dbstore aan de nieuwe container. Zo kan tar /dbdata inpakken naar de backupmap op de host.\n\nOnjuist (A): dbstore wordt niet gestopt; volumes kunnen door meerdere containers gekoppeld worden.\n\nOnjuist (C): Er wordt geen image gemaakt; de volumes worden alleen gekoppeld.\n\nOnjuist (D): --rm verwijdert alleen de backupcontainer zelf, niet de volumes."
+    },
+    {
+      "question": "Waarvoor is Docker Compose bedoeld?",
+      "options": [
+        "Eén image bouwen vanuit een Dockerfile die uit meerdere lagen bestaat",
+        "Images opslaan en verspreiden via een centrale registry in de cloud",
+        "Containers automatisch verdelen over een cluster van meerdere hosts",
+        "Meerdere samenwerkende containers beheren vanuit één YAML-bestand"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Docker Compose beheert meerdere containers die samen een applicatie vormen, inclusief netwerken, volumes en afhankelijkheden, vanuit één YAML-bestand en met één commando.\n\nOnjuist (A): Een image bouwen doe je met docker build; Compose richt zich op meerdere containers.\n\nOnjuist (B): Dat is de taak van een registry, zoals Docker Hub.\n\nOnjuist (C): Dat is container-orchestratie, zoals Kubernetes (week 6)."
+    },
+    {
+      "question": "In een docker-compose.yml staat bij de service wordpress `depends_on: - db`. Wat regelt dit?",
+      "options": [
+        "De start- en stopvolgorde: db start vóór wordpress.",
+        "wordpress gebruikt het image van db als basisimage.",
+        "wordpress krijgt een kopie van alle volumes van db.",
+        "db is alleen bereikbaar voor wordpress, niet voor andere services."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): depends_on bepaalt de start- en stopvolgorde van services: db wordt eerst gestart, daarna wordpress.\n\nOnjuist (B): Het image van wordpress staat los vermeld bij image: wordpress:latest.\n\nOnjuist (C): depends_on deelt geen volumes; dat regel je met volumes.\n\nOnjuist (D): Bereikbaarheid regel je met networks, niet met depends_on."
+    },
+    {
+      "question": "In de service wordpress staat `WORDPRESS_DB_HOST: db:3306`. Waar verwijst `db` naar?",
+      "options": [
+        "Naar de naam van het volume waarin de database is opgeslagen",
+        "Naar de service db, die op naam via DNS gevonden wordt",
+        "Naar een vaste hostnaam die Docker altijd aan MySQL toekent",
+        "Naar het IP-adres van de host waarop MySQL is geïnstalleerd"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Services in hetzelfde (user-defined) netwerk van Compose bereiken elkaar op servicenaam via DNS. db:3306 is dus de MySQL-service op poort 3306.\n\nOnjuist (A): Het volume heet db_data en is geen netwerkadres.\n\nOnjuist (C): De naam komt van de servicenaam in het compose-bestand, niet van een vaste regel.\n\nOnjuist (D): MySQL draait hier zelf in een container (de service db), niet op de host."
+    },
+    {
+      "question": "Wat doet `restart: always` bij een service in docker-compose.yml?",
+      "options": [
+        "De container blijft draaien, ook na docker compose down.",
+        "De container wordt bij elke compose up opnieuw gebouwd.",
+        "De container wordt elke nacht automatisch herstart.",
+        "De container wordt herstart als hij stopt of uitvalt."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Met restart: always herstart Docker de container automatisch na uitval (en na een herstart van de daemon).\n\nOnjuist (A): docker compose down stopt en verwijdert de containers gewoon.\n\nOnjuist (B): Opnieuw bouwen heeft met build te maken, niet met restart.\n\nOnjuist (C): restart werkt niet op een tijdschema."
+    },
+    {
+      "question": "Je wilt alle containers van een compose-project stoppen, maar ze NIET verwijderen, zodat je ze later weer kunt starten. Welk commando gebruik je?",
+      "options": [
+        "docker compose up --force-recreate",
+        "docker compose down --volumes",
+        "docker compose stop",
+        "docker compose down"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): docker compose stop stopt draaiende containers zonder ze te verwijderen; met docker compose start start je ze weer.\n\nOnjuist (A): Dit maakt alle containers juist opnieuw aan en start ze.\n\nOnjuist (B): Dit verwijdert de containers, netwerken én de volumes.\n\nOnjuist (D): down stopt én verwijdert de containers en netwerken."
+    },
+    {
+      "question": "Wat verwijdert `docker compose down` standaard?",
+      "options": [
+        "De containers, netwerken en alle named volumes",
+        "De containers, netwerken en de gebruikte images",
+        "De containers en netwerken uit het compose-bestand",
+        "Alleen de containers; de netwerken blijven bestaan"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Standaard verwijdert down de containers van de services en de netwerken uit het compose-bestand (en het default netwerk). Volumes blijven bewaard; externe netwerken en volumes worden nooit verwijderd.\n\nOnjuist (A): Named volumes blijven standaard bewaard, zodat data niet verloren gaat.\n\nOnjuist (B): Images worden standaard niet verwijderd.\n\nOnjuist (D): Ook de netwerken uit het compose-bestand worden verwijderd."
+    },
+    {
+      "question": "Waarin verschilt de focus van `docker run` van die van Docker Compose?",
+      "options": [
+        "docker run is voor Linux-containers; Compose alleen voor Windows-containers.",
+        "docker run start één container; Compose beheert samenwerkende containers.",
+        "docker run werkt met images; Compose werkt uitsluitend met Dockerfiles.",
+        "docker run maakt alleen netwerken; Compose maakt alleen volumes."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): docker run richt zich op het bouwen en uitvoeren van individuele containers. Docker Compose beheert meerdere containers, met hun netwerken en volumes, die samen een applicatie vormen.\n\nOnjuist (A): Beide werken met Linux- en Windows-containers.\n\nOnjuist (C): Compose kan zowel bestaande images (image:) als Dockerfiles (build:) gebruiken.\n\nOnjuist (D): docker run start containers; Compose regelt containers, netwerken én volumes."
+    },
+    {
+      "question": "Wat betekent `build: dockerfile_db` bij een service, in plaats van `image: mysql:5.7`?",
+      "options": [
+        "De container wordt gemaakt vanuit de Dockerfile in de map dockerfile_db.",
+        "De container dockerfile_db wordt met docker commit opgeslagen als image.",
+        "De service gebruikt een volume met de naam dockerfile_db voor zijn data.",
+        "Het image mysql:5.7 wordt gedownload en hernoemd naar dockerfile_db."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Met build bouwt Compose eerst een image vanuit een Dockerfile in de opgegeven map; met image gebruik je een bestaand image.\n\nOnjuist (B): build gebruikt geen docker commit.\n\nOnjuist (C): Volumes staan onder volumes, niet onder build.\n\nOnjuist (D): build downloadt en hernoemt geen bestaand image."
+    }
+  ]
+}

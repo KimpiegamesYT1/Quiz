@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "question": "Hoe wordt een object in object storage geïdentificeerd?",
+      "options": [
+        "Met een bloknummer op een LUN",
+        "Met een unieke sleutel in een platte structuur",
+        "Met een inode op een lokaal bestandssysteem",
+        "Met een pad in een hiërarchische mappenstructuur"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Object storage gebruikt een platte structuur waarin elk object een unieke sleutel heeft. Daardoor kun je miljarden objecten opslaan zonder dat de prestaties daaronder lijden.\n\nOnjuist (A): Bloknummers op een LUN horen bij block storage, zoals iSCSI of Fibre Channel.\n\nOnjuist (C): Inodes zijn een onderdeel van Linux-bestandssystemen, niet van object storage.\n\nOnjuist (D): Een hiërarchie van mappen en paden is kenmerkend voor file storage (bestandssystemen)."
+    },
+    {
+      "question": "Waarom is de uitgebreide metadata bij object storage belangrijk?",
+      "options": [
+        "Metadata bepaalt op welke schijfsector een object terechtkomt.",
+        "Metadata vervangt bij kleine bestanden de data van het object.",
+        "Metadata maakt het mogelijk om objecten vaak te bewerken.",
+        "Objecten kunnen erop worden geïndexeerd, getagd en doorzocht."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Object storage slaat naast de data ook uitgebreide metadata op. Daarmee kun je objecten indexeren, taggen, categoriseren en op verschillende criteria doorzoeken.\n\nOnjuist (A): Fysieke plaatsing op sectoren is iets van block storage en wordt niet door metadata bepaald.\n\nOnjuist (B): Metadata beschrijft de data, maar vervangt die nooit.\n\nOnjuist (C): Object storage is juist minder geschikt voor data die vaak wordt bijgewerkt."
+    },
+    {
+      "question": "Een mediabedrijf wil miljoenen foto's en video's schaalbaar opslaan en via applicaties beschikbaar maken. Welke opslagvorm past het best?",
+      "options": [
+        "Een lokale schijf in elke webserver",
+        "De beschrijfbare laag van een container",
+        "Object storage, zoals MinIO",
+        "Een gedeelde map (SMB) op één fileserver"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Object storage is bijzonder geschikt voor grote hoeveelheden ongestructureerde data (afbeeldingen, video's, documenten, back-ups) en is zeer schaalbaar en via API's bereikbaar.\n\nOnjuist (A): Lokale schijven zijn niet gedeeld en niet schaalbaar over meerdere servers.\n\nOnjuist (B): De containerlaag is niet persistent en verdwijnt met de container.\n\nOnjuist (D): Eén fileserver schaalt slecht naar miljoenen grote bestanden en biedt geen API zoals S3."
+    },
+    {
+      "question": "Een team wil een database met klantgegevens die elke seconde wordt bijgewerkt op object storage zetten. Is dat een goede keuze?",
+      "options": [
+        "Ja, zolang versiebeheer op de bucket uitgeschakeld is.",
+        "Nee, object storage kan alleen afbeeldingen en video's bevatten.",
+        "Nee, object storage is minder geschikt voor data die vaak verandert.",
+        "Ja, object storage is juist gemaakt voor veel kleine wijzigingen."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Object storage is ideaal voor grote hoeveelheden data die vooral opgeslagen en gelezen worden, maar minder geschikt voor toepassingen waarbij gegevens vaak bijgewerkt of verwijderd worden.\n\nOnjuist (A): Versiebeheer verandert niets aan de basiseigenschap dat objecten niet in delen te wijzigen zijn.\n\nOnjuist (B): Object storage kan elk type data bevatten, ook documenten, logbestanden en back-ups.\n\nOnjuist (D): Het omgekeerde is waar: objecten zijn onveranderlijk en worden in hun geheel vervangen."
+    },
+    {
+      "question": "Hoe benaderen applicaties gegevens in object storage?",
+      "options": [
+        "Via SCSI-commando's over Fibre Channel of iSCSI",
+        "Via een API, zoals de S3 API van Amazon",
+        "Via een SMB-share met een eigen stationsletter",
+        "Via een gemount bestandssysteem zoals NTFS of ext4"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Object storage biedt toegang via API's zoals de S3 API. Applicaties benaderen objecten daarmee rechtstreeks, zonder tussenkomst van een bestandssysteem.\n\nOnjuist (A): SCSI-commando's horen bij block storage.\n\nOnjuist (C): Een SMB-share is file storage, geen object storage.\n\nOnjuist (D): Object storage werkt juist zonder tussenkomst van een bestandssysteem."
+    },
+    {
+      "question": "Wat is MinIO?",
+      "options": [
+        "Een container runtime die objecten in images opslaat",
+        "Een open-source object storage server die met de S3 API werkt",
+        "Een betaalde clouddienst van Amazon voor het opslaan van objecten",
+        "Een gedistribueerd bestandssysteem dat bij OpenStack hoort"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): MinIO is een open-source object storage server, ontworpen voor cloud-native applicaties en DevOps, en compatibel met de Amazon S3 API.\n\nOnjuist (A): MinIO is geen container runtime, al kan het wel in een container draaien.\n\nOnjuist (C): Dat is Amazon S3 zelf; MinIO is open-source en kun je zelf hosten.\n\nOnjuist (D): Binnen OpenStack is Swift de object storage-oplossing."
+    },
+    {
+      "question": "Een applicatie is gebouwd voor Amazon S3, maar de data moet naar het eigen datacenter. Welke oplossing vraagt de minste aanpassingen aan de applicatie?",
+      "options": [
+        "Een iSCSI-LUN, omdat die dezelfde API als S3 heeft",
+        "Een NFS-share, omdat S3 ook met bestandspaden werkt",
+        "MinIO, omdat het compatibel is met de S3 API",
+        "Een Docker volume, omdat dat ook objecten opslaat"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Omdat MinIO de S3 API ondersteunt, kan een S3-applicatie er met minimale aanpassingen (vooral een ander endpoint) mee werken.\n\nOnjuist (A): iSCSI is block storage en gebruikt SCSI-commando's, geen S3 API.\n\nOnjuist (B): NFS is file storage met een ander protocol; de applicatie zou flink aangepast moeten worden.\n\nOnjuist (D): Een Docker volume is opslag voor containers en biedt geen S3 API."
+    },
+    {
+      "question": "Wat is een bucket in MinIO?",
+      "options": [
+        "Een fysieke schijf die aan een MinIO-knooppunt gekoppeld is",
+        "Een groep gebruikers met eigen pods en eigen opslag",
+        "Een kopie van een object op een ander knooppunt",
+        "Een logische opslageenheid voor het ordenen van objecten"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een bucket is een virtuele container of logische opslageenheid, vergelijkbaar met een top-level directory. Elke bucket heeft een unieke naam en kan een willekeurig aantal objecten bevatten.\n\nOnjuist (A): Een bucket is logisch en staat los van fysieke schijven.\n\nOnjuist (B): Dat is een tenant.\n\nOnjuist (C): Dat is een replica, het resultaat van replicatie."
+    },
+    {
+      "question": "Wat is een object in MinIO?",
+      "options": [
+        "Een onveranderlijk gegevensitem plus metadata",
+        "Een server die deel uitmaakt van een cluster",
+        "Een database met informatie over alle bestanden",
+        "Een map waarin bestanden worden gegroepeerd"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een MinIO-object is een enkelvoudig, onveranderlijk gegevensitem: de data (bijv. een bestand) plus metadata. Objecten staan in buckets.\n\nOnjuist (B): Dat is een MinIO-knooppunt (node).\n\nOnjuist (C): Dat is de metadata-database van een knooppunt.\n\nOnjuist (D): Dat lijkt op een bucket, waarin objecten georganiseerd worden."
+    },
+    {
+      "question": "Wat is een tenant in de context van de MinIO Operator?",
+      "options": [
+        "Een groep gebruikers met eigen buckets en pods",
+        "Een object dat met object locking is vergrendeld",
+        "Een MinIO-server die stand-alone draait buiten het cluster",
+        "Een bucket die over meerdere knooppunten verspreid is"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Tenants zijn een opslaglaag boven buckets: groepen gebruikers met hun eigen buckets en hun eigen pods die de opslag verzorgen.\n\nOnjuist (B): Object locking beschermt objecten, maar maakt er geen tenant van.\n\nOnjuist (C): Dat is een stand-alone server, geen tenant.\n\nOnjuist (D): Een bucket blijft een bucket, ook als de data verspreid staat."
+    },
+    {
+      "question": "In een MinIO-cluster valt een schijf uit. Welke techniek zorgt ervoor dat de data toch gereconstrueerd kan worden?",
+      "options": [
+        "Lifecycle management",
+        "Erasure coding",
+        "Object locking",
+        "Load balancing"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Erasure coding verdeelt data met extra pariteitsinformatie over schijven, zodat data na uitval van schijven te reconstrueren is. Het zorgt voor gegevensduurzaamheid.\n\nOnjuist (A): Lifecycle management regelt wat er met data gebeurt naarmate die ouder wordt.\n\nOnjuist (C): Object locking voorkomt verwijderen of overschrijven, maar herstelt geen data na schijfuitval.\n\nOnjuist (D): Load balancing verdeelt de belasting, maar herstelt geen verloren data."
+    },
+    {
+      "question": "Waartegen beschermt de bitrot-detectie van MinIO?",
+      "options": [
+        "Een volgelopen schijf in een knooppunt",
+        "Vertraging in het netwerk tussen knooppunten",
+        "Ongeautoriseerde toegang tot een bucket",
+        "Ongemerkte beschadiging van data op schijf"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Bitrot is beschadiging van data op een opslagmedium die ongemerkt kan ontstaan. MinIO detecteert dit, zodat beschadigde data hersteld kan worden.\n\nOnjuist (A): Een volle schijf is een capaciteitsprobleem, geen bitrot.\n\nOnjuist (B): Bitrot gaat over beschadigde data op schijf, niet over het netwerk.\n\nOnjuist (C): Dat is een taak van toegangsbeheer en beleidsregels."
+    },
+    {
+      "question": "De opslagcapaciteit van een MinIO-cluster raakt op. Hoe wordt MinIO volgens de les uitgebreid?",
+      "options": [
+        "Verticaal, door meer RAM in de bestaande server",
+        "Horizontaal, door servers of schijven toe te voegen",
+        "Door erasure coding uit te zetten voor meer ruimte",
+        "Door objecten naar een tweede bucket te verplaatsen"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): MinIO schaalt horizontaal: je voegt servers (nodes) of schijven toe, met automatische load balancing en data sharding. Zo kan het groeien tot petabytes.\n\nOnjuist (A): Meer geheugen vergroot de opslagcapaciteit niet; MinIO schaalt horizontaal.\n\nOnjuist (C): Daarmee lever je gegevensbescherming in; het is geen manier van schalen.\n\nOnjuist (D): Een andere bucket in hetzelfde cluster levert geen extra capaciteit op."
+    },
+    {
+      "question": "In een MinIO-cluster valt één knooppunt uit. Kunnen de objecten nog gevonden worden?",
+      "options": [
+        "Ja, de metadata-database is gerepliceerd naar andere knooppunten.",
+        "Nee, eerst moet het cluster als stand-alone server starten.",
+        "Ja, omdat elke client een kopie van alle objecten bewaart.",
+        "Nee, de metadata staat alleen op het knooppunt van het object."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): De metadata-database van een knooppunt kan naar de andere knooppunten gerepliceerd worden. Daardoor kunnen objecten gevonden en hersteld worden, ook als een knooppunt uitvalt.\n\nOnjuist (B): Een stand-alone server is juist minder fouttolerant dan een cluster.\n\nOnjuist (C): Clients bewaren geen kopie van alle objecten; de bescherming zit in het cluster.\n\nOnjuist (D): Juist door replicatie van de metadata is die op alle knooppunten beschikbaar."
+    },
+    {
+      "question": "Een student wil MinIO op een laptop uitproberen om de werking te leren kennen. Welke opzet past daarbij?",
+      "options": [
+        "Een gedistribueerde opstelling over meerdere clouds",
+        "Een MinIO-tenant via de Kubernetes Operator",
+        "Een stand-alone MinIO-server",
+        "Een cluster met erasure coding over vier knooppunten"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een stand-alone MinIO-server (single node, single drive) is gratis en geschikt voor early development en evaluatie.\n\nOnjuist (A): Een multi-cloudopstelling is veel complexer dan nodig is om te leren.\n\nOnjuist (B): Dat vereist een Kubernetes-cluster en is te zwaar om alleen te verkennen.\n\nOnjuist (D): Een cluster is bedoeld voor productie en vraagt meerdere knooppunten."
+    },
+    {
+      "question": "Wat is volgens de les het belangrijkste verschil tussen MinIO en Amazon S3?",
+      "options": [
+        "Vergelijkbare API, maar MinIO geeft meer controle",
+        "S3 is open-source, terwijl MinIO een betaalde clouddienst is",
+        "S3 draait alleen on-premises, MinIO alleen in de cloud",
+        "MinIO gebruikt een eigen API die niet compatibel is met S3"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): MinIO en Amazon S3 hebben vergelijkbare API's, maar met MinIO bepaal je zelf waar en hoe de opslag draait, wat meer flexibiliteit en controle geeft.\n\nOnjuist (B): Het is andersom: MinIO is open-source, S3 is een betaalde dienst van Amazon.\n\nOnjuist (C): S3 is een clouddienst; MinIO draait waar je wilt, ook on-premises.\n\nOnjuist (D): MinIO is juist compatibel met de S3 API."
+    },
+    {
+      "question": "Wat is volgens de les een voordeel van MinIO ten opzichte van Ceph?",
+      "options": [
+        "MinIO is alleen als beheerde dienst bij AWS beschikbaar.",
+        "MinIO is eenvoudiger te installeren en te beheren.",
+        "MinIO is beter geïntegreerd in het OpenStack-ecosysteem.",
+        "MinIO biedt naast objecten ook block storage via iSCSI."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): MinIO is eenvoudiger te installeren en beheren dan Ceph en biedt betere prestaties voor object storage-workloads.\n\nOnjuist (A): MinIO is open-source en kun je zelf overal installeren.\n\nOnjuist (C): Dat is een voordeel van OpenStack Swift, niet van MinIO.\n\nOnjuist (D): MinIO richt zich op object storage, niet op block storage."
+    },
+    {
+      "question": "Een organisatie gebruikt OpenStack voor haar hele infrastructuur en twijfelt tussen MinIO en OpenStack Swift. Wat spreekt volgens de les voor Swift?",
+      "options": [
+        "Swift levert hogere prestaties dan MinIO bij object storage.",
+        "Swift is, anders dan MinIO, compatibel met de S3 API.",
+        "Swift is eenvoudiger te installeren en te beheren dan MinIO.",
+        "Swift heeft meer geïntegreerde functionaliteit binnen OpenStack."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): MinIO heeft hogere prestaties en is eenvoudiger te installeren, maar Swift biedt meer geïntegreerde functionaliteit binnen het OpenStack-ecosysteem.\n\nOnjuist (A): Volgens de les heeft juist MinIO de hogere prestaties.\n\nOnjuist (B): MinIO is juist compatibel met de S3 API.\n\nOnjuist (C): Volgens de les is MinIO juist eenvoudiger te installeren."
+    },
+    {
+      "question": "MinIO draait als container. Waar moet de data staan zodat die het verwijderen en opnieuw aanmaken van de container overleeft?",
+      "options": [
+        "In een Docker volume of bind mount, zoals minio_data:/data",
+        "In de metadata-database van de bucket waarin de objecten staan",
+        "In het image elestio/minio dat voor de container gebruikt wordt",
+        "In de beschrijfbare laag van de MinIO-container zelf"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): MinIO kan als container op de Docker daemon draaien, maar persistente opslag moet in een Docker volume of bind mount (zie week 5). In de opdracht wordt daarvoor het volume minio_data aan /data gekoppeld.\n\nOnjuist (B): De metadata-database bevat informatie over objecten, maar is zelf ook opslag die persistent moet zijn.\n\nOnjuist (C): Een image is alleen-lezen; data komt er niet in terecht.\n\nOnjuist (D): Die laag verdwijnt als de container wordt verwijderd."
+    },
+    {
+      "question": "MinIO gebruikt standaard poort 9000 en daarnaast een aparte console-poort. Wat is het verschil?",
+      "options": [
+        "9000 is de webinterface; de console-poort is voor de S3 API.",
+        "9000 is voor de S3 API; de console is de webinterface voor beheer.",
+        "9000 is versleuteld met HTTPS; de console-poort is onversleuteld.",
+        "9000 is voor replicatie tussen knooppunten; de console voor clients."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Poort 9000 wordt gebruikt voor de API (S3-verbindingen). De MinIO Console is de grafische webinterface voor het beheer, op een eigen poort (via --console-address).\n\nOnjuist (A): Dit is precies omgekeerd.\n\nOnjuist (C): Het verschil tussen de poorten gaat over de functie, niet over versleuteling.\n\nOnjuist (D): Poort 9000 is de API voor clients, niet specifiek voor replicatie."
+    },
+    {
+      "question": "Je start MinIO in Docker met `-e MINIO_ROOT_USER=...` en `-e MINIO_ROOT_PASSWORD=...`. Waarvoor dienen deze variabelen?",
+      "options": [
+        "Ze stellen de inloggegevens van de beheerder (root) in.",
+        "Ze bevatten het account waarmee Docker het image pullt.",
+        "Ze geven de naam van de eerste bucket en de tenant op.",
+        "Ze koppelen MinIO aan een gebruiker uit AD DS."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): MINIO_ROOT_USER en MINIO_ROOT_PASSWORD bepalen de rootgebruiker waarmee je inlogt op de MinIO Console en de API.\n\nOnjuist (B): Het pullen van images gebeurt met de gegevens van docker login.\n\nOnjuist (C): Buckets maak je pas na het starten aan, bijvoorbeeld via de console of mc.\n\nOnjuist (D): Deze variabelen maken een lokale rootgebruiker aan, geen koppeling met AD DS."
+    },
+    {
+      "question": "Wat is de MinIO Client (mc)?",
+      "options": [
+        "Een webinterface om gebruikers en rechten te beheren",
+        "Een Kubernetes-pod die tenants uitrolt en beheert",
+        "Een driver om MinIO als Docker volume te koppelen",
+        "Een command-line tool om buckets en objecten te beheren"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): mc is de command-line client van MinIO met commando's zoals mb, cp, rm en ls, mirror voor synchronisatie, en beheer van toegangsrechten en beleidsregels.\n\nOnjuist (A): Dat is de MinIO Console (MinIO Browser).\n\nOnjuist (B): Dat is de MinIO Operator.\n\nOnjuist (C): mc is geen volume driver, maar een beheertool."
+    },
+    {
+      "question": "Een beheerder wil een lokale map automatisch gelijk houden met een bucket in MinIO. Welk mc-commando is daarvoor bedoeld?",
+      "options": [
+        "mc mb",
+        "mc mirror",
+        "mc cp",
+        "mc alias"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): mc mirror synchroniseert data tussen een lokaal bestandssysteem en MinIO.\n\nOnjuist (A): mc mb maakt een nieuwe bucket aan.\n\nOnjuist (C): mc cp kopieert objecten eenmalig, maar houdt mappen niet gelijk.\n\nOnjuist (D): mc alias beheert de lijst met S3-hosts waarmee mc verbinding maakt."
+    },
+    {
+      "question": "Een beheerder wil een bucket met al zijn objecten volledig verwijderen. Welk mc-commando is daarvoor nodig?",
+      "options": [
+        "mc ls",
+        "mc rm",
+        "mc rb",
+        "mc mb"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): mc rm verwijdert objecten uit een bucket; om een bucket volledig te verwijderen gebruik je mc rb (remove bucket).\n\nOnjuist (A): mc ls toont buckets en objecten en verwijdert niets.\n\nOnjuist (B): mc rm verwijdert objecten, maar niet de bucket zelf.\n\nOnjuist (D): mc mb maakt juist een bucket aan."
+    },
+    {
+      "question": "Waarvoor kan MinIO in een Kubernetes-cluster gebruikt worden?",
+      "options": [
+        "Als vervanging van de container runtime op de nodes",
+        "Als DNS-server voor de services in het cluster",
+        "Als object storage backend voor persistent volumes",
+        "Als load balancer voor inkomend webverkeer"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): MinIO kan dienen als object storage backend voor Kubernetes persistent volumes, inclusief replicatie over knooppunten, gegevensbeheer en toegangscontrole.\n\nOnjuist (A): De container runtime (bijv. containerd) draait de containers; MinIO is opslag.\n\nOnjuist (B): Naamresolutie in Kubernetes regelt een DNS-component, niet MinIO.\n\nOnjuist (D): MinIO verdeelt intern de opslagbelasting, maar is geen load balancer voor webverkeer."
+    },
+    {
+      "question": "Wat is de taak van de MinIO Kubernetes Operator?",
+      "options": [
+        "De controlplane van Kubernetes vervangen",
+        "Docker-images automatisch omzetten naar MinIO-objecten",
+        "Back-ups maken van alle pods naar Amazon S3",
+        "MinIO-tenants uitrollen, beheren en onderhouden"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De Operator brengt native ondersteuning voor het uitrollen en beheren van MinIO-deployments (tenants) op Kubernetes. De Operator-pod doet het beheer, de Console-pod biedt de grafische interface.\n\nOnjuist (A): De Operator draait als pod binnen Kubernetes en vervangt niets.\n\nOnjuist (B): De Operator zet geen images om.\n\nOnjuist (C): Back-ups van pods maken is niet de taak van de Operator."
+    },
+    {
+      "question": "Je maakt met de MinIO Operator een nieuwe tenant aan. Waar komen de pods van die tenant te staan?",
+      "options": [
+        "In de default namespace, samen met andere tenants",
+        "In de namespace van de Operator zelf",
+        "In een eigen namespace voor die tenant",
+        "Op de master node, buiten elke namespace"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een tenant moet een eigen namespace hebben; daarin maakt de Operator de pods die de tenantconfiguratie nodig heeft.\n\nOnjuist (A): Elke tenant heeft juist een eigen namespace.\n\nOnjuist (B): In de namespace van de Operator draaien alleen de Operator-pod en de Console-pod.\n\nOnjuist (D): Pods staan altijd in een namespace, en de Operator draait op een worker node."
+    },
+    {
+      "question": "Welke functies gebruikt object storage om gegevens op grote schaal te beheren?",
+      "options": [
+        "Replicatie, versiebeheer en lifecycle-beheer",
+        "Defragmentatie, partitionering en journaling",
+        "Thin provisioning, ballooning en vMotion",
+        "Netwerkadresvertaling, DNS en VXLAN"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Object storage gebruikt functies als replicatie, versiebeheer en lifecycle management om de integriteit te waarborgen en de levenscyclus van data te beheren.\n\nOnjuist (B): Dit zijn kenmerken van schijven en bestandssystemen.\n\nOnjuist (C): Dit zijn technieken uit servervirtualisatie (week 1 en 2).\n\nOnjuist (D): Dit zijn netwerktechnieken."
+    },
+    {
+      "question": "Een bedrijf wil back-ups in MinIO beschermen, zodat ze een tijd lang niet verwijderd of overschreven kunnen worden, bijvoorbeeld door ransomware. Welke functie past daarbij?",
+      "options": [
+        "Data sharding",
+        "Erasure coding",
+        "Bucket replicatie",
+        "Object locking"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Met object locking kun je objecten vergrendelen, zodat ze gedurende een bepaalde periode niet verwijderd of overschreven kunnen worden.\n\nOnjuist (A): Data sharding verdeelt data over knooppunten voor prestaties.\n\nOnjuist (B): Erasure coding beschermt tegen schijfuitval, niet tegen bewust verwijderen.\n\nOnjuist (C): Replicatie maakt een kopie, maar kan ook verwijderingen meenemen; het vergrendelt niets."
+    },
+    {
+      "question": "Een organisatie wil dat de inhoud van een bucket ook in een tweede datacenter beschikbaar is, voor het geval het eerste uitvalt. Welke MinIO-functie gebruikt ze?",
+      "options": [
+        "Bucket replicatie",
+        "Lifecycle management",
+        "Bitrot-detectie",
+        "Object locking"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Met bucket replicatie worden objecten naar een andere locatie of ander cluster gekopieerd, zodat de data bij uitval van de eerste locatie beschikbaar blijft.\n\nOnjuist (B): Lifecycle management regelt bijvoorbeeld het opruimen of verplaatsen van oude data.\n\nOnjuist (C): Bitrot-detectie spoort beschadigde data op, maar maakt geen kopie elders.\n\nOnjuist (D): Object locking voorkomt wijzigen of verwijderen, maar maakt geen kopie op een andere locatie."
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "question": "Welk onderdeel delen alle containers op één host met elkaar?",
+      "options": [
+        "De kernel van het besturingssysteem van de host",
+        "Het bestandssysteem met de applicatiedata",
+        "Een hypervisor die elke container een kernel geeft",
+        "De bibliotheken en tools van de applicatie"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Containerisatie is virtualisatie waarbij de kernel van het onderliggende OS gedeeld wordt; elke container is een geïsoleerd proces bovenop diezelfde kernel.\n\nOnjuist (B): Elke container heeft juist een eigen, gescheiden bestandssysteem.\n\nOnjuist (C): Containers hebben geen hypervisor en geen eigen kernel nodig; dat is juist het verschil met VM's.\n\nOnjuist (D): Bibliotheken en tools (bins/libs) zitten per container in het image, zodat containers onafhankelijk van elkaar zijn."
+    },
+    {
+      "question": "Op een Ubuntu-host (kernel 5.4) draait een container runtime. Welke container kan hier NIET direct op draaien?",
+      "options": [
+        "Een Windows-container",
+        "Een Debian-container",
+        "Een CentOS-container",
+        "Een Alpine Linux-container"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een Windows-container heeft een Windows-kernel nodig. Omdat containers de kernel van de host delen, kan deze niet op een Linux-kernel draaien.\n\nOnjuist (B): Debian is een Linux-distributie en kan de kernel van de Ubuntu-host gebruiken.\n\nOnjuist (C): CentOS is een Linux-distributie en gebruikt dezelfde Linux-kernel als de Ubuntu-host.\n\nOnjuist (D): Alpine is een (zeer kleine) Linux-distributie en draait dus gewoon op de Linux-kernel van de host."
+    },
+    {
+      "question": "Waarom kan een CentOS-container zonder problemen op een Ubuntu-host draaien?",
+      "options": [
+        "CentOS en Ubuntu gebruiken dezelfde pakketbeheerder en daardoor dezelfde bibliotheken.",
+        "Beide distributies gebruiken een Linux-kernel; alleen de tools en bibliotheken verschillen.",
+        "De container runtime vertaalt CentOS-aanroepen tijdens het draaien naar Ubuntu-aanroepen voor de host.",
+        "Docker start voor elke distributie automatisch een eigen kernel binnen de container."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een distributie bestaat uit kernel, toepassingen, grafische schil en bibliotheken. De kernel is bij alle Linux-distributies dezelfde soort, dus de container kan de kernel van de host gebruiken.\n\nOnjuist (A): CentOS (yum/dnf) en Ubuntu (apt) hebben juist verschillende pakketbeheerders; het gaat om de gedeelde kernel.\n\nOnjuist (C): Er vindt geen vertaling plaats; de container doet systeemaanroepen rechtstreeks op de gedeelde kernel.\n\nOnjuist (D): Een container bevat geen eigen kernel; die wordt gedeeld met de host."
+    },
+    {
+      "question": "Hoe draait Docker Desktop op Windows (met WSL 2) Linux-containers?",
+      "options": [
+        "In een lichtgewicht VM met een eigen Linux-kernel op Hyper-V",
+        "Door de Linux-container bij docker pull om te zetten naar een Windows-container",
+        "Via emulatie in Docker Desktop, zonder hypervisor of extra kernel",
+        "Rechtstreeks op de Windows NT-kernel, via een vertaallaag in de Docker-client"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Linux-containers hebben een Linux-kernel nodig. WSL 2 draait daarvoor een lichtgewicht Linux utility-VM op de hypervisor, naast de Windows NT-kernel.\n\nOnjuist (B): Images worden niet omgezet; een Linux-image blijft een Linux-image.\n\nOnjuist (C): Er is wel degelijk een hypervisor en een extra (Linux-)kernel in een lichtgewicht VM nodig.\n\nOnjuist (D): De Windows NT-kernel kan geen Linux-containers draaien; daar is een echte Linux-kernel voor nodig."
+    },
+    {
+      "question": "Een Docker-image wordt vaak vergeleken met een template van een VM. Wat zit er in een image, anders dan in een VM-template, NIET in?",
+      "options": [
+        "Een kernel",
+        "Een runtime",
+        "Instellingen",
+        "Bibliotheken"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Een image bevat code, runtime, systeemtools, bibliotheken en instellingen, maar GEEN kernel: die wordt gedeeld met de host.\n\nOnjuist (B): De runtime (bijv. Node.js of Java) zit juist wel in het image.\n\nOnjuist (C): Instellingen horen volgens de definitie juist wel bij een image.\n\nOnjuist (D): Systeembibliotheken zitten juist wel in het image."
+    },
+    {
+      "question": "Een organisatie draait twintig kleine webapplicaties, elk in een eigen VM. Wat is de belangrijkste oorzaak van verspilde resources?",
+      "options": [
+        "De hypervisor reserveert per VM een vaste processorkern.",
+        "VM's kunnen geen gedeelde opslag gebruiken.",
+        "Elke VM heeft een eigen fysieke netwerkkaart nodig.",
+        "Elke VM draait een volledig eigen guest-OS."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Elke VM vraagt CPU, opslag, RAM én een compleet guest OS. Die twintig guest OS'en kosten veel resources die niets met de applicaties zelf te maken hebben.\n\nOnjuist (A): vCPU's worden door de hypervisor gedeeld en ingepland; er is geen vaste fysieke kern per VM.\n\nOnjuist (B): VM's kunnen juist prima gedeelde opslag gebruiken (zie week 1 en 2).\n\nOnjuist (C): VM's gebruiken virtuele netwerkkaarten; er is geen fysieke kaart per VM nodig."
+    },
+    {
+      "question": "Waarom staat een applicatie in een container meestal binnen enkele seconden online, terwijl een VM er langer over doet?",
+      "options": [
+        "Containers slaan de netwerkconfiguratie bij het starten over.",
+        "Containerimages worden vooraf volledig in het geheugen geladen.",
+        "Er hoeft geen besturingssysteem te worden opgestart.",
+        "Containers krijgen voorrang op de processor van de host."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): 'Speed': geen OS om te booten betekent dat applicaties binnen seconden online zijn. De container start alleen een proces op de al draaiende kernel.\n\nOnjuist (A): Containers krijgen gewoon netwerkconfiguratie; dat is niet de reden van de snelheid.\n\nOnjuist (B): Images staan op schijf; ze worden niet standaard vooraf in het geheugen geladen.\n\nOnjuist (D): Containers krijgen geen hogere prioriteit; ze starten sneller omdat er geen OS hoeft te booten."
+    },
+    {
+      "question": "Een webshop draait in een container met een vaste versie van Node.js. Op de host wordt Node.js bijgewerkt naar een nieuwere versie. Wat gebeurt er met de webshop?",
+      "options": [
+        "De container stopt, omdat de versie op de host niet meer klopt.",
+        "De container neemt bij de volgende herstart de nieuwe versie over.",
+        "Niets; de container blijft zijn eigen Node.js-versie gebruiken.",
+        "Docker bouwt het image automatisch opnieuw met de nieuwe versie."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De inhoud van een container blijft steeds gelijk: er zijn geen automatische updates van bijvoorbeeld Node.js of PHP. Daardoor werkt de applicatie overal op dezelfde manier.\n\nOnjuist (A): De versie op de host is niet relevant voor de container; alleen de kernel wordt gedeeld.\n\nOnjuist (B): De container gebruikt de software uit zijn eigen image, niet die van de host.\n\nOnjuist (D): Docker bouwt images nooit automatisch opnieuw; dat doe je zelf met docker build."
+    },
+    {
+      "question": "Welk Docker-component voert commando's daadwerkelijk uit en beheert de images en containers op een host?",
+      "options": [
+        "De daemon (dockerd)",
+        "De registry (Docker Hub)",
+        "De repository",
+        "De client (docker)"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): De daemon (engine/runtime dockerd) ontvangt opdrachten en bouwt, start en beheert images en containers.\n\nOnjuist (B): Een registry slaat images op en verspreidt ze, maar voert geen containers uit.\n\nOnjuist (C): Een repository is een verzameling versies van één image binnen een registry.\n\nOnjuist (D): De client stuurt commando's alleen door naar de daemon; hij voert ze zelf niet uit."
+    },
+    {
+      "question": "Je typt `docker run nginx` in een terminal. Wat doet de Docker-client met dit commando?",
+      "options": [
+        "Hij maakt een nieuwe VM aan waarin de container wordt gestart.",
+        "Hij stuurt het commando door naar dockerd, die het uitvoert.",
+        "Hij downloadt het image rechtstreeks in een nieuwe container.",
+        "Hij start de container zelf en meldt dit daarna bij de daemon."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): De client is de primaire manier om met Docker te communiceren: commando's zoals docker run worden naar dockerd gestuurd, die ze uitvoert. De client kan zelfs met meer dan één daemon praten.\n\nOnjuist (A): Docker maakt geen VM per container; containers delen de kernel van de host.\n\nOnjuist (C): Het downloaden (pull) gebeurt door de daemon en levert een image op, geen container.\n\nOnjuist (D): Het is andersom: de daemon start de container op verzoek van de client."
+    },
+    {
+      "question": "Wat bevat een Docker-repository?",
+      "options": [
+        "Alle images van alle gebruikers van Docker Hub",
+        "De containers die op één host draaien",
+        "Alle versies (tags) van één bepaald image",
+        "De Dockerfiles waarmee images gebouwd worden"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Een registry is opgedeeld in repositories; een repository bevat alle versies van één specifiek image, onderscheiden door tags.\n\nOnjuist (A): Dat beschrijft eerder de hele registry (Docker Hub), niet één repository.\n\nOnjuist (B): Containers draaien op een host en staan niet in een repository.\n\nOnjuist (D): Een repository bevat images; Dockerfiles staan doorgaans in de broncode (bijv. git)."
+    },
+    {
+      "question": "Wat is een Docker-registry?",
+      "options": [
+        "Een verzameling versies van één image",
+        "Een systeem dat images opslaat en verspreidt",
+        "Een tekstbestand met instructies voor een image",
+        "Het proces dat containers uitvoert"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een registry slaat images met een naam op en verspreidt ze; gebruikers kunnen er images uit pullen en (met rechten) naartoe pushen. Standaard is dat Docker Hub, maar het kan ook on-premises of bij een cloudleverancier.\n\nOnjuist (A): Dat is een repository; een registry bestaat uit meerdere repositories.\n\nOnjuist (C): Dat is een Dockerfile.\n\nOnjuist (D): Dat is de daemon (dockerd)."
+    },
+    {
+      "question": "Welke organisatie onderhoudt de open standaarden voor container-images en container runtimes?",
+      "options": [
+        "World Wide Web Consortium (W3C)",
+        "Internet Engineering Task Force (IETF)",
+        "Distributed Management Task Force (DMTF)",
+        "Open Container Initiative (OCI)"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): De standaarden voor runtimes en images worden bijgehouden door het Open Container Initiative (OCI).\n\nOnjuist (A): Het W3C beheert webstandaarden zoals HTML en CSS.\n\nOnjuist (B): De IETF beheert internetprotocollen (zoals TCP/IP), geen containerstandaarden.\n\nOnjuist (C): De DMTF maakt beheerstandaarden (zoals OVF voor VM's), niet de containerstandaarden."
+    },
+    {
+      "question": "Waarom werkt Docker als container runtime niet samen met nieuwere versies van Kubernetes?",
+      "options": [
+        "Docker ondersteunt alleen nog Windows-containers en geen Linux-containers.",
+        "Kubernetes kan alleen images uit een on-premises registry gebruiken.",
+        "Docker-images bevatten een eigen kernel die Kubernetes niet kan laden.",
+        "Docker is niet compliant met de Container Runtime Interface (CRI)."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Kubernetes verwacht een runtime die de CRI-standaard volgt (zoals containerd). Docker is NIET CRI-compliant, maar is nog wel marktleider.\n\nOnjuist (A): Docker ondersteunt juist zowel Linux- als Windows-containers.\n\nOnjuist (B): Kubernetes kan images uit elke registry halen, ook uit Docker Hub.\n\nOnjuist (C): Images bevatten geen kernel; dat is niet de reden."
+    },
+    {
+      "question": "Je start een container en installeert daarin met apt een extra pakket. Waar wordt deze wijziging opgeslagen?",
+      "options": [
+        "In de beschrijfbare containerlaag bovenop het image",
+        "In het image, zodat nieuwe containers het pakket ook hebben",
+        "In een apart bestandssysteem van de kernel van de host",
+        "In de repository op Docker Hub waar het image vandaan kwam"
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): Veranderingen worden geschreven in de tijdelijke containerlaag. Het image zelf blijft ongewijzigd.\n\nOnjuist (B): Het image is alleen-lezen; nieuwe containers van dat image hebben het pakket dus niet.\n\nOnjuist (C): De wijziging komt in de containerlaag, niet in een systeemgebied van de host-kernel.\n\nOnjuist (D): Er wordt niets automatisch naar een registry geschreven; daarvoor is een push nodig."
+    },
+    {
+      "question": "Je maakt wijzigingen in een container, stopt hem en start hem later opnieuw met `docker start`. Wat is er met de wijzigingen gebeurd?",
+      "options": [
+        "Ze zijn er nog, omdat de containerlaag bewaard blijft zolang de container bestaat.",
+        "Ze zijn weg, omdat de containerlaag bij elke stop gewist wordt.",
+        "Ze zijn er nog, omdat Docker ze bij het stoppen automatisch in het image opslaat.",
+        "Ze zijn weg, omdat docker start altijd een nieuwe container maakt."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): De containerlaag wordt bewaard zolang de container er is, of hij nu aan of uit staat. Pas bij docker rm verdwijnen de wijzigingen.\n\nOnjuist (B): De containerlaag blijft bij stoppen gewoon bestaan.\n\nOnjuist (C): Wijzigingen komen niet vanzelf in het image; daarvoor moet je zelf een nieuw image maken.\n\nOnjuist (D): docker start start een bestaande, gestopte container; een nieuwe container maak je met docker run."
+    },
+    {
+      "question": "Wat is een container in Docker-termen?",
+      "options": [
+        "Een tekstbestand met bouwinstructies",
+        "Een gestarte instantie (instance) van een image",
+        "Een alleen-lezen pakket met applicatie en bibliotheken",
+        "Een opslagplaats voor versies van een image"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Een container is een image dat gestart is. Van één image kun je meerdere containers starten, elk met een eigen beschrijfbare laag.\n\nOnjuist (A): Dat is een Dockerfile.\n\nOnjuist (C): Dat is een image: de inhoud 'at rest'.\n\nOnjuist (D): Dat is een repository."
+    },
+    {
+      "question": "Je start een webserver met `docker run -p 8888:80 -d webimage`. Op welk adres bereik je de website vanaf de host?",
+      "options": [
+        "http://localhost:880",
+        "http://localhost:80",
+        "http://localhost:8888",
+        "http://localhost:8080"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Bij -p staat eerst de poort van de host en dan die van de container: poort 8888 op localhost wordt doorgestuurd naar poort 80 in de container.\n\nOnjuist (A): Poort 880 komt in dit commando niet voor; de notatie is host:container.\n\nOnjuist (B): Poort 80 is de poort binnen de container, niet de gepubliceerde poort op de host.\n\nOnjuist (D): Poort 8080 komt in dit commando niet voor."
+    },
+    {
+      "question": "Wat is het wezenlijke verschil tussen een virtuele machine en een container?",
+      "options": [
+        "Een VM deelt de kernel van de host; een container heeft een eigen kernel.",
+        "Een VM draait op een host-OS; een container draait rechtstreeks op de hardware.",
+        "Een VM is bedoeld voor Linux; een container alleen voor Windows Server.",
+        "Een VM heeft een eigen guest-OS met kernel; een container deelt de hostkernel."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een VM bevat een compleet besturingssysteem met eigen kernel boven op een hypervisor. Een container is een geïsoleerd proces dat de kernel van het host-OS deelt.\n\nOnjuist (A): Dit is precies omgekeerd.\n\nOnjuist (B): Een container draait juist boven op het host-OS en de container engine, niet direct op hardware.\n\nOnjuist (C): Zowel VM's als containers werken met Linux én Windows."
+    },
+    {
+      "question": "Je voert `docker exec -it webshop /bin/bash` uit en krijgt een foutmelding. Wat is de meest waarschijnlijke oorzaak?",
+      "options": [
+        "De optie -it kan niet gecombineerd worden met het commando docker exec.",
+        "De container webshop is gestopt; exec vereist een draaiende container.",
+        "Het image webshop is niet lokaal aanwezig en moet eerst gepulld worden.",
+        "De container webshop heeft bij het starten geen poort gekregen met -p."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): docker exec voert een commando uit in een draaiende container. Een gestopte container moet je eerst starten met docker start.\n\nOnjuist (A): docker exec -it is juist een veelgebruikte combinatie.\n\nOnjuist (C): exec gaat over een container, niet over een image; een pull lost dit niet op.\n\nOnjuist (D): Poorten publiceren is niet nodig om een commando in de container uit te voeren."
+    },
+    {
+      "question": "Wat wordt bedoeld met de 'portability' van containers?",
+      "options": [
+        "Een container neemt zijn data automatisch mee wanneer hij naar een andere host gaat.",
+        "Een container kan door weinig afhankelijkheden makkelijk tussen omgevingen verhuizen.",
+        "Een container draait op elk besturingssysteem, ongeacht welke kernel de host heeft.",
+        "Een draaiende container kan zonder onderbreking live naar een andere host migreren."
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Portability: minder afhankelijkheden tussen de lagen betekent dat je een container tussen infrastructuren kunt verplaatsen (on-premises en public cloud), omdat alles wat de app nodig heeft in het image zit.\n\nOnjuist (A): Data in de containerlaag gaat niet vanzelf mee; daarvoor zijn volumes of andere opslag nodig.\n\nOnjuist (C): Een container heeft wel een passende kernel nodig; een Windows-container draait niet op een Linux-kernel.\n\nOnjuist (D): Live migratie (zoals vMotion) is een VM-techniek; dat is niet wat portability bij containers betekent."
+    },
+    {
+      "question": "Een organisatie draait in productie Docker binnen VM's op een hypervisor. Waarom combineert men dat?",
+      "options": [
+        "Containers kunnen zonder een VM niet in productie draaien.",
+        "Zo krijgt elke container automatisch een eigen kernel.",
+        "De VM's leveren de serverlaag; containers maken de apps daarin flexibel.",
+        "Alleen een hypervisor kan images uit een registry pullen."
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): Containers en VM's samen geven veel flexibiliteit: de hypervisor beheert de servers (VM's), en binnen die VM's maken containers het uitrollen en beheren van applicaties eenvoudig.\n\nOnjuist (A): Containers kunnen ook direct op een host-OS draaien, zoals in de DEV-situatie.\n\nOnjuist (B): Containers in dezelfde VM delen de kernel van die VM.\n\nOnjuist (D): Het pullen van images doet de Docker daemon, niet de hypervisor."
+    },
+    {
+      "question": "Een ontwikkelaar bouwt lokaal een container-image van een applicatie. Wat is de gebruikelijke weg naar de productieomgeving?",
+      "options": [
+        "Een VM-template van de laptop maken en die in productie uitrollen.",
+        "De draaiende container live naar de productieserver laten migreren.",
+        "De Dockerfile kopiëren en de code in productie opnieuw laten compileren.",
+        "Image naar een registry pushen; productie pullt en draait het."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Belangrijke use case: de ontwikkelaar bouwt (docker build) een image met de juiste OS-onderdelen en bibliotheken, uploadt het (docker push) naar een registry, en de productieomgeving haalt het op (docker pull) en draait het.\n\nOnjuist (A): Een VM-template bevat een heel guest-OS; dat is juist wat containers overbodig maken.\n\nOnjuist (B): Containers worden niet live gemigreerd; het image wordt verspreid via een registry.\n\nOnjuist (C): Dan verlies je de garantie dat productie exact hetzelfde draait als in ontwikkeling."
+    },
+    {
+      "question": "In een Dockerfile staan `RUN apt-get install -y apache2` en `CMD apachectl -D FOREGROUND`. Wanneer wordt elk van deze regels uitgevoerd?",
+      "options": [
+        "Allebei opnieuw bij elke start van een container van dit image",
+        "RUN bij het starten van de container, CMD tijdens het bouwen van het image",
+        "RUN tijdens het bouwen van het image, CMD bij het starten van de container",
+        "Allebei tijdens het bouwen van het image, CMD als allerlaatste stap"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): RUN voert commando's uit tijdens docker build (bijv. pakketten installeren). CMD bepaalt wat er gestart wordt wanneer een container van het image start.\n\nOnjuist (A): RUN-stappen worden alleen tijdens de build uitgevoerd en niet bij elke start.\n\nOnjuist (B): Dit is precies omgekeerd.\n\nOnjuist (D): CMD wordt niet tijdens de build uitgevoerd, maar pas bij het starten van een container."
+    },
+    {
+      "question": "Wat doet de instructie `EXPOSE 80` in een Dockerfile?",
+      "options": [
+        "Ze legt vast op welke poort de container luistert.",
+        "Ze koppelt poort 80 van de host automatisch aan de container.",
+        "Ze installeert en start een webserver op poort 80.",
+        "Ze opent poort 80 in de firewall van het hostsysteem."
+      ],
+      "correct": 0,
+      "explanation": "Juist (A): EXPOSE geeft aan op welke poorten de container luistert. Koppelen aan een poort op de host doe je daarna zelf, bijvoorbeeld met -p.\n\nOnjuist (B): Koppelen aan de host gebeurt pas met -p bij docker run.\n\nOnjuist (C): EXPOSE installeert niets; dat doe je met RUN en CMD.\n\nOnjuist (D): EXPOSE verandert niets aan de firewall van de host."
+    },
+    {
+      "question": "Welke software is een container runtime (engine) en GEEN hypervisor?",
+      "options": [
+        "KVM",
+        "ESXi",
+        "Hyper-V",
+        "containerd"
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): containerd is een container runtime, net als Docker, Mesos en rkt. De andere drie zijn hypervisors die virtuele machines draaien.\n\nOnjuist (A): KVM is een hypervisor die in de Linux-kernel is ingebouwd.\n\nOnjuist (B): ESXi is de bare-metal hypervisor van VMware.\n\nOnjuist (C): Hyper-V is de hypervisor van Microsoft."
+    },
+    {
+      "question": "Je voert `docker build -f Dockerfile -t ubuntuserv:v1 .` uit. Waar staat de punt aan het einde voor?",
+      "options": [
+        "De naam van de container die daarna wordt gestart",
+        "De build context: de map met bestanden voor het image",
+        "De registry waar het image na de build heen gaat",
+        "De tag van het image, die zo op latest wordt gezet"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): De punt is de build context: de huidige map. Alle bestanden daarin worden meegestuurd en kunnen in het image worden opgenomen, dus houd die map schoon.\n\nOnjuist (A): docker build start geen container; dat doe je met docker run.\n\nOnjuist (C): docker build pusht niet; daarvoor gebruik je docker push.\n\nOnjuist (D): De tag is al met -t opgegeven (v1); de punt is geen tag."
+    },
+    {
+      "question": "Een image bestaat uit lagen (layers). Wanneer ontstaat er tijdens `docker build` een nieuwe laag?",
+      "options": [
+        "Bij elke container die vanuit het image gestart wordt",
+        "Bij instructies die bestanden wijzigen, zoals RUN en COPY",
+        "Alleen bij de FROM-instructie aan het begin van de Dockerfile",
+        "Alleen op het moment dat het image naar een registry gaat"
+      ],
+      "correct": 1,
+      "explanation": "Juist (B): Docker bouwt het image laag voor laag op: instructies die het bestandssysteem wijzigen (RUN, COPY, ADD) maken een nieuwe laag. Dat komt in week 5 verder aan bod.\n\nOnjuist (A): Een gestarte container krijgt een containerlaag, maar het image zelf krijgt geen nieuwe laag.\n\nOnjuist (C): FROM legt het basisimage vast; ook de instructies daarna leveren lagen op.\n\nOnjuist (D): Bij een push worden bestaande lagen geüpload; er ontstaan geen nieuwe."
+    },
+    {
+      "question": "Je wilt het lokale image ubtu-apache uploaden naar een eigen registry op localhost:9105. Welke stap is nodig vóór de push?",
+      "options": [
+        "Het image eerst van localhost:9105 pullen",
+        "Een container starten met de optie -p 9105:80",
+        "Het image taggen met localhost:9105/ in de naam",
+        "Het image opnieuw bouwen met de optie --registry 9105"
+      ],
+      "correct": 2,
+      "explanation": "Juist (C): De naam van een image bepaalt de registry. Met docker tag ubtu-apache localhost:9105/ubtu-apache-local geef je de registry-host en poort mee, zodat docker push weet waar het heen moet.\n\nOnjuist (A): Een pull haalt iets op uit de registry; je wilt er juist iets naartoe sturen.\n\nOnjuist (B): -p publiceert een poort van een container en heeft niets met de registry te maken.\n\nOnjuist (D): Er bestaat geen optie --registry bij docker build; de bestemming volgt uit de naam/tag."
+    },
+    {
+      "question": "Je hebt alleen ubtu-apache-local naar je registry op localhost:9105 gepusht. Daarna geeft `docker pull localhost:9105/alpine` een foutmelding. Wat is de oorzaak?",
+      "options": [
+        "Het image alpine bestaat op Docker Hub niet meer onder deze naam.",
+        "Alpine is een Windows-image dat niet op een Linux-host kan draaien.",
+        "Een lokale registry ondersteunt push, maar een pull alleen via Docker Hub.",
+        "Het image alpine is nooit naar de registry op localhost:9105 gepusht."
+      ],
+      "correct": 3,
+      "explanation": "Juist (D): Een eigen registry bevat alleen de images die je er zelf naartoe hebt gepusht. Alpine staat op Docker Hub, niet in jouw lokale registry.\n\nOnjuist (A): Alpine bestaat gewoon op Docker Hub; het probleem is dat je een andere registry aanspreekt.\n\nOnjuist (B): Alpine is juist een kleine Linux-distributie.\n\nOnjuist (C): Een eigen registry ondersteunt zowel push als pull; je pullde er eerder zelf ubtu-apache-local uit."
+    }
+  ]
+}
